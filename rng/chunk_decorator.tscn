@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://byj53obw6r5rg"]
+
+[ext_resource type="Script" path="res://rng/chunk_decorator.gd" id="1_qa2f6"]
+
+[node name="ChunkDecorator" type="Node"]
+script = ExtResource("1_qa2f6")
