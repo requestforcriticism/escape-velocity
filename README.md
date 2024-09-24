@@ -11,3 +11,6 @@ TODO:
 - Screenshots
 - Build instructions
 - TODO List
+
+Resources Used
+Splosion image from Godot World project

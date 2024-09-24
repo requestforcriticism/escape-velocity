@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://ba5nilk1bwg7q"]
+
+[ext_resource type="Script" path="res://resources/demo_resource/demo_resource.gd" id="1_5epyp"]
+[ext_resource type="Texture2D" uid="uid://cnpry520fsm3k" path="res://resources/demo_resource/demo_resource.png" id="1_k0k26"]
+[ext_resource type="Texture2D" uid="uid://cuhwyk5wv4hv3" path="res://resources/demo_resource/demo_resource_2.png" id="2_0tm2l"]
+[ext_resource type="PackedScene" uid="uid://b2dniluutupbr" path="res://components/bullet/bullet.tscn" id="2_ytkhu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghsk1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_k0k26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0tm2l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47bav"]
+size = Vector2(32, 32)
+
+[node name="DemoResource" type="StaticBody2D"]
+script = ExtResource("1_5epyp")
+bullet = ExtResource("2_ytkhu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ghsk1")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_47bav")
+
+[node name="BulletTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]

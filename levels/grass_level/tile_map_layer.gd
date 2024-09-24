@@ -7,6 +7,7 @@ extends TileMapLayer
 @export var chunk_decorator : PackedScene
 
 var loaded_chunks = []
+#var chunk_resources = 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

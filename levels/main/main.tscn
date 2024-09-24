@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc5t3aovb3tgx"]
+[gd_scene load_steps=4 format=3 uid="uid://bc5t3aovb3tgx"]
 
 [ext_resource type="PackedScene" uid="uid://c4gytpc0vkd2a" path="res://levels/grass_level/grass_level.tscn" id="1_btafr"]
 [ext_resource type="Script" path="res://levels/main/main.gd" id="1_mdbpw"]
 [ext_resource type="PackedScene" uid="uid://ctcrca36054ed" path="res://entities/player/player.tscn" id="2_7kw1c"]
-[ext_resource type="PackedScene" uid="uid://byj53obw6r5rg" path="res://rng/chunk_decorator.tscn" id="4_osaky"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_mdbpw")
@@ -14,7 +13,5 @@ render_distance = 2
 [node name="player" parent="." instance=ExtResource("2_7kw1c")]
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-
-[node name="ChunkDecorator" parent="." instance=ExtResource("4_osaky")]
 
 [connection signal="on_chunk_changed" from="player" to="grass_level" method="_on_player_on_chunk_changed"]

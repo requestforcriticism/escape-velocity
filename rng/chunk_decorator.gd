@@ -1,11 +1,13 @@
 extends Node
 
-@export var seed = 0
+@export var seed = 6758493012
 @export var dmz_x = 2
 @export var dmz_y = 2
 @export var tile_size = 32
 @export var chunk_size = 32
 @export var tilemap : TileMapLayer
+
+@export var demo_resource : PackedScene
 
 func get_chunk_seed(x, y):
 	var chunk_mask = (x * 100000) + y #offset x and y to reduce repeats
@@ -13,11 +15,10 @@ func get_chunk_seed(x, y):
 
 func get_chunk_generator(x, y):
 	var chunk_seed = get_chunk_seed(x, y)
+	print("Chunk seed is ", chunk_seed)
 	var rng =  RandomNumberGenerator.new()
-	rng.set_seed(chunk_seed)
+	rng.seed = chunk_seed
 	return rng
-	
-
 	
 func decorate_chunk(x, y):
 	var rng = get_chunk_generator(x, y)
@@ -28,15 +29,18 @@ func decorate_chunk(x, y):
 		var y_atlas = rng.randi_range(1,3)
 		var x_offset = rng.randi_range(0,30)
 		var y_offset = rng.randi_range(0,30)
-		
 		tilemap.set_cell(Vector2((x * chunk_size) + x_offset, (y * chunk_size) + y_offset), 2, Vector2i(x_atlas, y_atlas))
 		
 	#roll num res
+	spawn_feature(demo_resource, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32))
 	#roll normals
 	#roll rares
 	
-func spawn_feature(feature, tx, ty):
-	pass
+func spawn_feature(feature:PackedScene, tx, ty):
+	var new_feature = feature.instantiate()
+	new_feature.position.x = tx * tile_size
+	new_feature.position.y = ty * tile_size
+	tilemap.add_child(new_feature)
 	
 func pick(rng:RandomNumberGenerator, opts:Array):
 	var d_size = opts.size()
