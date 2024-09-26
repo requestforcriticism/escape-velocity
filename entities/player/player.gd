@@ -30,7 +30,7 @@ func _process(delta):
 		current_chunk = chunk_id
 		on_chunk_changed.emit(current_chunk)
 
-	
+	#fsd
 	#print("Pos X: ", snapped(position.x, 0.1), 
 		#"\tY: ", snapped(position.y, 0.1), 
 		#"\tTx: ", snapped(position.x, 1) / tile_size,
