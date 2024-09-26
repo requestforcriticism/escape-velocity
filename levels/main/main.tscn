@@ -12,7 +12,6 @@ script = ExtResource("1_mdbpw")
 [node name="grass_level" parent="." instance=ExtResource("1_btafr")]
 
 [node name="player" parent="." instance=ExtResource("2_7kw1c")]
-speed = 300
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(2, 2)
@@ -20,5 +19,6 @@ zoom = Vector2(2, 2)
 [node name="hud" parent="player/Camera2D" instance=ExtResource("4_us57y")]
 script = ExtResource("5_yei0p")
 
+[connection signal="health_changed" from="player" to="player/Camera2D/hud" method="_on_player_health_changed"]
 [connection signal="on_chunk_changed" from="player" to="grass_level" method="_on_player_on_chunk_changed"]
-[connection signal="stamina" from="player" to="player/Camera2D/hud" method="_on_player_stamina"]
+[connection signal="stamina_changed" from="player" to="player/Camera2D/hud" method="_on_player_stamina_changed"]

@@ -13,4 +13,5 @@ TODO:
 - TODO List
 
 Resources Used
+Arrow image from Godot World project
 Splosion image from Godot World project

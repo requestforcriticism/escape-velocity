@@ -1,15 +1,19 @@
 extends CharacterBody2D
 
 signal on_chunk_changed
-signal stamina
+signal stamina_changed
+signal health_changed
 
 @export var tile_size = 32
 @export var chunk_size = 32
 
-@export var health = 3
+@export var maxHealth = 100
+@export var currentHealth:int
+@export var healthRegen = 1
 @export var speed = 200
 @export var maxStamina = 100
-@export var currentStamina = 50
+@export var currentStamina:int
+
 
 @export var run = 1.5
 var running = 0
@@ -25,27 +29,29 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	currentHealth = maxHealth
+	currentStamina = maxStamina
+	stamina_changed.emit(currentStamina,maxStamina)
+	health_changed.emit(currentHealth,maxHealth)
 	$StaminaRegen.start()
+	$HealthRegen.start()
 	current_chunk = pos_to_chunk(position.x, position.y)
 	on_chunk_changed.emit(current_chunk)
 
 func _process(delta: float) -> void:
 	var velocity = Vector2.ZERO
 	
-	#var velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	
 	if Input.is_action_pressed("running") && currentStamina > 0:
 		$StaminaRegen.stop()
 		running = 1
 		currentStamina += -1 #maybe multiply by delta
-		stamina.emit(currentStamina)
+		stamina_changed.emit(currentStamina,maxStamina)
 		$StaminaRegen.wait_time=1
 		$StaminaRegen.start()
 		$StaminaRegen.wait_time=.05
-		
+
 
 	velocity = Input.get_vector("move_left","move_right","move_up","move_down")	
-	print(velocity)
 	if velocity.length() > 0:
 		move_and_collide(velocity)
 		velocity = velocity * speed
@@ -59,14 +65,8 @@ func _process(delta: float) -> void:
 		
 	var ang = velocity.angle()
 	rotation = ang
-	#if velocity.x != 0:
-		#$AnimatedSprite2D.animation = "walk"
-		#$AnimatedSprite2D.flip_v = false
-		## See the note below about the following boolean assignment.
-		#$AnimatedSprite2D.flip_h = velocity.x < 0
-	#elif velocity.y != 0:
-		#$AnimatedSprite2D.animation = "up"
-		#$AnimatedSprite2D.flip_v = velocity.y > 0
+	
+	
 	
 	if running > 0:
 		running =+ -.01
@@ -83,17 +83,20 @@ func _process(delta: float) -> void:
 	
 	
 	
-	
-	
-	
-	#print("Pos X: ", snapped(position.x, 0.1), 
-		#"\tY: ", snapped(position.y, 0.1), 
-		#"\tTx: ", snapped(position.x, 1) / tile_size,
-		#"\tTy: ", snapped(position.y, 1) / tile_size,
-		#"\tCx: ", chunk_id.x,
-		#"\tCy: ", chunk_id.y)
 func _on_stamina_regen_timeout() -> void:
 	if currentStamina <maxStamina:
 		currentStamina += 1
-		stamina.emit(currentStamina)
+		stamina_changed.emit(currentStamina,maxStamina)
+
+func _on_health_regen_timeout() -> void:
+	if currentHealth < maxHealth:
+		currentHealth += healthRegen
+		health_changed.emit(currentHealth,maxHealth)
+	pass # Replace with function body.
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	currentHealth += -10
+	health_changed.emit(currentHealth,maxHealth)
+	print("hit",currentHealth)
 	pass # Replace with function body.
