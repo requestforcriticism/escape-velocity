@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ddo8sc41fi3mj"]
+
+[node name="hud" type="CanvasLayer"]
+
+[node name="Stamina" type="Label" parent="."]
+offset_left = 8.0
+offset_right = 212.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 48
+text = "Stamina:"
+
+[node name="StaminaValue" type="Label" parent="."]
+offset_left = 216.0
+offset_right = 298.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 48
+text = "100"
