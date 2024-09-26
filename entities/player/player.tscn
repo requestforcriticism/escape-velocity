@@ -36,7 +36,7 @@ shape = SubResource("RectangleShape2D_ht3oy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lgv1p")
-frame_progress = 0.447355
+frame_progress = 0.72567
 
 [node name="StaminaRegen" type="Timer" parent="."]
 wait_time = 0.05

@@ -43,13 +43,12 @@ func _process(delta: float) -> void:
 		$StaminaRegen.start()
 		$StaminaRegen.wait_time=.05
 		
-	print(currentStamina)
-	
+
 	velocity = Input.get_vector("move_left","move_right","move_up","move_down")	
-		
+	print(velocity)
 	if velocity.length() > 0:
 		move_and_collide(velocity)
-		velocity = velocity.normalized() * speed
+		velocity = velocity * speed
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
