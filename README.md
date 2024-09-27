@@ -1,4 +1,4 @@
-# CS 517 GGP
+# CS 517 GGP: Escape Velocity
 
 *Team Members*
 
@@ -13,4 +13,5 @@ TODO:
 - TODO List
 
 Resources Used
+Arrow image from Godot World project
 Splosion image from Godot World project

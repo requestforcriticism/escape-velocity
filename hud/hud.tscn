@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://ddo8sc41fi3mj"]
+
+[node name="hud" type="CanvasLayer"]
+
+[node name="HpStamina" type="Label" parent="."]
+offset_left = 16.0
+offset_right = 128.0
+offset_bottom = 155.0
+theme_override_font_sizes/font_size = 48
+text = "HP:
+STA:"
+
+[node name="StaminaProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0.180392, 1, 1, 1)
+offset_left = 128.0
+offset_top = 80.0
+offset_right = 384.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+value = 100.0
+
+[node name="HPProgressBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = 128.0
+offset_top = 16.0
+offset_right = 384.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+value = 100.0
