@@ -13,12 +13,14 @@ signal health_changed
 @export var speed = 200
 @export var maxStamina = 100
 @export var currentStamina:int
+@export var dashStaminaCost = 25
 
 
 @export var run = 1.5
 var running = 0
-
-
+var dashDistance = 600
+var dashing:int
+var dashRdy:bool
 var current_chunk = null
 
 func pos_to_chunk(x, y):
@@ -29,6 +31,8 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	$AnimatedSprite2D.animation = "walking"
+	dashRdy =true
 	currentHealth = maxHealth
 	currentStamina = maxStamina
 	stamina_changed.emit(currentStamina,maxStamina)
@@ -49,15 +53,19 @@ func _process(delta: float) -> void:
 		$StaminaRegen.wait_time=1
 		$StaminaRegen.start()
 		$StaminaRegen.wait_time=.05
-
-
-	velocity = Input.get_vector("move_left","move_right","move_up","move_down")	
+	
+	velocity = Input.get_vector("move_left","move_right","move_up","move_down").normalized()
 	if velocity.length() > 0:
 		move_and_collide(velocity)
 		velocity = velocity * speed
-		$AnimatedSprite2D.play()
-	else:
+		if dashing == 0:
+			$AnimatedSprite2D.animation = "walking"
+			$AnimatedSprite2D.play()
+		
+	elif velocity.length() == 0  && dashing == 0:
 		$AnimatedSprite2D.stop()
+		
+		
 	if running >0:
 		position += (velocity*running*run) * delta
 	else:
@@ -66,6 +74,27 @@ func _process(delta: float) -> void:
 	var ang = velocity.angle()
 	rotation = ang
 	
+	if dashRdy == true && Input.is_action_just_pressed("dash") && currentStamina > dashStaminaCost:
+		$StaminaRegen.stop()
+		$Area2D/DamageCollisionShape2D.disabled = true
+		currentStamina += -dashStaminaCost
+		stamina_changed.emit(currentStamina,maxStamina)
+		dashing = 10
+		$StaminaRegen.wait_time=1
+		$StaminaRegen.start()
+		$StaminaRegen.wait_time=.05
+		dashRdy = false
+		$DashWait.start()
+		$AnimatedSprite2D.animation = "dashing"
+		$AnimatedSprite2D.play()
+	
+	if dashing > 0:
+		dashing += -1
+		position += velocity.normalized()*dashDistance*delta
+		$AnimatedSprite2D.animation = "dashing"
+		$AnimatedSprite2D.play()
+		if dashing == 0:
+			$Area2D/DamageCollisionShape2D.disabled = false
 	
 	
 	if running > 0:
@@ -80,7 +109,7 @@ func _process(delta: float) -> void:
 		current_chunk = chunk_id
 		on_chunk_changed.emit(current_chunk)
 
-	
+
 	
 	
 func _on_stamina_regen_timeout() -> void:
@@ -98,5 +127,8 @@ func _on_health_regen_timeout() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	currentHealth += -10
 	health_changed.emit(currentHealth,maxHealth)
-	print("hit",currentHealth)
+	pass # Replace with function body.
+
+func _on_dash_wait_timeout() -> void:
+	dashRdy =true
 	pass # Replace with function body.
