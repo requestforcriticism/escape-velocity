@@ -58,6 +58,11 @@ func can_spawn(tx, ty, cx, cy):
 	else:
 		return false
 	
+func unload_resources(cx, cy):
+	var chunk_key = coord_to_key(cx, cy)
+	for i in loaded_resources[chunk_key]:
+		if loaded_resources[chunk_key][i] != null:
+			loaded_resources[chunk_key][i].queue_free()
 	
 func spawn_feature(feature:PackedScene, tx, ty, chunk_x, chunk_y):
 	if !can_spawn(tx, ty, chunk_x, chunk_y):

@@ -29,7 +29,7 @@ bullet_scene = ExtResource("2_peiln")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wq857")
 autoplay = "default"
-frame_progress = 0.649548
+frame_progress = 0.531863
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2i8lf")
