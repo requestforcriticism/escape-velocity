@@ -8,6 +8,9 @@ extends Node
 @export var tilemap : TileMapLayer
 
 @export var demo_resource : PackedScene
+@export var base_resource : PackedScene
+
+var loaded_resources = {}
 
 func get_chunk_seed(x, y):
 	var chunk_mask = (x * 100000) + y #offset x and y to reduce repeats
@@ -31,16 +34,44 @@ func decorate_chunk(x, y):
 		var y_offset = rng.randi_range(0,30)
 		tilemap.set_cell(Vector2((x * chunk_size) + x_offset, (y * chunk_size) + y_offset), 2, Vector2i(x_atlas, y_atlas))
 		
+	
+	spawn_feature(demo_resource, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x ,y)
+	
+	spawn_feature(base_resource, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
+	
 	#roll num res
-	spawn_feature(demo_resource, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32))
 	#roll normals
 	#roll rares
 	
-func spawn_feature(feature:PackedScene, tx, ty):
+func coord_to_key(x, y):
+	return str(x)+","+str(y)
+	
+func can_spawn(tx, ty, cx, cy):
+	var chunk_key = coord_to_key(cx, cy)
+	if !loaded_resources.has(chunk_key):
+		loaded_resources[chunk_key] = {}
+	
+	var tile_key = coord_to_key(tx, ty)
+	if !loaded_resources[chunk_key].has(tile_key):
+		loaded_resources[chunk_key][tile_key] = {}
+		return true
+	else:
+		return false
+	
+	
+func spawn_feature(feature:PackedScene, tx, ty, chunk_x, chunk_y):
+	if !can_spawn(tx, ty, chunk_x, chunk_y):
+		return
+	
 	var new_feature = feature.instantiate()
 	new_feature.position.x = tx * tile_size
 	new_feature.position.y = ty * tile_size
 	tilemap.add_child(new_feature)
+	
+	loaded_resources[coord_to_key(chunk_x, chunk_y)][coord_to_key(tx, ty)] = new_feature
+	#print(loaded_resources)
+	#loaded_resources[chunk_key] = new_feature
+	#print(loaded_resources[chunk_key])
 	
 func pick(rng:RandomNumberGenerator, opts:Array):
 	var d_size = opts.size()

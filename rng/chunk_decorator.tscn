@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://byj53obw6r5rg"]
+[gd_scene load_steps=4 format=3 uid="uid://byj53obw6r5rg"]
 
 [ext_resource type="Script" path="res://rng/chunk_decorator.gd" id="1_qa2f6"]
+[ext_resource type="PackedScene" uid="uid://ba5nilk1bwg7q" path="res://resources/demo_resource/demo_resource.tscn" id="2_m7jb1"]
+[ext_resource type="PackedScene" uid="uid://dc4cw5hq15s2h" path="res://resources/base_resource/base_resource.tscn" id="3_4pnnh"]
 
 [node name="ChunkDecorator" type="Node"]
 script = ExtResource("1_qa2f6")
+demo_resource = ExtResource("2_m7jb1")
+base_resource = ExtResource("3_4pnnh")
