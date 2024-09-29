@@ -15,13 +15,12 @@ extends Node
 @export var sand_tiles : TileSet
 
 var loaded_resources = {}
+var biome = 1
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#tilemap.tile_set = grass_tiles
-	#tilemap.tile_set = rock_tiles
-	#tilemap.tile_set = sand_tiles
+	biome = 1
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,6 +31,15 @@ func get_chunk_seed(x, y):
 	var chunk_mask = (x * 100000) + y #offset x and y to reduce repeats
 	return seed ^ chunk_mask # add it in, now the seed is indexable by chunk
 
+func get_chunk_meta(x , y):
+	var rng = get_chunk_generator(x, y)
+	
+	var meta = {
+		"biome" : biome,
+		"is_ruin" : rng.randi_range(1, 10) == 10
+	}
+	return meta
+
 func get_chunk_generator(x, y):
 	var chunk_seed = get_chunk_seed(x, y)
 	print("Chunk seed is ", chunk_seed)
@@ -41,6 +49,7 @@ func get_chunk_generator(x, y):
 	
 func decorate_chunk(x, y):
 	var rng = get_chunk_generator(x, y)
+	var meta = get_chunk_meta(x, y)
 	print("Decorating chunk (", x, ", ", y, ")")
 	#roll tile decoration
 	for i in range(1,rng.randi_range(50, 100)):
@@ -48,7 +57,7 @@ func decorate_chunk(x, y):
 		var y_atlas = rng.randi_range(1,3)
 		var x_offset = rng.randi_range(0,30)
 		var y_offset = rng.randi_range(0,30)
-		tilemap.set_cell(Vector2((x * chunk_size) + x_offset, (y * chunk_size) + y_offset), 1, Vector2i(x_atlas, y_atlas))
+		tilemap.set_cell(Vector2((x * chunk_size) + x_offset, (y * chunk_size) + y_offset), meta.biome, Vector2i(x_atlas, y_atlas))
 		
 	
 	spawn_feature(demo_resource, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x ,y)
