@@ -1,16 +1,18 @@
-extends RigidBody2D
+extends Area2D
 
 @export var speed = 500
-@export var velocity:Vector2
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+@export var direction:Vector2
 
+func _ready():
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position += (velocity) * delta * speed
-
+	position += direction * delta * speed
 
 func _on_die_timer_timeout():
+	queue_free()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("oww")
 	queue_free()
