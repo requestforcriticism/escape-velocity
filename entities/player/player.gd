@@ -81,6 +81,7 @@ func _process(delta: float) -> void:
 	
 	#where is the player looking?
 	looking = Input.get_vector("look_left","look_right","look_up","look_down")
+	print(">>", Input.get_action_strength("look_up"))
 	if looking != Vector2.ZERO:
 		rotation = looking.angle()
 		lastlook = looking.normalized()
