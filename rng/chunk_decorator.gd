@@ -79,13 +79,44 @@ func generate_ruin(x , y):
 				struct_layer.set_cell(Vector2(i, j), 4, Vector2i(5,4))
 				roof_layer.set_cell(Vector2(i, j), 4, Vector2i(1,4))
 			else:			
-				struct_layer.set_cell(Vector2(i, j), 4, roof_tile, rng.randi_range(0, 3))
+				struct_layer.set_cell(Vector2(i, j), 4, floor_tile, rng.randi_range(0, 3))
+				roof_layer.set_cell(Vector2(i, j), 4, roof_tile, rng.randi_range(0, 3))
 				
 	#then set corners
 	struct_layer.set_cell(Vector2(bound_left, bound_top), 4, Vector2i(4,1))
 	struct_layer.set_cell(Vector2(bound_left, bound_bottom), 4, Vector2i(4,4))
 	struct_layer.set_cell(Vector2(bound_right, bound_top), 4, Vector2i(7,1))
 	struct_layer.set_cell(Vector2(bound_right, bound_bottom), 4, Vector2i(7,4))
+	roof_layer.set_cell(Vector2(bound_left, bound_top), 4, Vector2i(0,1))
+	roof_layer.set_cell(Vector2(bound_left, bound_bottom), 4, Vector2i(0,4))
+	roof_layer.set_cell(Vector2(bound_right, bound_top), 4, Vector2i(3,1))
+	roof_layer.set_cell(Vector2(bound_right, bound_bottom), 4, Vector2i(3,4))
+	
+	#pick side to open
+	var side = rng.randi_range(0, 4)
+	print("side is ", side)
+	if side == 0: #open top
+		print("add ing top, side is ", side)
+		roof_layer.set_cell(Vector2i((bound_left+bound_right)/2,bound_top), 1, Vector2i(-1,-1))
+		roof_layer.set_cell(Vector2i(((bound_left+bound_right)/2)+1,bound_top), 1, Vector2i(-1,-1))
+		struct_layer.set_cell(Vector2i((bound_left+bound_right)/2,bound_top), 4, ruin_floor[0])
+		struct_layer.set_cell(Vector2i(((bound_left+bound_right)/2)+1,bound_top), 4, ruin_floor[0])
+	elif side == 1: #open bottom
+		roof_layer.set_cell(Vector2i((bound_left+bound_right)/2,bound_bottom), 1, Vector2i(-1,-1))
+		roof_layer.set_cell(Vector2i(((bound_left+bound_right)/2)+1,bound_bottom), 1, Vector2i(-1,-1))
+		struct_layer.set_cell(Vector2i((bound_left+bound_right)/2,bound_bottom), 4, ruin_floor[0])
+		struct_layer.set_cell(Vector2i(((bound_left+bound_right)/2)+1,bound_bottom), 4, ruin_floor[0])
+	elif side == 2: #open left
+		roof_layer.set_cell(Vector2i(bound_left, (bound_top+bound_bottom)/2), 1, Vector2i(-1,-1))
+		roof_layer.set_cell(Vector2i(bound_left, ((bound_top+bound_bottom)/2)+1), 1, Vector2i(-1,-1))
+		struct_layer.set_cell(Vector2i(bound_left,(bound_top+bound_bottom)/2), 4, ruin_floor[0])
+		struct_layer.set_cell(Vector2i(bound_left,((bound_top+bound_bottom)/2)+1), 4, ruin_floor[0])
+	else: #open right
+		roof_layer.set_cell(Vector2i(bound_right, (bound_top+bound_bottom)/2), 1, Vector2i(-1,-1))
+		roof_layer.set_cell(Vector2i(bound_right, ((bound_top+bound_bottom)/2)+1), 1, Vector2i(-1,-1))
+		struct_layer.set_cell(Vector2i(bound_right,(bound_top+bound_bottom)/2), 4, ruin_floor[0])
+		struct_layer.set_cell(Vector2i(bound_right,((bound_top+bound_bottom)/2)+1), 4, ruin_floor[0])
+	
 
 func decorate_chunk(x, y):
 	var rng = get_chunk_generator(x, y)

@@ -18,13 +18,10 @@ script = ExtResource("2_kdaou")
 [node name="ChunkDecorator" parent="OutdoorLayer" node_paths=PackedStringArray("tilemap", "struct_layer", "roof_layer") instance=ExtResource("4_km7fq")]
 tilemap = NodePath("..")
 struct_layer = NodePath("../../StructLayer")
-roof_layer = NodePath("../../RoofLayer")
+roof_layer = NodePath("")
 grass_tiles = ExtResource("1_6uq1d")
 rock_tiles = ExtResource("5_jmkks")
 sand_tiles = ExtResource("6_fa45b")
 
 [node name="StructLayer" type="TileMapLayer" parent="."]
-tile_set = ExtResource("1_6uq1d")
-
-[node name="RoofLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("1_6uq1d")

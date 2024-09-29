@@ -1,5 +1,10 @@
 extends Node2D
 
+@export var roof_layer : TileMapLayer:
+	set(value):
+		$OutdoorLayer/ChunkDecorator.roof_layer = value
+	get():
+		return $OutdoorLayer/ChunkDecorator.roof_layer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
