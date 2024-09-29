@@ -4,8 +4,6 @@ extends TileMapLayer
 @export var chunk_size = 32
 @export var render_distance = 1
 
-@export var chunk_decorator : PackedScene
-
 var loaded_chunks = []
 #var chunk_resources = 
 
@@ -41,13 +39,14 @@ func unload_far_chunks(x, y):
 		var is_in_range_y = (loaded_chunk.y <= y + render_distance) and (loaded_chunk.y >= y - render_distance)
 		if !is_in_range_x or !is_in_range_y:
 			unload_chunk(loaded_chunk.x, loaded_chunk.y)
+			$ChunkDecorator.unload_resources(loaded_chunk.x, loaded_chunk.y)
 		else:
 			safe_chunks.push_back(loaded_chunk)
 	loaded_chunks = safe_chunks
 		
 func load_near_chunks(x, y):
-	for i in range(x-render_distance, x+render_distance):
-		for j in range(y-render_distance, y+render_distance):
+	for i in range(x-render_distance, x+render_distance+1):
+		for j in range(y-render_distance, y+render_distance+1):
 			load_chunk(i, j)
 
 func unload_chunk(x, y):

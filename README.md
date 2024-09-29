@@ -1,4 +1,4 @@
-# CS 517 GGP
+# CS 517 GGP: Escape Velocity
 
 *Team Members*
 
