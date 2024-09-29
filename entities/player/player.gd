@@ -84,7 +84,6 @@ func _process(delta: float) -> void:
 	if looking != Vector2.ZERO:
 		rotation = looking.angle()
 		lastlook = looking.normalized()
-	print(looking)
 	
 	#logic for shooting
 	if Input.is_action_pressed("shoot") && shootRdy == true:
@@ -142,12 +141,12 @@ func _on_health_regen_timeout() -> void:
 		health_changed.emit(currentHealth,maxHealth)
 	pass # Replace with function body.
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	currentHealth += -10
-	health_changed.emit(currentHealth,maxHealth)
-	$AnimatedSprite2D.modulate = Color.RED
-	await get_tree().create_timer(0.1).timeout
-	$AnimatedSprite2D.modulate = Color.WHITE
+#func _on_area_2d_body_entered(body: Node2D) -> void:
+	#currentHealth += -10
+	#health_changed.emit(currentHealth,maxHealth)
+	#$AnimatedSprite2D.modulate = Color.RED
+	#await get_tree().create_timer(0.1).timeout
+	#$AnimatedSprite2D.modulate = Color.WHITE
 
 
 func _on_dash_wait_timeout() -> void:
@@ -159,3 +158,11 @@ func _on_shoot_timer_timeout() -> void:
 	shootRdy = true
 	$ShootTimer.stop()
 	pass # Replace with function body.
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	currentHealth += -10
+	health_changed.emit(currentHealth,maxHealth)
+	$AnimatedSprite2D.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	$AnimatedSprite2D.modulate = Color.WHITE
