@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ctcrca36054ed" path="res://entities/player/player.tscn" id="2_7kw1c"]
 [ext_resource type="PackedScene" uid="uid://ddo8sc41fi3mj" path="res://hud/hud.tscn" id="4_us57y"]
 [ext_resource type="Script" path="res://hud/hud.gd" id="5_yei0p"]
-[ext_resource type="TileSet" uid="uid://cxm638ny72a02" path="res://levels/tilesets/grass_tileset/grass_tileset.tres" id="7_lkfts"]
+[ext_resource type="TileSet" uid="uid://cxm638ny72a02" path="res://levels/tilesets/grass_tileset.tres" id="7_lkfts"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_mdbpw")
