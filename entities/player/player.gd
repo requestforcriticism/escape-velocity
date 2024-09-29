@@ -25,6 +25,8 @@ var dashRdy:bool
 var current_chunk = null
 var looking
 var ang
+var lastlook
+var shootRdy:bool
 
 func pos_to_chunk(x, y):
 	var tile_x = floor(x / tile_size)
@@ -34,6 +36,8 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	lastlook = Vector2(1,0)
+	shootRdy = true
 	$AnimatedSprite2D.animation = "walking"
 	dashRdy =true
 	currentHealth = maxHealth
@@ -58,6 +62,7 @@ func _process(delta: float) -> void:
 		$StaminaRegen.wait_time=.05
 	
 	velocity = Input.get_vector("move_left","move_right","move_up","move_down").normalized()
+
 	if velocity.length() > 0:
 		move_and_collide(velocity)
 		velocity = velocity * speed
@@ -76,19 +81,16 @@ func _process(delta: float) -> void:
 	
 	#where is the player looking?
 	looking = Input.get_vector("look_left","look_right","look_up","look_down")
-	ang = looking.angle()
-	rotation = ang
-	
+	if looking != Vector2.ZERO:
+		rotation = looking.angle()
+		lastlook = looking.normalized()
 	print(looking)
+	
 	#logic for shooting
-	if Input.is_action_pressed("shoot"):
-		shoot.emit(position,looking.x,looking.y)
-		#var new_bullet = playerBullet.instantiate()
-		#new_bullet.velocity = looking
-		#
-		#
-		#add_child(new_bullet)
-		pass
+	if Input.is_action_pressed("shoot") && shootRdy == true:
+		shoot.emit($Marker2D.global_position,lastlook.x,lastlook.y)
+		shootRdy = false
+		$ShootTimer.start()
 	
 	#logic for dashing
 	if dashRdy == true && Input.is_action_just_pressed("dash") && currentStamina > dashStaminaCost:
@@ -117,6 +119,10 @@ func _process(delta: float) -> void:
 		running =+ -.01
 	else:
 		running = 0
+
+	#create animation for standing still
+	#$AnimatedSprite2D.animation = "standing"
+	#$AnimatedSprite2D.play()
 	
 	var chunk_id = pos_to_chunk(position.x, position.y)
 	
@@ -124,8 +130,7 @@ func _process(delta: float) -> void:
 		current_chunk = chunk_id
 		on_chunk_changed.emit(current_chunk)
 
-	
-	
+
 func _on_stamina_regen_timeout() -> void:
 	if currentStamina <maxStamina:
 		currentStamina += 1
@@ -137,12 +142,20 @@ func _on_health_regen_timeout() -> void:
 		health_changed.emit(currentHealth,maxHealth)
 	pass # Replace with function body.
 
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	currentHealth += -10
 	health_changed.emit(currentHealth,maxHealth)
-	pass # Replace with function body.
+	$AnimatedSprite2D.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	$AnimatedSprite2D.modulate = Color.WHITE
+
 
 func _on_dash_wait_timeout() -> void:
 	dashRdy =true
+	pass # Replace with function body.
+
+
+func _on_shoot_timer_timeout() -> void:
+	shootRdy = true
+	$ShootTimer.stop()
 	pass # Replace with function body.
