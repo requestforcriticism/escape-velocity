@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2dniluutupbr"]
 
+[ext_resource type="Script" path="res://components/playerBullet/player_bullet.gd" id="1_00p6f"]
 [ext_resource type="Texture2D" uid="uid://dor1yp31y48fu" path="res://components/playerBullet/bullet_1.png" id="1_3wbop"]
-[ext_resource type="Script" path="res://components/bullet/bullet.gd" id="1_nyeq0"]
 [ext_resource type="Texture2D" uid="uid://3ht2s0bhxsde" path="res://components/playerBullet/bullet_2.png" id="2_srkb4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sanqs"]
@@ -26,7 +26,7 @@ height = 16.0
 collision_layer = 4
 collision_mask = 4
 gravity_scale = 0.0
-script = ExtResource("1_nyeq0")
+script = ExtResource("1_00p6f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.32, 0.32)

@@ -1,10 +1,9 @@
 extends CharacterBody2D
 
-@export var playerBullet : PackedScene
-
 signal on_chunk_changed
 signal stamina_changed
 signal health_changed
+signal shoot
 
 @export var tile_size = 32
 @export var chunk_size = 32
@@ -80,13 +79,16 @@ func _process(delta: float) -> void:
 	ang = looking.angle()
 	rotation = ang
 	
+	print(looking)
 	#logic for shooting
 	if Input.is_action_pressed("shoot"):
-		var new_bullet = playerBullet.instantiate()
-		new_bullet.position = looking
-		
-		
-		add_child(new_bullet)
+		shoot.emit(position,looking.x,looking.y)
+		#var new_bullet = playerBullet.instantiate()
+		#new_bullet.velocity = looking
+		#
+		#
+		#add_child(new_bullet)
+		pass
 	
 	#logic for dashing
 	if dashRdy == true && Input.is_action_just_pressed("dash") && currentStamina > dashStaminaCost:

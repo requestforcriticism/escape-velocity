@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var playerBullet : PackedScene
+
 @export var tile_size = 32
 @export var chunk_size = 32
 @export var render_distance = 1
@@ -16,3 +18,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_player_shoot(position,lookx,looky) -> void:
+	var new_bullet = playerBullet.instantiate()
+	var looking = Vector2(lookx,looky)
+	new_bullet.velocity = looking
+	add_child(new_bullet)
+	pass # Replace with function body.
