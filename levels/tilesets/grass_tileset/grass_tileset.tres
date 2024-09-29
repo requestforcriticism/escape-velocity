@@ -202,4 +202,4 @@ tile_size = Vector2i(32, 32)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Grass"
 terrain_set_0/terrain_0/color = Color(0.647059, 0.862745, 0.25098, 1)
-sources/2 = SubResource("TileSetAtlasSource_vn5vf")
+sources/1 = SubResource("TileSetAtlasSource_vn5vf")

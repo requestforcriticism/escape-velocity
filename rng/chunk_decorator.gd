@@ -32,7 +32,7 @@ func decorate_chunk(x, y):
 		var y_atlas = rng.randi_range(1,3)
 		var x_offset = rng.randi_range(0,30)
 		var y_offset = rng.randi_range(0,30)
-		tilemap.set_cell(Vector2((x * chunk_size) + x_offset, (y * chunk_size) + y_offset), 2, Vector2i(x_atlas, y_atlas))
+		tilemap.set_cell(Vector2((x * chunk_size) + x_offset, (y * chunk_size) + y_offset), 1, Vector2i(x_atlas, y_atlas))
 		
 	
 	spawn_feature(demo_resource, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x ,y)
