@@ -12,3 +12,7 @@ func _process(delta):
 
 func _on_die_timer_timeout():
 	queue_free()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("oww")
+	queue_free()

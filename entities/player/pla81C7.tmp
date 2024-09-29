@@ -50,7 +50,16 @@ animations = [{
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_cefws")
+tile_size = null
+chunk_size = null
+maxHealth = null
+currentHealth = null
+healthRegen = null
 speed = 300
+maxStamina = null
+currentStamina = null
+dashStaminaCost = null
+run = null
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -82,7 +91,6 @@ wait_time = 0.1
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(12, 0)
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="StaminaRegen" to="." method="_on_stamina_regen_timeout"]
 [connection signal="timeout" from="HealthRegen" to="." method="_on_health_regen_timeout"]

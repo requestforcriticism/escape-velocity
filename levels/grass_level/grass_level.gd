@@ -12,5 +12,5 @@ func _process(delta):
 
 func _on_player_on_chunk_changed(chunk_id):
 	print("Player is in chunk ", chunk_id)
-	$TileMapLayer.load_near_chunks(chunk_id.x, chunk_id.y)
-	$TileMapLayer.unload_far_chunks(chunk_id.x, chunk_id.y)
+	$OutdoorLayer.load_near_chunks(chunk_id.x, chunk_id.y)
+	$OutdoorLayer.unload_far_chunks(chunk_id.x, chunk_id.y)

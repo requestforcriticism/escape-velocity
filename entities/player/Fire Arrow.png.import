@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkhb551b1gslk"
-path="res://.godot/imported/index.png-0c78d14d192abe5f22f8c25928ca1ab8.ctex"
+uid="uid://ctm4dy1kv1utq"
+path="res://.godot/imported/Fire Arrow.png-d62efabb4d00d2eb63fa899c774a42e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://docs/index.png"
-dest_files=["res://.godot/imported/index.png-0c78d14d192abe5f22f8c25928ca1ab8.ctex"]
+source_file="res://entities/player/Fire Arrow.png"
+dest_files=["res://.godot/imported/Fire Arrow.png-d62efabb4d00d2eb63fa899c774a42e6.ctex"]
 
 [params]
 

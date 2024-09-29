@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dirpaawh3vcbt"
-path="res://.godot/imported/index.apple-touch-icon.png-b21a756d869f84af832970a74d8371bc.ctex"
+uid="uid://btk6x5ctigkib"
+path="res://.godot/imported/rock_tileset.png-b589f2cf9f4b4f5b47520ec9114b3db0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://docs/index.apple-touch-icon.png"
-dest_files=["res://.godot/imported/index.apple-touch-icon.png-b21a756d869f84af832970a74d8371bc.ctex"]
+source_file="res://levels/tilesets/rock_tileset/rock_tileset.png"
+dest_files=["res://.godot/imported/rock_tileset.png-b589f2cf9f4b4f5b47520ec9114b3db0.ctex"]
 
 [params]
 
