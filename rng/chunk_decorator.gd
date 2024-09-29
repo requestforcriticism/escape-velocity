@@ -6,6 +6,8 @@ extends Node
 @export var tile_size = 32
 @export var chunk_size = 32
 @export var tilemap : TileMapLayer
+@export var struct_layer : TileMapLayer
+@export var roof_layer : TileMapLayer
 
 @export var demo_resource : PackedScene
 @export var base_resource : PackedScene
@@ -36,7 +38,7 @@ func get_chunk_meta(x , y):
 	
 	var meta = {
 		"biome" : biome,
-		"is_ruin" : rng.randi_range(1, 10) == 10
+		"is_ruin" : rng.randi_range(1, 2) == 1
 	}
 	return meta
 
@@ -47,10 +49,49 @@ func get_chunk_generator(x, y):
 	rng.seed = chunk_seed
 	return rng
 	
+#var ruin_corners = 
+var ruin_floor = [Vector2i(0,0), Vector2i(1,0), Vector2i(2,0), Vector2i(3,0), Vector2i(4,0), Vector2i(5,0), Vector2i(6,0), Vector2i(7,0),Vector2i(5,2),Vector2i(6,2),Vector2i(5,3),Vector2i(6,3) ]
+var ruin_roof = [Vector2(1,2), Vector2(2,2),Vector2(1,3), Vector2(2,3)]
+func generate_ruin(x , y):
+	var setback = 10
+	var rng = get_chunk_generator(x, y)
+	var bound_left = x*chunk_size + setback
+	var bound_right = x*chunk_size+chunk_size-setback
+	var bound_top = y*chunk_size + setback
+	var bound_bottom = y*chunk_size+chunk_size-setback
+	
+	#fill tiles
+	for i in range(bound_left, bound_right+1):
+		for j in range(bound_top, bound_bottom+1):
+			var floor_tile = ruin_floor[rng.randi_range(0, 11)]
+			var roof_tile = ruin_roof[rng.randi_range(0, 3)]
+			#set edges or fill floor tile
+			if i == bound_left:
+				struct_layer.set_cell(Vector2(i, j), 4, Vector2i(4,3))
+				roof_layer.set_cell(Vector2(i, j), 4, Vector2i(0,2))
+			elif i == bound_right:
+				struct_layer.set_cell(Vector2(i, j), 4, Vector2i(7,3))
+				roof_layer.set_cell(Vector2(i, j), 4, Vector2i(3,2))
+			elif j == bound_top:
+				struct_layer.set_cell(Vector2(i, j), 4, Vector2i(6,1))
+				roof_layer.set_cell(Vector2(i, j), 4, Vector2i(2,1))
+			elif j == bound_bottom:
+				struct_layer.set_cell(Vector2(i, j), 4, Vector2i(5,4))
+				roof_layer.set_cell(Vector2(i, j), 4, Vector2i(1,4))
+			else:			
+				struct_layer.set_cell(Vector2(i, j), 4, roof_tile, rng.randi_range(0, 3))
+				
+	#then set corners
+	struct_layer.set_cell(Vector2(bound_left, bound_top), 4, Vector2i(4,1))
+	struct_layer.set_cell(Vector2(bound_left, bound_bottom), 4, Vector2i(4,4))
+	struct_layer.set_cell(Vector2(bound_right, bound_top), 4, Vector2i(7,1))
+	struct_layer.set_cell(Vector2(bound_right, bound_bottom), 4, Vector2i(7,4))
+
 func decorate_chunk(x, y):
 	var rng = get_chunk_generator(x, y)
 	var meta = get_chunk_meta(x, y)
 	print("Decorating chunk (", x, ", ", y, ")")
+	
 	#roll tile decoration
 	for i in range(1,rng.randi_range(50, 100)):
 		var x_atlas = rng.randi_range(1,3)
@@ -59,10 +100,11 @@ func decorate_chunk(x, y):
 		var y_offset = rng.randi_range(0,30)
 		tilemap.set_cell(Vector2((x * chunk_size) + x_offset, (y * chunk_size) + y_offset), meta.biome, Vector2i(x_atlas, y_atlas))
 		
-	
-	spawn_feature(demo_resource, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x ,y)
-	
-	spawn_feature(base_resource, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
+	if meta.is_ruin:
+		generate_ruin(x, y)
+	else:
+		spawn_feature(base_resource, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x ,y)
+		spawn_feature(base_resource, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
 	
 	#roll num res
 	#roll normals
