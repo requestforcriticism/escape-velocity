@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctcrca36054ed"]
+[gd_scene load_steps=11 format=3 uid="uid://ctcrca36054ed"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_cefws"]
 [ext_resource type="Texture2D" uid="uid://ctm4dy1kv1utq" path="res://entities/player/Fire Arrow.png" id="2_1ikru"]
+[ext_resource type="PackedScene" uid="uid://b2dniluutupbr" path="res://components/playerBullet/playerBullet.tscn" id="2_dw3uj"]
 [ext_resource type="Texture2D" uid="uid://dgsjeqkyn26xp" path="res://entities/player/Arrows.png" id="2_ovosx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ht3oy"]
@@ -50,6 +51,7 @@ animations = [{
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_cefws")
+playerBullet = ExtResource("2_dw3uj")
 speed = 300
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var playerBullet : PackedScene
+
 signal on_chunk_changed
 signal stamina_changed
 signal health_changed
@@ -22,6 +24,8 @@ var dashDistance = 600
 var dashing:int
 var dashRdy:bool
 var current_chunk = null
+var looking
+var ang
 
 func pos_to_chunk(x, y):
 	var tile_x = floor(x / tile_size)
@@ -70,10 +74,21 @@ func _process(delta: float) -> void:
 		position += (velocity*running*run) * delta
 	else:
 		position += (velocity) * delta
-		
-	var ang = velocity.angle()
+	
+	#where is the player looking?
+	looking = Input.get_vector("look_left","look_right","look_up","look_down")
+	ang = looking.angle()
 	rotation = ang
 	
+	#logic for shooting
+	if Input.is_action_pressed("shoot"):
+		var new_bullet = playerBullet.instantiate()
+		new_bullet.position = looking
+		
+		
+		add_child(new_bullet)
+	
+	#logic for dashing
 	if dashRdy == true && Input.is_action_just_pressed("dash") && currentStamina > dashStaminaCost:
 		$StaminaRegen.stop()
 		$Area2D/DamageCollisionShape2D.disabled = true
@@ -87,7 +102,6 @@ func _process(delta: float) -> void:
 		$DashWait.start()
 		$AnimatedSprite2D.animation = "dashing"
 		$AnimatedSprite2D.play()
-	
 	if dashing > 0:
 		dashing += -1
 		position += velocity.normalized()*dashDistance*delta
@@ -95,20 +109,18 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.play()
 		if dashing == 0:
 			$Area2D/DamageCollisionShape2D.disabled = false
-	
-	
+
+	#if running slow down
 	if running > 0:
 		running =+ -.01
 	else:
 		running = 0
-	
 	
 	var chunk_id = pos_to_chunk(position.x, position.y)
 	
 	if current_chunk.x != chunk_id.x || current_chunk.y != chunk_id.y:
 		current_chunk = chunk_id
 		on_chunk_changed.emit(current_chunk)
-
 
 	
 	
