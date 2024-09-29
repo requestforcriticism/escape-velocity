@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=4 uid="uid://c4gytpc0vkd2a"]
+[gd_scene load_steps=7 format=4 uid="uid://c4gytpc0vkd2a"]
 
 [ext_resource type="TileSet" uid="uid://cxm638ny72a02" path="res://levels/tilesets/grass_tileset/grass_tileset.tres" id="1_6uq1d"]
 [ext_resource type="Script" path="res://levels/grass_level/grass_level.gd" id="1_uiuji"]
 [ext_resource type="Script" path="res://levels/grass_level/tile_map_layer.gd" id="2_kdaou"]
 [ext_resource type="PackedScene" uid="uid://byj53obw6r5rg" path="res://rng/chunk_decorator.tscn" id="4_km7fq"]
+[ext_resource type="TileSet" uid="uid://bimme404giogv" path="res://levels/tilesets/rock_tileset/rock_tileset.tres" id="5_jmkks"]
+[ext_resource type="TileSet" uid="uid://he6djtepol21" path="res://levels/tilesets/sand_tileset/sand_tileset.tres" id="6_fa45b"]
 
 [node name="grass_level" type="Node2D"]
 script = ExtResource("1_uiuji")
@@ -15,3 +17,6 @@ script = ExtResource("2_kdaou")
 
 [node name="ChunkDecorator" parent="TileMapLayer" node_paths=PackedStringArray("tilemap") instance=ExtResource("4_km7fq")]
 tilemap = NodePath("..")
+grass_tiles = ExtResource("1_6uq1d")
+rock_tiles = ExtResource("5_jmkks")
+sand_tiles = ExtResource("6_fa45b")

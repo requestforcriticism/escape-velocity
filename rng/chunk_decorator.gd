@@ -10,7 +10,23 @@ extends Node
 @export var demo_resource : PackedScene
 @export var base_resource : PackedScene
 
+@export var grass_tiles : TileSet
+@export var rock_tiles : TileSet
+@export var sand_tiles : TileSet
+
 var loaded_resources = {}
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	#tilemap.tile_set = grass_tiles
+	#tilemap.tile_set = rock_tiles
+	#tilemap.tile_set = sand_tiles
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
 
 func get_chunk_seed(x, y):
 	var chunk_mask = (x * 100000) + y #offset x and y to reduce repeats
@@ -85,12 +101,3 @@ func pick(rng:RandomNumberGenerator, opts:Array):
 	var d_size = opts.size()
 	var roll = rng.randi_range(0, d_size-1)
 	return opts[roll]
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
