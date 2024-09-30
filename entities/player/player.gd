@@ -17,7 +17,7 @@ signal shoot
 @export var dashStaminaCost = 25
 
 
-@export var run = 1.5
+@export var run = 2
 var running = 0
 var dashDistance = 600
 var dashing:int

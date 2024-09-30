@@ -1,6 +1,39 @@
-[gd_scene format=3 uid="uid://ddo8sc41fi3mj"]
+[gd_scene load_steps=8 format=3 uid="uid://ddo8sc41fi3mj"]
+
+[ext_resource type="Script" path="res://hud/hud.gd" id="1_bk8gt"]
+[ext_resource type="Texture2D" uid="uid://ciqe0uu5lfa86" path="res://hud/Sun.png" id="1_v7012"]
+[ext_resource type="Texture2D" uid="uid://csthlahxgrqv6" path="res://hud/horizon.png" id="2_233w1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubqxh"]
+atlas = ExtResource("1_v7012")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn26n"]
+atlas = ExtResource("1_v7012")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q4gkt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubqxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qn26n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve2D" id="Curve2D_lxilg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 464, 72, 0, 0, 0, 0, 480, 48, 0, 0, 0, 0, 496, 32, 0, 0, 0, 0, 512, 24, 0, 0, 0, 0, 536, 16, 0, 0, 0, 0, 568, 8, 0, 0, 0, 0, 584, 8, 0, 0, 0, 0, 616, 16, 0, 0, 0, 0, 640, 24, 0, 0, 0, 0, 656, 32, 0, 0, 0, 0, 672, 48, 0, 0, 0, 0, 688, 72)
+}
+point_count = 12
 
 [node name="hud" type="CanvasLayer"]
+script = ExtResource("1_bk8gt")
 
 [node name="HpStamina" type="Label" parent="."]
 offset_left = 16.0
@@ -29,3 +62,25 @@ offset_bottom = 64.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 value = 100.0
+
+[node name="DayTimeTracker" type="CanvasGroup" parent="."]
+position = Vector2(0, 8)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DayTimeTracker"]
+position = Vector2(456, -24)
+sprite_frames = SubResource("SpriteFrames_q4gkt")
+
+[node name="Sprite2D" type="Sprite2D" parent="DayTimeTracker"]
+position = Vector2(576, 80)
+texture = ExtResource("2_233w1")
+
+[node name="Path2D" type="Path2D" parent="DayTimeTracker"]
+curve = SubResource("Curve2D_lxilg")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="DayTimeTracker/Path2D"]
+position = Vector2(464, 72)
+rotation = -0.982794
+
+[node name="DayTimer" type="Timer" parent="DayTimeTracker"]
+
+[connection signal="timeout" from="DayTimeTracker/DayTimer" to="." method="_on_day_timer_timeout"]

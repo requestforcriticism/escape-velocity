@@ -1,10 +1,10 @@
 extends Node2D
 
 @export var playerBullet : PackedScene
-
 @export var tile_size = 32
 @export var chunk_size = 32
 @export var render_distance = 1
+@export var dayLength = 60		# in seconds
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,6 +13,13 @@ func _ready():
 	$grass_level/TileMapLayer.chunk_size = chunk_size
 	$grass_level/TileMapLayer.tile_size = chunk_size
 	$grass_level/TileMapLayer.render_distance = render_distance
+	start_day()
+	
+
+#all the stuff to start a new day
+func start_day():
+	$player/Camera2D/hud.start_day(dayLength)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
