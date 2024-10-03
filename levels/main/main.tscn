@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc5t3aovb3tgx"]
+[gd_scene load_steps=7 format=3 uid="uid://bc5t3aovb3tgx"]
 
 [ext_resource type="PackedScene" uid="uid://c4gytpc0vkd2a" path="res://levels/grass_level/grass_level.tscn" id="1_btafr"]
 [ext_resource type="Script" path="res://levels/main/main.gd" id="1_mdbpw"]
 [ext_resource type="PackedScene" uid="uid://4xrk0xcxfw6e" path="res://components/playerBullet/player_bullet.tscn" id="2_5vrux"]
 [ext_resource type="PackedScene" uid="uid://ctcrca36054ed" path="res://entities/player/player.tscn" id="2_7kw1c"]
 [ext_resource type="PackedScene" uid="uid://ddo8sc41fi3mj" path="res://hud/hud.tscn" id="4_us57y"]
-[ext_resource type="Script" path="res://hud/hud.gd" id="5_yei0p"]
 [ext_resource type="TileSet" uid="uid://cxm638ny72a02" path="res://levels/tilesets/grass_tileset.tres" id="7_lkfts"]
 
 [node name="Main" type="Node2D"]
