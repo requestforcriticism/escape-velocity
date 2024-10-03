@@ -18,6 +18,7 @@ func is_chunk_loaded(x, y):
 
 func load_chunk(x, y):
 	print("loading chunk " ,x, " ", y)
+	var chunk_meta = $ChunkDecorator.get_chunk_meta(x,y)
 	var bottom_tile_x = x * chunk_size
 	var bottom_tile_y = y * chunk_size
 	var top_tile_x = bottom_tile_x + chunk_size
@@ -26,7 +27,7 @@ func load_chunk(x, y):
 	for i in range(bottom_tile_x, top_tile_x):
 		for j in range(bottom_tile_y, top_tile_y):
 			#changed_cells.push_back(Vector2(i,j))
-			set_cell(Vector2(i, j), 2, Vector2(0,0))
+			set_cell(Vector2(i, j), chunk_meta.biome, Vector2(0,0))
 	#set_cells_terrain_connect(changed_cells, 0, 0, false)
 	loaded_chunks.push_front(Vector2(x, y))
 	$ChunkDecorator.decorate_chunk(x, y)

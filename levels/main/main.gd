@@ -13,9 +13,11 @@ func _ready():
 	$grass_level/TileMapLayer.chunk_size = chunk_size
 	$grass_level/TileMapLayer.tile_size = chunk_size
 	$grass_level/TileMapLayer.render_distance = render_distance
+	$grass_level/OutdoorLayer.chunk_size = chunk_size
+	$grass_level/OutdoorLayer.tile_size = chunk_size
+	$grass_level/OutdoorLayer.render_distance = render_distance
 	start_day()
 	
-
 #all the stuff to start a new day
 func start_day():
 	$player/Camera2D/hud.start_day(dayLength)
