@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
+@export var playerBullet : PackedScene
+
 signal on_chunk_changed
 signal stamina_changed
 signal health_changed
-signal shoot
+#signal shoot
 
 @export var tile_size = 32
 @export var chunk_size = 32
@@ -27,6 +29,8 @@ var looking
 var ang
 var lastlook
 var shootRdy:bool
+var Whereismousy
+var lastMouse
 
 func pos_to_chunk(x, y):
 	var tile_x = floor(x / tile_size)
@@ -36,7 +40,9 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	looking = Vector2(1,0)
 	lastlook = Vector2(1,0)
+	lastMouse = Vector2(1,0)
 	shootRdy = true
 	$AnimatedSprite2D.animation = "walking"
 	dashRdy =true
@@ -79,17 +85,34 @@ func _process(delta: float) -> void:
 	else:
 		position += (velocity) * delta
 	
+	
+	#Where are we looking?
+	Whereismousy = get_global_mouse_position()
+	if Whereismousy != lastMouse:
+		looking = (Whereismousy-global_position).normalized()
+		lastMouse = Whereismousy
 	#where is the player looking?
-	looking = Input.get_vector("look_left","look_right","look_up","look_down")
+	if Input.get_vector("look_left","look_right","look_up","look_down") != Vector2.ZERO:
+		looking = Input.get_vector("look_left","look_right","look_up","look_down")
 	if looking != Vector2.ZERO:
 		rotation = looking.angle()
-		lastlook = looking.normalized()
+		lastlook = looking# .normalized()
 	
 	#logic for shooting
 	if Input.is_action_pressed("shoot") && shootRdy == true:
-		shoot.emit($Marker2D.global_position,lastlook.x,lastlook.y)
+		var new_bullet = playerBullet.instantiate()
+		new_bullet.position = $Marker2D.global_position
+		new_bullet.direction = lastlook.normalized()
+		add_sibling(new_bullet)
+				#shoot.emit($Marker2D.global_position,lastlook.x,lastlook.y)
 		shootRdy = false
 		$ShootTimer.start()
+	
+	
+	
+	
+	
+	
 	
 	#logic for dashing
 	if dashRdy == true && Input.is_action_just_pressed("dash") && currentStamina > dashStaminaCost:
@@ -139,7 +162,6 @@ func _on_health_regen_timeout() -> void:
 	if currentHealth < maxHealth:
 		currentHealth += healthRegen
 		health_changed.emit(currentHealth,maxHealth)
-	pass # Replace with function body.
 
 #func _on_area_2d_body_entered(body: Node2D) -> void:
 	#currentHealth += -10
@@ -151,13 +173,11 @@ func _on_health_regen_timeout() -> void:
 
 func _on_dash_wait_timeout() -> void:
 	dashRdy =true
-	pass # Replace with function body.
 
 
 func _on_shoot_timer_timeout() -> void:
 	shootRdy = true
 	$ShootTimer.stop()
-	pass # Replace with function body.
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

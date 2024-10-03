@@ -27,10 +27,10 @@ func _process(delta):
 	pass
 
 
-func _on_player_shoot(pos,lookx,looky) -> void:
-	var new_bullet = playerBullet.instantiate()
-	var looking = Vector2(lookx,looky)
-	new_bullet.position = pos
-	new_bullet.direction = looking
-	#new_bullet.velocity = looking
-	add_child(new_bullet)
+#func _on_player_shoot(pos,lookx,looky) -> void:
+	#var new_bullet = playerBullet.instantiate()
+	#var looking = Vector2(lookx,looky)
+	#new_bullet.position = pos
+	#new_bullet.direction = looking
+	##new_bullet.velocity = looking
+	#add_child(new_bullet)

@@ -15,11 +15,10 @@ playerBullet = ExtResource("2_5vrux")
 [node name="player" parent="." instance=ExtResource("2_7kw1c")]
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 
 [node name="hud" parent="player/Camera2D" instance=ExtResource("4_us57y")]
 
 [connection signal="health_changed" from="player" to="player/Camera2D/hud" method="_on_player_health_changed"]
 [connection signal="on_chunk_changed" from="player" to="grass_level" method="_on_player_on_chunk_changed"]
-[connection signal="shoot" from="player" to="." method="_on_player_shoot"]
 [connection signal="stamina_changed" from="player" to="player/Camera2D/hud" method="_on_player_stamina_changed"]
