@@ -17,7 +17,7 @@ roof_layer = NodePath("../RoofLayer")
 [node name="player" parent="." instance=ExtResource("2_7kw1c")]
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(2, 2)
 
 [node name="hud" parent="player/Camera2D" instance=ExtResource("4_us57y")]
 
