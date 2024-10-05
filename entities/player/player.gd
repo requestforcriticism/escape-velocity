@@ -17,6 +17,8 @@ signal health_changed
 @export var maxStamina = 100
 @export var currentStamina:int
 @export var dashStaminaCost = 25
+@export var resourceA:int
+
 
 
 @export var run = 2
@@ -40,6 +42,7 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	resourceA = 0
 	looking = Vector2(1,0)
 	lastlook = Vector2(1,0)
 	lastMouse = Vector2(1,0)
@@ -186,3 +189,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	$AnimatedSprite2D.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	$AnimatedSprite2D.modulate = Color.WHITE
+		
+
+func _on_area_2d_collectable_area_entered(area: Area2D) -> void:
+	print(area.name.left(3))
+	print("picked up stuff")

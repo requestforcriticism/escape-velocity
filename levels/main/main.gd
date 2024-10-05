@@ -1,6 +1,8 @@
 extends Node2D
 
 @export var playerBullet : PackedScene
+@export var collectable : PackedScene
+
 @export var tile_size = 32
 @export var chunk_size = 32
 @export var render_distance = 1
@@ -14,6 +16,56 @@ func _ready():
 	$grass_level/OutdoorLayer.tile_size = chunk_size
 	$grass_level/OutdoorLayer.render_distance = render_distance
 	start_day()
+	
+	var new_collectable = collectable.instantiate()
+	new_collectable.type = "BLU"
+	new_collectable.position = Vector2(100,100)
+	add_child(new_collectable)
+	new_collectable = collectable.instantiate()
+	new_collectable.type = "RED"
+	new_collectable.position = Vector2(-100,100)
+	add_child(new_collectable)
+	new_collectable = collectable.instantiate()
+	new_collectable.type = "GRE"
+	new_collectable.position = Vector2(50,100)
+	add_child(new_collectable)
+	new_collectable = collectable.instantiate()
+	new_collectable.type = "YEL"
+	new_collectable.position = Vector2(0,100)
+	add_child(new_collectable)
+	new_collectable = collectable.instantiate()
+	new_collectable.type = "ORA"
+	new_collectable.position = Vector2(-50,100)
+	add_child(new_collectable)
+	new_collectable = collectable.instantiate()
+	new_collectable.type = "PUR"
+	new_collectable.position = Vector2(-150,100)
+	add_child(new_collectable)
+	
+	new_collectable = collectable.instantiate()
+	new_collectable.type = "BLU"
+	new_collectable.position = Vector2(100,50)
+	add_child(new_collectable)
+	new_collectable = collectable.instantiate()
+	new_collectable.type = "RED"
+	new_collectable.position = Vector2(-100,50)
+	add_child(new_collectable)
+	new_collectable = collectable.instantiate()
+	new_collectable.type = "GRE"
+	new_collectable.position = Vector2(50,50)
+	add_child(new_collectable)
+	new_collectable = collectable.instantiate()
+	new_collectable.type = "YEL"
+	new_collectable.position = Vector2(0,50)
+	add_child(new_collectable)
+	new_collectable = collectable.instantiate()
+	new_collectable.type = "ORA"
+	new_collectable.position = Vector2(-50,50)
+	add_child(new_collectable)
+	new_collectable = collectable.instantiate()
+	new_collectable.type = "PUR"
+	new_collectable.position = Vector2(-150,50)
+	add_child(new_collectable)
 	
 #all the stuff to start a new day
 func start_day():

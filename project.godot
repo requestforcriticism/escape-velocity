@@ -96,6 +96,7 @@ mouse={
 2d_physics/layer_1="physics"
 2d_physics/layer_2="PlayerDamage"
 2d_physics/layer_3="MonsterDamage"
+2d_physics/layer_4="ResourcePickup"
 
 [rendering]
 

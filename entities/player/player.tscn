@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctcrca36054ed"]
+[gd_scene load_steps=12 format=3 uid="uid://ctcrca36054ed"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_cefws"]
 [ext_resource type="Texture2D" uid="uid://ctm4dy1kv1utq" path="res://entities/player/Fire Arrow.png" id="2_1ikru"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://4xrk0xcxfw6e" path="res://components/playerBullet/player_bullet.tscn" id="2_y1ein"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ht3oy"]
+size = Vector2(24, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vh67r"]
 size = Vector2(24, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dfjv2"]
@@ -61,6 +64,13 @@ collision_mask = 2
 [node name="DamageCollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_ht3oy")
 
+[node name="Area2DCollectable" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollectableCollisionShape" type="CollisionShape2D" parent="Area2DCollectable"]
+shape = SubResource("RectangleShape2D_vh67r")
+
 [node name="PhysicalCollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ht3oy")
 
@@ -86,6 +96,7 @@ position = Vector2(12, 0)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Area2DCollectable" to="." method="_on_area_2d_collectable_area_entered"]
 [connection signal="timeout" from="StaminaRegen" to="." method="_on_stamina_regen_timeout"]
 [connection signal="timeout" from="HealthRegen" to="." method="_on_health_regen_timeout"]
 [connection signal="timeout" from="DashWait" to="." method="_on_dash_wait_timeout"]
