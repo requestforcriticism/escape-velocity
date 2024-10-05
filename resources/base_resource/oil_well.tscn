@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4nfwj1m0xsvk"]
+
+[ext_resource type="PackedScene" uid="uid://dc4cw5hq15s2h" path="res://resources/base_resource/base_resource.tscn" id="1_esxtj"]
+[ext_resource type="SpriteFrames" uid="uid://rpsk2eflr0fw" path="res://resources/oil_well_animation.tres" id="2_5xdba"]
+
+[node name="BaseResource" instance=ExtResource("1_esxtj")]
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = ExtResource("2_5xdba")
