@@ -1,15 +1,21 @@
 extends CharacterBody2D
 
+@export_group("External Scenes")
 @export var playerBullet : PackedScene
+@export var harvester_scene : PackedScene
+@export var main_scn : Node
+@export var ship_scn : Node
 
 signal on_chunk_changed
 signal stamina_changed
 signal health_changed
 #signal shoot
 
+@export_group("Procgen Properties")
 @export var tile_size = 32
 @export var chunk_size = 32
 
+@export_group("Player Stats")
 @export var maxHealth = 100
 @export var currentHealth:int
 @export var healthRegen = 1
@@ -18,10 +24,8 @@ signal health_changed
 @export var currentStamina:int
 @export var dashStaminaCost = 25
 @export var resourceA:int
-
-
-
 @export var run = 2
+
 var running = 0
 var dashDistance = 600
 var dashing:int
@@ -111,11 +115,13 @@ func _process(delta: float) -> void:
 		shootRdy = false
 		$ShootTimer.start()
 	
-	
-	
-	
-	
-	
+	if Input.is_action_just_pressed("harvest_test"):
+		print("spawning harvester")
+		var harvester = harvester_scene.instantiate()
+		harvester.position = position
+		harvester.player = self
+		harvester.ship = ship_scn
+		main_scn.add_child(harvester)
 	
 	#logic for dashing
 	if dashRdy == true && Input.is_action_just_pressed("dash") && currentStamina > dashStaminaCost:

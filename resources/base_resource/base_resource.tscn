@@ -11,6 +11,7 @@ size = Vector2(32, 32)
 size = Vector2(32, 32)
 
 [node name="BaseResource" type="StaticBody2D"]
+collision_layer = 17
 script = ExtResource("1_qdcid")
 bullet_scene = ExtResource("2_peiln")
 

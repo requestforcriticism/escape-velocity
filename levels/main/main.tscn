@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc5t3aovb3tgx"]
+[gd_scene load_steps=9 format=3 uid="uid://bc5t3aovb3tgx"]
 
 [ext_resource type="PackedScene" uid="uid://c4gytpc0vkd2a" path="res://levels/grass_level/grass_level.tscn" id="1_btafr"]
 [ext_resource type="Script" path="res://levels/main/main.gd" id="1_mdbpw"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://duqednbeuh318" path="res://components/Collectables/collectables.tscn" id="3_07wri"]
 [ext_resource type="PackedScene" uid="uid://ddo8sc41fi3mj" path="res://hud/hud.tscn" id="4_us57y"]
 [ext_resource type="TileSet" uid="uid://cxm638ny72a02" path="res://levels/tilesets/grass_tileset.tres" id="7_lkfts"]
+[ext_resource type="PackedScene" uid="uid://detkeh16h32fb" path="res://entities/ship/ship.tscn" id="8_7i6xy"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_mdbpw")
@@ -16,7 +17,9 @@ collectable = ExtResource("3_07wri")
 [node name="grass_level" parent="." node_paths=PackedStringArray("roof_layer") instance=ExtResource("1_btafr")]
 roof_layer = NodePath("../RoofLayer")
 
-[node name="player" parent="." instance=ExtResource("2_7kw1c")]
+[node name="player" parent="." node_paths=PackedStringArray("main_scn", "ship_scn") instance=ExtResource("2_7kw1c")]
+main_scn = NodePath("..")
+ship_scn = NodePath("../Ship")
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(2, 2)
@@ -25,6 +28,9 @@ zoom = Vector2(2, 2)
 
 [node name="RoofLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("7_lkfts")
+
+[node name="Ship" parent="." instance=ExtResource("8_7i6xy")]
+position = Vector2(118, -112)
 
 [connection signal="health_changed" from="player" to="player/Camera2D/hud" method="_on_player_health_changed"]
 [connection signal="on_chunk_changed" from="player" to="grass_level" method="_on_player_on_chunk_changed"]
