@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://c4gytpc0vkd2a"]
+[gd_scene load_steps=14 format=4 uid="uid://c4gytpc0vkd2a"]
 
 [ext_resource type="TileSet" uid="uid://cxm638ny72a02" path="res://levels/tilesets/grass_tileset.tres" id="1_6uq1d"]
 [ext_resource type="Script" path="res://levels/grass_level/grass_level.gd" id="1_uiuji"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://byj53obw6r5rg" path="res://rng/chunk_decorator.tscn" id="4_km7fq"]
 [ext_resource type="Texture2D" uid="uid://btk6x5ctigkib" path="res://levels/tilesets/rock_tileset.png" id="5_urrtg"]
 [ext_resource type="PackedScene" uid="uid://l8culyl7y7tt" path="res://resources/base_resource/ore_vein.tscn" id="5_vs1nq"]
+[ext_resource type="PackedScene" uid="uid://tw3x76da53bm" path="res://resources/base_resource/water_source.tscn" id="6_oq627"]
 [ext_resource type="Texture2D" uid="uid://1w85x6lx87p7" path="res://levels/tilesets/desert_tileset.png" id="6_ya78v"]
+[ext_resource type="PackedScene" uid="uid://c4nfwj1m0xsvk" path="res://resources/base_resource/oil_well.tscn" id="7_8jpgk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_301tf"]
 texture = ExtResource("5_urrtg")
@@ -68,6 +70,8 @@ script = ExtResource("2_kdaou")
 tilemap = NodePath("..")
 struct_layer = NodePath("../../StructLayer")
 ore_vein = ExtResource("5_vs1nq")
+water_source = ExtResource("6_oq627")
+oil_well = ExtResource("7_8jpgk")
 grass_tiles = ExtResource("1_6uq1d")
 rock_tiles = SubResource("TileSet_yj58j")
 sand_tiles = SubResource("TileSet_l35m4")
