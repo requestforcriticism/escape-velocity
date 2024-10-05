@@ -11,6 +11,7 @@ extends Node
 
 @export var demo_resource : PackedScene
 @export var base_resource : PackedScene
+@export var ore_vein : PackedScene
 
 @export var grass_tiles : TileSet
 @export var rock_tiles : TileSet
@@ -135,7 +136,7 @@ func decorate_chunk(x, y):
 		generate_ruin(x, y)
 	else:
 		spawn_feature(base_resource, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x ,y)
-		spawn_feature(base_resource, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
+		spawn_feature(ore_vein, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
 	
 	#roll num res
 	#roll normals
