@@ -1,8 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddo8sc41fi3mj"]
+[gd_scene load_steps=17 format=3 uid="uid://ddo8sc41fi3mj"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_bk8gt"]
 [ext_resource type="Texture2D" uid="uid://ciqe0uu5lfa86" path="res://hud/Sun.png" id="1_v7012"]
 [ext_resource type="Texture2D" uid="uid://csthlahxgrqv6" path="res://hud/horizon.png" id="2_233w1"]
+[ext_resource type="Texture2D" uid="uid://cwoq0nakcaard" path="res://components/Collectables/blue_collectable.png" id="4_gt5ta"]
+[ext_resource type="Texture2D" uid="uid://gct8xl63brwr" path="res://components/Collectables/green_collectable.png" id="5_wd3q3"]
+[ext_resource type="Texture2D" uid="uid://bketb0x02bq8a" path="res://components/Collectables/orange _collectable.png" id="6_polb2"]
+[ext_resource type="Texture2D" uid="uid://d2jg0vga2t3vb" path="res://components/Collectables/purple_collectable.png" id="7_gp3w4"]
+[ext_resource type="Texture2D" uid="uid://br0qbhyk46mdp" path="res://components/Collectables/red_collectable.png" id="8_8w8me"]
+[ext_resource type="Texture2D" uid="uid://cbfajdyk50gp2" path="res://components/Collectables/yellow_collectable.png" id="9_ycben"]
+[ext_resource type="Texture2D" uid="uid://bn62ykp5bvemj" path="res://assets/Backpack.png" id="10_nukke"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ubqxh"]
 atlas = ExtResource("1_v7012")
@@ -31,6 +38,63 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 464, 72, 0, 0, 0, 0, 480, 48, 0, 0, 0, 0, 496, 32, 0, 0, 0, 0, 512, 24, 0, 0, 0, 0, 536, 16, 0, 0, 0, 0, 568, 8, 0, 0, 0, 0, 584, 8, 0, 0, 0, 0, 616, 16, 0, 0, 0, 0, 640, 24, 0, 0, 0, 0, 656, 32, 0, 0, 0, 0, 672, 48, 0, 0, 0, 0, 688, 72)
 }
 point_count = 12
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wjh6l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_gt5ta")
+}],
+"loop": true,
+"name": &"BLU",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wd3q3")
+}],
+"loop": true,
+"name": &"GRE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_polb2")
+}],
+"loop": true,
+"name": &"ORA",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_gp3w4")
+}],
+"loop": true,
+"name": &"PUR",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_8w8me")
+}],
+"loop": true,
+"name": &"RED",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ycben")
+}],
+"loop": true,
+"name": &"YEL",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve2D" id="Curve2D_3lbqv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -8, 32, 0, 0, 0, 0, 24, 32)
+}
+point_count = 2
 
 [node name="hud" type="CanvasLayer"]
 script = ExtResource("1_bk8gt")
@@ -63,7 +127,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 value = 100.0
 
-[node name="Container" type="Container" parent="."]
+[node name="ContDTT" type="Container" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -73,25 +137,52 @@ offset_bottom = 40.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 
-[node name="DayTimeTracker" type="CanvasGroup" parent="Container"]
+[node name="DayTimeTracker" type="CanvasGroup" parent="ContDTT"]
 position = Vector2(-556, 8)
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Container/DayTimeTracker"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ContDTT/DayTimeTracker"]
 position = Vector2(456, -24)
 sprite_frames = SubResource("SpriteFrames_q4gkt")
 
-[node name="Sprite2D" type="Sprite2D" parent="Container/DayTimeTracker"]
+[node name="Sprite2D" type="Sprite2D" parent="ContDTT/DayTimeTracker"]
 position = Vector2(576, 80)
 texture = ExtResource("2_233w1")
 
-[node name="Path2D" type="Path2D" parent="Container/DayTimeTracker"]
+[node name="Path2D" type="Path2D" parent="ContDTT/DayTimeTracker"]
 curve = SubResource("Curve2D_lxilg")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Container/DayTimeTracker/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="ContDTT/DayTimeTracker/Path2D"]
 position = Vector2(464, 72)
 rotation = -0.982794
 
-[node name="DayTimer" type="Timer" parent="Container/DayTimeTracker"]
+[node name="DayTimer" type="Timer" parent="ContDTT/DayTimeTracker"]
 
-[connection signal="timeout" from="Container/DayTimeTracker/DayTimer" to="." method="_on_day_timer_timeout"]
+[node name="ContBp" type="Container" parent="."]
+anchors_preset = -1
+anchor_left = 0.986
+anchor_right = 1.0
+anchor_bottom = 0.025
+offset_left = -47.8721
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 47.8
+grow_horizontal = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="ContBp"]
+position = Vector2(8, 24)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("10_nukke")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="ContBp"]
+position = Vector2(-32, -48)
+sprite_frames = SubResource("SpriteFrames_wjh6l")
+animation = &"BLU"
+
+[node name="Path2D" type="Path2D" parent="ContBp"]
+curve = SubResource("Curve2D_3lbqv")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ContBp/Path2D"]
+position = Vector2(-8, 32)
+
+[connection signal="timeout" from="ContDTT/DayTimeTracker/DayTimer" to="." method="_on_day_timer_timeout"]
