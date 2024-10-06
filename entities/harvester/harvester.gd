@@ -64,6 +64,7 @@ func change_state(new_state):
 		state = new_state
 
 func _on_search_radius_body_entered(body):
+	print(body)
 	if state == DRONE_STATE.SEARCHING and target == null:
 		if body != player and body != ship:
 			#TODO check if body is resource type

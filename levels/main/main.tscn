@@ -33,9 +33,6 @@ tile_set = ExtResource("7_lkfts")
 [node name="Ship" parent="." instance=ExtResource("8_7i6xy")]
 position = Vector2(118, -112)
 
-[node name="Ship2" parent="." instance=ExtResource("8_7i6xy")]
-position = Vector2(118, -112)
-
 [connection signal="gathered" from="player" to="player/Camera2D/hud" method="_on_player_gathered"]
 [connection signal="health_changed" from="player" to="player/Camera2D/hud" method="_on_player_health_changed"]
 [connection signal="on_chunk_changed" from="player" to="grass_level" method="_on_player_on_chunk_changed"]
