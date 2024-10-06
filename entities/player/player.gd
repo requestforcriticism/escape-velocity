@@ -25,6 +25,7 @@ signal health_changed
 @export var dashStaminaCost = 25
 @export var resourceA:int
 @export var run = 2
+@export var harvester_throw_distance = 200
 
 var running = 0
 var dashDistance = 600
@@ -121,6 +122,7 @@ func _process(delta: float) -> void:
 		harvester.position = position
 		harvester.player = self
 		harvester.ship = ship_scn
+		harvester.search_dest = position + (lastlook.normalized() * harvester_throw_distance)
 		main_scn.add_child(harvester)
 	
 	#logic for dashing

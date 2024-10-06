@@ -57,6 +57,7 @@ func _process(delta):
 		state = RESOURCE_STATE.PASSIVE
 		$HealthBar.queue_free()
 		$Timer.stop()
+		$Area2D.queue_free()
 	
 func attack():
 	var shoot_angle = deg_to_rad((shoot_state * 90) % 360)

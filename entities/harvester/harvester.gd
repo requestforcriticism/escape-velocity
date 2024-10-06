@@ -12,6 +12,8 @@ enum DRONE_STATE { SEARCHING, MINING, CARRYING, RETURNING }
 @export var search_speed = 1
 @export var return_speed = 2
 
+@export var search_dest = Vector2.ZERO
+
 var state
 
 
@@ -28,6 +30,10 @@ func _process(delta):
 	elif state == DRONE_STATE.CARRYING:
 		position = position.lerp(ship.position, delta * carry_speed)
 	elif state == DRONE_STATE.SEARCHING and target != null:
+		position = position.lerp(target.position, delta * search_speed)
+	elif state == DRONE_STATE.SEARCHING:
+		position = position.lerp(search_dest, delta * search_speed)
+	elif state == DRONE_STATE.MINING:
 		position = position.lerp(target.position, delta * search_speed)
 
 func _on_target_deplete():

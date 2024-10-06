@@ -372,7 +372,7 @@ script = ExtResource("1_oky45")
 sprite_frames = SubResource("SpriteFrames_26pnh")
 animation = &"mining"
 autoplay = "default"
-frame_progress = 0.372637
+frame_progress = 0.548876
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nem0w")
