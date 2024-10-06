@@ -35,6 +35,7 @@ func mine(miner):
 	if mined_drops >= max_drops:
 		state = RESOURCE_STATE.DEAD
 		$AnimatedSprite2D.play("depleted")
+		return  [0, null]
 	
 	#otherwise add miner to list of subscribers
 	if !miners.has(miner):
