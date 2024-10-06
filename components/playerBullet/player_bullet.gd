@@ -13,6 +13,7 @@ func _process(delta):
 func _on_die_timer_timeout():
 	queue_free()
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_entered(area: Area2D) -> void:
 	print("oww")
+	hide()
 	queue_free()

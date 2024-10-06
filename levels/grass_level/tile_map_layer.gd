@@ -17,7 +17,7 @@ func is_chunk_loaded(x, y):
 	return get_cell_atlas_coords(Vector2(bottom_tile_x, bottom_tile_y)) != Vector2i(-1, -1)
 
 func load_chunk(x, y):
-	print("loading chunk " ,x, " ", y)
+#	print("loading chunk " ,x, " ", y)
 	var chunk_meta = $ChunkDecorator.get_chunk_meta(x,y)
 	var bottom_tile_x = x * chunk_size
 	var bottom_tile_y = y * chunk_size
@@ -51,7 +51,7 @@ func load_near_chunks(x, y):
 			load_chunk(i, j)
 
 func unload_chunk(x, y):
-	print("clearing chunk " ,x, " ", y)
+#	print("clearing chunk " ,x, " ", y)
 	var bottom_tile_x = x * chunk_size
 	var bottom_tile_y = y * chunk_size
 	var top_tile_x = bottom_tile_x + chunk_size

@@ -1,11 +1,67 @@
-[gd_scene load_steps=4 format=3 uid="uid://duqednbeuh318"]
+[gd_scene load_steps=10 format=3 uid="uid://duqednbeuh318"]
 
 [ext_resource type="Script" path="res://components/Collectables/collectables.gd" id="1_c0ryi"]
-[ext_resource type="Texture2D" uid="uid://dvvsr87m0k3bb" path="res://components/Collectables/CollectableBase.png" id="2_82ntc"]
+[ext_resource type="Texture2D" uid="uid://gct8xl63brwr" path="res://components/Collectables/green_collectable.png" id="2_8mrry"]
+[ext_resource type="Texture2D" uid="uid://bketb0x02bq8a" path="res://components/Collectables/orange _collectable.png" id="3_7l3tl"]
+[ext_resource type="Texture2D" uid="uid://d2jg0vga2t3vb" path="res://components/Collectables/purple_collectable.png" id="4_ojxrl"]
+[ext_resource type="Texture2D" uid="uid://br0qbhyk46mdp" path="res://components/Collectables/red_collectable.png" id="5_2iv44"]
+[ext_resource type="Texture2D" uid="uid://cbfajdyk50gp2" path="res://components/Collectables/yellow_collectable.png" id="6_ir30b"]
+[ext_resource type="Texture2D" uid="uid://cwoq0nakcaard" path="res://components/Collectables/blue_collectable.png" id="7_01one"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w8gfb"]
 radius = 11.3137
 height = 45.2548
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nyni4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_01one")
+}],
+"loop": true,
+"name": &"BLU",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8mrry")
+}],
+"loop": true,
+"name": &"GRE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7l3tl")
+}],
+"loop": true,
+"name": &"ORA",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ojxrl")
+}],
+"loop": true,
+"name": &"PUR",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_2iv44")
+}],
+"loop": true,
+"name": &"RED",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ir30b")
+}],
+"loop": true,
+"name": &"YEL",
+"speed": 5.0
+}]
 
 [node name="Collectables" type="Area2D"]
 scale = Vector2(0.35, 0.35)
@@ -17,8 +73,9 @@ script = ExtResource("1_c0ryi")
 rotation = -0.785398
 shape = SubResource("CapsuleShape2D_w8gfb")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("2_82ntc")
+sprite_frames = SubResource("SpriteFrames_nyni4")
+animation = &"YEL"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

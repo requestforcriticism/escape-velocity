@@ -2,22 +2,14 @@ extends Area2D
 
 @export var type:String
 
+@export var coltype = ["BLU","RED","GRE","YEL","ORA","PUR"]
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	name = type
-	if type == "BLU":
-		modulate = "blue"
-	elif type == "RED":
-		modulate = "red"
-	elif type == "GRE":
-		modulate = "green"
-	elif type == "YEL":
-		modulate = "yellow"
-	elif type == "ORA":
-		modulate = "orange"
-	elif type == "PUR":
-		modulate = "purple"
+	for i in coltype.size():
+		if type == coltype[i]:
+			$AnimatedSprite2D.animation = coltype[i]
+			break	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

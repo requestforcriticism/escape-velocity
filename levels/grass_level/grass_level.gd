@@ -16,6 +16,6 @@ func _process(delta):
 	pass
 
 func _on_player_on_chunk_changed(chunk_id):
-	print("Player is in chunk ", chunk_id)
+	#print("Player is in chunk ", chunk_id)
 	$OutdoorLayer.load_near_chunks(chunk_id.x, chunk_id.y)
 	$OutdoorLayer.unload_far_chunks(chunk_id.x, chunk_id.y)
