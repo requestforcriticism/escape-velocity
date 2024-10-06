@@ -125,6 +125,13 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("harvest_test"):
 		print("spawning harvester")
+		#Save.load_file(0)
+		#var val = Save.get_value(0, "me", 0)
+		#Save.set_value(0, "you", 1.4)
+		#Save.set_value(0, "dog", "bailey" + str(val))
+		#print(val)
+		#Save.set_value(0, "me", val + 1)
+		#Save.save_file(0)
 		var harvester = harvester_scene.instantiate()
 		harvester.position = position
 		harvester.player = self
@@ -214,12 +221,4 @@ func _on_area_2d_collectable_area_entered(area: Area2D) -> void:
 			colable[i] += 1
 			gathered.emit(colnames[i])
 			break
-	
-	
-	
-	
-	
-	
-	
-	
 	print("picked up stuff")
