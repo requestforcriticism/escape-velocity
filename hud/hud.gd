@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+@export var collected : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -7,10 +8,10 @@ func _ready() -> void:
 
 
 func start_day(dayLength):
-	$DayTimeTracker/Path2D/PathFollow2D.progress_ratio = 0
-	$DayTimeTracker/DayTimer.wait_time = dayLength/100.0
-	$DayTimeTracker/DayTimer.start()
-	$DayTimeTracker/AnimatedSprite2D.play()
+	$Container/DayTimeTracker/Path2D/PathFollow2D.progress_ratio = 0
+	$Container/DayTimeTracker/DayTimer.wait_time = dayLength/100.0
+	$Container/DayTimeTracker/DayTimer.start()
+	$Container/DayTimeTracker/AnimatedSprite2D.play()
 	
 	pass
 
@@ -31,5 +32,17 @@ func _on_player_health_changed(currentHealth,maxHealth) -> void:
 
 
 func _on_day_timer_timeout() -> void:
-	$DayTimeTracker/Path2D/PathFollow2D.progress_ratio += .01
-	$DayTimeTracker/AnimatedSprite2D.position = $DayTimeTracker/Path2D/PathFollow2D.position
+	$Container/DayTimeTracker/Path2D/PathFollow2D.progress_ratio += .01
+	$Container/DayTimeTracker/AnimatedSprite2D.position = $Container/DayTimeTracker/Path2D/PathFollow2D.position
+
+
+func _on_player_gathered(colname) -> void:
+	print("here")
+	var new_col = collected.instantiate()
+	new_col.position = Vector2(200,200)
+	
+	#var new_bullet = playerBullet.instantiate()
+		#new_bullet.position = $Marker2D.global_position
+		#new_bullet.direction = lastlook.normalized()
+		#add_sibling(new_bullet)
+	pass # Replace with function body.

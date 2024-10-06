@@ -63,24 +63,35 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 value = 100.0
 
-[node name="DayTimeTracker" type="CanvasGroup" parent="."]
-position = Vector2(0, 8)
+[node name="Container" type="Container" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+size_flags_horizontal = 4
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DayTimeTracker"]
+[node name="DayTimeTracker" type="CanvasGroup" parent="Container"]
+position = Vector2(-556, 8)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Container/DayTimeTracker"]
 position = Vector2(456, -24)
 sprite_frames = SubResource("SpriteFrames_q4gkt")
 
-[node name="Sprite2D" type="Sprite2D" parent="DayTimeTracker"]
+[node name="Sprite2D" type="Sprite2D" parent="Container/DayTimeTracker"]
 position = Vector2(576, 80)
 texture = ExtResource("2_233w1")
 
-[node name="Path2D" type="Path2D" parent="DayTimeTracker"]
+[node name="Path2D" type="Path2D" parent="Container/DayTimeTracker"]
 curve = SubResource("Curve2D_lxilg")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="DayTimeTracker/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Container/DayTimeTracker/Path2D"]
 position = Vector2(464, 72)
 rotation = -0.982794
 
-[node name="DayTimer" type="Timer" parent="DayTimeTracker"]
+[node name="DayTimer" type="Timer" parent="Container/DayTimeTracker"]
 
-[connection signal="timeout" from="DayTimeTracker/DayTimer" to="." method="_on_day_timer_timeout"]
+[connection signal="timeout" from="Container/DayTimeTracker/DayTimer" to="." method="_on_day_timer_timeout"]

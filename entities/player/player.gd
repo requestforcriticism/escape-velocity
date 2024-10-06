@@ -9,6 +9,7 @@ extends CharacterBody2D
 signal on_chunk_changed
 signal stamina_changed
 signal health_changed
+signal gathered
 #signal shoot
 
 @export_group("Procgen Properties")
@@ -24,6 +25,11 @@ signal health_changed
 @export var currentStamina:int
 @export var dashStaminaCost = 25
 @export var resourceA:int
+
+#type of collectables [blue,red,green,yellow,orange,purple]
+@export var colable = [0,0,0,0,0,0]
+var colnames = ["BLU","RED","GRE","YEL","ORA","PUR"]
+
 @export var run = 2
 @export var harvester_throw_distance = 200
 
@@ -47,6 +53,7 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	colable = [0,0,0,0,0,0]
 	resourceA = 0
 	looking = Vector2(1,0)
 	lastlook = Vector2(1,0)
@@ -201,4 +208,18 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_area_2d_collectable_area_entered(area: Area2D) -> void:
 	print(area.name.left(3))
+	
+	for i in colnames.size():
+		if area.name.left(3) == colnames[i]:
+			colable[i] += 1
+			gathered.emit(colnames[i])
+			break
+	
+	
+	
+	
+	
+	
+	
+	
 	print("picked up stuff")

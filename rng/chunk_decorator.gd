@@ -47,7 +47,7 @@ func get_chunk_meta(x , y):
 
 func get_chunk_generator(x, y):
 	var chunk_seed = get_chunk_seed(x, y)
-	print("Chunk seed is ", chunk_seed)
+#	print("Chunk seed is ", chunk_seed)
 	var rng =  RandomNumberGenerator.new()
 	rng.seed = chunk_seed
 	return rng
@@ -97,9 +97,9 @@ func generate_ruin(x , y):
 	
 	#pick side to open
 	var side = rng.randi_range(0, 4)
-	print("side is ", side)
+#	print("side is ", side)
 	if side == 0: #open top
-		print("add ing top, side is ", side)
+	#	print("add ing top, side is ", side)
 		roof_layer.set_cell(Vector2i((bound_left+bound_right)/2,bound_top), 1, Vector2i(-1,-1))
 		roof_layer.set_cell(Vector2i(((bound_left+bound_right)/2)+1,bound_top), 1, Vector2i(-1,-1))
 		struct_layer.set_cell(Vector2i((bound_left+bound_right)/2,bound_top), 4, ruin_floor[0])
@@ -124,7 +124,7 @@ func generate_ruin(x , y):
 func decorate_chunk(x, y):
 	var rng = get_chunk_generator(x, y)
 	var meta = get_chunk_meta(x, y)
-	print("Decorating chunk (", x, ", ", y, ")")
+#	print("Decorating chunk (", x, ", ", y, ")")
 	
 	#roll tile decoration
 	for i in range(1,rng.randi_range(50, 100)):

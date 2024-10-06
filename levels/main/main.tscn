@@ -25,6 +25,7 @@ ship_scn = NodePath("../Ship")
 zoom = Vector2(2, 2)
 
 [node name="hud" parent="player/Camera2D" instance=ExtResource("4_us57y")]
+collected = ExtResource("3_07wri")
 
 [node name="RoofLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("7_lkfts")
@@ -32,6 +33,10 @@ tile_set = ExtResource("7_lkfts")
 [node name="Ship" parent="." instance=ExtResource("8_7i6xy")]
 position = Vector2(118, -112)
 
+[node name="Ship2" parent="." instance=ExtResource("8_7i6xy")]
+position = Vector2(118, -112)
+
+[connection signal="gathered" from="player" to="player/Camera2D/hud" method="_on_player_gathered"]
 [connection signal="health_changed" from="player" to="player/Camera2D/hud" method="_on_player_health_changed"]
 [connection signal="on_chunk_changed" from="player" to="grass_level" method="_on_player_on_chunk_changed"]
 [connection signal="stamina_changed" from="player" to="player/Camera2D/hud" method="_on_player_stamina_changed"]
