@@ -14,26 +14,36 @@ script = ExtResource("1_mdbpw")
 playerBullet = ExtResource("2_5vrux")
 collectable = ExtResource("3_07wri")
 
-[node name="grass_level" parent="." node_paths=PackedStringArray("roof_layer") instance=ExtResource("1_btafr")]
+[node name="GameLoadingScreen" type="Node2D" parent="."]
+
+[node name="GameStartScreen" type="Node2D" parent="."]
+
+[node name="DayPhase" type="Node2D" parent="."]
+
+[node name="grass_level" parent="DayPhase" node_paths=PackedStringArray("roof_layer") instance=ExtResource("1_btafr")]
 roof_layer = NodePath("../RoofLayer")
 
-[node name="player" parent="." node_paths=PackedStringArray("main_scn", "ship_scn") instance=ExtResource("2_7kw1c")]
-main_scn = NodePath("..")
+[node name="player" parent="DayPhase" node_paths=PackedStringArray("main_scn", "ship_scn") instance=ExtResource("2_7kw1c")]
+main_scn = NodePath("../..")
 ship_scn = NodePath("../Ship")
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="Camera2D" type="Camera2D" parent="DayPhase/player"]
 zoom = Vector2(2, 2)
 
-[node name="hud" parent="player/Camera2D" instance=ExtResource("4_us57y")]
+[node name="hud" parent="DayPhase/player/Camera2D" instance=ExtResource("4_us57y")]
 collected = ExtResource("3_07wri")
 
-[node name="RoofLayer" type="TileMapLayer" parent="."]
+[node name="RoofLayer" type="TileMapLayer" parent="DayPhase"]
 tile_set = ExtResource("7_lkfts")
 
-[node name="Ship" parent="." instance=ExtResource("8_7i6xy")]
+[node name="Ship" parent="DayPhase" instance=ExtResource("8_7i6xy")]
 position = Vector2(118, -112)
 
-[connection signal="gathered" from="player" to="player/Camera2D/hud" method="_on_player_gathered"]
-[connection signal="health_changed" from="player" to="player/Camera2D/hud" method="_on_player_health_changed"]
-[connection signal="on_chunk_changed" from="player" to="grass_level" method="_on_player_on_chunk_changed"]
-[connection signal="stamina_changed" from="player" to="player/Camera2D/hud" method="_on_player_stamina_changed"]
+[node name="NightPhase" type="Node2D" parent="."]
+
+[node name="GameCompleteScreen" type="Node2D" parent="."]
+
+[connection signal="gathered" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_gathered"]
+[connection signal="health_changed" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_health_changed"]
+[connection signal="on_chunk_changed" from="DayPhase/player" to="DayPhase/grass_level" method="_on_player_on_chunk_changed"]
+[connection signal="stamina_changed" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_stamina_changed"]
