@@ -1,14 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://ddo8sc41fi3mj"]
+[gd_scene load_steps=11 format=3 uid="uid://ddo8sc41fi3mj"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_bk8gt"]
 [ext_resource type="Texture2D" uid="uid://ciqe0uu5lfa86" path="res://hud/Sun.png" id="1_v7012"]
 [ext_resource type="Texture2D" uid="uid://csthlahxgrqv6" path="res://hud/horizon.png" id="2_233w1"]
-[ext_resource type="Texture2D" uid="uid://cwoq0nakcaard" path="res://components/Collectables/blue_collectable.png" id="4_gt5ta"]
-[ext_resource type="Texture2D" uid="uid://gct8xl63brwr" path="res://components/Collectables/green_collectable.png" id="5_wd3q3"]
-[ext_resource type="Texture2D" uid="uid://bketb0x02bq8a" path="res://components/Collectables/orange _collectable.png" id="6_polb2"]
-[ext_resource type="Texture2D" uid="uid://d2jg0vga2t3vb" path="res://components/Collectables/purple_collectable.png" id="7_gp3w4"]
-[ext_resource type="Texture2D" uid="uid://br0qbhyk46mdp" path="res://components/Collectables/red_collectable.png" id="8_8w8me"]
-[ext_resource type="Texture2D" uid="uid://cbfajdyk50gp2" path="res://components/Collectables/yellow_collectable.png" id="9_ycben"]
+[ext_resource type="SpriteFrames" uid="uid://debd5ieq62j5w" path="res://components/Collectables/collectables_animations.tres" id="5_4m6ay"]
 [ext_resource type="Texture2D" uid="uid://bn62ykp5bvemj" path="res://assets/Backpack.png" id="10_nukke"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ubqxh"]
@@ -38,57 +33,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 464, 72, 0, 0, 0, 0, 480, 48, 0, 0, 0, 0, 496, 32, 0, 0, 0, 0, 512, 24, 0, 0, 0, 0, 536, 16, 0, 0, 0, 0, 568, 8, 0, 0, 0, 0, 584, 8, 0, 0, 0, 0, 616, 16, 0, 0, 0, 0, 640, 24, 0, 0, 0, 0, 656, 32, 0, 0, 0, 0, 672, 48, 0, 0, 0, 0, 688, 72)
 }
 point_count = 12
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_wjh6l"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_gt5ta")
-}],
-"loop": true,
-"name": &"BLU",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_wd3q3")
-}],
-"loop": true,
-"name": &"GRE",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_polb2")
-}],
-"loop": true,
-"name": &"ORA",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_gp3w4")
-}],
-"loop": true,
-"name": &"PUR",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_8w8me")
-}],
-"loop": true,
-"name": &"RED",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("9_ycben")
-}],
-"loop": true,
-"name": &"YEL",
-"speed": 5.0
-}]
 
 [sub_resource type="Curve2D" id="Curve2D_3lbqv"]
 _data = {
@@ -176,8 +120,8 @@ texture = ExtResource("10_nukke")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="ContBp"]
 position = Vector2(-32, -48)
-sprite_frames = SubResource("SpriteFrames_wjh6l")
-animation = &"BLU"
+sprite_frames = ExtResource("5_4m6ay")
+animation = &"WAT"
 
 [node name="Path2D" type="Path2D" parent="ContBp"]
 curve = SubResource("Curve2D_3lbqv")

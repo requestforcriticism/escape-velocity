@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4kwt20g4glah"
-path="res://.godot/imported/harvester.png-86eabde9a079f0253dda796bdd100777.ctex"
+path="res://.godot/imported/harvester.png-9d10237ca5bec383b2b8b046f162ff4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/harvester.png"
-dest_files=["res://.godot/imported/harvester.png-86eabde9a079f0253dda796bdd100777.ctex"]
+source_file="res://assets/harvester/harvester.png"
+dest_files=["res://.godot/imported/harvester.png-9d10237ca5bec383b2b8b046f162ff4e.ctex"]
 
 [params]
 

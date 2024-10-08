@@ -47,7 +47,7 @@ func _on_player_gathered(colname) -> void:
 		
 	
 		
-	print(colname)
+	print("#",colname)
 	
 	
 	
