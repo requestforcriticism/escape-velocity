@@ -10,7 +10,9 @@ signal on_chunk_changed
 signal stamina_changed
 signal health_changed
 signal gathered
-#signal shoot
+signal consumableCount
+signal toggleConsumables
+
 
 @export_group("Procgen Properties")
 @export var tile_size = 32
@@ -19,7 +21,7 @@ signal gathered
 @export_group("Player Stats")
 @export var maxHealth = 100
 @export var currentHealth:int
-@export var healthRegen = 1
+@export var healthRegen = 0  #A techtree upgrade may improve this.
 @export var speed = 200
 @export var maxStamina = 100
 @export var currentStamina:int
@@ -49,6 +51,7 @@ var lastlook
 var shootRdy:bool
 var Whereismousy
 var lastMouse
+var HealthPotionHeal = 50
 
 func pos_to_chunk(x, y):
 	var tile_x = floor(x / tile_size)
@@ -59,6 +62,7 @@ func pos_to_chunk(x, y):
 
 func _ready():
 	consum = [3,4,5]
+	consumableCount.emit(consum)
 	DMG = 5 #+ tech tree bonus
 	colable = [0,0,0,0,0,0] #These are the collectable startup values
 	resourceA = 0
@@ -129,6 +133,16 @@ func _process(delta: float) -> void:
 		add_sibling(new_bullet)
 		shootRdy = false
 		$ShootTimer.start()
+	
+	if Input.is_action_just_pressed("Consume_HealthP"):
+		if consum[0] != 0:
+			consum[0] += -1
+			if currentHealth <= maxHealth-HealthPotionHeal:
+				currentHealth += HealthPotionHeal
+			else:
+				currentHealth = maxHealth
+			health_changed.emit(currentHealth,maxHealth)
+			consumableCount.emit(consum)
 	
 	if Input.is_action_just_pressed("harvest_test"):
 		print("spawning harvester")

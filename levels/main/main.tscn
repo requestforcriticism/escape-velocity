@@ -31,7 +31,6 @@ ship_scn = NodePath("../Ship")
 zoom = Vector2(2, 2)
 
 [node name="hud" parent="DayPhase/player/Camera2D" instance=ExtResource("4_us57y")]
-collected = ExtResource("3_07wri")
 
 [node name="RoofLayer" type="TileMapLayer" parent="DayPhase"]
 tile_set = ExtResource("7_lkfts")
@@ -43,7 +42,9 @@ position = Vector2(118, -112)
 
 [node name="GameCompleteScreen" type="Node2D" parent="."]
 
+[connection signal="consumableCount" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_consumable_count"]
 [connection signal="gathered" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_gathered"]
 [connection signal="health_changed" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_health_changed"]
 [connection signal="on_chunk_changed" from="DayPhase/player" to="DayPhase/grass_level" method="_on_player_on_chunk_changed"]
 [connection signal="stamina_changed" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_stamina_changed"]
+[connection signal="toggleConsumables" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_toggle_consumables"]

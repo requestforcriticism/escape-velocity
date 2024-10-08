@@ -1,13 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddo8sc41fi3mj"]
+[gd_scene load_steps=19 format=3 uid="uid://ddo8sc41fi3mj"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_bk8gt"]
 [ext_resource type="Texture2D" uid="uid://ciqe0uu5lfa86" path="res://hud/Sun.png" id="1_v7012"]
 [ext_resource type="Texture2D" uid="uid://csthlahxgrqv6" path="res://hud/horizon.png" id="2_233w1"]
 [ext_resource type="Texture2D" uid="uid://ckojygrnc6ctp" path="res://hud/Battery.png" id="2_cmdit"]
-[ext_resource type="Texture2D" uid="uid://b1uojfaef3bxi" path="res://hud/button_square_header_blade_square.png" id="2_whd5h"]
 [ext_resource type="Texture2D" uid="uid://beop71wr0brme" path="res://hud/heart.png" id="3_5wnwb"]
-[ext_resource type="Texture2D" uid="uid://c46rv4vqhmx0w" path="res://hud/healthpack.png" id="3_51xk3"]
-[ext_resource type="Texture2D" uid="uid://bpe7ykwhmtmpk" path="res://hud/keyboard_r.png" id="4_chhld"]
 [ext_resource type="Texture2D" uid="uid://cwoq0nakcaard" path="res://components/Collectables/blue_collectable.png" id="4_gt5ta"]
 [ext_resource type="Texture2D" uid="uid://gct8xl63brwr" path="res://components/Collectables/green_collectable.png" id="5_wd3q3"]
 [ext_resource type="Texture2D" uid="uid://bketb0x02bq8a" path="res://components/Collectables/orange _collectable.png" id="6_polb2"]
@@ -104,34 +101,6 @@ point_count = 2
 [node name="hud" type="CanvasLayer"]
 script = ExtResource("1_bk8gt")
 
-[node name="Container" type="Container" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HeathPotionbackgound" type="Sprite2D" parent="Container"]
-show_behind_parent = true
-position = Vector2(248, 32)
-scale = Vector2(0.984375, 0.984375)
-texture = ExtResource("2_whd5h")
-
-[node name="HealthPack" type="Sprite2D" parent="Container"]
-position = Vector2(246, 34)
-scale = Vector2(0.8125, 0.8125)
-texture = ExtResource("3_51xk3")
-
-[node name="Sprite2D" type="Sprite2D" parent="Container"]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(264, 16)
-scale = Vector2(0.46875, 0.46875)
-texture = ExtResource("4_chhld")
-
-[node name="Label" type="Label" parent="."]
-offset_left = 224.0
-offset_right = 244.0
-offset_bottom = 39.0
-theme_override_font_sizes/font_size = 26
-text = "0"
-
 [node name="StaminaProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0.180392, 1, 0.337255, 1)
 offset_left = 16.0
@@ -149,20 +118,21 @@ position = Vector2(96, 87.5077)
 scale = Vector2(0.75, 0.996154)
 texture = ExtResource("2_cmdit")
 
-[node name="HeartSprite2D" type="Sprite2D" parent="."]
-position = Vector2(40, 32)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_5wnwb")
-
 [node name="HPProgressBar" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)
 offset_left = 16.0
-offset_top = 8.0
+offset_top = 16.0
 offset_right = 208.0
-offset_bottom = 57.0
+offset_bottom = 65.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 value = 100.0
+metadata/_edit_group_ = true
+
+[node name="HeartSprite2D" type="Sprite2D" parent="HPProgressBar"]
+show_behind_parent = true
+position = Vector2(24, 24)
+texture = ExtResource("3_5wnwb")
 
 [node name="ContDTT" type="Container" parent="."]
 anchors_preset = 5
