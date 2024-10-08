@@ -15,6 +15,7 @@ enum DRONE_STATE { SEARCHING, MINING, CARRYING, RETURNING }
 @export var search_dest = Vector2.ZERO
 
 var state
+var minable_instance
 
 
 # Called when the node enters the scene tree for the first time.
@@ -51,6 +52,7 @@ func change_state(new_state):
 		$AnimatedSprite2D.play("mining")
 		var minable = target.mine(self)
 		state = new_state
+		minable_instance = minable[1]
 		if minable[0] <= 0: #not minable or already dead
 			change_state(DRONE_STATE.RETURNING)
 		else:
@@ -78,7 +80,15 @@ func _on_search_timer_timeout():
 
 
 func _on_mining_timer_timeout():
-	#TODO intantiate resource image and carry it with you
+	if minable_instance != null:
+		var item = minable_instance
+		item.show_behind_parent = true
+		#item.set_collision_layer_value(1, false)
+		#item.set_collision_layer_value(2, false)
+		#item.set_collision_layer_value(3, false)
+		item.set_collision_layer_value(4, false)
+		item.set_collision_mask_value(4, false)
+		add_child(item)
 	change_state(DRONE_STATE.CARRYING)
 
 #when harvester drone goes over something
@@ -92,6 +102,9 @@ func _on_body_entered(body):
 	elif state == DRONE_STATE.CARRYING:
 		#drone is carrying, check if drone sees ship
 		if body == ship:
+			if minable_instance != null:
+				ship.collect(minable_instance.type)
+				minable_instance.queue_free()
 			change_state(DRONE_STATE.SEARCHING)
 	elif state == DRONE_STATE.RETURNING:
 		if body == player:

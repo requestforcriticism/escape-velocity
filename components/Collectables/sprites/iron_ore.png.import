@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnidg1lnrgmdr"
-path="res://.godot/imported/water_source.png-7a59efa31e65809a2ae49308c4eadf4d.ctex"
+uid="uid://ctslut15v3122"
+path="res://.godot/imported/iron_ore.png-413ed6dd1974567be295a0d59d705400.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/water_source.png"
-dest_files=["res://.godot/imported/water_source.png-7a59efa31e65809a2ae49308c4eadf4d.ctex"]
+source_file="res://components/Collectables/sprites/iron_ore.png"
+dest_files=["res://.godot/imported/iron_ore.png-413ed6dd1974567be295a0d59d705400.ctex"]
 
 [params]
 

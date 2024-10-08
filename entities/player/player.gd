@@ -236,10 +236,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_area_2d_collectable_area_entered(area: Area2D) -> void:
 	print(area.name.left(3))
-	
-	for i in colnames.size():
-		if area.name.left(3) == colnames[i]:
-			colable[i] += 1
-			gathered.emit(colnames[i])
-			break
+	gathered.emit(area.name.left(3))
+	#for i in colnames.size():
+		#if area.name.left(3) == colnames[i]:
+			#colable[i] += 1
+			#gathered.emit(colnames[i])
+			#break
 	print("picked up stuff")

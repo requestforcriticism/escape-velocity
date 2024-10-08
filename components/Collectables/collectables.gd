@@ -5,11 +5,13 @@ extends Area2D
 @export var coltype = ["BLU","RED","GRE","YEL","ORA","PUR"]
 
 func _ready() -> void:
-	name = type
-	for i in coltype.size():
-		if type == coltype[i]:
-			$AnimatedSprite2D.animation = coltype[i]
-			break	
+	if $AnimatedSprite2D.sprite_frames.get_animation_names().has(type):
+		name = type
+		$AnimatedSprite2D.animation = type
+		$AnimatedSprite2D.play(type)
+	else:
+		name = "BLU"
+		$AnimatedSprite2D.animation = "BLU"
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

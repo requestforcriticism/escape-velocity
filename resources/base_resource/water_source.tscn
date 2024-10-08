@@ -4,6 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bg8nf4j13gncl" path="res://resources/water_resource_animation.tres" id="2_jr1ji"]
 
 [node name="WaterSource" instance=ExtResource("1_vgxi3")]
+drop_type = "WAT"
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("2_jr1ji")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwt2nuj1obpqe"
-path="res://.godot/imported/oil_source.png-bfa47cd424833e16843759767c7eb154.ctex"
+uid="uid://d3xljsvlx2ya"
+path="res://.godot/imported/uranium_ore.png-59081f1b8d8f93078259b8f309fcbbf7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/oil_source.png"
-dest_files=["res://.godot/imported/oil_source.png-bfa47cd424833e16843759767c7eb154.ctex"]
+source_file="res://components/Collectables/sprites/uranium_ore.png"
+dest_files=["res://.godot/imported/uranium_ore.png-59081f1b8d8f93078259b8f309fcbbf7.ctex"]
 
 [params]
 

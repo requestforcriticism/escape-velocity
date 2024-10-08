@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2qf1mext1i2x"
-path="res://.godot/imported/ore_vein.png-784deaa08decdacbd2d4dcabe3728392.ctex"
+uid="uid://bw668gu2yvaoc"
+path="res://.godot/imported/rock_tileset.png-d1ee336103b2d21d063ad65c633c080b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ore_vein.png"
-dest_files=["res://.godot/imported/ore_vein.png-784deaa08decdacbd2d4dcabe3728392.ctex"]
+source_file="res://assets/tilesets/rock_tileset.png"
+dest_files=["res://.godot/imported/rock_tileset.png-d1ee336103b2d21d063ad65c633c080b.ctex"]
 
 [params]
 

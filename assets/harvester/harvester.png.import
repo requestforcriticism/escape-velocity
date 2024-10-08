@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw668gu2yvaoc"
-path="res://.godot/imported/rock_tileset.png-41d9d57ccb6b5f1fc628ff9df1132679.ctex"
+uid="uid://d4kwt20g4glah"
+path="res://.godot/imported/harvester.png-9d10237ca5bec383b2b8b046f162ff4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rock_tileset.png"
-dest_files=["res://.godot/imported/rock_tileset.png-41d9d57ccb6b5f1fc628ff9df1132679.ctex"]
+source_file="res://assets/harvester/harvester.png"
+dest_files=["res://.godot/imported/harvester.png-9d10237ca5bec383b2b8b046f162ff4e.ctex"]
 
 [params]
 

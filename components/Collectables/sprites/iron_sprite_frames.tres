@@ -1,0 +1,17 @@
+[gd_resource type="SpriteFrames" script_class="CollectableSpriteFrames" load_steps=3 format=3 uid="uid://mtd6jncdou4u"]
+
+[ext_resource type="Texture2D" uid="uid://ctslut15v3122" path="res://components/Collectables/sprites/iron_ore.png" id="1_e01cb"]
+[ext_resource type="Script" path="res://components/Collectables/collectable_sprite_frames.gd" id="1_ywgul"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_e01cb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+script = ExtResource("1_ywgul")
+name = "Iron"

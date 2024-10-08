@@ -112,6 +112,7 @@ Consume_HealthP={
 2d_physics/layer_3="MonsterDamage"
 2d_physics/layer_4="ResourcePickup"
 2d_physics/layer_5="Harvester Search"
+2d_physics/layer_6="Click Layer"
 
 [rendering]
 

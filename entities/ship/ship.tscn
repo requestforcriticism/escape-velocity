@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://detkeh16h32fb"]
+[gd_scene load_steps=5 format=3 uid="uid://detkeh16h32fb"]
 
+[ext_resource type="Script" path="res://entities/ship/ship.gd" id="1_8rsfu"]
 [ext_resource type="Texture2D" uid="uid://c8xdmkuyalumv" path="res://assets/ship.png" id="1_jm83g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkfgg"]
@@ -10,6 +11,7 @@ size = Vector2(253, 138)
 
 [node name="Ship" type="StaticBody2D"]
 collision_layer = 17
+script = ExtResource("1_8rsfu")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
