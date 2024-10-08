@@ -58,6 +58,7 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	consum = [3,4,5]
 	DMG = 5 #+ tech tree bonus
 	colable = [0,0,0,0,0,0] #These are the collectable startup values
 	resourceA = 0
@@ -126,7 +127,6 @@ func _process(delta: float) -> void:
 		new_bullet.position = $Marker2D.global_position
 		new_bullet.direction = lastlook.normalized()
 		add_sibling(new_bullet)
-				#shoot.emit($Marker2D.global_position,lastlook.x,lastlook.y)
 		shootRdy = false
 		$ShootTimer.start()
 	
