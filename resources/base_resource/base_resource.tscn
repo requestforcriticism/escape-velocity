@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dc4cw5hq15s2h"]
+[gd_scene load_steps=7 format=3 uid="uid://dc4cw5hq15s2h"]
 
 [ext_resource type="Script" path="res://resources/base_resource/base_resource.gd" id="1_qdcid"]
 [ext_resource type="PackedScene" uid="uid://b2dniluutupbr" path="res://components/bullet/bullet.tscn" id="2_peiln"]
 [ext_resource type="SpriteFrames" uid="uid://be5gmjd88710x" path="res://resources/base_resource_animation.tres" id="3_3j70j"]
+[ext_resource type="PackedScene" uid="uid://duqednbeuh318" path="res://components/Collectables/collectables.tscn" id="3_exkpn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ow42"]
 size = Vector2(32, 32)
@@ -14,6 +15,7 @@ size = Vector2(32, 32)
 collision_layer = 17
 script = ExtResource("1_qdcid")
 bullet_scene = ExtResource("2_peiln")
+collectable_scn = ExtResource("3_exkpn")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)

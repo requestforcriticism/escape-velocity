@@ -6,7 +6,8 @@ signal health_changed
 @export var maxHealth = 100
 @export var currentHealth:int
 @export var healthRegen = 1
-@export var drop: PackedScene
+@export var collectable_scn: PackedScene
+@export var drop_type: String
 @export var drop_count = 1
 @export var durability = 5 #secs to mine
 @export var max_drops = 10
@@ -41,7 +42,8 @@ func mine(miner):
 	#otherwise add miner to list of subscribers
 	if !miners.has(miner):
 		miners.push_back(miner)
-		
+	var drop = collectable_scn.instantiate()
+	drop.type = drop_type
 	return [durability, drop]
 
 # Called when the node enters the scene tree for the first time.

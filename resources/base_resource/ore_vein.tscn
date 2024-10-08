@@ -4,6 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cew5kp8atrfcf" path="res://resources/ore_resource_animation.tres" id="2_vlskh"]
 
 [node name="OreVein" instance=ExtResource("1_583dq")]
+drop_type = "IRO"
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("2_vlskh")
