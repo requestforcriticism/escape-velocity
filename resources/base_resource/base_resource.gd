@@ -10,6 +10,7 @@ signal health_changed
 @export var drop_count = 1
 @export var durability = 5 #secs to mine
 @export var max_drops = 10
+@export var DMG = 10  #damage the bullet deals
 
 var mined_drops = 0 #num resources mined so fat
 var miners = []
@@ -68,13 +69,13 @@ func attack():
 func shoot_bullet(angle, expiration, damage, size):
 	var bullet = bullet_scene.instantiate()
 	var velocity = Vector2(150.0, 0.0)
+	bullet.damage = DMG
 	bullet.direction = Vector2.RIGHT.rotated(angle)
 	add_child(bullet)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if state == RESOURCE_STATE.AGGESSIVE:
-		print("print bguy")
-		currentHealth += -10
+		currentHealth += -area.damage
 		$HealthBar.value = currentHealth
 		$AnimatedSprite2D.modulate = Color.RED
 		await get_tree().create_timer(0.1).timeout

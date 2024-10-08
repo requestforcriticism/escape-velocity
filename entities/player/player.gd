@@ -26,6 +26,11 @@ signal gathered
 @export var dashStaminaCost = 25
 @export var resourceA:int
 
+@export_group("consumables")
+@export var consum = [0,0,0]  #consumable amounts [health recovery, stamina recovery, damage boost]
+
+@export var DMG:int
+
 #type of collectables [blue,red,green,yellow,orange,purple]
 @export var colable = [0,0,0,0,0,0]
 var colnames = ["BLU","RED","GRE","YEL","ORA","PUR"]
@@ -53,7 +58,8 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
-	colable = [0,0,0,0,0,0]
+	DMG = 5 #+ tech tree bonus
+	colable = [0,0,0,0,0,0] #These are the collectable startup values
 	resourceA = 0
 	looking = Vector2(1,0)
 	lastlook = Vector2(1,0)
@@ -116,6 +122,7 @@ func _process(delta: float) -> void:
 	#logic for shooting
 	if Input.is_action_pressed("shoot") && shootRdy == true:
 		var new_bullet = playerBullet.instantiate()
+		new_bullet.damage = DMG
 		new_bullet.position = $Marker2D.global_position
 		new_bullet.direction = lastlook.normalized()
 		add_sibling(new_bullet)
@@ -206,7 +213,7 @@ func _on_shoot_timer_timeout() -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	currentHealth += -10
+	currentHealth += -area.damage
 	health_changed.emit(currentHealth,maxHealth)
 	$AnimatedSprite2D.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
