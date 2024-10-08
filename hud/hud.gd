@@ -51,16 +51,9 @@ func _on_player_gathered(colname) -> void:
 		$ContBp/Path2D/PathFollow2D.progress_ratio = i/5.0
 		$ContBp/AnimatedSprite2D2.position = $ContBp/Path2D/PathFollow2D.position
 		await get_tree().create_timer(0.01).timeout
-	$ContBp/AnimatedSprite2D2.hide()
-<<<<<<< HEAD
-=======
-		
-	
-		
+	$ContBp/AnimatedSprite2D2.hide()	
 	print("#",colname)
-	
-	
->>>>>>> collect
+
 	
 
 func _on_player_consumable_count(consum) -> void:

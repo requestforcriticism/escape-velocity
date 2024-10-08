@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddo8sc41fi3mj"]
+[gd_scene load_steps=16 format=3 uid="uid://ddo8sc41fi3mj"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_bk8gt"]
 [ext_resource type="Texture2D" uid="uid://ciqe0uu5lfa86" path="res://hud/Sun.png" id="1_v7012"]
@@ -8,12 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://beop71wr0brme" path="res://hud/heart.png" id="3_5wnwb"]
 [ext_resource type="Texture2D" uid="uid://c46rv4vqhmx0w" path="res://hud/healthpack.png" id="3_51xk3"]
 [ext_resource type="Texture2D" uid="uid://bpe7ykwhmtmpk" path="res://hud/keyboard_r.png" id="4_chhld"]
-[ext_resource type="Texture2D" uid="uid://cwoq0nakcaard" path="res://components/Collectables/blue_collectable.png" id="4_gt5ta"]
-[ext_resource type="Texture2D" uid="uid://gct8xl63brwr" path="res://components/Collectables/green_collectable.png" id="5_wd3q3"]
-[ext_resource type="Texture2D" uid="uid://bketb0x02bq8a" path="res://components/Collectables/orange _collectable.png" id="6_polb2"]
-[ext_resource type="Texture2D" uid="uid://d2jg0vga2t3vb" path="res://components/Collectables/purple_collectable.png" id="7_gp3w4"]
-[ext_resource type="Texture2D" uid="uid://br0qbhyk46mdp" path="res://components/Collectables/red_collectable.png" id="8_8w8me"]
-[ext_resource type="Texture2D" uid="uid://cbfajdyk50gp2" path="res://components/Collectables/yellow_collectable.png" id="9_ycben"]
 [ext_resource type="SpriteFrames" uid="uid://debd5ieq62j5w" path="res://components/Collectables/collectables_animations.tres" id="5_4m6ay"]
 [ext_resource type="Texture2D" uid="uid://bn62ykp5bvemj" path="res://assets/Backpack.png" id="10_nukke"]
 
