@@ -1,0 +1,70 @@
+[gd_resource type="SpriteFrames" script_class="CollectableSpriteFrames" load_steps=11 format=3 uid="uid://dhjk8d568bt7e"]
+
+[ext_resource type="Script" path="res://components/Collectables/collectable_sprite_frames.gd" id="1_vtr0o"]
+[ext_resource type="Texture2D" uid="uid://dkhj1ntaqd87e" path="res://components/Collectables/sprites/oil_bubble.png" id="1_w4g5u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70u82"]
+atlas = ExtResource("1_w4g5u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5umcy"]
+atlas = ExtResource("1_w4g5u")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnirg"]
+atlas = ExtResource("1_w4g5u")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrs3c"]
+atlas = ExtResource("1_w4g5u")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7cuk"]
+atlas = ExtResource("1_w4g5u")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xli0a"]
+atlas = ExtResource("1_w4g5u")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7775v"]
+atlas = ExtResource("1_w4g5u")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xy8q2"]
+atlas = ExtResource("1_w4g5u")
+region = Rect2(96, 32, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70u82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5umcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnirg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrs3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7cuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xli0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7775v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy8q2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+script = ExtResource("1_vtr0o")
+name = ""

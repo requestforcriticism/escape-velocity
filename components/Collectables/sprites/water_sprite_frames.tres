@@ -1,0 +1,70 @@
+[gd_resource type="SpriteFrames" script_class="CollectableSpriteFrames" load_steps=11 format=3 uid="uid://ds82ilpxo58vs"]
+
+[ext_resource type="Texture2D" uid="uid://by3xiw8ame4gx" path="res://components/Collectables/sprites/water_bubble.png" id="1_eop6l"]
+[ext_resource type="Script" path="res://components/Collectables/collectable_sprite_frames.gd" id="1_swjgt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnl12"]
+atlas = ExtResource("1_eop6l")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykxi0"]
+atlas = ExtResource("1_eop6l")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx2xh"]
+atlas = ExtResource("1_eop6l")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkjry"]
+atlas = ExtResource("1_eop6l")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqqts"]
+atlas = ExtResource("1_eop6l")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykami"]
+atlas = ExtResource("1_eop6l")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xyun"]
+atlas = ExtResource("1_eop6l")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ntyq"]
+atlas = ExtResource("1_eop6l")
+region = Rect2(96, 32, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnl12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykxi0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx2xh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkjry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqqts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykami")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xyun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ntyq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+script = ExtResource("1_swjgt")
+name = "Water"
