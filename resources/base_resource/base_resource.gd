@@ -12,6 +12,7 @@ signal health_changed
 @export var durability = 5 #secs to mine
 @export var max_drops = 10
 @export var DMG = 10  #damage the bullet deals
+@export var drop_throw_distance = 0
 
 var mined_drops = 0 #num resources mined so fat
 var miners = []
@@ -87,5 +88,13 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 # demo func based on harvester
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event.get_class() == "InputEventMouseButton" and event.pressed:
-		var mine_ref = mine(null)
-		print("Mining this, durab\t", mine_ref[0], "\tRef\t",mine_ref[1])
+		if state != RESOURCE_STATE.AGGESSIVE and state != RESOURCE_STATE.DEAD:
+			var mine_ref = mine(null)
+			var new_drop= collectable_scn.instantiate()
+			new_drop.type = drop_type
+			# drop in a random dir along resource
+			var drop_dest = Vector2.RIGHT.rotated(randf_range(0, 2*PI)).normalized() * 32
+			new_drop.drift(drop_dest)
+			#new_drop.set_collision_layer_value(4, false)
+			add_child(new_drop)
+			print("Mining this, durab\t", mine_ref[0], "\tRef\t",mine_ref[1])
