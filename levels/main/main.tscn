@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc5t3aovb3tgx"]
+[gd_scene load_steps=10 format=3 uid="uid://bc5t3aovb3tgx"]
 
 [ext_resource type="PackedScene" uid="uid://c4gytpc0vkd2a" path="res://levels/grass_level/grass_level.tscn" id="1_btafr"]
 [ext_resource type="Script" path="res://levels/main/main.gd" id="1_mdbpw"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ddo8sc41fi3mj" path="res://hud/hud.tscn" id="4_us57y"]
 [ext_resource type="TileSet" uid="uid://cxm638ny72a02" path="res://levels/tilesets/grass_tileset.tres" id="7_lkfts"]
 [ext_resource type="PackedScene" uid="uid://detkeh16h32fb" path="res://entities/ship/ship.tscn" id="8_7i6xy"]
+[ext_resource type="PackedScene" uid="uid://dijpoceqauarg" path="res://entities/base_monster/base_monster.tscn" id="9_x8l26"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_mdbpw")
@@ -28,7 +29,7 @@ main_scn = NodePath("../..")
 ship_scn = NodePath("../Ship")
 
 [node name="Camera2D" type="Camera2D" parent="DayPhase/player"]
-zoom = Vector2(2, 2)
+zoom = Vector2(0.5, 0.5)
 
 [node name="hud" parent="DayPhase/player/Camera2D" instance=ExtResource("4_us57y")]
 
@@ -41,6 +42,9 @@ position = Vector2(118, -112)
 [node name="NightPhase" type="Node2D" parent="."]
 
 [node name="GameCompleteScreen" type="Node2D" parent="."]
+
+[node name="BaseMonster" parent="." instance=ExtResource("9_x8l26")]
+position = Vector2(-128, 378)
 
 [connection signal="consumCount" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_consum_count"]
 [connection signal="gathered" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_gathered"]

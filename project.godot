@@ -123,6 +123,7 @@ Use_consumable={
 2d_physics/layer_4="ResourcePickup"
 2d_physics/layer_5="Harvester Search"
 2d_physics/layer_6="Click Layer"
+2d_physics/layer_7="Monster See"
 
 [rendering]
 
