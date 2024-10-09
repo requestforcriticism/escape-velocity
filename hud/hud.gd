@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+var consum
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$HeartSprite2D.modulate = Color.RED
@@ -56,8 +58,8 @@ func _on_player_gathered(colname) -> void:
 
 	
 
-func _on_player_consumable_count(consum) -> void:
-	$Label.text = str(consum[0])
+#func _on_player_consumable_count(consum) -> void:
+	
 	#for i in consum.size:
 		#if consum[i]
 
@@ -65,3 +67,27 @@ func _on_player_consumable_count(consum) -> void:
 
 func _on_player_toggle_consumables() -> void:
 	pass # Replace with function body.
+
+
+func _on_player_hp_pack_count(hpPacks) -> void:
+	print(hpPacks)
+	$Label.text = str(hpPacks)
+	pass # Replace with function body.
+
+
+#how many of each comsumable does the player have?  Let's update it.
+func _on_player_consum_count(cons) -> void:
+	consum=cons
+	
+
+
+#cycle between the consumables
+func _on_player_toggle_consum(toggle) -> void:
+	consum.size()
+	
+	$ContConsum/Path2D/PathFollow2D.progress_ratio = 0
+	$ContConsum/DBst.position = $ContConsum/Path2D/PathFollow2D.position
+	$ContConsum/Path2D/PathFollow2D.progress_ratio = .5
+	$ContConsum/SBst.position = $ContConsum/Path2D/PathFollow2D.position
+	$ContConsum/Path2D/PathFollow2D.progress_ratio = 1
+	$ContConsum/DRed.position = $ContConsum/Path2D/PathFollow2D.position

@@ -10,8 +10,9 @@ signal on_chunk_changed
 signal stamina_changed
 signal health_changed
 signal gathered
-signal consumableCount
-signal toggleConsumables
+signal hpPackCount
+signal consumCount
+signal toggleConsum
 
 
 @export_group("Procgen Properties")
@@ -29,13 +30,15 @@ signal toggleConsumables
 @export var resourceA:int
 
 @export_group("consumables")
-@export var consum = [0,0,0]  #consumable amounts [health recovery, stamina recovery, damage boost]
+@export var Healthpacks:int #healthPack amounts
+@export var consum = [0,0,0]  #consumable amounts [ stamina recovery, damage boost, damage reduction]
+
 
 @export var DMG:int
 
 #type of collectables [blue,red,green,yellow,orange,purple]
 @export var colable = [0,0,0,0,0,0]
-var colnames = ["BLU","RED","GRE","YEL","ORA","PUR"]
+var colnames = ["BLU","IRO","OIL","WAT","URA"]
 
 @export var run = 2
 @export var harvester_throw_distance = 200
@@ -52,6 +55,7 @@ var shootRdy:bool
 var Whereismousy
 var lastMouse
 var HealthPotionHeal = 50
+var toggle = 0
 
 func pos_to_chunk(x, y):
 	var tile_x = floor(x / tile_size)
@@ -61,8 +65,10 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
-	consum = [3,4,5]
-	consumableCount.emit(consum)
+	Healthpacks = 3
+	consum = [4,5,6]
+	hpPackCount.emit(Healthpacks)
+	consumCount.emit(consum)
 	DMG = 5 #+ tech tree bonus
 	colable = [0,0,0,0,0,0] #These are the collectable startup values
 	resourceA = 0
@@ -134,15 +140,34 @@ func _process(delta: float) -> void:
 		shootRdy = false
 		$ShootTimer.start()
 	
+	#Use the selected Consumable
+	if Input.is_action_just_pressed("Use_consumable"):
+		consum[toggle] =+ -1
+		for i in consum.size():
+			print("i=",i)
+			if toggle == i: #If 0 use DamageBoost if 1 use StamBoost
+				print("I want to use: ",i)
+				break
+
+	#cycle between the available consumables
+	if Input.is_action_just_pressed("Toggle_consumables"):
+		if toggle == consum.size()-1:
+			toggle = 0
+		else:
+			toggle += 1
+		toggleConsum.emit(toggle)
+		print("Toggle:",toggle)
+	
+	#drink that health potion! (Or whatever it's called)
 	if Input.is_action_just_pressed("Consume_HealthP"):
-		if consum[0] != 0:
-			consum[0] += -1
+		if Healthpacks != 0:
+			Healthpacks += -1
 			if currentHealth <= maxHealth-HealthPotionHeal:
 				currentHealth += HealthPotionHeal
 			else:
 				currentHealth = maxHealth
 			health_changed.emit(currentHealth,maxHealth)
-			consumableCount.emit(consum)
+			hpPackCount.emit(Healthpacks)
 	
 	if Input.is_action_just_pressed("harvest_test"):
 		print("spawning harvester")
@@ -232,14 +257,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	$AnimatedSprite2D.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	$AnimatedSprite2D.modulate = Color.WHITE
-		
 
 func _on_area_2d_collectable_area_entered(area: Area2D) -> void:
-	print(area.name.left(3))
-	gathered.emit(area.name.left(3))
-	#for i in colnames.size():
-		#if area.name.left(3) == colnames[i]:
-			#colable[i] += 1
-			#gathered.emit(colnames[i])
-			#break
-	print("picked up stuff")
+	for i in colnames.size():
+		if area.name.left(3) == colnames[i]:
+			colable[i] += 1
+			gathered.emit(area.name.left(3))
+			print(colable)
+			break

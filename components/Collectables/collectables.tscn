@@ -20,6 +20,6 @@ shape = SubResource("CapsuleShape2D_w8gfb")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_eef37")
-animation = &"YEL"
+animation = &"URA"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

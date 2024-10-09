@@ -43,19 +43,19 @@ func _ready():
 	add_child(new_collectable)
 	
 	new_collectable = collectable.instantiate()
-	new_collectable.type = "BLU"
+	new_collectable.type = "OIL"
 	new_collectable.position = Vector2(100,50)
 	add_child(new_collectable)
 	new_collectable = collectable.instantiate()
-	new_collectable.type = "RED"
+	new_collectable.type = "WAT"
 	new_collectable.position = Vector2(-100,50)
 	add_child(new_collectable)
 	new_collectable = collectable.instantiate()
-	new_collectable.type = "GRE"
+	new_collectable.type = "URA"
 	new_collectable.position = Vector2(50,50)
 	add_child(new_collectable)
 	new_collectable = collectable.instantiate()
-	new_collectable.type = "YEL"
+	new_collectable.type = "IRO"
 	new_collectable.position = Vector2(0,50)
 	add_child(new_collectable)
 	new_collectable = collectable.instantiate()
@@ -66,6 +66,7 @@ func _ready():
 	new_collectable.type = "PUR"
 	new_collectable.position = Vector2(-150,50)
 	add_child(new_collectable)
+	
 	
 #all the stuff to start a new day
 func start_day():

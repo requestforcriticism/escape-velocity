@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ddo8sc41fi3mj"]
+[gd_scene load_steps=22 format=3 uid="uid://ddo8sc41fi3mj"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_bk8gt"]
 [ext_resource type="Texture2D" uid="uid://ciqe0uu5lfa86" path="res://hud/Sun.png" id="1_v7012"]
@@ -10,6 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://bpe7ykwhmtmpk" path="res://hud/keyboard_r.png" id="4_chhld"]
 [ext_resource type="SpriteFrames" uid="uid://debd5ieq62j5w" path="res://components/Collectables/collectables_animations.tres" id="5_4m6ay"]
 [ext_resource type="Texture2D" uid="uid://bn62ykp5bvemj" path="res://assets/Backpack.png" id="10_nukke"]
+[ext_resource type="Texture2D" uid="uid://b4xjqv4gmi4sb" path="res://hud/panel_rectangle_screws.png" id="11_6yb6e"]
+[ext_resource type="Texture2D" uid="uid://wgnh21pr6da7" path="res://hud/panel_glass_notches.png" id="12_l7566"]
+[ext_resource type="Texture2D" uid="uid://ckfe805f5ijot" path="res://hud/Damageboost.png" id="13_thrpb"]
+[ext_resource type="Texture2D" uid="uid://c8uxk4x1ge14x" path="res://hud/Stamboost.png" id="14_piy3v"]
+[ext_resource type="Texture2D" uid="uid://5y13pla1fpku" path="res://hud/DamageReduction.png" id="15_flrym"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ubqxh"]
 atlas = ExtResource("1_v7012")
@@ -44,6 +49,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -8, 32, 0, 0, 0, 0, 24, 32)
 }
 point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_g3qrh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 104, 160, 0, 0, 0, 0, 160, 160, 0, 0, 0, 0, 216, 160)
+}
+point_count = 3
 
 [node name="hud" type="CanvasLayer"]
 script = ExtResource("1_bk8gt")
@@ -165,5 +176,51 @@ curve = SubResource("Curve2D_3lbqv")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="ContBp/Path2D"]
 position = Vector2(-8, 32)
+
+[node name="ContConsum" type="Container" parent="."]
+offset_left = -48.0
+offset_right = -8.0
+offset_bottom = 40.0
+
+[node name="ConsBG" type="Sprite2D" parent="ContConsum"]
+position = Vector2(160, 157.333)
+scale = Vector2(0.833333, 0.916667)
+texture = ExtResource("11_6yb6e")
+
+[node name="ChosenCons" type="Sprite2D" parent="ContConsum"]
+position = Vector2(160, 160)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("12_l7566")
+
+[node name="LeftCons" type="Sprite2D" parent="ContConsum"]
+position = Vector2(104, 160)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_l7566")
+
+[node name="RightCons" type="Sprite2D" parent="ContConsum"]
+position = Vector2(216, 160)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_l7566")
+
+[node name="Path2D" type="Path2D" parent="ContConsum"]
+curve = SubResource("Curve2D_g3qrh")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ContConsum/Path2D"]
+position = Vector2(104, 160)
+
+[node name="DBst" type="Sprite2D" parent="ContConsum"]
+position = Vector2(16, -32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_thrpb")
+
+[node name="SBst" type="Sprite2D" parent="ContConsum"]
+position = Vector2(80, -32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_piy3v")
+
+[node name="DRed" type="Sprite2D" parent="ContConsum"]
+position = Vector2(144, -32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_flrym")
 
 [connection signal="timeout" from="ContDTT/DayTimeTracker/DayTimer" to="." method="_on_day_timer_timeout"]

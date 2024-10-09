@@ -1,13 +1,8 @@
-[gd_resource type="SpriteFrames" load_steps=44 format=3 uid="uid://debd5ieq62j5w"]
+[gd_resource type="SpriteFrames" load_steps=39 format=3 uid="uid://debd5ieq62j5w"]
 
 [ext_resource type="Texture2D" uid="uid://cwoq0nakcaard" path="res://components/Collectables/blue_collectable.png" id="1_iqq1p"]
-[ext_resource type="Texture2D" uid="uid://gct8xl63brwr" path="res://components/Collectables/green_collectable.png" id="2_3v6po"]
 [ext_resource type="Texture2D" uid="uid://ctslut15v3122" path="res://components/Collectables/sprites/iron_ore.png" id="3_fr6lt"]
-[ext_resource type="Texture2D" uid="uid://bketb0x02bq8a" path="res://components/Collectables/orange _collectable.png" id="3_sitas"]
 [ext_resource type="Texture2D" uid="uid://dkhj1ntaqd87e" path="res://components/Collectables/sprites/oil_bubble.png" id="4_5mxl2"]
-[ext_resource type="Texture2D" uid="uid://d2jg0vga2t3vb" path="res://components/Collectables/purple_collectable.png" id="4_xrcp7"]
-[ext_resource type="Texture2D" uid="uid://br0qbhyk46mdp" path="res://components/Collectables/red_collectable.png" id="5_3rybh"]
-[ext_resource type="Texture2D" uid="uid://cbfajdyk50gp2" path="res://components/Collectables/yellow_collectable.png" id="6_2n2io"]
 [ext_resource type="Texture2D" uid="uid://d3xljsvlx2ya" path="res://components/Collectables/sprites/uranium_ore.png" id="8_xsyel"]
 [ext_resource type="Texture2D" uid="uid://by3xiw8ame4gx" path="res://components/Collectables/sprites/water_bubble.png" id="9_5jrxh"]
 
@@ -155,14 +150,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_3v6po")
-}],
-"loop": true,
-"name": &"GRE",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_bq8co")
 }],
 "loop": true,
@@ -196,30 +183,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"OIL",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_sitas")
-}],
-"loop": true,
-"name": &"ORA",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_xrcp7")
-}],
-"loop": true,
-"name": &"PUR",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_3rybh")
-}],
-"loop": true,
-"name": &"RED",
 "speed": 5.0
 }, {
 "frames": [{
@@ -303,12 +266,4 @@ animations = [{
 "loop": true,
 "name": &"WAT",
 "speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_2n2io")
-}],
-"loop": true,
-"name": &"YEL",
-"speed": 5.0
 }]

@@ -42,10 +42,9 @@ position = Vector2(118, -112)
 
 [node name="GameCompleteScreen" type="Node2D" parent="."]
 
-[connection signal="consumCount" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_consum_count"]
+[connection signal="HPPackCount" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_hp_pack_count"]
+[connection signal="consumableCount" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_consumable_count"]
 [connection signal="gathered" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_gathered"]
 [connection signal="health_changed" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_health_changed"]
-[connection signal="hpPackCount" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_hp_pack_count"]
 [connection signal="on_chunk_changed" from="DayPhase/player" to="DayPhase/grass_level" method="_on_player_on_chunk_changed"]
 [connection signal="stamina_changed" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_stamina_changed"]
-[connection signal="toggleConsum" from="DayPhase/player" to="DayPhase/player/Camera2D/hud" method="_on_player_toggle_consum"]
