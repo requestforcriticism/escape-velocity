@@ -67,6 +67,7 @@ func pos_to_chunk(x, y):
 func _ready():
 	Healthpacks = 3
 	consum = [4,5,6]
+	toggleConsum.emit(toggle)
 	hpPackCount.emit(Healthpacks)
 	consumCount.emit(consum)
 	DMG = 5 #+ tech tree bonus
@@ -142,12 +143,14 @@ func _process(delta: float) -> void:
 	
 	#Use the selected Consumable
 	if Input.is_action_just_pressed("Use_consumable"):
-		consum[toggle] =+ -1
-		for i in consum.size():
-			print("i=",i)
-			if toggle == i: #If 0 use DamageBoost if 1 use StamBoost
-				print("I want to use: ",i)
-				break
+		if consum[toggle] != 0:
+			consum[toggle] += -1
+			consumCount.emit(consum)
+			for i in consum.size():
+				#print("i=",i)
+				if toggle == i: #If 0 use DamageBoost if 1 use StamBoost
+					print("I want to use: ",i)
+					break
 
 	#cycle between the available consumables
 	if Input.is_action_just_pressed("Toggle_consumables"):

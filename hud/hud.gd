@@ -78,16 +78,37 @@ func _on_player_hp_pack_count(hpPacks) -> void:
 #how many of each comsumable does the player have?  Let's update it.
 func _on_player_consum_count(cons) -> void:
 	consum=cons
-	
+	$ContConsum/SBst/AmtLeft.text = str(consum[0])
+	$ContConsum/DBst/AmtLeft.text = str(consum[1])
+	$ContConsum/DRed/AmtLeft.text = str(consum[2])
 
 
-#cycle between the consumables
+#cycle between the consumables   
+#consumable amounts [ stamina recovery, damage boost, damage reduction]
 func _on_player_toggle_consum(toggle) -> void:
-	consum.size()
+	$ContConsum/ArrowRight.modulate = Color.DARK_GRAY
+	$ContConsum/ArrowRight2.modulate = Color.DARK_GRAY
+	await get_tree().create_timer(0.1).timeout
+	$ContConsum/ArrowRight.modulate = Color.WHITE
+	$ContConsum/ArrowRight2.modulate = Color.WHITE
 	
-	$ContConsum/Path2D/PathFollow2D.progress_ratio = 0
-	$ContConsum/DBst.position = $ContConsum/Path2D/PathFollow2D.position
-	$ContConsum/Path2D/PathFollow2D.progress_ratio = .5
+	$ContConsum/Path2D/PathFollow2D.progress_ratio = ((toggle+1)% 3 )/2.0
 	$ContConsum/SBst.position = $ContConsum/Path2D/PathFollow2D.position
-	$ContConsum/Path2D/PathFollow2D.progress_ratio = 1
+	if $ContConsum/Path2D/PathFollow2D.progress_ratio !=.5:
+		$ContConsum/SBst.scale = Vector2(.5,.5)
+	else:
+		$ContConsum/SBst.scale = Vector2(.65,.65)
+	 
+	$ContConsum/Path2D/PathFollow2D.progress_ratio = ((toggle+2)% 3 )/2.0
 	$ContConsum/DRed.position = $ContConsum/Path2D/PathFollow2D.position
+	if $ContConsum/Path2D/PathFollow2D.progress_ratio !=.5:
+		$ContConsum/DRed.scale = Vector2(.5,.5)
+	else:
+		$ContConsum/DRed.scale = Vector2(.65,.65)
+	
+	$ContConsum/Path2D/PathFollow2D.progress_ratio = ((toggle+0)% 3 )/2.0
+	$ContConsum/DBst.position = $ContConsum/Path2D/PathFollow2D.position
+	if $ContConsum/Path2D/PathFollow2D.progress_ratio !=.5:
+		$ContConsum/DBst.scale = Vector2(.5,.5)
+	else:
+		$ContConsum/DBst.scale = Vector2(.65,.65)

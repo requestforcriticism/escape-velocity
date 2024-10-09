@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddo8sc41fi3mj"]
+[gd_scene load_steps=26 format=3 uid="uid://ddo8sc41fi3mj"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_bk8gt"]
 [ext_resource type="Texture2D" uid="uid://ciqe0uu5lfa86" path="res://hud/Sun.png" id="1_v7012"]
@@ -15,6 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://ckfe805f5ijot" path="res://hud/Damageboost.png" id="13_thrpb"]
 [ext_resource type="Texture2D" uid="uid://c8uxk4x1ge14x" path="res://hud/Stamboost.png" id="14_piy3v"]
 [ext_resource type="Texture2D" uid="uid://5y13pla1fpku" path="res://hud/DamageReduction.png" id="15_flrym"]
+[ext_resource type="Texture2D" uid="uid://b3bjq28cxrn25" path="res://hud/keyboard_tab.png" id="16_ivkvs"]
+[ext_resource type="Texture2D" uid="uid://dtbnojj3axvt4" path="res://hud/keyboard_f.png" id="17_kd5lj"]
+[ext_resource type="Texture2D" uid="uid://c20gt5fce4msw" path="res://hud/arrow_e.png" id="18_oi65x"]
+[ext_resource type="Texture2D" uid="uid://c8qub0dmh5gpn" path="res://hud/flair_arrow_3.png" id="19_pc15y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ubqxh"]
 atlas = ExtResource("1_v7012")
@@ -52,7 +56,7 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_g3qrh"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 104, 160, 0, 0, 0, 0, 160, 160, 0, 0, 0, 0, 216, 160)
+"points": PackedVector2Array(0, 0, 0, 0, 96, 152, 0, 0, 0, 0, 160, 159, 0, 0, 0, 0, 224, 160)
 }
 point_count = 3
 
@@ -75,7 +79,7 @@ scale = Vector2(0.8125, 0.8125)
 texture = ExtResource("3_51xk3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Container"]
-modulate = Color(1, 0, 0, 1)
+modulate = Color(0.294118, 0, 0, 1)
 position = Vector2(264, 16)
 scale = Vector2(0.46875, 0.46875)
 texture = ExtResource("4_chhld")
@@ -183,44 +187,102 @@ offset_right = -8.0
 offset_bottom = 40.0
 
 [node name="ConsBG" type="Sprite2D" parent="ContConsum"]
-position = Vector2(160, 157.333)
-scale = Vector2(0.833333, 0.916667)
+position = Vector2(160.727, 160)
+scale = Vector2(0.992429, 1.00001)
 texture = ExtResource("11_6yb6e")
+metadata/_edit_group_ = true
 
 [node name="ChosenCons" type="Sprite2D" parent="ContConsum"]
-position = Vector2(160, 160)
-scale = Vector2(0.75, 0.75)
+position = Vector2(160, 159)
+scale = Vector2(0.90625, 0.90625)
 texture = ExtResource("12_l7566")
 
 [node name="LeftCons" type="Sprite2D" parent="ContConsum"]
-position = Vector2(104, 160)
+position = Vector2(96, 152)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_l7566")
+metadata/_edit_group_ = true
 
 [node name="RightCons" type="Sprite2D" parent="ContConsum"]
-position = Vector2(216, 160)
+position = Vector2(224, 160)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_l7566")
+metadata/_edit_group_ = true
 
 [node name="Path2D" type="Path2D" parent="ContConsum"]
 curve = SubResource("Curve2D_g3qrh")
+metadata/_edit_group_ = true
 
 [node name="PathFollow2D" type="PathFollow2D" parent="ContConsum/Path2D"]
-position = Vector2(104, 160)
-
-[node name="DBst" type="Sprite2D" parent="ContConsum"]
-position = Vector2(16, -32)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("13_thrpb")
+position = Vector2(96, 152)
+rotation = 0.108942
 
 [node name="SBst" type="Sprite2D" parent="ContConsum"]
 position = Vector2(80, -32)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("14_piy3v")
 
+[node name="AmtLeft" type="Label" parent="ContConsum/SBst"]
+offset_left = 12.0
+offset_top = -6.0
+offset_right = 52.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 30
+text = "3"
+
+[node name="DBst" type="Sprite2D" parent="ContConsum"]
+position = Vector2(16, -32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_thrpb")
+
+[node name="AmtLeft" type="Label" parent="ContConsum/DBst"]
+offset_left = 12.0
+offset_top = -6.0
+offset_right = 52.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 30
+text = "3"
+
 [node name="DRed" type="Sprite2D" parent="ContConsum"]
 position = Vector2(144, -32)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_flrym")
+
+[node name="AmtLeft" type="Label" parent="ContConsum/DRed"]
+offset_left = 12.0
+offset_top = -6.0
+offset_right = 52.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 30
+text = "3"
+
+[node name="pressTab" type="Sprite2D" parent="ContConsum"]
+modulate = Color(0.192157, 0, 0, 1)
+position = Vector2(80, 181)
+scale = Vector2(0.656249, 0.721875)
+texture = ExtResource("16_ivkvs")
+
+[node name="PressF" type="Sprite2D" parent="ContConsum"]
+modulate = Color(0.258824, 0, 0, 1)
+position = Vector2(188, 184)
+scale = Vector2(0.46875, 0.46875)
+texture = ExtResource("17_kd5lj")
+
+[node name="ArrowRight" type="Sprite2D" parent="ContConsum"]
+position = Vector2(196, 160)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("18_oi65x")
+
+[node name="ArrowRight2" type="Sprite2D" parent="ContConsum"]
+position = Vector2(123, 155)
+rotation = 0.15708
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("18_oi65x")
+
+[node name="CircleArrow" type="Sprite2D" parent="ContConsum"]
+modulate = Color(0.266667, 0, 0, 1)
+position = Vector2(108, 180)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("19_pc15y")
 
 [connection signal="timeout" from="ContDTT/DayTimeTracker/DayTimer" to="." method="_on_day_timer_timeout"]
