@@ -14,6 +14,7 @@ extends Node
 @export var ore_vein : PackedScene
 @export var water_source : PackedScene
 @export var oil_well : PackedScene
+@export var uranium_deposit : PackedScene
 
 @export var grass_tiles : TileSet
 @export var rock_tiles : TileSet
@@ -137,7 +138,7 @@ func decorate_chunk(x, y):
 	if meta.is_ruin:
 		generate_ruin(x, y)
 	else:
-		spawn_feature(base_resource, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x ,y)
+		spawn_feature(uranium_deposit, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x ,y)
 		spawn_feature(ore_vein, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
 		spawn_feature(water_source, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
 		spawn_feature(oil_well, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)

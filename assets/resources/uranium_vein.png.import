@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://law4rp7qjwu0"
-path="res://.godot/imported/index.icon.png-b92c9a802ad4b78e247784454a6b506f.ctex"
+uid="uid://dkj872a0jdoaa"
+path="res://.godot/imported/uranium_vein.png-22cb52d76f02ccf52e09c624f7e53536.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://docs/index.icon.png"
-dest_files=["res://.godot/imported/index.icon.png-b92c9a802ad4b78e247784454a6b506f.ctex"]
+source_file="res://assets/resources/uranium_vein.png"
+dest_files=["res://.godot/imported/uranium_vein.png-22cb52d76f02ccf52e09c624f7e53536.ctex"]
 
 [params]
 
