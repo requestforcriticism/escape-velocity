@@ -266,7 +266,6 @@ func _on_area_2d_collectable_area_entered(area: Area2D) -> void:
 		if area.name.left(3) == colnames[i]:
 			colable[i] += 1
 			gathered.emit(area.name.left(3))
-			print(colable)
 			area.hide()
 			area.queue_free()
 			break

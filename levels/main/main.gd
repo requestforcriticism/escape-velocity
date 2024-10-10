@@ -10,6 +10,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$DayPhase/player/Camera2D/PauseCanvasLayer/PauseMenu.visible = false
 	$DayPhase/player.chunk_size = chunk_size
 	$DayPhase/player.tile_size = chunk_size
 	$DayPhase/grass_level/OutdoorLayer.chunk_size = chunk_size
