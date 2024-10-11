@@ -68,7 +68,7 @@ func change_state(new_state):
 
 func _on_search_radius_body_entered(body):
 	print(body)
-	if state == DRONE_STATE.SEARCHING and target == null:
+	if state == DRONE_STATE.SEARCHING and target == null and "mine" in body:
 		if body != player and body != ship:
 			#TODO check if body is resource type
 			#make sure only on player 5 to collide with
@@ -94,7 +94,7 @@ func _on_mining_timer_timeout():
 
 #when harvester drone goes over something
 func _on_body_entered(body):
-	if state == DRONE_STATE.SEARCHING and target != null and body == target:
+	if state == DRONE_STATE.SEARCHING and target != null and body == target and "mine" in body:
 		#drone is searching but has a target already
 		change_state(DRONE_STATE.MINING)
 	#elif state == DRONE_STATE.MINING:
