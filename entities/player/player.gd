@@ -33,8 +33,8 @@ signal toggleConsum
 @export var Healthpacks:int #healthPack amounts
 @export var consum = [0,0,0]  #consumable amounts [ stamina recovery, damage boost, damage reduction]
 
-@export var current_harverters:int
-@export var max_harvesters:int
+@export var availible_harvesters:int
+@export var max_harvesters:int = 5
 
 
 @export var DMG:int
@@ -68,8 +68,7 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
-	max_harvesters = 5
-	current_harverters = max_harvesters
+	availible_harvesters = max_harvesters
 	Healthpacks = 3
 	consum = [4,5,6]
 	toggleConsum.emit(toggle)
@@ -177,21 +176,15 @@ func _process(delta: float) -> void:
 			health_changed.emit(currentHealth,maxHealth)
 			hpPackCount.emit(Healthpacks)
 	
-	if Input.is_action_just_pressed("harvest_test") && current_harverters != 0:
-		current_harverters += -1
+	if Input.is_action_just_pressed("harvest_test") && availible_harvesters > 0:
+		availible_harvesters += -1
 		print("spawning harvester")
-		#Save.load_file(0)
-		#var val = Save.get_value(0, "me", 0)
-		#Save.set_value(0, "you", 1.4)
-		#Save.set_value(0, "dog", "bailey" + str(val))
-		#print(val)
-		#Save.set_value(0, "me", val + 1)
-		#Save.save_file(0)
 		var harvester = harvester_scene.instantiate()
 		harvester.position = position
 		harvester.player = self
 		harvester.ship = ship_scn
 		harvester.search_dest = position + (lastlook.normalized() * harvester_throw_distance)
+		harvester.connect("returned", harvester_return)
 		main_scn.add_child(harvester)
 	
 	#logic for dashing
@@ -231,6 +224,9 @@ func _process(delta: float) -> void:
 	if current_chunk.x != chunk_id.x || current_chunk.y != chunk_id.y:
 		current_chunk = chunk_id
 		on_chunk_changed.emit(current_chunk)
+
+func harvester_return():
+	availible_harvesters += 1
 
 func _on_stamina_regen_timeout() -> void:
 	if currentStamina <maxStamina:
