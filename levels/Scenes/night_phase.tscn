@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhmd88cnimtpn"]
+
+[ext_resource type="Texture2D" uid="uid://bdm8pxdykl4q6" path="res://levels/Scenes/NightPhaseAssets/NightPhaseBackground.png" id="1_3s7g6"]
+
+[node name="NightPhase" type="Node2D"]
+
+[node name="Container" type="Container" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Container"]
+texture = ExtResource("1_3s7g6")
+
+[node name="Camera2D" type="Camera2D" parent="Container"]
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -386.0
+offset_top = 239.0
+offset_right = 387.0
+offset_bottom = 319.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 80
+columns = 4
+
+[node name="CraftButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Craft Stuff"
+
+[node name="TechTreeButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Tech Tree stuff"
+
+[node name="FixShipButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Fix the Ship
+"
+
+[node name="EndNightButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "End the Night"

@@ -10,12 +10,12 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$DayPhase/player/Camera2D/PauseCanvasLayer/PauseMenu.visible = false
-	$DayPhase/player.chunk_size = chunk_size
-	$DayPhase/player.tile_size = chunk_size
-	$DayPhase/grass_level/OutdoorLayer.chunk_size = chunk_size
-	$DayPhase/grass_level/OutdoorLayer.tile_size = chunk_size
-	$DayPhase/grass_level/OutdoorLayer.render_distance = render_distance
+	$player/Camera2D/PauseCanvasLayer/PauseMenu.visible = false
+	$player.chunk_size = chunk_size
+	$player.tile_size = chunk_size
+	$grass_level/OutdoorLayer.chunk_size = chunk_size
+	$grass_level/OutdoorLayer.tile_size = chunk_size
+	$grass_level/OutdoorLayer.render_distance = render_distance
 	start_day()
 	
 	var new_collectable = collectable.instantiate()
@@ -71,7 +71,7 @@ func _ready():
 	
 #all the stuff to start a new day
 func start_day():
-	$DayPhase/player/Camera2D/hud.start_day(dayLength)
+	$player/Camera2D/hud.start_day(dayLength)
 	
 
 

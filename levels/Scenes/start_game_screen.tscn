@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://bybn6lqxrp42"]
+
+[ext_resource type="Texture2D" uid="uid://dnk3dv6ph0fa" path="res://levels/Scenes/StartScreenAssets/StartScreenBackground.png" id="1_skb8n"]
+
+[node name="StartGameScreen" type="Node2D"]
+
+[node name="Container" type="Container" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="backgroundImage" type="Sprite2D" parent="Container"]
+texture = ExtResource("1_skb8n")
+
+[node name="Camera2D" type="Camera2D" parent="Container/backgroundImage"]
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = 1.0
+offset_right = 141.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NewGameButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "New Game"
+
+[node name="LoadGame" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Load Game"
+
+[node name="QuitButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Quit Game"
