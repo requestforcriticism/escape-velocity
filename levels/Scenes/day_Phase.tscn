@@ -47,5 +47,7 @@ position = Vector2(-128, 378)
 [connection signal="health_changed" from="player" to="player/Camera2D/hud" method="_on_player_health_changed"]
 [connection signal="hpPackCount" from="player" to="player/Camera2D/hud" method="_on_player_hp_pack_count"]
 [connection signal="on_chunk_changed" from="player" to="grass_level" method="_on_player_on_chunk_changed"]
+[connection signal="on_harvester_count_changed" from="player" to="player/Camera2D/hud" method="_on_player_on_harvester_count_changed"]
+[connection signal="on_harvester_max_changed" from="player" to="player/Camera2D/hud" method="_on_player_on_harvester_max_changed"]
 [connection signal="stamina_changed" from="player" to="player/Camera2D/hud" method="_on_player_stamina_changed"]
 [connection signal="toggleConsum" from="player" to="player/Camera2D/hud" method="_on_player_toggle_consum"]

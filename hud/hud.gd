@@ -112,3 +112,9 @@ func _on_player_toggle_consum(toggle) -> void:
 		$ContConsum/DBst.scale = Vector2(.5,.5)
 	else:
 		$ContConsum/DBst.scale = Vector2(.65,.65)
+
+func _on_player_on_harvester_count_changed(amt):
+	$HarvesterControl/HarvesterAvailable.text = str(amt)
+
+func _on_player_on_harvester_max_changed(amt):
+	$HarvesterControl/HarvesterTotal.text = str(amt)

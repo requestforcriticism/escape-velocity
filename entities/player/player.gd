@@ -13,6 +13,8 @@ signal gathered
 signal hpPackCount
 signal consumCount
 signal toggleConsum
+signal on_harvester_count_changed
+signal on_harvester_max_changed
 
 
 @export_group("Procgen Properties")
@@ -91,6 +93,8 @@ func _ready():
 	$HealthRegen.start()
 	current_chunk = pos_to_chunk(position.x, position.y)
 	on_chunk_changed.emit(current_chunk)
+	on_harvester_count_changed.emit(availible_harvesters)
+	on_harvester_max_changed.emit(max_harvesters)
 
 func _process(delta: float) -> void:
 	var velocity = Vector2.ZERO
@@ -178,6 +182,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("harvest_test") && availible_harvesters > 0:
 		availible_harvesters += -1
+		on_harvester_count_changed.emit(availible_harvesters)
 		print("spawning harvester")
 		var harvester = harvester_scene.instantiate()
 		harvester.position = position
@@ -227,6 +232,7 @@ func _process(delta: float) -> void:
 
 func harvester_return():
 	availible_harvesters += 1
+	on_harvester_count_changed.emit(availible_harvesters)
 
 func _on_stamina_regen_timeout() -> void:
 	if currentStamina <maxStamina:
