@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bybn6lqxrp42"]
+[gd_scene load_steps=3 format=3 uid="uid://bybn6lqxrp42"]
 
 [ext_resource type="Texture2D" uid="uid://dnk3dv6ph0fa" path="res://levels/Scenes/StartScreenAssets/StartScreenBackground.png" id="1_skb8n"]
+[ext_resource type="Script" path="res://levels/Scenes/new_game_button.gd" id="2_x1vm0"]
 
 [node name="StartGameScreen" type="Node2D"]
 
@@ -33,6 +34,7 @@ grow_vertical = 0
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "New Game"
+script = ExtResource("2_x1vm0")
 
 [node name="LoadGame" type="Button" parent="GridContainer"]
 layout_mode = 2
@@ -43,3 +45,5 @@ text = "Load Game"
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Quit Game"
+
+[connection signal="pressed" from="GridContainer/NewGameButton" to="GridContainer/NewGameButton" method="_on_pressed"]
