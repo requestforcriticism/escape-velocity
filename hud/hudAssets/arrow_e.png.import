@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1uojfaef3bxi"
-path="res://.godot/imported/button_square_header_blade_square.png-c3b36ddf35c7fcbb956b4303948b08f2.ctex"
+uid="uid://c20gt5fce4msw"
+path="res://.godot/imported/arrow_e.png-98268c2c9215eeeebbf3f94c28dfea45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/button_square_header_blade_square.png"
-dest_files=["res://.godot/imported/button_square_header_blade_square.png-c3b36ddf35c7fcbb956b4303948b08f2.ctex"]
+source_file="res://hud/hudAssets/arrow_e.png"
+dest_files=["res://.godot/imported/arrow_e.png-98268c2c9215eeeebbf3f94c28dfea45.ctex"]
 
 [params]
 

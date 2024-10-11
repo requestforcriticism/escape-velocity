@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 Save="*res://save_system/save.gd"
 LevelManager="*res://levels/level_manager.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [input]
 
 move_up={

@@ -39,7 +39,9 @@ func load_night():
 	
 func load_level(path):
 	if loaded_scn != null:
+		print("removing: ",path)
 		loaded_scn.queue_free()
 	if main_ref != null:
+		print("loading: ",path)
 		var next_scn = load(path).instantiate()
 		main_ref.add_child(next_scn)

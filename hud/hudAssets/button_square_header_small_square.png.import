@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4xjqv4gmi4sb"
-path="res://.godot/imported/panel_rectangle_screws.png-a23af576853c6fb1d07d09bb1956077f.ctex"
+uid="uid://dfq53nsh1s4f7"
+path="res://.godot/imported/button_square_header_small_square.png-268dccb017c0f8bdc6bc1dd7cf03a675.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/panel_rectangle_screws.png"
-dest_files=["res://.godot/imported/panel_rectangle_screws.png-a23af576853c6fb1d07d09bb1956077f.ctex"]
+source_file="res://hud/hudAssets/button_square_header_small_square.png"
+dest_files=["res://.godot/imported/button_square_header_small_square.png-268dccb017c0f8bdc6bc1dd7cf03a675.ctex"]
 
 [params]
 

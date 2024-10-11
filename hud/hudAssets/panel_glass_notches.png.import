@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciqe0uu5lfa86"
-path="res://.godot/imported/Sun.png-223e407d41d2febfcca76f8b05ef69cf.ctex"
+uid="uid://wgnh21pr6da7"
+path="res://.godot/imported/panel_glass_notches.png-1c97b93f81991e98299485fcfa823233.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/Sun.png"
-dest_files=["res://.godot/imported/Sun.png-223e407d41d2febfcca76f8b05ef69cf.ctex"]
+source_file="res://hud/hudAssets/panel_glass_notches.png"
+dest_files=["res://.godot/imported/panel_glass_notches.png-1c97b93f81991e98299485fcfa823233.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpe7ykwhmtmpk"
-path="res://.godot/imported/keyboard_r.png-3f1b8eb3041cbf60c5b7717fdedd2b58.ctex"
+uid="uid://ckojygrnc6ctp"
+path="res://.godot/imported/Battery.png-0cf8be0b034cf1450b64676cccc58447.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/keyboard_r.png"
-dest_files=["res://.godot/imported/keyboard_r.png-3f1b8eb3041cbf60c5b7717fdedd2b58.ctex"]
+source_file="res://hud/hudAssets/Battery.png"
+dest_files=["res://.godot/imported/Battery.png-0cf8be0b034cf1450b64676cccc58447.ctex"]
 
 [params]
 

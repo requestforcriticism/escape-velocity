@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csthlahxgrqv6"
-path="res://.godot/imported/horizon.png-94af4876e3514e7b01a591c845602ffb.ctex"
+uid="uid://chceuoyiyodci"
+path="res://.godot/imported/keyboard_h.png-50faa443441b82815860ae931f895b1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/horizon.png"
-dest_files=["res://.godot/imported/horizon.png-94af4876e3514e7b01a591c845602ffb.ctex"]
+source_file="res://hud/hudAssets/keyboard_h.png"
+dest_files=["res://.godot/imported/keyboard_h.png-50faa443441b82815860ae931f895b1f.ctex"]
 
 [params]
 

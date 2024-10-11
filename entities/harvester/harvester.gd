@@ -17,6 +17,7 @@ enum DRONE_STATE { SEARCHING, MINING, CARRYING, RETURNING }
 var state
 var minable_instance
 
+signal returned
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -108,6 +109,7 @@ func _on_body_entered(body):
 			change_state(DRONE_STATE.SEARCHING)
 	elif state == DRONE_STATE.RETURNING:
 		if body == player:
+			returned.emit()
 			queue_free()
 		
 	print("Drone found ", body)

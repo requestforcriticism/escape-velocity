@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8uxk4x1ge14x"
-path="res://.godot/imported/Stamboost.png-422c0bdf22b0f2e82d8262abca1a543e.ctex"
+uid="uid://ce7w6ucv46wlh"
+path="res://.godot/imported/keyboard_escape.png-54cbb2acdb8294cd04660cc740777ce9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/Stamboost.png"
-dest_files=["res://.godot/imported/Stamboost.png-422c0bdf22b0f2e82d8262abca1a543e.ctex"]
+source_file="res://hud/hudAssets/keyboard_escape.png"
+dest_files=["res://.godot/imported/keyboard_escape.png-54cbb2acdb8294cd04660cc740777ce9.ctex"]
 
 [params]
 

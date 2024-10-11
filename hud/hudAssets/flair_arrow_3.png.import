@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8qub0dmh5gpn"
-path="res://.godot/imported/flair_arrow_3.png-fa5a273c50b9e770a7737ea23915dfee.ctex"
+path="res://.godot/imported/flair_arrow_3.png-19e03f015daf4c4f6759cec24307c2af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/flair_arrow_3.png"
-dest_files=["res://.godot/imported/flair_arrow_3.png-fa5a273c50b9e770a7737ea23915dfee.ctex"]
+source_file="res://hud/hudAssets/flair_arrow_3.png"
+dest_files=["res://.godot/imported/flair_arrow_3.png-19e03f015daf4c4f6759cec24307c2af.ctex"]
 
 [params]
 

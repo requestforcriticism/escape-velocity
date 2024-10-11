@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv8v0i34uomhk"
-path="res://.godot/imported/Hearts.png-e61a00105b69297743150f25aea1db23.ctex"
+uid="uid://c8uxk4x1ge14x"
+path="res://.godot/imported/Stamboost.png-d4e7d3f0330e1f077d60416fc134815d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/Hearts.png"
-dest_files=["res://.godot/imported/Hearts.png-e61a00105b69297743150f25aea1db23.ctex"]
+source_file="res://hud/hudAssets/Stamboost.png"
+dest_files=["res://.godot/imported/Stamboost.png-d4e7d3f0330e1f077d60416fc134815d.ctex"]
 
 [params]
 

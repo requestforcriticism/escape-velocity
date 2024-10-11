@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckfe805f5ijot"
-path="res://.godot/imported/Damageboost.png-163d37c7deeb9270a69afb9b784bdccb.ctex"
+uid="uid://ciqe0uu5lfa86"
+path="res://.godot/imported/Sun.png-7a85d0151fc3dc72b9ef3e8b5eacaaff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/Damageboost.png"
-dest_files=["res://.godot/imported/Damageboost.png-163d37c7deeb9270a69afb9b784bdccb.ctex"]
+source_file="res://hud/hudAssets/Sun.png"
+dest_files=["res://.godot/imported/Sun.png-7a85d0151fc3dc72b9ef3e8b5eacaaff.ctex"]
 
 [params]
 

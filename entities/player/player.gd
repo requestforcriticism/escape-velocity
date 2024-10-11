@@ -33,6 +33,9 @@ signal toggleConsum
 @export var Healthpacks:int #healthPack amounts
 @export var consum = [0,0,0]  #consumable amounts [ stamina recovery, damage boost, damage reduction]
 
+@export var current_harverters:int
+@export var max_harvesters:int
+
 
 @export var DMG:int
 
@@ -65,6 +68,8 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	max_harvesters = 5
+	current_harverters = max_harvesters
 	Healthpacks = 3
 	consum = [4,5,6]
 	toggleConsum.emit(toggle)
@@ -163,7 +168,7 @@ func _process(delta: float) -> void:
 	
 	#drink that health potion! (Or whatever it's called)
 	if Input.is_action_just_pressed("Consume_HealthP"):
-		if Healthpacks != 0:
+		if Healthpacks != 0 && currentHealth < maxHealth:
 			Healthpacks += -1
 			if currentHealth <= maxHealth-HealthPotionHeal:
 				currentHealth += HealthPotionHeal
@@ -172,7 +177,8 @@ func _process(delta: float) -> void:
 			health_changed.emit(currentHealth,maxHealth)
 			hpPackCount.emit(Healthpacks)
 	
-	if Input.is_action_just_pressed("harvest_test"):
+	if Input.is_action_just_pressed("harvest_test") && current_harverters != 0:
+		current_harverters += -1
 		print("spawning harvester")
 		#Save.load_file(0)
 		#var val = Save.get_value(0, "me", 0)
@@ -226,7 +232,6 @@ func _process(delta: float) -> void:
 		current_chunk = chunk_id
 		on_chunk_changed.emit(current_chunk)
 
-
 func _on_stamina_regen_timeout() -> void:
 	if currentStamina <maxStamina:
 		currentStamina += 1
@@ -237,24 +242,15 @@ func _on_health_regen_timeout() -> void:
 		currentHealth += healthRegen
 		health_changed.emit(currentHealth,maxHealth)
 
-#func _on_area_2d_body_entered(body: Node2D) -> void:
-	#currentHealth += -10
-	#health_changed.emit(currentHealth,maxHealth)
-	#$AnimatedSprite2D.modulate = Color.RED
-	#await get_tree().create_timer(0.1).timeout
-	#$AnimatedSprite2D.modulate = Color.WHITE
-
-
 func _on_dash_wait_timeout() -> void:
 	dashRdy =true
-
 
 func _on_shoot_timer_timeout() -> void:
 	shootRdy = true
 	$ShootTimer.stop()
 
-
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	print(area.name)
 	currentHealth += -area.damage
 	health_changed.emit(currentHealth,maxHealth)
 	$AnimatedSprite2D.modulate = Color.RED

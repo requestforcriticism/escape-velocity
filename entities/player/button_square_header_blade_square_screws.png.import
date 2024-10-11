@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c46rv4vqhmx0w"
-path="res://.godot/imported/healthpack.png-3ea3bfbb4486dbfd85d926dd524e0b5e.ctex"
+uid="uid://xia4kmhp57sh"
+path="res://.godot/imported/button_square_header_blade_square_screws.png-9e35ed1caacb000985415daf2f10a304.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/healthpack.png"
-dest_files=["res://.godot/imported/healthpack.png-3ea3bfbb4486dbfd85d926dd524e0b5e.ctex"]
+source_file="res://entities/player/button_square_header_blade_square_screws.png"
+dest_files=["res://.godot/imported/button_square_header_blade_square_screws.png-9e35ed1caacb000985415daf2f10a304.ctex"]
 
 [params]
 

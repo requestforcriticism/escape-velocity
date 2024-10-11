@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3bjq28cxrn25"
-path="res://.godot/imported/keyboard_tab.png-3983d4c643dd10ab87d02c54f598d7e0.ctex"
+uid="uid://dtbnojj3axvt4"
+path="res://.godot/imported/keyboard_f.png-4ae9a0defb4b366ba0b40b0a1fc39fb9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/keyboard_tab.png"
-dest_files=["res://.godot/imported/keyboard_tab.png-3983d4c643dd10ab87d02c54f598d7e0.ctex"]
+source_file="res://hud/hudAssets/keyboard_f.png"
+dest_files=["res://.godot/imported/keyboard_f.png-4ae9a0defb4b366ba0b40b0a1fc39fb9.ctex"]
 
 [params]
 

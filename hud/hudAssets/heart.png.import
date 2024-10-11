@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn62ykp5bvemj"
-path="res://.godot/imported/Backpack.png-e434cf45f26b361dc31b7c8e7a699b2f.ctex"
+uid="uid://beop71wr0brme"
+path="res://.godot/imported/heart.png-3fa3cd5199033766df7101200557f7d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Backpack.png"
-dest_files=["res://.godot/imported/Backpack.png-e434cf45f26b361dc31b7c8e7a699b2f.ctex"]
+source_file="res://hud/hudAssets/heart.png"
+dest_files=["res://.godot/imported/heart.png-3fa3cd5199033766df7101200557f7d1.ctex"]
 
 [params]
 

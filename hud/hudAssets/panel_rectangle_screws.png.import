@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtbnojj3axvt4"
-path="res://.godot/imported/keyboard_f.png-bb378eff5215c94077464ca64e1e45b1.ctex"
+uid="uid://b4xjqv4gmi4sb"
+path="res://.godot/imported/panel_rectangle_screws.png-925b7ddbd68c225b7337739ba9b603bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/keyboard_f.png"
-dest_files=["res://.godot/imported/keyboard_f.png-bb378eff5215c94077464ca64e1e45b1.ctex"]
+source_file="res://hud/hudAssets/panel_rectangle_screws.png"
+dest_files=["res://.godot/imported/panel_rectangle_screws.png-925b7ddbd68c225b7337739ba9b603bc.ctex"]
 
 [params]
 

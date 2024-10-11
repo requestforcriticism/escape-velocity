@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c20gt5fce4msw"
-path="res://.godot/imported/arrow_e.png-53d5cf614bc53f2d2e025177961f93ed.ctex"
+uid="uid://5y13pla1fpku"
+path="res://.godot/imported/DamageReduction.png-3045e9ea527a2c0afdbd8cdec768b887.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/arrow_e.png"
-dest_files=["res://.godot/imported/arrow_e.png-53d5cf614bc53f2d2e025177961f93ed.ctex"]
+source_file="res://hud/hudAssets/DamageReduction.png"
+dest_files=["res://.godot/imported/DamageReduction.png-3045e9ea527a2c0afdbd8cdec768b887.ctex"]
 
 [params]
 

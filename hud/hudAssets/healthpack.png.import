@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckojygrnc6ctp"
-path="res://.godot/imported/Battery.png-f3d4c8ca225aadc5ec4bbcd724a78740.ctex"
+uid="uid://c46rv4vqhmx0w"
+path="res://.godot/imported/healthpack.png-97610ffa4aee43a778d8bfae72dc8d38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/Battery.png"
-dest_files=["res://.godot/imported/Battery.png-f3d4c8ca225aadc5ec4bbcd724a78740.ctex"]
+source_file="res://hud/hudAssets/healthpack.png"
+dest_files=["res://.godot/imported/healthpack.png-97610ffa4aee43a778d8bfae72dc8d38.ctex"]
 
 [params]
 
