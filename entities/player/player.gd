@@ -250,7 +250,6 @@ func _on_shoot_timer_timeout() -> void:
 	$ShootTimer.stop()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print(area.name)
 	currentHealth += -area.damage
 	health_changed.emit(currentHealth,maxHealth)
 	$AnimatedSprite2D.modulate = Color.RED

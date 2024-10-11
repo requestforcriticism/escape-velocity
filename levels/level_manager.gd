@@ -1,6 +1,6 @@
 extends Node
 
-@export var start_scn = load("res://levels/Scenes/post_game.tscn")
+#@export var start_scn = load("res://levels/Scenes/post_game.tscn")
 @export var end_scn : PackedScene
 @export var day_scn : PackedScene
 @export var night_scn : PackedScene
@@ -41,7 +41,9 @@ func load_level(path):
 	if loaded_scn != null:
 		print("removing: ",path)
 		loaded_scn.queue_free()
+		loaded_scn = null
 	if main_ref != null:
 		print("loading: ",path)
 		var next_scn = load(path).instantiate()
 		main_ref.add_child(next_scn)
+		loaded_scn = next_scn

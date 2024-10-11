@@ -79,7 +79,6 @@ func shoot_bullet(angle, expiration, damage, size):
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if state == RESOURCE_STATE.AGGESSIVE:
-		print(area.name)
 		currentHealth += -area.damage
 		$HealthBar.value = currentHealth
 		$AnimatedSprite2D.modulate = Color.RED

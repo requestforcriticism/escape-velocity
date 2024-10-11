@@ -12,4 +12,6 @@ func _process(delta):
 
 
 func _on_pressed():
+	release_focus()
 	LevelManager.load_day()
+	
