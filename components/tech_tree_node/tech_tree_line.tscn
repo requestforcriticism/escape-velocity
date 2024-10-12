@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbc6idcvlv4lo"]
+
+[ext_resource type="Texture2D" uid="uid://ctnukxxoptyt1" path="res://components/tech_tree_node/tech_tree_line.png" id="1_feeyt"]
+[ext_resource type="Script" path="res://components/tech_tree_node/tech_tree_line.gd" id="2_kxhdt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ogya"]
+atlas = ExtResource("1_feeyt")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx7k6"]
+atlas = ExtResource("1_feeyt")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1g2g1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ogya")
+}],
+"loop": true,
+"name": &"locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx7k6")
+}],
+"loop": true,
+"name": &"unlocked",
+"speed": 5.0
+}]
+
+[node name="TechTreeLine" type="AnimatedSprite2D"]
+show_behind_parent = true
+sprite_frames = SubResource("SpriteFrames_1g2g1")
+animation = &"unlocked"
+script = ExtResource("2_kxhdt")
