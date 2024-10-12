@@ -58,9 +58,9 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_g3qrh"]
+[sub_resource type="Curve2D" id="Curve2D_u8jqa"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 96, 152, 0, 0, 0, 0, 160, 159, 0, 0, 0, 0, 224, 160)
+"points": PackedVector2Array(0, 0, 0, 0, 85, 203, 0, 0, 0, 0, 150, 211, 0, 0, 0, 0, 213, 211)
 }
 point_count = 3
 
@@ -94,39 +94,48 @@ animations = [{
 [node name="hud" type="CanvasLayer"]
 script = ExtResource("1_bk8gt")
 
-[node name="Container" type="Container" parent="."]
+[node name="HealthPackContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 8.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 48.0
 
-[node name="HeathPotionbackgound" type="Sprite2D" parent="Container"]
+[node name="Label" type="Label" parent="HealthPackContainer"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 1.0
+offset_right = 249.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 25
+text = "99"
+horizontal_alignment = 1
+
+[node name="HeathPotionbackgound" type="Sprite2D" parent="HealthPackContainer"]
 show_behind_parent = true
-position = Vector2(248, 32)
-scale = Vector2(0.984375, 0.984375)
+position = Vector2(252.25, 36.25)
+scale = Vector2(1.11719, 1.11719)
 texture = ExtResource("2_l4rbn")
+metadata/_edit_lock_ = true
 
-[node name="HealthPack" type="Sprite2D" parent="Container"]
-position = Vector2(246, 34)
-scale = Vector2(0.8125, 0.8125)
+[node name="HealthPack" type="Sprite2D" parent="HealthPackContainer"]
+position = Vector2(250, 38)
+scale = Vector2(0.9375, 0.9375)
 texture = ExtResource("3_sv064")
+metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Container"]
-position = Vector2(264, 16)
+[node name="Sprite2D" type="Sprite2D" parent="HealthPackContainer"]
+position = Vector2(272, 16)
 scale = Vector2(0.46875, 0.46875)
 texture = ExtResource("4_tdxxr")
-
-[node name="Label" type="Label" parent="."]
-offset_left = 224.0
-offset_right = 244.0
-offset_bottom = 39.0
-theme_override_font_sizes/font_size = 26
-text = "0"
+metadata/_edit_lock_ = true
 
 [node name="StaminaProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0.180392, 1, 0.337255, 1)
 offset_left = 16.0
-offset_top = 72.0
+offset_top = 80.0
 offset_right = 200.0
-offset_bottom = 120.0
+offset_bottom = 128.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 value = 100.0
@@ -138,22 +147,24 @@ position = Vector2(96, 87.5077)
 scale = Vector2(0.75, 0.996154)
 texture = ExtResource("5_j5b1w")
 
-[node name="HeartSprite2D" type="Sprite2D" parent="."]
-position = Vector2(40, 32)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_cuk7t")
-
 [node name="HPProgressBar" type="ProgressBar" parent="."]
-modulate = Color(1, 0, 0, 1)
+self_modulate = Color(1, 0, 0, 1)
 offset_left = 16.0
-offset_top = 8.0
+offset_top = 16.0
 offset_right = 208.0
-offset_bottom = 57.0
+offset_bottom = 72.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 value = 100.0
 
-[node name="ContDTT" type="Container" parent="."]
+[node name="HeartSprite2D" type="Sprite2D" parent="HPProgressBar"]
+show_behind_parent = true
+position = Vector2(24, 24)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_cuk7t")
+
+[node name="ContDTT" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -185,8 +196,8 @@ rotation = -0.982794
 
 [node name="DayTimer" type="Timer" parent="ContDTT/DayTimeTracker"]
 
-[node name="ContBp" type="Container" parent="."]
-anchors_preset = -1
+[node name="ContBp" type="Control" parent="."]
+layout_mode = 3
 anchor_left = 0.979
 anchor_right = 1.0
 anchor_bottom = 0.025
@@ -218,46 +229,41 @@ scale = Vector2(0.640624, 0.640624)
 texture = ExtResource("10_f2byy")
 metadata/_edit_group_ = true
 
-[node name="ContConsum" type="Container" parent="."]
-offset_left = -48.0
-offset_right = -8.0
-offset_bottom = 40.0
+[node name="ContConsum" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -40.0
+offset_top = -40.0
 
 [node name="ConsBG" type="Sprite2D" parent="ContConsum"]
-position = Vector2(160.727, 160)
+position = Vector2(149.727, 211)
 scale = Vector2(0.992429, 1.00001)
 texture = ExtResource("11_aujdx")
 metadata/_edit_group_ = true
 
 [node name="ChosenCons" type="Sprite2D" parent="ContConsum"]
-position = Vector2(160, 159)
+position = Vector2(149, 210)
 scale = Vector2(0.90625, 0.90625)
 texture = ExtResource("12_8rmc5")
+metadata/_edit_group_ = true
 
 [node name="LeftCons" type="Sprite2D" parent="ContConsum"]
-position = Vector2(96, 152)
+position = Vector2(85, 203)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_8rmc5")
 metadata/_edit_group_ = true
 
 [node name="RightCons" type="Sprite2D" parent="ContConsum"]
-position = Vector2(224, 160)
+position = Vector2(213, 211)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_8rmc5")
 metadata/_edit_group_ = true
 
-[node name="Path2D" type="Path2D" parent="ContConsum"]
-curve = SubResource("Curve2D_g3qrh")
-metadata/_edit_group_ = true
-
-[node name="PathFollow2D" type="PathFollow2D" parent="ContConsum/Path2D"]
-position = Vector2(96, 152)
-rotation = 0.108942
-
 [node name="SBst" type="Sprite2D" parent="ContConsum"]
-position = Vector2(80, -32)
+position = Vector2(166, -128)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_guwm7")
+metadata/_edit_group_ = true
 
 [node name="AmtLeft" type="Label" parent="ContConsum/SBst"]
 offset_left = 12.0
@@ -266,11 +272,13 @@ offset_right = 52.0
 offset_bottom = 36.0
 theme_override_font_sizes/font_size = 30
 text = "3"
+metadata/_edit_use_anchors_ = true
 
 [node name="DBst" type="Sprite2D" parent="ContConsum"]
-position = Vector2(16, -32)
+position = Vector2(102, -128)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("14_6ix18")
+metadata/_edit_group_ = true
 
 [node name="AmtLeft" type="Label" parent="ContConsum/DBst"]
 offset_left = 12.0
@@ -281,9 +289,10 @@ theme_override_font_sizes/font_size = 30
 text = "3"
 
 [node name="DRed" type="Sprite2D" parent="ContConsum"]
-position = Vector2(144, -32)
+position = Vector2(230, -128)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_p5oud")
+metadata/_edit_group_ = true
 
 [node name="AmtLeft" type="Label" parent="ContConsum/DRed"]
 offset_left = 12.0
@@ -292,87 +301,141 @@ offset_right = 52.0
 offset_bottom = 36.0
 theme_override_font_sizes/font_size = 30
 text = "3"
+metadata/_edit_use_anchors_ = true
 
 [node name="pressTab" type="Sprite2D" parent="ContConsum"]
-position = Vector2(80, 181)
+position = Vector2(69, 232)
 scale = Vector2(0.656249, 0.721875)
 texture = ExtResource("16_jyb7g")
+metadata/_edit_group_ = true
 
 [node name="PressF" type="Sprite2D" parent="ContConsum"]
-position = Vector2(188, 184)
+position = Vector2(177, 235)
 scale = Vector2(0.46875, 0.46875)
 texture = ExtResource("17_7ppwk")
+metadata/_edit_group_ = true
 
 [node name="ArrowRight" type="Sprite2D" parent="ContConsum"]
-position = Vector2(196, 160)
+position = Vector2(185, 211)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("18_bn1vl")
+metadata/_edit_group_ = true
 
 [node name="ArrowRight2" type="Sprite2D" parent="ContConsum"]
-position = Vector2(123, 155)
+position = Vector2(112, 206)
 rotation = 0.15708
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("18_bn1vl")
+metadata/_edit_group_ = true
 
 [node name="CircleArrow" type="Sprite2D" parent="ContConsum"]
 modulate = Color(0.266667, 0, 0, 1)
-position = Vector2(108, 180)
+position = Vector2(97, 231)
 scale = Vector2(0.375, 0.375)
 texture = ExtResource("19_5bfkw")
+metadata/_edit_group_ = true
+
+[node name="Path2D" type="Path2D" parent="ContConsum"]
+curve = SubResource("Curve2D_u8jqa")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ContConsum/Path2D"]
+position = Vector2(85, 203)
+rotation = 0.122461
+
+[node name="GridContainer" type="GridContainer" parent="ContConsum"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 248.0
+offset_right = 257.0
+offset_bottom = 448.0
+scale = Vector2(0.5, 0.5)
+columns = 2
+
+[node name="StaReg" type="TextureRect" parent="ContConsum/GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("13_guwm7")
+
+[node name="StaRegDur" type="Label" parent="ContConsum/GridContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "5 sec"
+
+[node name="DmgBst" type="TextureRect" parent="ContConsum/GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("14_6ix18")
+
+[node name="DmgBstDur" type="Label" parent="ContConsum/GridContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "10 sec"
+
+[node name="DmgRed" type="TextureRect" parent="ContConsum/GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("15_p5oud")
+
+[node name="DmgRedDur" type="Label" parent="ContConsum/GridContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "15 sec"
 
 [node name="HarvesterControl" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 40.0
-offset_bottom = 20.0
-grow_vertical = 2
+anchors_preset = 0
+offset_left = 216.0
+offset_top = 88.0
+offset_right = 327.0
+offset_bottom = 144.0
 
 [node name="Sprite2D" type="Sprite2D" parent="HarvesterControl"]
-position = Vector2(53.5, -69.5)
-scale = Vector2(1.17187, 1.17187)
+position = Vector2(35.5, 36.0001)
+scale = Vector2(1.10937, 1.125)
 texture = ExtResource("21_ivrv3")
 
 [node name="HarvesterTotal" type="Label" parent="HarvesterControl"]
 layout_mode = 2
-offset_left = 53.0
-offset_top = -107.0
-offset_right = 89.0
-offset_bottom = -84.0
+offset_left = 39.0
+offset_top = -1.0
+offset_right = 67.0
+offset_bottom = 22.0
 theme_override_font_sizes/font_size = 16
 text = "999"
 horizontal_alignment = 1
 
 [node name="Slash" type="Label" parent="HarvesterControl"]
 layout_mode = 0
-offset_left = 50.0
-offset_top = -107.0
-offset_right = 57.0
-offset_bottom = -84.0
+offset_left = 32.0
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 22.0
 theme_override_font_sizes/font_size = 16
 text = "/"
+horizontal_alignment = 1
 
 [node name="HarvesterAvailable" type="Label" parent="HarvesterControl"]
 layout_mode = 0
-offset_left = 21.0
-offset_top = -107.0
-offset_right = 53.0
-offset_bottom = -84.0
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 32.0
+offset_bottom = 22.0
 theme_override_font_sizes/font_size = 16
 text = "999"
 horizontal_alignment = 1
 
-[node name="Sprite2D2" type="Sprite2D" parent="HarvesterControl"]
-position = Vector2(80, -43)
-scale = Vector2(0.453125, 0.453125)
-texture = ExtResource("23_wwg20")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HarvesterControl"]
-position = Vector2(54, -64)
+position = Vector2(35, 44)
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_amyje")
 animation = &"Available"
+
+[node name="Sprite2D2" type="Sprite2D" parent="HarvesterControl"]
+position = Vector2(56, 57)
+scale = Vector2(0.453125, 0.453125)
+texture = ExtResource("23_wwg20")
 
 [connection signal="timeout" from="ContDTT/DayTimeTracker/DayTimer" to="." method="_on_day_timer_timeout"]

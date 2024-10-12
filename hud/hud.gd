@@ -4,8 +4,10 @@ var consum
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$HeartSprite2D.modulate = Color.RED
-
+	$HPProgressBar/HeartSprite2D.modulate = Color.RED
+	$ContConsum/GridContainer/StaRegDur.text = str("0 secs")
+	$ContConsum/GridContainer/DmgBstDur.text = str("0 secs")
+	$ContConsum/GridContainer/DmgRedDur.text = str("0 secs")
 
 func start_day(dayLength):
 	$ContDTT/DayTimeTracker/Path2D/PathFollow2D.progress_ratio = 0
@@ -13,11 +15,7 @@ func start_day(dayLength):
 	$ContDTT/DayTimeTracker/DayTimer.start()
 	$ContDTT/DayTimeTracker/AnimatedSprite2D.play()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
-	
 	pass
 	
 
@@ -30,20 +28,16 @@ func _on_player_stamina_changed(stamina_changed,maxStamina) -> void:
 	else:
 		$StaminaProgressBar.modulate = "red"	
 
-
 func _on_player_health_changed(currentHealth,maxHealth) -> void:
 	if $HPProgressBar.value > 100*currentHealth/maxHealth:
-		$HeartSprite2D.modulate = Color.WHITE
+		$HPProgressBar/HeartSprite2D.modulate = Color.WHITE
 		await get_tree().create_timer(0.1).timeout
-		$HeartSprite2D.modulate = Color.RED
+		$HPProgressBar/HeartSprite2D.modulate = Color.RED
 	$HPProgressBar.value = 100*currentHealth/maxHealth
 	
-	
-
 func _on_day_timer_timeout() -> void:
 	$ContDTT/DayTimeTracker/Path2D/PathFollow2D.progress_ratio += .01
 	$ContDTT/DayTimeTracker/AnimatedSprite2D.position = $ContDTT/DayTimeTracker/Path2D/PathFollow2D.position
-
 
 func _on_player_gathered(colname) -> void:
 	$ContBp/AnimatedSprite2D2.animation = colname
@@ -63,17 +57,14 @@ func _on_player_gathered(colname) -> void:
 	#for i in consum.size:
 		#if consum[i]
 
-
-
 func _on_player_toggle_consumables() -> void:
 	pass # Replace with function body.
 
 
 func _on_player_hp_pack_count(hpPacks) -> void:
 	print(hpPacks)
-	$Label.text = str(hpPacks)
+	$HealthPackContainer/Label.text = str(hpPacks)
 	pass # Replace with function body.
-
 
 #how many of each comsumable does the player have?  Let's update it.
 func _on_player_consum_count(cons) -> void:
@@ -118,3 +109,29 @@ func _on_player_on_harvester_count_changed(amt):
 
 func _on_player_on_harvester_max_changed(amt):
 	$HarvesterControl/HarvesterTotal.text = str(amt)
+
+
+func _on_player_cons_duration(consDur) -> void:
+	if consDur[0] > 0:
+		$ContConsum/GridContainer/StaRegDur.text = str(consDur[0],"secs")
+		$ContConsum/GridContainer/StaReg.visible = true
+		$ContConsum/GridContainer/StaRegDur.visible = true
+	elif consDur[0] == 0:
+		$ContConsum/GridContainer/StaReg.visible = false
+		$ContConsum/GridContainer/StaRegDur.visible = false
+		
+	if consDur[1] > 0:
+		$ContConsum/GridContainer/DmgBstDur.text = str(consDur[1],"secs")
+		$ContConsum/GridContainer/DmgBst.visible = true
+		$ContConsum/GridContainer/DmgBstDur.visible = true
+	elif consDur[1] == 0:
+		$ContConsum/GridContainer/DmgBst.visible = false
+		$ContConsum/GridContainer/DmgBstDur.visible = false
+		
+	if consDur[2] > 0:
+		$ContConsum/GridContainer/DmgRedDur.text = str(consDur[2],"secs")
+		$ContConsum/GridContainer/DmgRed.visible = true
+		$ContConsum/GridContainer/DmgRedDur.visible = true
+	elif consDur[2] == 0:
+		$ContConsum/GridContainer/DmgRed.visible = false
+		$ContConsum/GridContainer/DmgRedDur.visible = false

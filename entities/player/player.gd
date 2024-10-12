@@ -12,6 +12,7 @@ signal health_changed
 signal gathered
 signal hpPackCount
 signal consumCount
+signal consDuration
 signal toggleConsum
 signal on_harvester_count_changed
 signal on_harvester_max_changed
@@ -30,14 +31,17 @@ signal on_harvester_max_changed
 @export var currentStamina:int
 @export var dashStaminaCost = 25
 @export var resourceA:int
+@export var StaRegen:float  #This just lowers the wait time between the StaminaRegen timer
+@export var StaWaitTime:float #The initial wait time for stamina to start regenerating
 
 @export_group("consumables")
 @export var Healthpacks:int #healthPack amounts
 @export var consum = [0,0,0]  #consumable amounts [ stamina recovery, damage boost, damage reduction]
+@export var consDur = [0.0,0.0,0.0]
+var consDurRate = 15
 
 @export var availible_harvesters:int
 @export var max_harvesters:int = 5
-
 
 @export var DMG:int
 
@@ -70,6 +74,8 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	StaRegen = .05
+	StaWaitTime = 1
 	availible_harvesters = max_harvesters
 	Healthpacks = 3
 	consum = [4,5,6]
@@ -104,9 +110,9 @@ func _process(delta: float) -> void:
 		running = 1
 		currentStamina += -1 #maybe multiply by delta
 		stamina_changed.emit(currentStamina,maxStamina)
-		$StaminaRegen.wait_time=1
+		$StaminaRegen.wait_time = StaWaitTime
 		$StaminaRegen.start()
-		$StaminaRegen.wait_time=.05
+		$StaminaRegen.wait_time = StaRegen
 	
 	velocity = Input.get_vector("move_left","move_right","move_up","move_down").normalized()
 
@@ -120,12 +126,10 @@ func _process(delta: float) -> void:
 	elif velocity.length() == 0  && dashing == 0:
 		$AnimatedSprite2D.stop()
 		
-		
 	if running >0:
 		position += (velocity*running*run) * delta
 	else:
 		position += (velocity) * delta
-	
 	
 	#Where are we looking?
 	Whereismousy = get_global_mouse_position()
@@ -151,15 +155,7 @@ func _process(delta: float) -> void:
 	
 	#Use the selected Consumable
 	if Input.is_action_just_pressed("Use_consumable"):
-		if consum[toggle] != 0:
-			consum[toggle] += -1
-			consumCount.emit(consum)
-			for i in consum.size():
-				#print("i=",i)
-				if toggle == i: #If 0 use DamageBoost if 1 use StamBoost
-					print("I want to use: ",i)
-					break
-
+		Use_cons()
 	#cycle between the available consumables
 	if Input.is_action_just_pressed("Toggle_consumables"):
 		if toggle == consum.size()-1:
@@ -266,3 +262,33 @@ func _on_area_2d_collectable_area_entered(area: Area2D) -> void:
 			area.hide()
 			area.queue_free()
 			break
+
+
+
+#consumable amounts [ stamina recovery, damage boost, damage reduction]
+func Use_cons():
+	if consum[toggle] != 0:
+			consum[toggle] += -1
+			consumCount.emit(consum)
+			consDur[toggle] += consDurRate
+			if toggle == 0: #stamina recovery
+				#StaRegen = StaRegen * .5
+				#StaWaitTime = StaWaitTime * .5
+				pass
+			if toggle == 1: #damage boost
+				pass
+			if toggle == 2: #damage reduction
+				pass
+			print("I want to use: ",toggle)
+	if $ConsumableTimer.is_stopped() == true:
+		$ConsumableTimer.start()
+
+func _on_consumable_timer_timeout() -> void:
+	for i in consDur.size():
+		if consDur[i] != 0:
+			consDur[i] = snapped(consDur[i] - .01, .01)
+			consDuration.emit(consDur)
+		else:
+			consDur[i] = 0.0
+	if consDur.max() == 0:
+		$ConsumableTimer.stop()

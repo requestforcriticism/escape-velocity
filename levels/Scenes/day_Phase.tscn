@@ -41,6 +41,7 @@ position = Vector2(118, -112)
 [node name="BaseMonster" parent="." instance=ExtResource("10_8844s")]
 position = Vector2(-128, 378)
 
+[connection signal="consDuration" from="player" to="player/Camera2D/hud" method="_on_player_cons_duration"]
 [connection signal="consumCount" from="player" to="player/Camera2D/hud" method="_on_player_consum_count"]
 [connection signal="gathered" from="player" to="player/Camera2D/hud" method="_on_player_gathered"]
 [connection signal="gathered" from="player" to="player/Camera2D/PauseCanvasLayer/PauseMenu" method="_on_player_gathered"]
