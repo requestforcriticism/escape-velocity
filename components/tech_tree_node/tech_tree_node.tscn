@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://64fo02ts1lfd"]
+
+[ext_resource type="Texture2D" uid="uid://466br6rm2yxh" path="res://components/tech_tree_node/tech_tree_icons.png" id="1_gulsg"]
+[ext_resource type="Script" path="res://components/tech_tree_node/tech_tree_node.gd" id="2_yiv3f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pypw5"]
+atlas = ExtResource("1_gulsg")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iin2t"]
+atlas = ExtResource("1_gulsg")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr6f3"]
+atlas = ExtResource("1_gulsg")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yjakj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pypw5")
+}],
+"loop": true,
+"name": &"locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iin2t")
+}],
+"loop": true,
+"name": &"purchased",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr6f3")
+}],
+"loop": true,
+"name": &"unlocked",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6j6uy"]
+size = Vector2(32, 32)
+
+[node name="TechTreeNode" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_yjakj")
+animation = &"unlocked"
+script = ExtResource("2_yiv3f")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_6j6uy")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_upgrade_click"]

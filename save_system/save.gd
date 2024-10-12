@@ -66,3 +66,7 @@ func save_file(file: int):
 	
 func load_file(file: int):
 	load_fn.call(file)
+	
+func clear_file(file: int):
+	save_files[file] = {}
+	save_file(file)
