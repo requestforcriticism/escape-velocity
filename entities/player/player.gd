@@ -23,14 +23,16 @@ signal on_harvester_max_changed
 @export var chunk_size = 32
 
 @export_group("Player Stats")
-@export var maxHealth = 100
-@export var healthRegen = 1			#A techtree upgrade may improve this.
-@export var basespeed = 200
-@export var maxStamina = 100
-@export var dashStaminaCost = 25
+@export var BasemaxHealth = 100		#Max health
+@export var BasehealthRegen = 0		#Amount of health regenerated each second. #A techtree upgrade may improve this.
+@export var basespeed = 200			#Move speed
+@export var BasemaxStamina = 100	#Max Stamina
+@export var dashStaminaCost = 25	#Cost to Dash
 @export var StaBaseWait = 1 		#time in seconds for the regen timer to start regenerateing after using STA.
 @export var StaRegen = 1 			#Amount of stamina regen per .05 sec tick.
 @export var Damage = 5				#Base damage from base weapon
+@export var ShootSpeed = .2			#Bullets shoot at this rate in seconds.
+@export var DamageRedBase = 0		#Reduce damage taken by static amount.
 var PS = load("res://entities/player/player_stats.gd")
 var PlayerStats
 
@@ -39,17 +41,18 @@ var PlayerStats
 @export var consum = [0,0,0]  #consumable amounts [ stamina recovery, damage boost, damage reduction]
 @export var consDur = [0.0,0.0,0.0]
 var consDurRate = 15
+var ConsumActive = [false,false,false]
 
 @export var availible_harvesters:int
 @export var max_harvesters:int = 5
 
-@export var DMG:int
+@export var DMG:float
 
 #type of collectables [blue,red,green,yellow,orange,purple]
 @export var colable = [0,0,0,0,0,0]
 var colnames = ["BLU","IRO","OIL","WAT","URA"]
 
-@export var run = 2
+@export var run = 1
 @export var harvester_throw_distance = 200
 
 var running = 0
@@ -75,16 +78,19 @@ func pos_to_chunk(x, y):
 
 func _ready():
 	PlayerStats = PS.new()
-	PlayerStats.set_MaxHP(maxHealth)
-	PlayerStats.set_HealthRegen(healthRegen)
-	PlayerStats.set_MaxSTA(maxStamina)
+	PlayerStats.set_MaxHP(BasemaxHealth)
+	PlayerStats.set_HealthRegen(BasehealthRegen)
+	PlayerStats.set_MaxSTA(BasemaxStamina)
 	PlayerStats.set_speed(basespeed)
 	PlayerStats.set_StaInitialWait(StaBaseWait)
 	PlayerStats.set_StaRegen(StaRegen)
 	PlayerStats.set_DMG(Damage)
+	PlayerStats.set_shootSpeed(ShootSpeed)
+	PlayerStats.set_DMGReduction(DamageRedBase)
+	$ShootTimer.wait_time = PlayerStats.get_shootSpeed()
 	availible_harvesters = max_harvesters
 	Healthpacks = 3
-	consum = [4,5,6]
+	consum = [4,5,6]  #set the starting number of consumables
 	toggleConsum.emit(toggle)
 	hpPackCount.emit(Healthpacks)
 	consumCount.emit(consum)
@@ -96,8 +102,8 @@ func _ready():
 	shootRdy = true
 	$AnimatedSprite2D.animation = "walking"
 	dashRdy =true
-	stamina_changed.emit(PlayerStats.get_currentSTA(),maxStamina)
-	health_changed.emit(PlayerStats.get_currentHP(),maxHealth)
+	stamina_changed.emit(PlayerStats.get_currentSTA(),PlayerStats.get_MaxSTA())
+	health_changed.emit(PlayerStats.get_currentHP(),PlayerStats.get_MaxHP())
 	$StaminaRegen.start()
 	$HealthRegen.start()
 	current_chunk = pos_to_chunk(position.x, position.y)
@@ -112,7 +118,7 @@ func _process(delta: float) -> void:
 		$StaminaRegen.stop()
 		running = 1
 		PlayerStats.set_currentSTA(-1) #maybe multiply by delta
-		stamina_changed.emit(PlayerStats.get_currentSTA(),maxStamina)
+		stamina_changed.emit(PlayerStats.get_currentSTA(),PlayerStats.get_MaxSTA())
 		$StaminaRegen.wait_time = PlayerStats.get_StaInitialWait()
 		$StaminaRegen.start()
 		$StaminaRegen.wait_time = .05
@@ -130,9 +136,11 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.stop()
 		
 	if running >0:
-		position += (velocity*running*run) * delta
+		position += (velocity + velocity*running*run) * delta
+		running += -.05			#if running slow down
 	else:
 		position += (velocity) * delta
+		running = 0
 	
 	#Where are we looking?
 	Whereismousy = get_global_mouse_position()
@@ -168,12 +176,11 @@ func _process(delta: float) -> void:
 		toggleConsum.emit(toggle)
 	
 	#drink that health potion! (Or whatever it's called)
-	if Input.is_action_just_pressed("Consume_HealthP"):
-		if Healthpacks != 0 && PlayerStats.get_currentHP() < maxHealth:
-			Healthpacks += -1
-			PlayerStats.set_currentHP(HealthPotionHeal)
-			health_changed.emit(PlayerStats.get_currentHP(),maxHealth)
-			hpPackCount.emit(Healthpacks)
+	if Input.is_action_just_pressed("Consume_HealthP") && Healthpacks != 0 && PlayerStats.get_currentHP() < PlayerStats.get_MaxHP():
+		Healthpacks += -1
+		PlayerStats.set_currentHP(HealthPotionHeal)
+		health_changed.emit(PlayerStats.get_currentHP(),PlayerStats.get_MaxHP())
+		hpPackCount.emit(Healthpacks)
 	
 	if Input.is_action_just_pressed("harvest_test") && availible_harvesters > 0:
 		availible_harvesters += -1
@@ -192,7 +199,7 @@ func _process(delta: float) -> void:
 		$StaminaRegen.stop()
 		$Area2D/DamageCollisionShape2D.disabled = true
 		PlayerStats.set_currentSTA(-dashStaminaCost)
-		stamina_changed.emit(PlayerStats.get_currentSTA(),maxStamina)
+		stamina_changed.emit(PlayerStats.get_currentSTA(),PlayerStats.get_MaxSTA())
 		dashing = 10
 		$StaminaRegen.wait_time = PlayerStats.get_StaInitialWait()
 		$StaminaRegen.start()
@@ -210,10 +217,10 @@ func _process(delta: float) -> void:
 			$Area2D/DamageCollisionShape2D.disabled = false
 
 	#if running slow down
-	if running > 0:
-		running =+ -.01
-	else:
-		running = 0
+	#if running > 0:
+		#running =+ -.01
+	#else:
+		#running = 0
 
 	#create animation for standing still
 	#$AnimatedSprite2D.animation = "standing"
@@ -231,22 +238,24 @@ func harvester_return():
 
 func _on_stamina_regen_timeout() -> void:
 	PlayerStats.set_currentSTA(PlayerStats.get_StaRegen())
-	stamina_changed.emit(PlayerStats.get_currentSTA(),maxStamina)
+	stamina_changed.emit(PlayerStats.get_currentSTA(),PlayerStats.get_MaxSTA())
 
 func _on_health_regen_timeout() -> void:
 	PlayerStats.Regen_HP()
-	health_changed.emit(PlayerStats.get_currentHP(),maxHealth)
+	health_changed.emit(PlayerStats.get_currentHP(),PlayerStats.get_MaxHP())
+	print("health Regening ",PlayerStats.get_HealthRegen() )
 
 func _on_dash_wait_timeout() -> void:
 	dashRdy =true
 
 func _on_shoot_timer_timeout() -> void:
 	shootRdy = true
+	$ShootTimer.wait_time = PlayerStats.get_shootSpeed()
 	$ShootTimer.stop()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	PlayerStats.set_currentHP(-area.damage)
-	health_changed.emit(PlayerStats.get_currentHP(),maxHealth)
+	PlayerStats.set_currentHP(-area.damage + PlayerStats.get_DMGReduction())
+	health_changed.emit(PlayerStats.get_currentHP(),PlayerStats.get_MaxHP())
 	$AnimatedSprite2D.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	$AnimatedSprite2D.modulate = Color.WHITE
@@ -260,7 +269,6 @@ func _on_area_2d_collectable_area_entered(area: Area2D) -> void:
 			area.queue_free()
 			break
 
-
 func Use_cons():
 	if consum[toggle] != 0:
 			consum[toggle] += -1
@@ -271,32 +279,42 @@ func Use_cons():
 		$ConsumableTimer.start()
 
 func _on_consumable_timer_timeout() -> void:
+	if consDur.max() == 0:
+		$ConsumableTimer.stop()
 	for i in consDur.size():
 		if consDur[i] > 0:
-			consDur[i] = snapped(consDur[i] - .01, .01)
+			consDur[i] = snapped(consDur[i] - .1, .1)
 			consDuration.emit(consDur)
 		else:
 			consDur[i] = 0.0
 			using_consumable(i,false)
-			
-			
-	if consDur.max() == 0:
-		$ConsumableTimer.stop()
-		
+
 #consumable amounts [ stamina recovery, damage boost, damage reduction]
 func using_consumable(tog:int, using:bool):
-	var ConsumActive = [false,false,false]
-	if tog == 0:
+	if tog == 0: #Stamina recovery
 		if using == true && ConsumActive[tog] == false:
-			print("is true")
-			PlayerStats.set_StaInitialWait(StaBaseWait * .25)
-			PlayerStats.set_StaRegen(StaRegen * 2)
-			ConsumActive[tog]=true
-			pass
-		if using == false:
+			PlayerStats.set_StaInitialWait(PlayerStats.get_StaInitialWait() * 0.25)
+			PlayerStats.set_StaRegen(PlayerStats.get_StaRegen() * 2)
+			ConsumActive[tog] = true
+		elif using == false:
 			PlayerStats.set_StaInitialWait(StaBaseWait)
 			PlayerStats.set_StaRegen(StaRegen)
-	if tog == 1:
-		pass
-	if tog == 2:
-		pass
+			ConsumActive[tog] = false
+	if tog == 1: #Damage Boost
+		if using == true && ConsumActive[tog] == false:
+			PlayerStats.set_DMG(PlayerStats.get_DMG() * 1.5)
+			PlayerStats.set_shootSpeed(PlayerStats.get_shootSpeed() * 0.5)
+			ConsumActive[tog] = true
+		elif using == false:
+			PlayerStats.set_DMG(Damage)
+			PlayerStats.set_shootSpeed(ShootSpeed)
+			ConsumActive[tog] = false
+	if tog == 2: #Damage Reduction & small Health Regeneration
+		if using == true && ConsumActive[tog] == false:
+			PlayerStats.set_DMGReduction(PlayerStats.get_DMGReduction() + 2)
+			PlayerStats.set_HealthRegen(PlayerStats.get_HealthRegen() + 1)
+			ConsumActive[tog] = true
+		elif using == false:
+			PlayerStats.set_DMGReduction(DamageRedBase)
+			PlayerStats.set_HealthRegen(BasehealthRegen)
+			ConsumActive[tog] = false

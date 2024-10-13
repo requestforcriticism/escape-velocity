@@ -11,10 +11,15 @@ extends Node
 @export var StaRegenBase:float = .05  #This just lowers the wait time between the StaminaRegen timer
 @export var StaWaitTimeBase:float = 1 #The initial wait time for stamina to start regenerating
 @export var Damage:int
-
+@export var ShootSpeed:float
+@export var DamageReduction:float
+	
 func set_MaxHP(maxHP):
 	maxHealth = maxHP
 	currentHealth = maxHP
+	
+func get_MaxHP():
+	return maxHealth
 
 func set_currentHP(difference):
 	currentHealth += difference
@@ -39,6 +44,9 @@ func set_MaxSTA(maxSTA):
 	maxStamina = maxSTA
 	currentStamina = maxSTA
 
+func get_MaxSTA():
+	return maxStamina
+	
 func set_currentSTA(difference):
 	currentStamina += difference
 	if currentStamina > maxStamina:
@@ -72,3 +80,15 @@ func set_DMG(DMG):
 
 func get_DMG():
 	return Damage
+
+func set_shootSpeed(ASPD):
+	ShootSpeed = ASPD
+
+func get_shootSpeed():
+	return ShootSpeed
+
+func set_DMGReduction(val):
+	DamageReduction = val
+
+func get_DMGReduction():
+	return DamageReduction

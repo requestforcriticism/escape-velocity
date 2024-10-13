@@ -125,7 +125,7 @@ func generate_ruin(x , y):
 func decorate_chunk(x, y):
 	var rng = get_chunk_generator(x, y)
 	var meta = get_chunk_meta(x, y)
-#	print("Decorating chunk (", x, ", ", y, ")")
+	#print("Decorating chunk (", x, ", ", y, ")")
 	
 	#roll tile decoration
 	for i in range(1,rng.randi_range(50, 100)):

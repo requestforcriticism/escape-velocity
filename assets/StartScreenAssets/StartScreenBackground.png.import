@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnk3dv6ph0fa"
-path="res://.godot/imported/StartScreenBackground.png-5370c69480511f8c7a0ab3d6a61b6276.ctex"
+path="res://.godot/imported/StartScreenBackground.png-a21d79fbed79a4ac8b33a2e876c24824.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/Scenes/StartScreenAssets/StartScreenBackground.png"
-dest_files=["res://.godot/imported/StartScreenBackground.png-5370c69480511f8c7a0ab3d6a61b6276.ctex"]
+source_file="res://assets/StartScreenAssets/StartScreenBackground.png"
+dest_files=["res://.godot/imported/StartScreenBackground.png-a21d79fbed79a4ac8b33a2e876c24824.ctex"]
 
 [params]
 
