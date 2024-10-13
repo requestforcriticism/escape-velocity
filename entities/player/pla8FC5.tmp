@@ -58,6 +58,7 @@ collision_layer = 81
 script = ExtResource("1_cefws")
 playerBullet = ExtResource("2_y1ein")
 harvester_scene = ExtResource("3_3j10a")
+speed = 300
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
