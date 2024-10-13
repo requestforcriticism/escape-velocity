@@ -78,7 +78,7 @@ func shoot_bullet(angle, expiration, damage, size):
 	add_child(bullet)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if state == RESOURCE_STATE.AGGESSIVE:
+	if state == RESOURCE_STATE.AGGESSIVE and "damage" in area:
 		currentHealth += -area.damage
 		$HealthBar.value = currentHealth
 		$AnimatedSprite2D.modulate = Color.RED
