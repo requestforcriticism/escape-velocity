@@ -48,7 +48,8 @@ func unload_far_chunks(x, y):
 func load_near_chunks(x, y):
 	for i in range(x-render_distance, x+render_distance+1):
 		for j in range(y-render_distance, y+render_distance+1):
-			load_chunk(i, j)
+			if !is_chunk_loaded(x, y):
+				load_chunk(i, j)
 
 func unload_chunk(x, y):
 	print("clearing chunk " ,x, " ", y)

@@ -254,11 +254,12 @@ func _on_shoot_timer_timeout() -> void:
 	$ShootTimer.stop()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	PlayerStats.set_currentHP(-area.damage + PlayerStats.get_DMGReduction())
-	health_changed.emit(PlayerStats.get_currentHP(),PlayerStats.get_MaxHP())
-	$AnimatedSprite2D.modulate = Color.RED
-	await get_tree().create_timer(0.1).timeout
-	$AnimatedSprite2D.modulate = Color.WHITE
+	if "damage" in area:
+		PlayerStats.set_currentHP(-area.damage + PlayerStats.get_DMGReduction())
+		health_changed.emit(PlayerStats.get_currentHP(),PlayerStats.get_MaxHP())
+		$AnimatedSprite2D.modulate = Color.RED
+		await get_tree().create_timer(0.1).timeout
+		$AnimatedSprite2D.modulate = Color.WHITE
 
 func _on_area_2d_collectable_area_entered(area: Area2D) -> void:
 	for i in colnames.size():
