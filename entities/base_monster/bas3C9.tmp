@@ -33,6 +33,10 @@ size = Vector2(32, 32)
 [node name="BaseMonster" type="CharacterBody2D"]
 script = ExtResource("1_v7btk")
 wander_target = ExtResource("2_bf8sp")
+patrol_speed = null
+chase_speed = null
+attack_speed = null
+max_hp = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ifrqo")
@@ -76,8 +80,6 @@ offset_bottom = -22.0
 show_percentage = false
 
 [node name="HitBox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("RectangleShape2D_mtivo")

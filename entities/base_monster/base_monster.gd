@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
+signal on_die
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-enum MONSTER_STATE {PASSIVE, SEARCHING, ATTACKING, POUNCING}
+enum MONSTER_STATE {PASSIVE, SEARCHING, ATTACKING, POUNCING, DEAD}
 var state = MONSTER_STATE.PASSIVE
 var target : Node2D
 var current_wander_target : Node2D
@@ -15,7 +16,26 @@ var current_wander_target : Node2D
 @export var attack_speed = 400
 @export var player : Node2D = null
 
+@export var max_hp : int = 30
+var hp
+
 var speed = patrol_speed
+
+func _ready():
+	hp = max_hp
+	$HealthBar.max_value = max_hp
+	$HealthBar.value = max_hp
+	$HealthBar.modulate = Color.RED
+	
+func on_damage(bullet):
+	if "damage" in bullet:
+		hp -= bullet.damage
+		$HealthBar.value = hp
+		print("hit for, ", bullet.damage, " now at ", hp)
+		bullet.queue_free()
+	if hp <= 0:
+		on_die.emit()
+		queue_free()
 
 func _physics_process(delta):
 	if state == MONSTER_STATE.PASSIVE:

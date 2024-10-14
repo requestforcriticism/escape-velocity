@@ -55,6 +55,8 @@ var ConsumActive = [false,false,false]
 @export var run = 1
 @export var harvester_throw_distance = 200
 
+@export var player_tag = true
+
 var running = 0
 var dashDistance = 600
 var dashing:int
