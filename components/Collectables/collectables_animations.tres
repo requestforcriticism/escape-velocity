@@ -1,7 +1,8 @@
-[gd_resource type="SpriteFrames" load_steps=42 format=3 uid="uid://debd5ieq62j5w"]
+[gd_resource type="SpriteFrames" load_steps=45 format=3 uid="uid://debd5ieq62j5w"]
 
 [ext_resource type="Texture2D" uid="uid://cwoq0nakcaard" path="res://components/Collectables/blue_collectable.png" id="1_iqq1p"]
 [ext_resource type="Texture2D" uid="uid://bujsodwybo1xp" path="res://components/Collectables/sprites/logic_card.png" id="2_y5yfu"]
+[ext_resource type="Texture2D" uid="uid://dr7ljsae3ovrl" path="res://assets/collectabes/food.png" id="3_esac0"]
 [ext_resource type="Texture2D" uid="uid://ctslut15v3122" path="res://components/Collectables/sprites/iron_ore.png" id="3_fr6lt"]
 [ext_resource type="Texture2D" uid="uid://dkhj1ntaqd87e" path="res://components/Collectables/sprites/oil_bubble.png" id="4_5mxl2"]
 [ext_resource type="Texture2D" uid="uid://d3xljsvlx2ya" path="res://components/Collectables/sprites/uranium_ore.png" id="8_xsyel"]
@@ -13,6 +14,14 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6xyeg"]
 atlas = ExtResource("2_y5yfu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebhuv"]
+atlas = ExtResource("3_esac0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0isu"]
+atlas = ExtResource("3_esac0")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bq8co"]
@@ -168,7 +177,13 @@ animations = [{
 "name": &"COM",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebhuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0isu")
+}],
 "loop": true,
 "name": &"FOO",
 "speed": 5.0
