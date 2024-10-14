@@ -21,7 +21,6 @@ var _is_paused:bool = false:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause_day_phase"):
 		_is_paused = !_is_paused
-		print($"../../..".colable)
 		
 		#["BLU","IRO","OIL","WAT","URA"]
 		$MainWindow/WaterPlayerAmount.text = str($"../../..".colable[3])
@@ -43,8 +42,11 @@ func _on_end_day_button_pressed() -> void:
 	pass # Replace with function body.
 
 func _on_quit_game_button_pressed() -> void:
-	get_tree().quit()
-
+	$CheckMainMenu.visible = true
+	$GridContainer/EndDayButton.disabled = true
+	$GridContainer/ResumeButton.disabled = true
+	$GridContainer/QuitGameButton.disabled = true
+	$ColorRectMenuCheck.visible = true
 
 func _on_player_consum_count() -> void:
 	pass # Replace with function body.
@@ -53,3 +55,17 @@ func _on_player_consum_count() -> void:
 #func _on_player_gathered(cons) -> void:
 	#print(cons)
 	#pass # Replace with function body.
+
+
+func _on_mm_yes_button_pressed() -> void:
+	_is_paused = false
+	release_focus()
+	LevelManager.load_start()
+
+
+func _on_mm_no_button_pressed() -> void:
+	$CheckMainMenu.visible = false
+	$GridContainer/EndDayButton.disabled = false
+	$GridContainer/ResumeButton.disabled = false
+	$GridContainer/QuitGameButton.disabled = false
+	$ColorRectMenuCheck.visible = false

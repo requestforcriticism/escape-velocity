@@ -2,27 +2,44 @@
 
 [ext_resource type="Texture2D" uid="uid://bdm8pxdykl4q6" path="res://levels/Scenes/NightPhaseAssets/NightPhaseBackground.png" id="1_3s7g6"]
 
-[node name="NightPhase" type="Node2D"]
+[node name="NightPhase" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Container" type="Container" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Container"]
+[node name="Sprite2D" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_3s7g6")
 
-[node name="Camera2D" type="Camera2D" parent="Container"]
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -386.0
-offset_top = 239.0
-offset_right = 387.0
-offset_bottom = 319.0
+offset_left = -500.0
+offset_top = 215.0
+offset_right = 501.0
+offset_bottom = 265.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4

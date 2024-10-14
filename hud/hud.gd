@@ -48,7 +48,7 @@ func _on_player_gathered(colname) -> void:
 		$ContBp/AnimatedSprite2D2.position = $ContBp/Path2D/PathFollow2D.position
 		await get_tree().create_timer(0.01).timeout
 	$ContBp/AnimatedSprite2D2.hide()	
-	print("#",colname)
+	#print("#",colname)
 
 	
 
@@ -62,7 +62,7 @@ func _on_player_toggle_consumables() -> void:
 
 
 func _on_player_hp_pack_count(hpPacks) -> void:
-	print(hpPacks)
+	#print(hpPacks)
 	$HealthPackContainer/Label.text = str(hpPacks)
 	pass # Replace with function body.
 

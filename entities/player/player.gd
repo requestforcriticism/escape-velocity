@@ -185,7 +185,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("harvest_test") && availible_harvesters > 0:
 		availible_harvesters += -1
 		on_harvester_count_changed.emit(availible_harvesters)
-		print("spawning harvester")
+		#print("spawning harvester")
 		var harvester = harvester_scene.instantiate()
 		harvester.position = position
 		harvester.player = self
@@ -243,7 +243,6 @@ func _on_stamina_regen_timeout() -> void:
 func _on_health_regen_timeout() -> void:
 	PlayerStats.Regen_HP()
 	health_changed.emit(PlayerStats.get_currentHP(),PlayerStats.get_MaxHP())
-	print("health Regening ",PlayerStats.get_HealthRegen() )
 
 func _on_dash_wait_timeout() -> void:
 	dashRdy =true
