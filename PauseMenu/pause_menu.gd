@@ -39,7 +39,11 @@ func _on_resume_button_pressed() -> void:
 	_is_paused = false
 
 func _on_end_day_button_pressed() -> void:
-	pass # Replace with function body.
+	$CheckEndDay.visible = true
+	$GridContainer/EndDayButton.disabled = true
+	$GridContainer/ResumeButton.disabled = true
+	$GridContainer/QuitGameButton.disabled = true
+	$ColorRectMenuCheck.visible = true
 
 func _on_quit_game_button_pressed() -> void:
 	$CheckMainMenu.visible = true
@@ -65,6 +69,18 @@ func _on_mm_yes_button_pressed() -> void:
 
 func _on_mm_no_button_pressed() -> void:
 	$CheckMainMenu.visible = false
+	$GridContainer/EndDayButton.disabled = false
+	$GridContainer/ResumeButton.disabled = false
+	$GridContainer/QuitGameButton.disabled = false
+	$ColorRectMenuCheck.visible = false
+
+func _on_ed_yes_button_pressed() -> void:
+	_is_paused = false
+	release_focus()
+	LevelManager.load_night()
+
+func _on_ed_no_button_pressed() -> void:
+	$CheckEndDay.visible = false
 	$GridContainer/EndDayButton.disabled = false
 	$GridContainer/ResumeButton.disabled = false
 	$GridContainer/QuitGameButton.disabled = false

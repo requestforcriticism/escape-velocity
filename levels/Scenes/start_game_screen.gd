@@ -16,6 +16,7 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_new_game_button_pressed() -> void:
+	Save.set_value(1, "DAY", 1)
 	release_focus()
 	LevelManager.load_day()
 

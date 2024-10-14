@@ -10,6 +10,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	$player/Camera2D.make_current()
 	$player/Camera2D/PauseCanvasLayer/PauseMenu.visible = false
 	$player.chunk_size = chunk_size

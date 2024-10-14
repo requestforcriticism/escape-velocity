@@ -4,6 +4,7 @@ var consum
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	displayDay()
 	$HPProgressBar/HeartSprite2D.modulate = Color.RED
 	$ContConsum/GridContainer/StaRegDur.text = str("0 secs")
 	$ContConsum/GridContainer/DmgBstDur.text = str("0 secs")
@@ -135,3 +136,14 @@ func _on_player_cons_duration(consDur) -> void:
 	elif consDur[2] == 0:
 		$ContConsum/GridContainer/DmgRed.visible = false
 		$ContConsum/GridContainer/DmgRedDur.visible = false
+
+func displayDay():
+	$Timer.start()
+	$DayNumber.text = str("Day ",Save.get_value(1, "DAY", 0))
+
+func _on_timer_timeout() -> void:
+	$DayNumber.visible_ratio +=.05
+	if $DayNumber.visible_ratio == 1:
+		$DayNumber.self_modulate.a += -.02
+		if $DayNumber.self_modulate.a <= 0:
+			$DayNumber.visible = false

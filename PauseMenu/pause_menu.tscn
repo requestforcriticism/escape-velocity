@@ -506,7 +506,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="CheckMainMenu"]
+[node name="BoxImageMM" type="TextureRect" parent="CheckMainMenu"]
 layout_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
@@ -520,7 +520,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_q84uo")
 
-[node name="Label" type="Label" parent="CheckMainMenu"]
+[node name="BoxTitleMM" type="Label" parent="CheckMainMenu"]
 layout_mode = 2
 offset_left = -168.0
 offset_top = -82.0
@@ -532,7 +532,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 uppercase = true
 
-[node name="Label2" type="Label" parent="CheckMainMenu"]
+[node name="BoxTextMM" type="Label" parent="CheckMainMenu"]
 layout_mode = 2
 offset_left = -156.0
 offset_top = -38.0
@@ -573,8 +573,83 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "No"
 
+[node name="CheckEndDay" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BoxImageED" type="TextureRect" parent="CheckEndDay"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 364.0
+offset_top = 198.0
+offset_right = 748.0
+offset_bottom = 410.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_q84uo")
+
+[node name="BoxTitleED" type="Label" parent="CheckEndDay"]
+layout_mode = 2
+offset_left = 388.0
+offset_top = 222.0
+offset_right = 768.0
+offset_bottom = 261.0
+theme_override_font_sizes/font_size = 28
+text = "End the day"
+horizontal_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="BoxTextED" type="Label" parent="CheckEndDay"]
+layout_mode = 2
+offset_left = 400.0
+offset_top = 266.0
+offset_right = 752.0
+offset_bottom = 430.0
+theme_override_colors/font_color = Color(0.473976, 0.473976, 0.473976, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
+text = "Are you sure you want to end the day?  All collected resources on Drone will be lost for this day."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="GridContainer3" type="GridContainer" parent="CheckEndDay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 452.0
+offset_top = 349.0
+offset_right = 660.0
+offset_bottom = 399.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="EDYesButton" type="Button" parent="CheckEndDay/GridContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Yes"
+
+[node name="EDNoButton" type="Button" parent="CheckEndDay/GridContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "No"
+
 [connection signal="pressed" from="GridContainer/EndDayButton" to="." method="_on_end_day_button_pressed"]
 [connection signal="pressed" from="GridContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="GridContainer/QuitGameButton" to="." method="_on_quit_game_button_pressed"]
 [connection signal="pressed" from="CheckMainMenu/GridContainer2/MMYesButton" to="." method="_on_mm_yes_button_pressed"]
 [connection signal="pressed" from="CheckMainMenu/GridContainer2/MMNoButton" to="." method="_on_mm_no_button_pressed"]
+[connection signal="pressed" from="CheckEndDay/GridContainer3/EDYesButton" to="." method="_on_ed_yes_button_pressed"]
+[connection signal="pressed" from="CheckEndDay/GridContainer3/EDNoButton" to="." method="_on_ed_no_button_pressed"]
