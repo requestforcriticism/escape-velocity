@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-enum MONSTER_STATE {PASSIVE, SEARCHING, ATTACKING}
+enum MONSTER_STATE {PASSIVE, SEARCHING, ATTACKING, POUNCING}
 var state = MONSTER_STATE.PASSIVE
 var target : Node2D
 var current_wander_target : Node2D
@@ -13,6 +13,7 @@ var current_wander_target : Node2D
 @export var patrol_speed = 150
 @export var chase_speed = 200
 @export var attack_speed = 400
+@export var player : Node2D = null
 
 var speed = patrol_speed
 
@@ -47,6 +48,7 @@ func move_to_target():
 # start attacking the player
 func _on_attack_area_body_entered(body):
 	state = MONSTER_STATE.ATTACKING
+	$AttackTimer.start()
 	pass # Replace with function body.
 
 # player leaves aggro range
@@ -57,7 +59,7 @@ func _on_chase_area_body_exited(body):
 # player leaves attack range
 func _on_attack_area_body_exited(body):
 	state = MONSTER_STATE.SEARCHING
-	pass # Replace with function body.
+	$AttackTimer.stop()
 
 # start persuing player 
 func _on_search_area_body_entered(body):
@@ -65,7 +67,10 @@ func _on_search_area_body_entered(body):
 	if target == current_wander_target:
 		current_wander_target.queue_free()
 	target = body
-
+	if(player == null):
+		attack(target)
+	else:
+		attack(player)
 
 func _on_wander_radius_body_entered(body):
 	if body == self and state == MONSTER_STATE.PASSIVE:
@@ -77,4 +82,9 @@ func _on_wander_radius_body_entered(body):
 func _on_wander_expire_timer_timeout():
 	if current_wander_target != null:
 		current_wander_target.queue_free()
-	get_next_wander_location()
+	if target != player or state == MONSTER_STATE.SEARCHING:
+		get_next_wander_location()
+
+func attack(body):
+	print("attacking")
+	pass

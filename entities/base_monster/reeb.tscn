@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://s5q3ymqj5dkb"]
+
+[ext_resource type="PackedScene" uid="uid://dijpoceqauarg" path="res://entities/base_monster/base_monster.tscn" id="1_qudv3"]
+[ext_resource type="Script" path="res://entities/base_monster/reeb.gd" id="2_8br0h"]
+[ext_resource type="Texture2D" uid="uid://biogwqm30r1us" path="res://assets/monsters/bear.png" id="2_br6fy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dkscj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_br6fy")
+}],
+"loop": true,
+"name": &"roaming",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7pvo"]
+size = Vector2(63, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d26eg"]
+radius = 59.6825
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fuajf"]
+radius = 438.412
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w30gs"]
+radius = 557.291
+
+[node name="Reeb" instance=ExtResource("1_qudv3")]
+script = ExtResource("2_8br0h")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_dkscj")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_y7pvo")
+
+[node name="CollisionShape2D" parent="AttackArea" index="0"]
+shape = SubResource("CircleShape2D_d26eg")
+
+[node name="CollisionShape2D" parent="SearchArea" index="0"]
+shape = SubResource("CircleShape2D_fuajf")
+
+[node name="CollisionShape2D" parent="ChaseArea" index="0"]
+shape = SubResource("CircleShape2D_w30gs")
+
+[node name="PounceTimer" type="Timer" parent="." index="7"]
+wait_time = 3.0
+
+[connection signal="timeout" from="PounceTimer" to="." method="pounce"]

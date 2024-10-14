@@ -19,13 +19,13 @@ animations = [{
 size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d8yuy"]
-radius = 47.0425
+radius = 138.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_265mb"]
-radius = 168.19
+radius = 192.023
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_exsoa"]
-radius = 176.011
+radius = 282.016
 
 [node name="BaseMonster" type="CharacterBody2D"]
 script = ExtResource("1_v7btk")
@@ -62,8 +62,12 @@ shape = SubResource("CircleShape2D_exsoa")
 [node name="WanderExpireTimer" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="body_entered" from="SearchArea" to="." method="_on_search_area_body_entered"]
 [connection signal="body_exited" from="ChaseArea" to="." method="_on_chase_area_body_exited"]
 [connection signal="timeout" from="WanderExpireTimer" to="." method="_on_wander_expire_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="attack"]
