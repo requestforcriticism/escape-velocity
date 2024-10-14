@@ -25,3 +25,5 @@ shape = SubResource("RectangleShape2D_mkfgg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_wt8rv")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

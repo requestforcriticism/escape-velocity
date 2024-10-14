@@ -37,11 +37,11 @@ func _ready():
 	new_collectable.position = Vector2(0,100)
 	add_child(new_collectable)
 	new_collectable = collectable.instantiate()
-	new_collectable.type = "ORA"
+	new_collectable.type = "FOO"
 	new_collectable.position = Vector2(-50,100)
 	add_child(new_collectable)
 	new_collectable = collectable.instantiate()
-	new_collectable.type = "PUR"
+	new_collectable.type = "COM"
 	new_collectable.position = Vector2(-150,100)
 	add_child(new_collectable)
 	
@@ -62,11 +62,11 @@ func _ready():
 	new_collectable.position = Vector2(0,50)
 	add_child(new_collectable)
 	new_collectable = collectable.instantiate()
-	new_collectable.type = "ORA"
+	new_collectable.type = "FOO"
 	new_collectable.position = Vector2(-50,50)
 	add_child(new_collectable)
 	new_collectable = collectable.instantiate()
-	new_collectable.type = "PUR"
+	new_collectable.type = "COM"
 	new_collectable.position = Vector2(-150,50)
 	add_child(new_collectable)
 	

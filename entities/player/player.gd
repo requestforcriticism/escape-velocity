@@ -49,8 +49,8 @@ var ConsumActive = [false,false,false]
 @export var DMG:float
 
 #type of collectables [blue,red,green,yellow,orange,purple]
-@export var colable = [0,0,0,0,0,0]
-var colnames = ["BLU","IRO","OIL","WAT","URA"]
+@export var colable = [0,0,0,0,0,0,0,0]
+@export var colnames = ["BLU","IRO","OIL","WAT","URA", "FOO", "COM"]
 
 @export var run = 1
 @export var harvester_throw_distance = 200
@@ -95,7 +95,7 @@ func _ready():
 	hpPackCount.emit(Healthpacks)
 	consumCount.emit(consum)
 	DMG = 5 #+ tech tree bonus
-	colable = [0,0,0,0,0,0] #These are the collectable startup values
+	colable = [0,0,0,0,0,0, 0] #These are the collectable startup values
 	looking = Vector2(1,0)
 	lastlook = Vector2(1,0)
 	lastMouse = Vector2(1,0)
