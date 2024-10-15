@@ -1,6 +1,9 @@
 extends CanvasLayer
 
 var consum
+var DayTimeLeft:int
+var Daywords = false
+var OneMinWarn = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,14 +14,17 @@ func _ready() -> void:
 	$ContConsum/GridContainer/DmgRedDur.text = str("0 secs")
 
 func start_day(dayLength):
+	DayTimeLeft = dayLength
+	$ContDTT/DayTimeTracker/Timer.text = str(time_convert(DayTimeLeft))
 	$ContDTT/DayTimeTracker/Path2D/PathFollow2D.progress_ratio = 0
-	$ContDTT/DayTimeTracker/DayTimer.wait_time = dayLength/100.0
-	$ContDTT/DayTimeTracker/DayTimer.start()
+	$ContDTT/DayTimeTracker/DayTrackerTimer.wait_time = dayLength/100.0
+	$ContDTT/DayTimeTracker/DayTrackerTimer.start()
 	$ContDTT/DayTimeTracker/AnimatedSprite2D.play()
-
-func _process(delta: float) -> void:
-	pass
 	
+func _process(delta: float) -> void:
+	if DayTimeLeft == 60:
+		OneMinWarn = true
+		$Timer.start()
 
 func _on_player_stamina_changed(stamina_changed,maxStamina) -> void:
 	$StaminaProgressBar.value = 100*stamina_changed/maxStamina
@@ -35,10 +41,6 @@ func _on_player_health_changed(currentHealth,maxHealth) -> void:
 		await get_tree().create_timer(0.1).timeout
 		$HPProgressBar/HeartSprite2D.modulate = Color.RED
 	$HPProgressBar.value = 100*currentHealth/maxHealth
-	
-func _on_day_timer_timeout() -> void:
-	$ContDTT/DayTimeTracker/Path2D/PathFollow2D.progress_ratio += .01
-	$ContDTT/DayTimeTracker/AnimatedSprite2D.position = $ContDTT/DayTimeTracker/Path2D/PathFollow2D.position
 
 func _on_player_gathered(colname) -> void:
 	$ContBp/AnimatedSprite2D2.animation = colname
@@ -61,11 +63,8 @@ func _on_player_gathered(colname) -> void:
 func _on_player_toggle_consumables() -> void:
 	pass # Replace with function body.
 
-
 func _on_player_hp_pack_count(hpPacks) -> void:
-	#print(hpPacks)
 	$HealthPackContainer/Label.text = str(hpPacks)
-	pass # Replace with function body.
 
 #how many of each comsumable does the player have?  Let's update it.
 func _on_player_consum_count(cons) -> void:
@@ -73,7 +72,6 @@ func _on_player_consum_count(cons) -> void:
 	$ContConsum/SBst/AmtLeft.text = str(consum[0])
 	$ContConsum/DBst/AmtLeft.text = str(consum[1])
 	$ContConsum/DRed/AmtLeft.text = str(consum[2])
-
 
 #cycle between the consumables   
 #consumable amounts [ stamina recovery, damage boost, damage reduction]
@@ -111,7 +109,6 @@ func _on_player_on_harvester_count_changed(amt):
 func _on_player_on_harvester_max_changed(amt):
 	$HarvesterControl/HarvesterTotal.text = str(amt)
 
-
 func _on_player_cons_duration(consDur) -> void:
 	if consDur[0] > 0:
 		$ContConsum/GridContainer/StaRegDur.text = str(consDur[0],"secs")
@@ -140,10 +137,49 @@ func _on_player_cons_duration(consDur) -> void:
 func displayDay():
 	$Timer.start()
 	$DayNumber.text = str("Day ",Save.get_value(1, "DAY", 0))
+	Daywords = true
 
 func _on_timer_timeout() -> void:
-	$DayNumber.visible_ratio +=.05
-	if $DayNumber.visible_ratio == 1:
-		$DayNumber.self_modulate.a += -.02
-		if $DayNumber.self_modulate.a <= 0:
-			$DayNumber.visible = false
+	if Daywords == true:
+		Daywords = type_in_letters($DayNumber)
+	if OneMinWarn == true:
+		OneMinWarn = letters_pop_out($OneMinWarning)
+	pass
+
+func _on_day_tracker_timer_timeout() -> void:
+	$ContDTT/DayTimeTracker/Path2D/PathFollow2D.progress_ratio += .01
+	$ContDTT/DayTimeTracker/AnimatedSprite2D.position = $ContDTT/DayTimeTracker/Path2D/PathFollow2D.position
+
+
+func _on_day_timer_timeout() -> void:
+	DayTimeLeft += -1
+	$ContDTT/DayTimeTracker/Timer.text = str(time_convert(DayTimeLeft))
+
+func time_convert(time_in_sec):
+	var seconds = time_in_sec%60
+	var minutes = (time_in_sec/60)%60
+	return "%02d:%02d" % [minutes, seconds]
+
+#The visibile_ratio must start at 0.
+func type_in_letters(LabelNode):
+	LabelNode.visible_ratio +=.05
+	if LabelNode.visible_ratio == 1:
+		LabelNode.self_modulate.a += -.02
+		if LabelNode.self_modulate.a <= 0:
+			LabelNode.visible = false
+			$Timer.stop()
+			return false
+	return true
+
+var font_increase = 40
+func letters_pop_out(LabelNode):
+	LabelNode.visible = true
+	font_increase += 1 
+	LabelNode.add_theme_font_size_override("font_size",font_increase)
+	LabelNode.self_modulate.a += -.02
+	if LabelNode.self_modulate.a <= 0:
+		LabelNode.visible = false
+		$Timer.stop()
+		return false
+	else:
+		return true

@@ -6,11 +6,10 @@ extends Node2D
 @export var tile_size = 32
 @export var chunk_size = 32
 @export var render_distance = 1
-@export var dayLength = 60		# in seconds
+@export var dayLength = 70		# In seconds
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	$player/Camera2D.make_current()
 	$player/Camera2D/PauseCanvasLayer/PauseMenu.visible = false
 	$player.chunk_size = chunk_size

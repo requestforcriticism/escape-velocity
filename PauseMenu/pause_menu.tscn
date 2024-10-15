@@ -1,13 +1,37 @@
-[gd_scene load_steps=46 format=3 uid="uid://md5w04hdljf1"]
+[gd_scene load_steps=54 format=3 uid="uid://md5w04hdljf1"]
 
 [ext_resource type="Script" path="res://PauseMenu/pause_menu.gd" id="1_jo7hg"]
 [ext_resource type="Texture2D" uid="uid://t3mgixlesxv8" path="res://PauseMenu/bar_round_gloss_large.png" id="2_4ep3y"]
 [ext_resource type="Texture2D" uid="uid://c2ce14225yaco" path="res://PauseMenu/panel_glass_screws_large.png" id="3_v6ro6"]
 [ext_resource type="Texture2D" uid="uid://djx1u1qr6ilya" path="res://assets/collectabes/water_bubble.png" id="4_40kaq"]
+[ext_resource type="Texture2D" uid="uid://dr7ljsae3ovrl" path="res://assets/collectabes/food.png" id="4_l8w37"]
 [ext_resource type="Texture2D" uid="uid://dn0ds7y7r0d7k" path="res://assets/collectabes/oil_bubble.png" id="5_uuvda"]
 [ext_resource type="Texture2D" uid="uid://cvn0blwa4chuc" path="res://assets/collectabes/iron_ore.png" id="6_0nybk"]
 [ext_resource type="Texture2D" uid="uid://da8y88xs5if1o" path="res://assets/collectabes/uranium_ore.png" id="7_6uuvc"]
 [ext_resource type="Texture2D" uid="uid://ne55vqwgrujs" path="res://PauseMenu/button_square_header_notch_rectangle_screws.png" id="8_q84uo"]
+[ext_resource type="Texture2D" uid="uid://dm0rm00r4rudj" path="res://assets/collectabes/logic_card.png" id="9_eeh45"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mlsn"]
+atlas = ExtResource("4_l8w37")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e48hk"]
+atlas = ExtResource("4_l8w37")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hltgv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mlsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e48hk")
+}],
+"loop": true,
+"name": &"Food",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rwlo2"]
 atlas = ExtResource("4_40kaq")
@@ -69,8 +93,23 @@ animations = [{
 "texture": SubResource("AtlasTexture_e8h31")
 }],
 "loop": true,
-"name": &"water",
+"name": &"Food",
 "speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbwvd"]
+atlas = ExtResource("6_0nybk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gknka"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbwvd")
+}],
+"loop": true,
+"name": &"Iron",
+"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y0cbr"]
@@ -134,21 +173,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"Oil",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vbwvd"]
-atlas = ExtResource("6_0nybk")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_gknka"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vbwvd")
-}],
-"loop": true,
-"name": &"Iron",
 "speed": 5.0
 }]
 
@@ -272,6 +296,28 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua3ak"]
+atlas = ExtResource("9_eeh45")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66llj"]
+atlas = ExtResource("9_eeh45")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_avgfr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua3ak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66llj")
+}],
+"loop": true,
+"name": &"CompChip",
+"speed": 5.0
+}]
+
 [node name="PauseMenu" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -330,12 +376,46 @@ position = Vector2(95, 4)
 texture = ExtResource("3_v6ro6")
 metadata/_edit_lock_ = true
 
+[node name="FoodCollectable" type="AnimatedSprite2D" parent="MainWindow"]
+position = Vector2(543, -151)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_hltgv")
+animation = &"Food"
+frame_progress = 0.488189
+
+[node name="FoodPlayerAmount" type="Label" parent="MainWindow"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 241.0
+offset_top = -180.0
+offset_right = 312.0
+offset_bottom = -145.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "99999"
+horizontal_alignment = 2
+
+[node name="FoodShipAmount" type="Label" parent="MainWindow"]
+layout_mode = 0
+offset_left = 426.0
+offset_top = -167.0
+offset_right = 497.0
+offset_bottom = -132.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "99999"
+horizontal_alignment = 2
+
 [node name="WaterCollectable" type="AnimatedSprite2D" parent="MainWindow"]
-position = Vector2(543, -152)
+position = Vector2(543, -83)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_8ebpq")
-animation = &"water"
-frame_progress = 0.241928
+animation = &"Food"
 
 [node name="WaterPlayerAmount" type="Label" parent="MainWindow"]
 layout_mode = 2
@@ -344,9 +424,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 241.0
-offset_top = -181.0
+offset_top = -112.0
 offset_right = 312.0
-offset_bottom = -146.0
+offset_bottom = -77.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -357,45 +437,16 @@ horizontal_alignment = 2
 [node name="WaterShipAmount" type="Label" parent="MainWindow"]
 layout_mode = 0
 offset_left = 426.0
-offset_top = -168.0
+offset_top = -99.0
 offset_right = 497.0
-offset_bottom = -133.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "99999"
-horizontal_alignment = 2
-
-[node name="OilCollectable" type="AnimatedSprite2D" parent="MainWindow"]
-position = Vector2(543, -14)
-scale = Vector2(1.5, 1.5)
-sprite_frames = SubResource("SpriteFrames_6xc0w")
-animation = &"Oil"
-frame_progress = 0.440519
-
-[node name="OilPlayerAmount" type="Label" parent="MainWindow"]
-layout_mode = 0
-offset_left = 334.0
-offset_top = -30.0
-offset_right = 405.0
-offset_bottom = 5.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "99999"
-horizontal_alignment = 2
-
-[node name="OilShipAmount" type="Label" parent="MainWindow"]
-layout_mode = 0
-offset_left = 426.0
-offset_top = -30.0
-offset_right = 497.0
-offset_bottom = 5.0
+offset_bottom = -64.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "99999"
 horizontal_alignment = 2
 
 [node name="IronCollectable" type="AnimatedSprite2D" parent="MainWindow"]
-position = Vector2(543, -84)
+position = Vector2(543, -14)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_gknka")
 animation = &"Iron"
@@ -403,9 +454,9 @@ animation = &"Iron"
 [node name="IronPlayerAmount" type="Label" parent="MainWindow"]
 layout_mode = 0
 offset_left = 335.0
-offset_top = -99.0
+offset_top = -30.0
 offset_right = 406.0
-offset_bottom = -64.0
+offset_bottom = 5.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "99999"
@@ -414,16 +465,45 @@ horizontal_alignment = 2
 [node name="IronShipAmount" type="Label" parent="MainWindow"]
 layout_mode = 0
 offset_left = 426.0
-offset_top = -99.0
+offset_top = -30.0
 offset_right = 497.0
-offset_bottom = -64.0
+offset_bottom = 5.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "99999"
+horizontal_alignment = 2
+
+[node name="OilCollectable" type="AnimatedSprite2D" parent="MainWindow"]
+position = Vector2(542, 55)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_6xc0w")
+animation = &"Oil"
+frame_progress = 0.440519
+
+[node name="OilPlayerAmount" type="Label" parent="MainWindow"]
+layout_mode = 0
+offset_left = 333.0
+offset_top = 39.0
+offset_right = 404.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "99999"
+horizontal_alignment = 2
+
+[node name="OilShipAmount" type="Label" parent="MainWindow"]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 39.0
+offset_right = 496.0
+offset_bottom = 74.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "99999"
 horizontal_alignment = 2
 
 [node name="UraniumCollectable" type="AnimatedSprite2D" parent="MainWindow"]
-position = Vector2(543, 55)
+position = Vector2(543, 123)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_7tjll")
 animation = &"Uranium"
@@ -432,9 +512,9 @@ frame_progress = 0.515416
 [node name="UraniumPlayerAmount" type="Label" parent="MainWindow"]
 layout_mode = 0
 offset_left = 334.0
-offset_top = 39.0
+offset_top = 107.0
 offset_right = 405.0
-offset_bottom = 74.0
+offset_bottom = 142.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "99999"
@@ -443,9 +523,38 @@ horizontal_alignment = 2
 [node name="UraniumShipAmount" type="Label" parent="MainWindow"]
 layout_mode = 0
 offset_left = 426.0
-offset_top = 39.0
+offset_top = 107.0
 offset_right = 497.0
-offset_bottom = 74.0
+offset_bottom = 142.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "99999"
+horizontal_alignment = 2
+
+[node name="CompChipCollectable" type="AnimatedSprite2D" parent="MainWindow"]
+position = Vector2(543, 192)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_avgfr")
+animation = &"CompChip"
+frame_progress = 0.647346
+
+[node name="CompChipPlayerAmount" type="Label" parent="MainWindow"]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 176.0
+offset_right = 405.0
+offset_bottom = 211.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "99999"
+horizontal_alignment = 2
+
+[node name="CompChipShipAmount" type="Label" parent="MainWindow"]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 176.0
+offset_right = 497.0
+offset_bottom = 211.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "99999"
