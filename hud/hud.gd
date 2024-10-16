@@ -4,6 +4,7 @@ var consum
 var DayTimeLeft:int
 var Daywords = false
 var OneMinWarn = false
+var countdown = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,8 +25,14 @@ func start_day(dayLength):
 func _process(delta: float) -> void:
 	if DayTimeLeft == 60:
 		OneMinWarn = true
-		$Timer.start()
-
+		#$Timer.start()
+		print(DayTimeLeft)
+	if DayTimeLeft <= 10:
+		#$Timer.start()
+		countdown = true
+		
+	pass
+		
 func _on_player_stamina_changed(stamina_changed,maxStamina) -> void:
 	$StaminaProgressBar.value = 100*stamina_changed/maxStamina
 	if $StaminaProgressBar.value >=50:
@@ -51,14 +58,6 @@ func _on_player_gathered(colname) -> void:
 		$ContBp/AnimatedSprite2D2.position = $ContBp/Path2D/PathFollow2D.position
 		await get_tree().create_timer(0.01).timeout
 	$ContBp/AnimatedSprite2D2.hide()	
-	#print("#",colname)
-
-	
-
-#func _on_player_consumable_count(consum) -> void:
-	
-	#for i in consum.size:
-		#if consum[i]
 
 func _on_player_toggle_consumables() -> void:
 	pass # Replace with function body.
@@ -135,7 +134,7 @@ func _on_player_cons_duration(consDur) -> void:
 		$ContConsum/GridContainer/DmgRedDur.visible = false
 
 func displayDay():
-	$Timer.start()
+	#$Timer.start()
 	$DayNumber.text = str("Day ",Save.get_value(1, "DAY", 0))
 	Daywords = true
 
@@ -143,8 +142,12 @@ func _on_timer_timeout() -> void:
 	if Daywords == true:
 		Daywords = type_in_letters($DayNumber)
 	if OneMinWarn == true:
-		OneMinWarn = letters_pop_out($OneMinWarning)
-	pass
+		OneMinWarn = letters_pop_out($OneMinWarning,.02)
+	if countdown == true:
+		print("hehehe")
+		$EndDayCountdown.text = str(DayTimeLeft)
+		countdown = letters_pop_out($EndDayCountdown,.05)
+	print("in loop",DayTimeLeft)
 
 func _on_day_tracker_timer_timeout() -> void:
 	$ContDTT/DayTimeTracker/Path2D/PathFollow2D.progress_ratio += .01
@@ -154,7 +157,7 @@ func _on_day_tracker_timer_timeout() -> void:
 func _on_day_timer_timeout() -> void:
 	DayTimeLeft += -1
 	$ContDTT/DayTimeTracker/Timer.text = str(time_convert(DayTimeLeft))
-
+	
 func time_convert(time_in_sec):
 	var seconds = time_in_sec%60
 	var minutes = (time_in_sec/60)%60
@@ -167,19 +170,22 @@ func type_in_letters(LabelNode):
 		LabelNode.self_modulate.a += -.02
 		if LabelNode.self_modulate.a <= 0:
 			LabelNode.visible = false
-			$Timer.stop()
+			#$Timer.stop()
 			return false
 	return true
 
 var font_increase = 40
-func letters_pop_out(LabelNode):
+func letters_pop_out(LabelNode,modul):
+	print("here")
 	LabelNode.visible = true
 	font_increase += 1 
 	LabelNode.add_theme_font_size_override("font_size",font_increase)
-	LabelNode.self_modulate.a += -.02
+	LabelNode.self_modulate.a += -modul
 	if LabelNode.self_modulate.a <= 0:
 		LabelNode.visible = false
-		$Timer.stop()
+		LabelNode.self_modulate.a = 1
+		#$Timer.stop()
+		font_increase = 40
 		return false
 	else:
 		return true
