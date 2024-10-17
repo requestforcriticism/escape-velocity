@@ -31,15 +31,9 @@ grow_vertical = 2
 
 [node name="landingPageBG" type="TextureRect" parent="LandingPage"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -324.0
-offset_right = 576.0
-offset_bottom = 324.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_gv7j8")
@@ -50,10 +44,10 @@ anchors_preset = -1
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -459.0
-offset_top = 230.0
-offset_right = 496.0
-offset_bottom = 282.0
+offset_left = -771.0
+offset_top = 404.0
+offset_right = 809.0
+offset_bottom = 508.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -62,23 +56,23 @@ columns = 4
 
 [node name="CraftButton" type="Button" parent="LandingPage/GridContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 60
 text = "Craft Stuff"
 
 [node name="TechTreeButton" type="Button" parent="LandingPage/GridContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 60
 text = "Tech Tree"
 
 [node name="FixShipButton" type="Button" parent="LandingPage/GridContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 60
 text = "Fix the Ship
 "
 
 [node name="EndNightButton" type="Button" parent="LandingPage/GridContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 60
 text = "End the Night"
 
 [node name="CraftingPage" type="Control" parent="."]
@@ -98,29 +92,23 @@ grow_vertical = 2
 
 [node name="CraftingPageBG" type="TextureRect" parent="CraftingPage"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -324.0
-offset_right = 576.0
-offset_bottom = 324.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_qsic4")
 
 [node name="GridContainer" type="GridContainer" parent="CraftingPage"]
 layout_mode = 0
-offset_left = 474.0
-offset_top = 249.0
-offset_right = 551.0
-offset_bottom = 309.0
+offset_left = 788.0
+offset_top = 424.0
+offset_right = 956.0
+offset_bottom = 542.0
 
 [node name="BackFromCFT" type="Button" parent="CraftingPage/GridContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 60
 text = "Back"
 
 [node name="TechTreePage" type="Control" parent="."]
@@ -138,31 +126,25 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="TechTreePage"]
+[node name="TechPageBG" type="TextureRect" parent="TechTreePage"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -324.0
-offset_right = 576.0
-offset_bottom = 324.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_nyikl")
 
 [node name="GridContainer" type="GridContainer" parent="TechTreePage"]
 layout_mode = 0
-offset_left = 474.0
-offset_top = 249.0
-offset_right = 578.0
-offset_bottom = 322.0
+offset_left = 788.0
+offset_top = 424.0
+offset_right = 964.0
+offset_bottom = 542.0
 
 [node name="BackFromTT" type="Button" parent="TechTreePage/GridContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 60
 text = "Back"
 
 [node name="DarkenBG" type="ColorRect" parent="."]

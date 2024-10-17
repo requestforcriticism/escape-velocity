@@ -16,11 +16,11 @@ func _ready() -> void:
 
 func start_day(dayLength):
 	DayTimeLeft = dayLength
-	$ContDTT/DayTimeTracker/Timer.text = str(time_convert(DayTimeLeft))
-	$ContDTT/DayTimeTracker/Path2D/PathFollow2D.progress_ratio = 0
-	$ContDTT/DayTimeTracker/DayTrackerTimer.wait_time = dayLength/100.0
-	$ContDTT/DayTimeTracker/DayTrackerTimer.start()
-	$ContDTT/DayTimeTracker/AnimatedSprite2D.play()
+	$ContDTT/Timer.text = str(time_convert(DayTimeLeft))
+	$ContDTT/Path2D/PathFollow2D.progress_ratio = 0
+	$ContDTT/DayTrackerTimer.wait_time = dayLength/100.0
+	$ContDTT/DayTrackerTimer.start()
+	$ContDTT/AnimatedSprite2D.play()
 	
 func _process(delta: float) -> void:
 	if DayTimeLeft == 60:
@@ -84,23 +84,23 @@ func _on_player_toggle_consum(toggle) -> void:
 	$ContConsum/Path2D/PathFollow2D.progress_ratio = ((toggle+1)% 3 )/2.0
 	$ContConsum/SBst.position = $ContConsum/Path2D/PathFollow2D.position
 	if $ContConsum/Path2D/PathFollow2D.progress_ratio !=.5:
-		$ContConsum/SBst.scale = Vector2(.5,.5)
+		$ContConsum/SBst.scale = Vector2(.9,.9)
 	else:
-		$ContConsum/SBst.scale = Vector2(.65,.65)
+		$ContConsum/SBst.scale = Vector2(1.3,1.3)
 	 
 	$ContConsum/Path2D/PathFollow2D.progress_ratio = ((toggle+2)% 3 )/2.0
 	$ContConsum/DRed.position = $ContConsum/Path2D/PathFollow2D.position
 	if $ContConsum/Path2D/PathFollow2D.progress_ratio !=.5:
-		$ContConsum/DRed.scale = Vector2(.5,.5)
+		$ContConsum/DRed.scale = Vector2(.9,.9)
 	else:
-		$ContConsum/DRed.scale = Vector2(.65,.65)
+		$ContConsum/DRed.scale = Vector2(1.3,1.3)
 	
 	$ContConsum/Path2D/PathFollow2D.progress_ratio = ((toggle+0)% 3 )/2.0
 	$ContConsum/DBst.position = $ContConsum/Path2D/PathFollow2D.position
 	if $ContConsum/Path2D/PathFollow2D.progress_ratio !=.5:
-		$ContConsum/DBst.scale = Vector2(.5,.5)
+		$ContConsum/DBst.scale = Vector2(.9,.9)
 	else:
-		$ContConsum/DBst.scale = Vector2(.65,.65)
+		$ContConsum/DBst.scale = Vector2(1.3,1.3)
 
 func _on_player_on_harvester_count_changed(amt):
 	$HarvesterControl/HarvesterAvailable.text = str(amt)
@@ -142,21 +142,18 @@ func _on_timer_timeout() -> void:
 	if Daywords == true:
 		Daywords = type_in_letters($DayNumber)
 	if OneMinWarn == true:
-		OneMinWarn = letters_pop_out($OneMinWarning,.02)
+		OneMinWarn = letters_pop_out($OneMinWarning,80,.02)
 	if countdown == true:
-		print("hehehe")
 		$EndDayCountdown.text = str(DayTimeLeft)
-		countdown = letters_pop_out($EndDayCountdown,.05)
-	print("in loop",DayTimeLeft)
+		countdown = letters_pop_out($EndDayCountdown,80,.05)
 
 func _on_day_tracker_timer_timeout() -> void:
-	$ContDTT/DayTimeTracker/Path2D/PathFollow2D.progress_ratio += .01
-	$ContDTT/DayTimeTracker/AnimatedSprite2D.position = $ContDTT/DayTimeTracker/Path2D/PathFollow2D.position
-
+	$ContDTT/Path2D/PathFollow2D.progress_ratio += .01
+	$ContDTT/AnimatedSprite2D.position = $ContDTT/Path2D/PathFollow2D.position
 
 func _on_day_timer_timeout() -> void:
 	DayTimeLeft += -1
-	$ContDTT/DayTimeTracker/Timer.text = str(time_convert(DayTimeLeft))
+	$ContDTT/Timer.text = str(time_convert(DayTimeLeft))
 	
 func time_convert(time_in_sec):
 	var seconds = time_in_sec%60
@@ -174,18 +171,20 @@ func type_in_letters(LabelNode):
 			return false
 	return true
 
-var font_increase = 40
-func letters_pop_out(LabelNode,modul):
-	print("here")
+var FontStart:int = 1
+func letters_pop_out(LabelNode,fontStart,modul):
+	if fontStart > FontStart:
+		FontStart = fontStart
 	LabelNode.visible = true
-	font_increase += 1 
-	LabelNode.add_theme_font_size_override("font_size",font_increase)
+	FontStart += 2
+	print(FontStart)
+	LabelNode.add_theme_font_size_override("font_size",FontStart)
 	LabelNode.self_modulate.a += -modul
 	if LabelNode.self_modulate.a <= 0:
 		LabelNode.visible = false
 		LabelNode.self_modulate.a = 1
 		#$Timer.stop()
-		font_increase = 40
+		FontStart = 1
 		return false
 	else:
 		return true

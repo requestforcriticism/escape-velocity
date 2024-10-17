@@ -26,7 +26,7 @@ main_scn = NodePath("..")
 ship_scn = NodePath("../Ship")
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(2, 2)
+zoom = Vector2(2.5, 2.5)
 
 [node name="hud" parent="player/Camera2D" instance=ExtResource("6_6kt5d")]
 
