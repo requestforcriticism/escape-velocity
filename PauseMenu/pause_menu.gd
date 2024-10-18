@@ -1,5 +1,7 @@
 extends Control
 
+signal EndingTheDay
+
 func _ready() -> void:
 	pass # Replace with function body.
 
@@ -70,8 +72,9 @@ func _on_mm_no_button_pressed() -> void:
 
 func _on_ed_yes_button_pressed() -> void:
 	_is_paused = false
-	release_focus()
-	LevelManager.load_night()
+	EndingTheDay.emit()
+	#release_focus()
+	#LevelManager.load_night()
 
 func _on_ed_no_button_pressed() -> void:
 	close_checkbox()

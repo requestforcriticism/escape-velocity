@@ -1,15 +1,19 @@
 extends Node2D
 
+signal ending_day
+
 @export var playerBullet : PackedScene
 @export var collectable : PackedScene
 
 @export var tile_size = 32
 @export var chunk_size = 32
 @export var render_distance = 1
-@export var dayLength = 15		# In seconds
+@export var dayLength = 120		# In seconds
+@export var dayTimeLeft:int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	dayTimeLeft = dayLength
 	$player/Camera2D.make_current()
 	$player/Camera2D/PauseCanvasLayer/PauseMenu.visible = false
 	$player.chunk_size = chunk_size
@@ -73,18 +77,59 @@ func _ready():
 #all the stuff to start a new day
 func start_day():
 	$player/Camera2D/hud.start_day(dayLength)
-	
+	$DayTimer.start()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 
-#func _on_player_shoot(pos,lookx,looky) -> void:
-	#var new_bullet = playerBullet.instantiate()
-	#var looking = Vector2(lookx,looky)
-	#new_bullet.position = pos
-	#new_bullet.direction = looking
-	##new_bullet.velocity = looking
-	#add_child(new_bullet)
+func _on_day_timer_timeout() -> void:
+	dayTimeLeft += -1
+	if dayTimeLeft == 0:
+		$DayTimer.stop()
+		end_day()
+		
+
+func end_day():
+	print("ending the day")
+	get_tree().paused = true
+	$player/Camera2D/hud.visible = false
+	for i in 100:
+		$".".modulate.r += -.01
+		$".".modulate.b += -.01
+		$".".modulate.g += -.01
+		await get_tree().create_timer(0.01).timeout
+	ending_day.emit()
+	var Mooo = 100+15
+	$player.position = $Ship.position + Vector2(0,Mooo)
+	var CamZoom = $player/Camera2D.zoom
+	$player/Camera2D.zoom = CamZoom * 1.3
+	for i in 100:
+		$".".modulate.r += .01
+		$".".modulate.b += .01
+		$".".modulate.g += .01
+		await get_tree().create_timer(0.01).timeout
+	
+	CamZoom = $player/Camera2D.zoom
+	for i in 100:
+		$".".modulate.r += .02
+		$".".modulate.b += .02
+		$".".modulate.g += .02
+		CamZoom = CamZoom*1.015#Vector2(1,1)
+		Mooo += -1
+		$player.position = $Ship.position + Vector2(0,Mooo)
+		$player/Camera2D.zoom = CamZoom
+		$Ship.modulate.r += .04
+		$Ship.modulate.b += .04
+		$Ship.modulate.g += .04
+		
+		await get_tree().create_timer(0.01).timeout
+		
+	get_tree().paused = false
+	LevelManager.load_night()
+	
+	
+
+
+func _on_pause_menu_ending_the_day() -> void:
+	end_day()

@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bql2ao0kvjwyb" path="res://resources/terminal/terminal.tscn" id="12_ohxex"]
 
 [node name="DayPhase" type="Node2D"]
+modulate = Color(0.868985, 0.868985, 0.868985, 1)
 script = ExtResource("1_87mw8")
 playerBullet = ExtResource("2_frl4x")
 collectable = ExtResource("3_esct8")
@@ -52,6 +53,9 @@ player = NodePath("../player")
 [node name="Terminal" parent="." instance=ExtResource("12_ohxex")]
 position = Vector2(-243, -139)
 
+[node name="DayTimer" type="Timer" parent="."]
+
+[connection signal="ending_day" from="." to="player" method="_on_day_phase_ending_day"]
 [connection signal="consDuration" from="player" to="player/Camera2D/hud" method="_on_player_cons_duration"]
 [connection signal="consumCount" from="player" to="player/Camera2D/hud" method="_on_player_consum_count"]
 [connection signal="gathered" from="player" to="player/Camera2D/hud" method="_on_player_gathered"]
@@ -63,3 +67,5 @@ position = Vector2(-243, -139)
 [connection signal="on_harvester_max_changed" from="player" to="player/Camera2D/hud" method="_on_player_on_harvester_max_changed"]
 [connection signal="stamina_changed" from="player" to="player/Camera2D/hud" method="_on_player_stamina_changed"]
 [connection signal="toggleConsum" from="player" to="player/Camera2D/hud" method="_on_player_toggle_consum"]
+[connection signal="EndingTheDay" from="player/Camera2D/PauseCanvasLayer/PauseMenu" to="." method="_on_pause_menu_ending_the_day"]
+[connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]

@@ -320,3 +320,9 @@ func using_consumable(tog:int, using:bool):
 			PlayerStats.set_DMGReduction(DamageRedBase)
 			PlayerStats.set_HealthRegen(BasehealthRegen)
 			ConsumActive[tog] = false
+
+
+func _on_day_phase_ending_day() -> void:
+	rotation = -PI/2
+	$AnimatedSprite2D.animation = "walking"
+	$AnimatedSprite2D.play()

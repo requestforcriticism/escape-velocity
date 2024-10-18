@@ -5,9 +5,12 @@ var DayTimeLeft:int
 var Daywords = false
 var OneMinWarn = false
 var countdown = false
+var HarvCount:int
+var HarvTotal:int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	DayTimeLeft = $"../../..".dayTimeLeft
 	displayDay()
 	$HPProgressBar/HeartSprite2D.modulate = Color.RED
 	$ContConsum/GridContainer/StaRegDur.text = str("0 secs")
@@ -23,11 +26,13 @@ func start_day(dayLength):
 	$ContDTT/AnimatedSprite2D.play()
 	
 func _process(delta: float) -> void:
+	DayTimeLeft = $"../../..".dayTimeLeft
+	$ContDTT/Timer.text = str(time_convert(DayTimeLeft))
 	if DayTimeLeft == 60:
 		OneMinWarn = true
 		#$Timer.start()
 		print(DayTimeLeft)
-	if DayTimeLeft <= 10:
+	if DayTimeLeft <= 10 && DayTimeLeft > 0:
 		#$Timer.start()
 		countdown = true
 		
@@ -103,10 +108,15 @@ func _on_player_toggle_consum(toggle) -> void:
 		$ContConsum/DBst.scale = Vector2(1.3,1.3)
 
 func _on_player_on_harvester_count_changed(amt):
-	$HarvesterControl/HarvesterAvailable.text = str(amt)
+	HarvCount = amt
+	update_harvestor_count()
 
 func _on_player_on_harvester_max_changed(amt):
-	$HarvesterControl/HarvesterTotal.text = str(amt)
+	HarvTotal = amt
+	update_harvestor_count()
+	
+func update_harvestor_count():
+	$HarvesterControl/HarvesterCount.text = str(HarvCount," / ",HarvTotal)
 
 func _on_player_cons_duration(consDur) -> void:
 	if consDur[0] > 0:
@@ -151,9 +161,6 @@ func _on_day_tracker_timer_timeout() -> void:
 	$ContDTT/Path2D/PathFollow2D.progress_ratio += .01
 	$ContDTT/AnimatedSprite2D.position = $ContDTT/Path2D/PathFollow2D.position
 
-func _on_day_timer_timeout() -> void:
-	DayTimeLeft += -1
-	$ContDTT/Timer.text = str(time_convert(DayTimeLeft))
 	
 func time_convert(time_in_sec):
 	var seconds = time_in_sec%60
