@@ -8,7 +8,7 @@ signal ending_day
 @export var tile_size = 32
 @export var chunk_size = 32
 @export var render_distance = 1
-@export var dayLength = 120		# In seconds
+@export var dayLength = 15		# In seconds
 @export var dayTimeLeft:int
 
 # Called when the node enters the scene tree for the first time.
@@ -101,6 +101,7 @@ func end_day():
 		await get_tree().create_timer(0.01).timeout
 	ending_day.emit()
 	var Mooo = 100+15
+	get_tree().paused = false
 	$player.position = $Ship.position + Vector2(0,Mooo)
 	var CamZoom = $player/Camera2D.zoom
 	$player/Camera2D.zoom = CamZoom * 1.3
@@ -125,11 +126,8 @@ func end_day():
 		
 		await get_tree().create_timer(0.01).timeout
 		
-	get_tree().paused = false
+	
 	LevelManager.load_night()
 	
-	
-
-
 func _on_pause_menu_ending_the_day() -> void:
 	end_day()

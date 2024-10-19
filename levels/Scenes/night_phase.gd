@@ -1,28 +1,27 @@
 extends Control
 
 var Days
+var starting:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	pass # Replace with function body.
-
+	starting = true
+	$LandingPage/landingPageBG.modulate.a += -50*.01
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var starting = true
-	#if starting == true:
-		#for i in 100:
-			#$WhiteIn.modulate.a += -.01
-			#await get_tree().create_timer(0.01).timeout
-			#starting = false
-	pass
-
+	if starting == true:
+		$WhitenBG.visible = true
+		for i in 50:
+			$LandingPage/landingPageBG.modulate.a += .01
+			await get_tree().create_timer(0.01).timeout
+		$LandingPage/GridContainer.visible = true
+		starting = false
+		$WhitenBG.visible = false
 
 func _on_craft_button_pressed() -> void:
 	$LandingPage.visible = false
 	$CraftingPage.visible = true
-
 
 func _on_tech_tree_button_pressed() -> void:
 	$LandingPage.visible = false
@@ -49,11 +48,8 @@ func _on_back_from_tt_pressed() -> void:
 
 
 func _on_en_yes_button_pressed() -> void:
-	Days = Save.get_value(1, "DAY", 0)
-	Save.set_value(1, "DAY", Days+1)
 	release_focus()
-	LevelManager.load_day()
-	print("end the night")
+	end_day()
 
 func _on_en_no_button_pressed() -> void:
 	$DarkenBG.visible = false
@@ -63,3 +59,16 @@ func _on_en_no_button_pressed() -> void:
 	$LandingPage/GridContainer/EndNightButton.disabled = false
 	$EndNightCheckBox.visible = false
 	pass # Replace with function body.
+	
+func end_day():
+	print("ending the night")
+	print("Start playing sleeping sounds.")
+	for i in 100:
+		$".".modulate.r += -.01
+		$".".modulate.b += -.01
+		$".".modulate.g += -.01
+		await get_tree().create_timer(0.01).timeout
+	
+	Days = Save.get_value(1, "DAY", 0)
+	Save.set_value(1, "DAY", Days+1)
+	LevelManager.load_day()

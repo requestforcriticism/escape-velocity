@@ -70,6 +70,7 @@ var Whereismousy
 var lastMouse
 var HealthPotionHeal = 50
 var toggle = 0
+var EndingDay:bool
 
 func pos_to_chunk(x, y):
 	var tile_x = floor(x / tile_size)
@@ -79,6 +80,7 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	EndingDay = false
 	PlayerStats = PS.new()
 	PlayerStats.set_MaxHP(BasemaxHealth)
 	PlayerStats.set_HealthRegen(BasehealthRegen)
@@ -116,6 +118,10 @@ func _ready():
 func _process(delta: float) -> void:
 	var velocity = Vector2.ZERO
 	
+	if EndingDay == true:
+		$AnimatedSprite2D.animation = "walking"
+		$AnimatedSprite2D.play("walking")
+	
 	if Input.is_action_pressed("running") && PlayerStats.get_currentSTA() > 0:
 		$StaminaRegen.stop()
 		running = 1
@@ -134,7 +140,7 @@ func _process(delta: float) -> void:
 			$AnimatedSprite2D.animation = "walking"
 			$AnimatedSprite2D.play()
 		
-	elif velocity.length() == 0  && dashing == 0:
+	elif velocity.length() == 0  && dashing == 0 && EndingDay == false:
 		$AnimatedSprite2D.stop()
 		
 	if running >0:
@@ -152,12 +158,12 @@ func _process(delta: float) -> void:
 	#where is the player looking?
 	if Input.get_vector("look_left","look_right","look_up","look_down") != Vector2.ZERO:
 		looking = Input.get_vector("look_left","look_right","look_up","look_down")
-	if looking != Vector2.ZERO:
+	if looking != Vector2.ZERO && EndingDay == false:
 		rotation = looking.angle()
 		lastlook = looking# .normalized()
 	
 	#logic for shooting
-	if Input.is_action_pressed("shoot") && shootRdy == true:
+	if Input.is_action_pressed("shoot") && shootRdy == true && EndingDay == false:
 		var new_bullet = playerBullet.instantiate()
 		new_bullet.damage = PlayerStats.get_DMG()
 		new_bullet.position = $Marker2D.global_position
@@ -197,7 +203,7 @@ func _process(delta: float) -> void:
 		main_scn.add_child(harvester)
 	
 	#logic for dashing
-	if dashRdy == true && Input.is_action_just_pressed("dash") && PlayerStats.get_currentSTA() > dashStaminaCost:
+	if dashRdy == true && Input.is_action_just_pressed("dash") && PlayerStats.get_currentSTA() > dashStaminaCost && EndingDay == false:
 		$StaminaRegen.stop()
 		$Area2D/DamageCollisionShape2D.disabled = true
 		PlayerStats.set_currentSTA(-dashStaminaCost)
@@ -323,6 +329,6 @@ func using_consumable(tog:int, using:bool):
 
 
 func _on_day_phase_ending_day() -> void:
+	EndingDay = true
 	rotation = -PI/2
-	$AnimatedSprite2D.animation = "walking"
-	$AnimatedSprite2D.play()
+	

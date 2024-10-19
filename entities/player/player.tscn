@@ -78,8 +78,9 @@ shape = SubResource("RectangleShape2D_ht3oy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lgv1p")
-animation = &"dashing"
-frame_progress = 0.0107924
+animation = &"walking"
+frame = 1
+frame_progress = 0.928852
 
 [node name="StaminaRegen" type="Timer" parent="."]
 wait_time = 0.05
