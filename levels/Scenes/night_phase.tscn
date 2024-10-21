@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhmd88cnimtpn"]
+[gd_scene load_steps=8 format=3 uid="uid://dhmd88cnimtpn"]
 
 [ext_resource type="Texture2D" uid="uid://c54ya01fqwp4d" path="res://levels/Scenes/NightPhaseAssets/NightPhaseLangingPageBG.png" id="1_gv7j8"]
 [ext_resource type="Script" path="res://levels/Scenes/night_phase.gd" id="1_y5447"]
 [ext_resource type="Texture2D" uid="uid://cvxm6e1a2uqo5" path="res://levels/Scenes/NightPhaseAssets/NightPhaseCraftingPageBG.png" id="2_qsic4"]
 [ext_resource type="Texture2D" uid="uid://d2dl3sbfp23ut" path="res://levels/Scenes/NightPhaseAssets/NightPhaseTechTreePageBGy.png" id="3_nyikl"]
 [ext_resource type="Texture2D" uid="uid://cixuqsu0ipsgo" path="res://levels/Scenes/NightPhaseAssets/button_square_header_notch_rectangle_screws.png" id="5_3u3ma"]
+[ext_resource type="PackedScene" uid="uid://hpfsxc40c02t" path="res://levels/Scenes/NightPhaseAssets/tech_tree.tscn" id="5_up0aw"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_n3o26"]
 
@@ -167,6 +168,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_nyikl")
+
+[node name="TechTree" parent="TechTreePage" instance=ExtResource("5_up0aw")]
+position = Vector2(-60, 11)
 
 [node name="GridContainer" type="GridContainer" parent="TechTreePage"]
 layout_mode = 0
