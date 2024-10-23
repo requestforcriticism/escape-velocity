@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5y13pla1fpku"
-path="res://.godot/imported/DamageReduction.png-3045e9ea527a2c0afdbd8cdec768b887.ctex"
+path="res://.godot/imported/damageReduction.png-08b5bc27ab9819af7a980b3e6d395f88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/hudAssets/DamageReduction.png"
-dest_files=["res://.godot/imported/DamageReduction.png-3045e9ea527a2c0afdbd8cdec768b887.ctex"]
+source_file="res://hud/hudAssets/damageReduction.png"
+dest_files=["res://.godot/imported/damageReduction.png-08b5bc27ab9819af7a980b3e6d395f88.ctex"]
 
 [params]
 

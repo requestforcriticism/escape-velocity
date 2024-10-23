@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://c7ugcmbk17bdc"]
 
-[ext_resource type="Script" path="res://levels/Scenes/main.gd" id="1_fkdj4"]
-[ext_resource type="PackedScene" uid="uid://ipsb1u036iwl" path="res://levels/Scenes/post_game.tscn" id="2_wkeus"]
-[ext_resource type="PackedScene" uid="uid://bvxg5xnknue6h" path="res://levels/Scenes/day_Phase.tscn" id="3_u1stv"]
-[ext_resource type="PackedScene" uid="uid://dhmd88cnimtpn" path="res://levels/Scenes/night_phase.tscn" id="4_cxtl7"]
-[ext_resource type="PackedScene" uid="uid://bybn6lqxrp42" path="res://levels/Scenes/start_game_screen.tscn" id="5_06xf3"]
+[ext_resource type="Script" path="res://levels/scenes/main.gd" id="1_fkdj4"]
+[ext_resource type="PackedScene" uid="uid://ipsb1u036iwl" path="res://levels/scenes/post_game.tscn" id="2_wkeus"]
+[ext_resource type="PackedScene" uid="uid://bvxg5xnknue6h" path="res://levels/scenes/day_Phase.tscn" id="3_u1stv"]
+[ext_resource type="PackedScene" uid="uid://dhmd88cnimtpn" path="res://levels/scenes/night_phase.tscn" id="4_cxtl7"]
+[ext_resource type="PackedScene" uid="uid://bybn6lqxrp42" path="res://levels/scenes/start_game_screen.tscn" id="5_06xf3"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_fkdj4")

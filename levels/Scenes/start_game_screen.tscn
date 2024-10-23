@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bybn6lqxrp42"]
 
-[ext_resource type="Script" path="res://levels/Scenes/start_game_screen.gd" id="1_ghi3h"]
-[ext_resource type="Texture2D" uid="uid://dnk3dv6ph0fa" path="res://assets/StartScreenAssets/StartScreenBackground.png" id="1_skb8n"]
+[ext_resource type="Script" path="res://levels/scenes/start_game_screen.gd" id="1_ghi3h"]
+[ext_resource type="Texture2D" uid="uid://dnk3dv6ph0fa" path="res://assets/startScreenAssets/start_screen_background.png" id="1_skb8n"]
 
 [node name="StartGameScreen" type="Control"]
 layout_mode = 3

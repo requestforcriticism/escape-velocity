@@ -1,7 +1,7 @@
 [gd_scene load_steps=53 format=3 uid="uid://hpfsxc40c02t"]
 
 [ext_resource type="PackedScene" uid="uid://64fo02ts1lfd" path="res://components/tech_tree_node/tech_tree_node.tscn" id="1_i3rcu"]
-[ext_resource type="Script" path="res://levels/Scenes/NightPhaseAssets/tech_tree.gd" id="1_jjqdn"]
+[ext_resource type="Script" path="res://levels/scenes/nightPhaseAssets/tech_tree.gd" id="1_jjqdn"]
 [ext_resource type="PackedScene" uid="uid://dbc6idcvlv4lo" path="res://components/tech_tree_node/tech_tree_line.tscn" id="2_ou2et"]
 [ext_resource type="Texture2D" uid="uid://466br6rm2yxh" path="res://components/tech_tree_node/tech_tree_icons.png" id="3_55snm"]
 

@@ -1,14 +1,14 @@
 [gd_scene load_steps=54 format=3 uid="uid://md5w04hdljf1"]
 
-[ext_resource type="Script" path="res://PauseMenu/pause_menu.gd" id="1_jo7hg"]
-[ext_resource type="Texture2D" uid="uid://t3mgixlesxv8" path="res://PauseMenu/bar_round_gloss_large.png" id="2_4ep3y"]
-[ext_resource type="Texture2D" uid="uid://c2ce14225yaco" path="res://PauseMenu/panel_glass_screws_large.png" id="3_v6ro6"]
+[ext_resource type="Script" path="res://pauseMenu/pause_menu.gd" id="1_jo7hg"]
+[ext_resource type="Texture2D" uid="uid://t3mgixlesxv8" path="res://pauseMenu/bar_round_gloss_large.png" id="2_4ep3y"]
+[ext_resource type="Texture2D" uid="uid://c2ce14225yaco" path="res://pauseMenu/panel_glass_screws_large.png" id="3_v6ro6"]
 [ext_resource type="Texture2D" uid="uid://djx1u1qr6ilya" path="res://assets/collectabes/water_bubble.png" id="4_40kaq"]
 [ext_resource type="Texture2D" uid="uid://dr7ljsae3ovrl" path="res://assets/collectabes/food.png" id="4_l8w37"]
 [ext_resource type="Texture2D" uid="uid://dn0ds7y7r0d7k" path="res://assets/collectabes/oil_bubble.png" id="5_uuvda"]
 [ext_resource type="Texture2D" uid="uid://cvn0blwa4chuc" path="res://assets/collectabes/iron_ore.png" id="6_0nybk"]
 [ext_resource type="Texture2D" uid="uid://da8y88xs5if1o" path="res://assets/collectabes/uranium_ore.png" id="7_6uuvc"]
-[ext_resource type="Texture2D" uid="uid://ne55vqwgrujs" path="res://PauseMenu/button_square_header_notch_rectangle_screws.png" id="8_q84uo"]
+[ext_resource type="Texture2D" uid="uid://ne55vqwgrujs" path="res://pauseMenu/button_square_header_notch_rectangle_screws.png" id="8_q84uo"]
 [ext_resource type="Texture2D" uid="uid://dm0rm00r4rudj" path="res://assets/collectabes/logic_card.png" id="9_eeh45"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2mlsn"]

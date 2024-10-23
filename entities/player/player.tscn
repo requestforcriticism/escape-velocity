@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://ctcrca36054ed"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_cefws"]
-[ext_resource type="Texture2D" uid="uid://ctm4dy1kv1utq" path="res://entities/player/Fire Arrow.png" id="2_1ikru"]
-[ext_resource type="Texture2D" uid="uid://dgsjeqkyn26xp" path="res://entities/player/Arrows.png" id="2_ovosx"]
+[ext_resource type="Texture2D" uid="uid://ctm4dy1kv1utq" path="res://entities/player/fire_arrow.png" id="2_1ikru"]
+[ext_resource type="Texture2D" uid="uid://dgsjeqkyn26xp" path="res://entities/player/arrows.png" id="2_ovosx"]
 [ext_resource type="PackedScene" uid="uid://4xrk0xcxfw6e" path="res://components/playerBullet/player_bullet.tscn" id="2_y1ein"]
 [ext_resource type="PackedScene" uid="uid://xlnycmyrhc2o" path="res://entities/harvester/harvester.tscn" id="3_3j10a"]
 

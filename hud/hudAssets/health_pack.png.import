@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blh7nqab0ihuh"
-path="res://.godot/imported/PostGameBackground.png-c32ff01f32cb354d6f3d9318c5a9d75a.ctex"
+uid="uid://c46rv4vqhmx0w"
+path="res://.godot/imported/health_pack.png-1f67c452e6e101fce9d3cc4aa4ca05e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/Scenes/PostGameAssets/PostGameBackground.png"
-dest_files=["res://.godot/imported/PostGameBackground.png-c32ff01f32cb354d6f3d9318c5a9d75a.ctex"]
+source_file="res://hud/hudAssets/health_pack.png"
+dest_files=["res://.godot/imported/health_pack.png-1f67c452e6e101fce9d3cc4aa4ca05e8.ctex"]
 
 [params]
 

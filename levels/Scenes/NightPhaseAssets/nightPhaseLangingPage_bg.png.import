@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2dl3sbfp23ut"
-path="res://.godot/imported/NightPhaseTechTreePageBGy.png-736e3030da11c6e6096c40e44b02dc72.ctex"
+uid="uid://c54ya01fqwp4d"
+path="res://.godot/imported/nightPhaseLangingPage_bg.png-54c4add9a6e8492b506ee4ab355e4659.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/Scenes/NightPhaseAssets/NightPhaseTechTreePageBGy.png"
-dest_files=["res://.godot/imported/NightPhaseTechTreePageBGy.png-736e3030da11c6e6096c40e44b02dc72.ctex"]
+source_file="res://levels/scenes/nightPhaseAssets/nightPhaseLangingPage_bg.png"
+dest_files=["res://.godot/imported/nightPhaseLangingPage_bg.png-54c4add9a6e8492b506ee4ab355e4659.ctex"]
 
 [params]
 

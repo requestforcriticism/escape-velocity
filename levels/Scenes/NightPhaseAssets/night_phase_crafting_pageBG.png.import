@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c46rv4vqhmx0w"
-path="res://.godot/imported/healthpack.png-97610ffa4aee43a778d8bfae72dc8d38.ctex"
+uid="uid://cvxm6e1a2uqo5"
+path="res://.godot/imported/night_phase_crafting_pageBG.png-7cc3417c5123d869fd4b148e32499f9a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/hudAssets/healthpack.png"
-dest_files=["res://.godot/imported/healthpack.png-97610ffa4aee43a778d8bfae72dc8d38.ctex"]
+source_file="res://levels/scenes/nightPhaseAssets/night_phase_crafting_pageBG.png"
+dest_files=["res://.godot/imported/night_phase_crafting_pageBG.png-7cc3417c5123d869fd4b148e32499f9a.ctex"]
 
 [params]
 

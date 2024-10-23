@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvxm6e1a2uqo5"
-path="res://.godot/imported/NightPhaseCraftingPageBG.png-556bd915564adfdcd3208eb7efa78b99.ctex"
+uid="uid://dnk3dv6ph0fa"
+path="res://.godot/imported/start_screen_background.png-00f0c67f3ceb49855c3f31ee7bffefc6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/Scenes/NightPhaseAssets/NightPhaseCraftingPageBG.png"
-dest_files=["res://.godot/imported/NightPhaseCraftingPageBG.png-556bd915564adfdcd3208eb7efa78b99.ctex"]
+source_file="res://assets/startScreenAssets/start_screen_background.png"
+dest_files=["res://.godot/imported/start_screen_background.png-00f0c67f3ceb49855c3f31ee7bffefc6.ctex"]
 
 [params]
 

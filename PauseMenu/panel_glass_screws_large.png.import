@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2ce14225yaco"
-path="res://.godot/imported/panel_glass_screws_large.png-b6a776a47688c1151cebbfe65a034946.ctex"
+path="res://.godot/imported/panel_glass_screws_large.png-cd449a0e6069124d7cc1d60227371b82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PauseMenu/panel_glass_screws_large.png"
-dest_files=["res://.godot/imported/panel_glass_screws_large.png-b6a776a47688c1151cebbfe65a034946.ctex"]
+source_file="res://pauseMenu/panel_glass_screws_large.png"
+dest_files=["res://.godot/imported/panel_glass_screws_large.png-cd449a0e6069124d7cc1d60227371b82.ctex"]
 
 [params]
 

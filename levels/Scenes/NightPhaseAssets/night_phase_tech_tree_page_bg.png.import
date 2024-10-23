@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8uxk4x1ge14x"
-path="res://.godot/imported/Stamboost.png-d4e7d3f0330e1f077d60416fc134815d.ctex"
+uid="uid://d2dl3sbfp23ut"
+path="res://.godot/imported/night_phase_tech_tree_page_bg.png-8a2759725e7389301a11ac7abe32770d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/hudAssets/Stamboost.png"
-dest_files=["res://.godot/imported/Stamboost.png-d4e7d3f0330e1f077d60416fc134815d.ctex"]
+source_file="res://levels/scenes/nightPhaseAssets/night_phase_tech_tree_page_bg.png"
+dest_files=["res://.godot/imported/night_phase_tech_tree_page_bg.png-8a2759725e7389301a11ac7abe32770d.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ipsb1u036iwl"]
 
-[ext_resource type="Texture2D" uid="uid://blh7nqab0ihuh" path="res://levels/Scenes/PostGameAssets/PostGameBackground.png" id="1_34cdf"]
+[ext_resource type="Texture2D" uid="uid://blh7nqab0ihuh" path="res://levels/scenes/postGameAssets/post_game_bg.png" id="1_34cdf"]
 
 [node name="postGame" type="Node2D"]
 
