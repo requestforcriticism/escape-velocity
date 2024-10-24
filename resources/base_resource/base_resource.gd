@@ -98,4 +98,4 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 			new_drop.drift(drop_dest)
 			#new_drop.set_collision_layer_value(4, false)
 			add_child(new_drop)
-			print("Mining this, durab\t", mine_ref[0], "\tRef\t",mine_ref[1])
+			#print("Mining this, durab\t", mine_ref[0], "\tRef\t",mine_ref[1])

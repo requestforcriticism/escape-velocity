@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://ctcrca36054ed"]
+[gd_scene load_steps=24 format=3 uid="uid://ctcrca36054ed"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_cefws"]
 [ext_resource type="Texture2D" uid="uid://ctm4dy1kv1utq" path="res://entities/player/Fire Arrow.png" id="2_1ikru"]
-[ext_resource type="Texture2D" uid="uid://dgsjeqkyn26xp" path="res://entities/player/Arrows.png" id="2_ovosx"]
 [ext_resource type="PackedScene" uid="uid://4xrk0xcxfw6e" path="res://components/playerBullet/player_bullet.tscn" id="2_y1ein"]
 [ext_resource type="PackedScene" uid="uid://xlnycmyrhc2o" path="res://entities/harvester/harvester.tscn" id="3_3j10a"]
+[ext_resource type="Texture2D" uid="uid://dvwyeng136xkm" path="res://entities/player/drone.png" id="5_my1ht"]
+[ext_resource type="Script" path="res://entities/player/animated_sprite_2d.gd" id="6_uy3mu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ht3oy"]
 size = Vector2(24, 18)
@@ -20,13 +21,53 @@ region = Rect2(0, 32, 32, 32)
 atlas = ExtResource("2_1ikru")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f40qo"]
-atlas = ExtResource("2_ovosx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vedev"]
+atlas = ExtResource("5_my1ht")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx752"]
+atlas = ExtResource("5_my1ht")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86rti"]
+atlas = ExtResource("5_my1ht")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51v81"]
+atlas = ExtResource("5_my1ht")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yteen"]
+atlas = ExtResource("5_my1ht")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6xs3v"]
-atlas = ExtResource("2_ovosx")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngp8d"]
+atlas = ExtResource("5_my1ht")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdbh8"]
+atlas = ExtResource("5_my1ht")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sad6r"]
+atlas = ExtResource("5_my1ht")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ubgh"]
+atlas = ExtResource("5_my1ht")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kiwfr"]
+atlas = ExtResource("5_my1ht")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5ggr"]
+atlas = ExtResource("5_my1ht")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gp4m1"]
+atlas = ExtResource("5_my1ht")
+region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lgv1p"]
 animations = [{
@@ -41,15 +82,95 @@ animations = [{
 "name": &"dashing",
 "speed": 15.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"dashing mining",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"dashing_harverster",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"dashing_shooting",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f40qo")
+"texture": SubResource("AtlasTexture_vedev")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle_harvester",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx752")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6xs3v")
+"texture": SubResource("AtlasTexture_86rti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51v81")
+}],
+"loop": true,
+"name": &"idle_mining",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yteen")
+}],
+"loop": true,
+"name": &"idle_shooting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngp8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdbh8")
 }],
 "loop": true,
 "name": &"walking",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walking_harvester",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sad6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ubgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kiwfr")
+}],
+"loop": true,
+"name": &"walking_mining",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5ggr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gp4m1")
+}],
+"loop": true,
+"name": &"walking_shooting",
 "speed": 5.0
 }]
 
@@ -78,9 +199,8 @@ shape = SubResource("RectangleShape2D_ht3oy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lgv1p")
-animation = &"walking"
-frame = 1
-frame_progress = 0.928852
+animation = &"idle_mining"
+script = ExtResource("6_uy3mu")
 
 [node name="StaminaRegen" type="Timer" parent="."]
 wait_time = 0.05
@@ -99,7 +219,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(12, 0)
+position = Vector2(13, 11)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -71,6 +71,9 @@ var lastMouse
 var HealthPotionHeal = 50
 var toggle = 0
 var EndingDay:bool
+var Move_state
+var Action_State
+var is_mining = false
 
 func pos_to_chunk(x, y):
 	var tile_x = floor(x / tile_size)
@@ -80,6 +83,8 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	Move_state = "IDLE"
+	Action_State = "PASSIVE"
 	EndingDay = false
 	PlayerStats = PS.new()
 	PlayerStats.set_MaxHP(BasemaxHealth)
@@ -116,11 +121,14 @@ func _ready():
 	on_harvester_max_changed.emit(max_harvesters)
 
 func _process(delta: float) -> void:
+	Move_state = "IDLE"
+	Action_State = "PASSIVE"
 	var velocity = Vector2.ZERO
 	
 	if EndingDay == true:
-		$AnimatedSprite2D.animation = "walking"
-		$AnimatedSprite2D.play("walking")
+		Move_state = "WALKING"
+		#$AnimatedSprite2D.animation = "walking"
+		#$AnimatedSprite2D.play("walking")
 	
 	if Input.is_action_pressed("running") && PlayerStats.get_currentSTA() > 0:
 		$StaminaRegen.stop()
@@ -137,11 +145,12 @@ func _process(delta: float) -> void:
 		move_and_collide(velocity)
 		velocity = velocity * PlayerStats.get_speed()
 		if dashing == 0:
-			$AnimatedSprite2D.animation = "walking"
-			$AnimatedSprite2D.play()
+			Move_state = "WALKING"
+			#$AnimatedSprite2D.animation = "walking"
+			#$AnimatedSprite2D.play()
 		
-	elif velocity.length() == 0  && dashing == 0 && EndingDay == false:
-		$AnimatedSprite2D.stop()
+	#elif velocity.length() == 0  && dashing == 0 && EndingDay == false:
+		#$AnimatedSprite2D.stop()
 		
 	if running >0:
 		position += (velocity + velocity*running*run) * delta
@@ -163,14 +172,16 @@ func _process(delta: float) -> void:
 		lastlook = looking# .normalized()
 	
 	#logic for shooting
-	if Input.is_action_pressed("shoot") && shootRdy == true && EndingDay == false:
-		var new_bullet = playerBullet.instantiate()
-		new_bullet.damage = PlayerStats.get_DMG()
-		new_bullet.position = $Marker2D.global_position
-		new_bullet.direction = lastlook.normalized()
-		add_sibling(new_bullet)
-		shootRdy = false
-		$ShootTimer.start()
+	if Input.is_action_pressed("shoot"):
+		Action_State = "SHOOTING"
+		if shootRdy == true && EndingDay == false:
+			var new_bullet = playerBullet.instantiate()
+			new_bullet.damage = PlayerStats.get_DMG()
+			new_bullet.position = $Marker2D.global_position
+			new_bullet.direction = lastlook.normalized()
+			add_sibling(new_bullet)
+			shootRdy = false
+			$ShootTimer.start()
 	
 	#Use the selected Consumable
 	if Input.is_action_just_pressed("Use_consumable"):
@@ -214,13 +225,15 @@ func _process(delta: float) -> void:
 		$StaminaRegen.wait_time = .05
 		dashRdy = false
 		$DashWait.start()
-		$AnimatedSprite2D.animation = "dashing"
-		$AnimatedSprite2D.play()
+		Move_state = "DASHING"
+		#$AnimatedSprite2D.animation = "dashing"
+		#$AnimatedSprite2D.play()
 	if dashing > 0:
 		dashing += -1
 		position += velocity.normalized()*dashDistance*delta
-		$AnimatedSprite2D.animation = "dashing"
-		$AnimatedSprite2D.play()
+		Move_state = "DASHING"
+		#$AnimatedSprite2D.animation = "dashing"
+		#$AnimatedSprite2D.play()
 		if dashing == 0:
 			$Area2D/DamageCollisionShape2D.disabled = false
 
@@ -239,6 +252,8 @@ func _process(delta: float) -> void:
 	if current_chunk.x != chunk_id.x || current_chunk.y != chunk_id.y:
 		current_chunk = chunk_id
 		on_chunk_changed.emit(current_chunk)
+	
+	$AnimatedSprite2D.change_state(Move_state,Action_State)
 
 func harvester_return():
 	availible_harvesters += 1

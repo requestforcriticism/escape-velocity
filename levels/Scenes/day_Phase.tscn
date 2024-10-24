@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvxg5xnknue6h"]
+[gd_scene load_steps=14 format=3 uid="uid://bvxg5xnknue6h"]
 
 [ext_resource type="Script" path="res://levels/Scenes/day_phase.gd" id="1_87mw8"]
 [ext_resource type="PackedScene" uid="uid://4xrk0xcxfw6e" path="res://components/playerBullet/player_bullet.tscn" id="2_frl4x"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dijpoceqauarg" path="res://entities/base_monster/base_monster.tscn" id="10_8844s"]
 [ext_resource type="PackedScene" uid="uid://s5q3ymqj5dkb" path="res://entities/base_monster/reeb.tscn" id="11_gg31y"]
 [ext_resource type="PackedScene" uid="uid://bql2ao0kvjwyb" path="res://resources/terminal/terminal.tscn" id="12_ohxex"]
+[ext_resource type="PackedScene" uid="uid://dc4cw5hq15s2h" path="res://resources/base_resource/base_resource.tscn" id="13_0fvsd"]
 
 [node name="DayPhase" type="Node2D"]
 modulate = Color(0.868985, 0.868985, 0.868985, 1)
@@ -55,6 +56,9 @@ player = NodePath("../player")
 position = Vector2(-243, -139)
 
 [node name="DayTimer" type="Timer" parent="."]
+
+[node name="BaseResource" parent="." instance=ExtResource("13_0fvsd")]
+visible = false
 
 [connection signal="ending_day" from="." to="player" method="_on_day_phase_ending_day"]
 [connection signal="consDuration" from="player" to="player/Camera2D/hud" method="_on_player_cons_duration"]
