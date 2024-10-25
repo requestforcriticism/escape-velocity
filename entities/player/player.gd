@@ -181,6 +181,7 @@ func _process(delta: float) -> void:
 			Action_State = "SHOOTING"
 		if shootRdy == true:
 			var new_bullet = playerBullet.instantiate()
+			new_bullet.rotation = lastlook.angle()
 			new_bullet.damage = PlayerStats.get_DMG()
 			if consDur[1] > 0:
 				if bulletAlternate == true:
