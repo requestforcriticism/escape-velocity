@@ -17,6 +17,8 @@ signal health_changed
 var mined_drops = 0 #num resources mined so fat
 var miners = []
 
+var player = null
+
 enum RESOURCE_STATE { AGGESSIVE , PASSIVE , MINED , DEAD }
 
 @export var state : RESOURCE_STATE
@@ -80,22 +82,34 @@ func shoot_bullet(angle, expiration, damage, size):
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if state == RESOURCE_STATE.AGGESSIVE and "damage" in area:
 		currentHealth += -area.damage
-		print(area.damage)
+		#print(area.damage)
 		$HealthBar.value = currentHealth
 		$AnimatedSprite2D.modulate = Color.RED
 		await get_tree().create_timer(0.1).timeout
 		$AnimatedSprite2D.modulate = Color.WHITE
 
 # demo func based on harvester
+
+signal getting_gathered
+var test = "I'm gathering"
+
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event.get_class() == "InputEventMouseButton" and event.pressed:
 		if state != RESOURCE_STATE.AGGESSIVE and state != RESOURCE_STATE.DEAD:
 			var mine_ref = mine(null)
 			var new_drop= collectable_scn.instantiate()
 			new_drop.type = drop_type
+			
+			getting_gathered.emit(test)
+			
 			# drop in a random dir along resource
 			var drop_dest = Vector2.RIGHT.rotated(randf_range(0, 2*PI)).normalized() * 32
 			new_drop.drift(drop_dest)
 			#new_drop.set_collision_layer_value(4, false)
 			add_child(new_drop)
 			#print("Mining this, durab\t", mine_ref[0], "\tRef\t",mine_ref[1])
+
+func _on_area_2d_2_body_entered(body: Node2D) -> void:
+	if "player_tag" in body && player == null:
+		player = body
+		player._link_resource(self)

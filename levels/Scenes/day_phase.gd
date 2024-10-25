@@ -73,7 +73,6 @@ func _ready():
 	new_collectable.position = Vector2(-150,50)
 	add_child(new_collectable)
 	
-	
 #all the stuff to start a new day
 func start_day():
 	$player/Camera2D/hud.start_day(dayLength)
@@ -82,16 +81,13 @@ func start_day():
 func _process(delta):
 	pass
 
-
 func _on_day_timer_timeout() -> void:
 	dayTimeLeft += -1
 	if dayTimeLeft == 0:
 		$DayTimer.stop()
 		end_day()
 		
-
 func end_day():
-	print("ending the day")
 	get_tree().paused = true
 	$player/Camera2D/hud.visible = false
 	for i in 100:
@@ -125,9 +121,12 @@ func end_day():
 		$Ship.modulate.g += .04
 		
 		await get_tree().create_timer(0.01).timeout
-		
 	
 	LevelManager.load_night()
 	
 func _on_pause_menu_ending_the_day() -> void:
 	end_day()
+
+func _on_player_health_changed(health,maxhealth) -> void:
+	if health <= 0:
+		end_day()

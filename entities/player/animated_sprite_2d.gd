@@ -1,7 +1,7 @@
 extends AnimatedSprite2D
 
 enum PLAYER_MOVE_STATE { IDLE, WALKING, DASHING}
-enum PLAYER_ACTION_STATE { PASSIVE, SHOOTING, HARVESTER, MINING }
+enum PLAYER_ACTION_STATE { PASSIVE, SHOOTING, DOUBLE_SHOOTING,HARVESTER, MINING }
 
 var move_state
 var action_state
@@ -19,6 +19,8 @@ func _process(delta: float) -> void:
 		$".".play("idle")
 	elif move_state == PLAYER_MOVE_STATE.IDLE && action_state == PLAYER_ACTION_STATE.SHOOTING:
 		$".".play("idle_shooting")
+	elif move_state == PLAYER_MOVE_STATE.IDLE && action_state == PLAYER_ACTION_STATE.DOUBLE_SHOOTING:
+		$".".play("idle_double_shooting")
 	elif move_state == PLAYER_MOVE_STATE.IDLE && action_state == PLAYER_ACTION_STATE.MINING:
 		$".".play("idle_mining")
 	elif move_state == PLAYER_MOVE_STATE.IDLE && action_state == PLAYER_ACTION_STATE.HARVESTER:
@@ -27,6 +29,8 @@ func _process(delta: float) -> void:
 		$".".play("walking")
 	elif move_state == PLAYER_MOVE_STATE.WALKING && action_state == PLAYER_ACTION_STATE.SHOOTING:
 		$".".play("walking_shooting")
+	elif move_state == PLAYER_MOVE_STATE.WALKING && action_state == PLAYER_ACTION_STATE.DOUBLE_SHOOTING:
+		$".".play("walking_double_shooting")
 	elif move_state == PLAYER_MOVE_STATE.WALKING && action_state == PLAYER_ACTION_STATE.MINING:
 		$".".play("walking_mining")
 	elif move_state == PLAYER_MOVE_STATE.WALKING && action_state == PLAYER_ACTION_STATE.HARVESTER:
@@ -41,7 +45,6 @@ func _process(delta: float) -> void:
 		$".".play("dashing_harverster")
 	else:
 		$".".play("idle")
-	##print("state: ",state)
 	pass
 	
 func change_state(M_State, A_State):
@@ -54,10 +57,11 @@ func change_state(M_State, A_State):
 	
 	if A_State == "SHOOTING":
 		action_state = PLAYER_ACTION_STATE.SHOOTING
+	elif A_State == "DOUBLE_SHOOTING":
+		action_state = PLAYER_ACTION_STATE.DOUBLE_SHOOTING
 	elif A_State == "HARVESTER":
 		action_state = PLAYER_ACTION_STATE.HARVESTER
 	elif A_State == "MINING":
 		action_state = PLAYER_ACTION_STATE.MINING
-		print("still mining")
 	else:
 		action_state = PLAYER_ACTION_STATE.PASSIVE

@@ -31,7 +31,7 @@ func on_damage(bullet):
 	if "damage" in bullet:
 		hp -= bullet.damage
 		$HealthBar.value = hp
-		print("hit for, ", bullet.damage, " now at ", hp)
+		#print("hit for, ", bullet.damage, " now at ", hp)
 		bullet.queue_free()
 	if hp <= 0:
 		on_die.emit()
@@ -106,5 +106,5 @@ func _on_wander_expire_timer_timeout():
 		get_next_wander_location()
 
 func attack(body):
-	print("attacking")
+	#print("attacking")
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dc4cw5hq15s2h"]
+[gd_scene load_steps=8 format=3 uid="uid://dc4cw5hq15s2h"]
 
 [ext_resource type="Script" path="res://resources/base_resource/base_resource.gd" id="1_qdcid"]
 [ext_resource type="PackedScene" uid="uid://b2dniluutupbr" path="res://components/bullet/bullet.tscn" id="2_peiln"]
@@ -10,6 +10,9 @@ size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2i8lf"]
 size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_37dh4"]
+radius = 340.001
 
 [node name="BaseResource" type="StaticBody2D"]
 collision_layer = 17
@@ -44,6 +47,14 @@ shape = SubResource("RectangleShape2D_2i8lf")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("CircleShape2D_37dh4")
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="timeout" from="Timer" to="." method="attack"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

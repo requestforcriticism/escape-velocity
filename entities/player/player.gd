@@ -74,6 +74,8 @@ var EndingDay:bool
 var Move_state
 var Action_State
 var is_mining = false
+var is_harverter = false
+var bulletAlternate:bool = true
 
 func pos_to_chunk(x, y):
 	var tile_x = floor(x / tile_size)
@@ -172,12 +174,23 @@ func _process(delta: float) -> void:
 		lastlook = looking# .normalized()
 	
 	#logic for shooting
-	if Input.is_action_pressed("shoot"):
-		Action_State = "SHOOTING"
-		if shootRdy == true && EndingDay == false:
+	if Input.is_action_pressed("shoot") && EndingDay == false:
+		if consDur[1] > 0:
+				Action_State = "DOUBLE_SHOOTING"
+		else:
+			Action_State = "SHOOTING"
+		if shootRdy == true:
 			var new_bullet = playerBullet.instantiate()
 			new_bullet.damage = PlayerStats.get_DMG()
-			new_bullet.position = $Marker2D.global_position
+			if consDur[1] > 0:
+				if bulletAlternate == true:
+					new_bullet.position = $Marker2Dright.global_position
+					bulletAlternate = false
+				else:
+					new_bullet.position = $Marker2Dleft.global_position
+					bulletAlternate = true
+			else:
+				new_bullet.position = $Marker2Dright.global_position
 			new_bullet.direction = lastlook.normalized()
 			add_sibling(new_bullet)
 			shootRdy = false
@@ -202,11 +215,14 @@ func _process(delta: float) -> void:
 		hpPackCount.emit(Healthpacks)
 	
 	if Input.is_action_just_pressed("harvest_test") && availible_harvesters > 0:
+		$harvesterTimer.start()
+		is_harverter = true
 		availible_harvesters += -1
 		on_harvester_count_changed.emit(availible_harvesters)
 		#print("spawning harvester")
 		var harvester = harvester_scene.instantiate()
-		harvester.position = position
+		#harvester.position = position
+		harvester.position = $Marker2Dright.global_position
 		harvester.player = self
 		harvester.ship = ship_scn
 		harvester.search_dest = position + (lastlook.normalized() * harvester_throw_distance)
@@ -253,7 +269,13 @@ func _process(delta: float) -> void:
 		current_chunk = chunk_id
 		on_chunk_changed.emit(current_chunk)
 	
+	if is_mining == true:
+		Action_State = "MINING"
+	if is_harverter == true:
+		Action_State = "HARVESTER"
 	$AnimatedSprite2D.change_state(Move_state,Action_State)
+
+	
 
 func harvester_return():
 	availible_harvesters += 1
@@ -306,6 +328,7 @@ func _on_consumable_timer_timeout() -> void:
 		$ConsumableTimer.stop()
 	for i in consDur.size():
 		if consDur[i] > 0:
+			
 			consDur[i] = snapped(consDur[i] - .1, .1)
 			consDuration.emit(consDur)
 		else:
@@ -342,8 +365,21 @@ func using_consumable(tog:int, using:bool):
 			PlayerStats.set_HealthRegen(BasehealthRegen)
 			ConsumActive[tog] = false
 
-
 func _on_day_phase_ending_day() -> void:
 	EndingDay = true
 	rotation = -PI/2
-	
+
+func _on_base_resource_getting_gathered(message) -> void:
+	is_mining = true
+	$miningTimer.start()
+
+func _link_resource(Res):
+	Res.connect("getting_gathered",_on_base_resource_getting_gathered)
+
+
+func _on_mining_timer_timeout() -> void:
+	is_mining = false
+
+
+func _on_harvester_timer_timeout() -> void:
+	is_harverter = false
