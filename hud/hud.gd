@@ -10,8 +10,8 @@ var HarvTotal:int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	DayTimeLeft = $"../../..".dayTimeLeft
-	displayDay()
+	#DayTimeLeft = $"../../..".dayTimeLeft
+	#displayDay()
 	$HPProgressBar/HeartSprite2D.modulate = Color.RED
 	$ContConsum/GridContainer/StaRegDur.text = str("0 secs")
 	$ContConsum/GridContainer/DmgBstDur.text = str("0 secs")
@@ -19,6 +19,7 @@ func _ready() -> void:
 
 func start_day(dayLength):
 	DayTimeLeft = dayLength
+	displayDay()
 	$ContDTT/Timer.text = str(time_convert(DayTimeLeft))
 	$ContDTT/Path2D/PathFollow2D.progress_ratio = 0
 	$ContDTT/DayTrackerTimer.wait_time = dayLength/100.0
@@ -31,7 +32,6 @@ func _process(delta: float) -> void:
 	if DayTimeLeft == 60:
 		OneMinWarn = true
 		#$Timer.start()
-		print(DayTimeLeft)
 	if DayTimeLeft <= 10 && DayTimeLeft > 0:
 		#$Timer.start()
 		countdown = true
@@ -184,7 +184,6 @@ func letters_pop_out(LabelNode,fontStart,modul):
 		FontStart = fontStart
 	LabelNode.visible = true
 	FontStart += 2
-	print(FontStart)
 	LabelNode.add_theme_font_size_override("font_size",FontStart)
 	LabelNode.self_modulate.a += -modul
 	if LabelNode.self_modulate.a <= 0:

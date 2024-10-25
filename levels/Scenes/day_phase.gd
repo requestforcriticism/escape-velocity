@@ -8,7 +8,7 @@ signal ending_day
 @export var tile_size = 32
 @export var chunk_size = 32
 @export var render_distance = 1
-@export var dayLength = 15		# In seconds
+@export var dayLength = 10*60 	# In seconds
 @export var dayTimeLeft:int
 
 # Called when the node enters the scene tree for the first time.

@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://ctcrca36054ed"]
+[gd_scene load_steps=34 format=3 uid="uid://ctcrca36054ed"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_cefws"]
 [ext_resource type="Texture2D" uid="uid://ctm4dy1kv1utq" path="res://entities/player/Fire Arrow.png" id="2_1ikru"]
 [ext_resource type="PackedScene" uid="uid://4xrk0xcxfw6e" path="res://components/playerBullet/player_bullet.tscn" id="2_y1ein"]
 [ext_resource type="PackedScene" uid="uid://xlnycmyrhc2o" path="res://entities/harvester/harvester.tscn" id="3_3j10a"]
+[ext_resource type="Texture2D" uid="uid://cw7ouvvqgms0y" path="res://entities/player/Fire.png" id="4_qt47l"]
 [ext_resource type="Texture2D" uid="uid://dvwyeng136xkm" path="res://entities/player/drone.png" id="5_my1ht"]
 [ext_resource type="Script" path="res://entities/player/animated_sprite_2d.gd" id="6_uy3mu"]
 
@@ -12,6 +13,28 @@ size = Vector2(26, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vh67r"]
 size = Vector2(26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwshp"]
+atlas = ExtResource("4_qt47l")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w341h"]
+atlas = ExtResource("4_qt47l")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r6j14"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwshp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w341h")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 16.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dfjv2"]
 atlas = ExtResource("2_1ikru")
@@ -248,6 +271,14 @@ shape = SubResource("RectangleShape2D_vh67r")
 
 [node name="PhysicalCollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ht3oy")
+
+[node name="AnimatedSprite2DFire" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-27.25, -1.19209e-07)
+scale = Vector2(0.765625, 0.375)
+sprite_frames = SubResource("SpriteFrames_r6j14")
+animation = &"dash"
+frame_progress = 0.571006
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lgv1p")

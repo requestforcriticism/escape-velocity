@@ -35,23 +35,22 @@ func _process(delta: float) -> void:
 		$".".play("walking_mining")
 	elif move_state == PLAYER_MOVE_STATE.WALKING && action_state == PLAYER_ACTION_STATE.HARVESTER:
 		$".".play("walking_harvester")
-	elif move_state == PLAYER_MOVE_STATE.DASHING && action_state == PLAYER_ACTION_STATE.PASSIVE:
-		$".".play("dashing")
-	elif move_state == PLAYER_MOVE_STATE.DASHING && action_state == PLAYER_ACTION_STATE.SHOOTING:
-		$".".play("dashing_shooting")
-	elif move_state == PLAYER_MOVE_STATE.DASHING && action_state == PLAYER_ACTION_STATE.MINING:
-		$".".play("dashing_mining")
-	elif move_state == PLAYER_MOVE_STATE.DASHING && action_state == PLAYER_ACTION_STATE.HARVESTER:
-		$".".play("dashing_harverster")
 	else:
 		$".".play("idle")
+	#elif move_state == PLAYER_MOVE_STATE.DASHING && action_state == PLAYER_ACTION_STATE.PASSIVE:
+		#$".".play("dashing")
+	#elif move_state == PLAYER_MOVE_STATE.DASHING && action_state == PLAYER_ACTION_STATE.SHOOTING:
+		#$".".play("dashing_shooting")
+	#elif move_state == PLAYER_MOVE_STATE.DASHING && action_state == PLAYER_ACTION_STATE.MINING:
+		#$".".play("dashing_mining")
+	#elif move_state == PLAYER_MOVE_STATE.DASHING && action_state == PLAYER_ACTION_STATE.HARVESTER:
+		#$".".play("dashing_harverster")
+	
 	pass
 	
 func change_state(M_State, A_State):
 	if M_State == "WALKING":
 		move_state = PLAYER_MOVE_STATE.WALKING
-	elif M_State == "DASHING":
-		move_state = PLAYER_MOVE_STATE.DASHING
 	else:
 		move_state = PLAYER_MOVE_STATE.IDLE
 	

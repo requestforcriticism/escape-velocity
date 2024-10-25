@@ -241,16 +241,15 @@ func _process(delta: float) -> void:
 		$StaminaRegen.wait_time = .05
 		dashRdy = false
 		$DashWait.start()
-		Move_state = "DASHING"
-		#$AnimatedSprite2D.animation = "dashing"
-		#$AnimatedSprite2D.play()
+		$AnimatedSprite2DFire.play("dash")
+		$AnimatedSprite2DFire.visible = true
 	if dashing > 0:
 		dashing += -1
 		position += velocity.normalized()*dashDistance*delta
-		Move_state = "DASHING"
-		#$AnimatedSprite2D.animation = "dashing"
-		#$AnimatedSprite2D.play()
+		$AnimatedSprite2DFire.play("dash")
 		if dashing == 0:
+			$AnimatedSprite2DFire.pause()
+			$AnimatedSprite2DFire.visible = false
 			$Area2D/DamageCollisionShape2D.disabled = false
 
 	#if running slow down
