@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhmd88cnimtpn"]
+[gd_scene load_steps=7 format=3 uid="uid://dhmd88cnimtpn"]
 
-[ext_resource type="Texture2D" uid="uid://c54ya01fqwp4d" path="res://levels/Scenes/NightPhaseAssets/NightPhaseLangingPageBG.png" id="1_gv7j8"]
 [ext_resource type="Script" path="res://levels/Scenes/night_phase.gd" id="1_y5447"]
-[ext_resource type="Texture2D" uid="uid://cvxm6e1a2uqo5" path="res://levels/Scenes/NightPhaseAssets/NightPhaseCraftingPageBG.png" id="2_qsic4"]
+[ext_resource type="Texture2D" uid="uid://b14glxl3ey7ii" path="res://levels/Scenes/NightPhaseAssets/spaceship_interior.png" id="2_g30nj"]
 [ext_resource type="Texture2D" uid="uid://d2dl3sbfp23ut" path="res://levels/Scenes/NightPhaseAssets/NightPhaseTechTreePageBGy.png" id="3_nyikl"]
 [ext_resource type="Texture2D" uid="uid://cixuqsu0ipsgo" path="res://levels/Scenes/NightPhaseAssets/button_square_header_notch_rectangle_screws.png" id="5_3u3ma"]
 [ext_resource type="PackedScene" uid="uid://hpfsxc40c02t" path="res://levels/Scenes/NightPhaseAssets/tech_tree.tscn" id="5_up0aw"]
@@ -17,6 +16,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y5447")
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -35,6 +35,16 @@ offset_bottom = 556.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="landingPageBG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_g30nj")
+metadata/_edit_lock_ = true
+
 [node name="LandingPage" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -44,16 +54,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="landingPageBG" type="TextureRect" parent="LandingPage"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_gv7j8")
-metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="LandingPage"]
 visible = false
@@ -125,13 +125,18 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CraftingPageBG" type="TextureRect" parent="CraftingPage"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -943.0
+offset_top = -1237.0
+offset_right = 4129.0
+offset_bottom = 1599.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_qsic4")
+texture = ExtResource("3_nyikl")
 
 [node name="GridContainer" type="GridContainer" parent="CraftingPage"]
 layout_mode = 0
@@ -161,13 +166,18 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TechPageBG" type="TextureRect" parent="TechTreePage"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4124.0
+offset_top = -1568.0
+offset_right = 942.0
+offset_bottom = 1264.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_nyikl")
+texture = ExtResource("2_g30nj")
 
 [node name="TechTree" parent="TechTreePage" instance=ExtResource("5_up0aw")]
 position = Vector2(-60, 11)
@@ -180,6 +190,50 @@ offset_right = 964.0
 offset_bottom = 542.0
 
 [node name="BackFromTT" type="Button" parent="TechTreePage/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Back"
+
+[node name="FixShipPage" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FixPageBG" type="TextureRect" parent="FixShipPage"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2192.0
+offset_top = -652.0
+offset_right = 2231.0
+offset_bottom = 1836.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_g30nj")
+
+[node name="GridContainer" type="GridContainer" parent="FixShipPage"]
+layout_mode = 1
+offset_left = -160.0
+offset_top = 404.0
+offset_right = 936.0
+offset_bottom = 532.0
+theme_override_constants/h_separation = 590
+columns = 2
+
+[node name="FixShipButton" type="Button" parent="FixShipPage/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Fix the Ship"
+
+[node name="BackFromFIX" type="Button" parent="FixShipPage/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Back"
@@ -302,5 +356,6 @@ color = Color(1, 0.160784, 1, 0.784314)
 [connection signal="pressed" from="LandingPage/GridContainer/EndNightButton" to="." method="_on_end_night_button_pressed"]
 [connection signal="pressed" from="CraftingPage/GridContainer/BackFromCFT" to="." method="_on_back_from_cft_pressed"]
 [connection signal="pressed" from="TechTreePage/GridContainer/BackFromTT" to="." method="_on_back_from_tt_pressed"]
+[connection signal="pressed" from="FixShipPage/GridContainer/BackFromFIX" to="." method="_on_back_from_fix_pressed"]
 [connection signal="pressed" from="EndNightCheckBox/GridContainer/ENYesButton" to="." method="_on_en_yes_button_pressed"]
 [connection signal="pressed" from="EndNightCheckBox/GridContainer/ENNoButton" to="." method="_on_en_no_button_pressed"]

@@ -3,9 +3,8 @@
 [ext_resource type="Script" path="res://components/Collectables/collectables.gd" id="1_c0ryi"]
 [ext_resource type="SpriteFrames" uid="uid://debd5ieq62j5w" path="res://components/Collectables/collectables_animations.tres" id="2_eef37"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w8gfb"]
-radius = 11.3137
-height = 45.2548
+[sub_resource type="CircleShape2D" id="CircleShape2D_r1jua"]
+radius = 28.5714
 
 [node name="Collectables" type="Area2D"]
 scale = Vector2(0.35, 0.35)
@@ -15,11 +14,13 @@ script = ExtResource("1_c0ryi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -0.785398
-shape = SubResource("CapsuleShape2D_w8gfb")
+shape = SubResource("CircleShape2D_r1jua")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3.8147e-06, 2.38419e-07)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_eef37")
-animation = &"FOO"
+animation = &"URA"
+frame_progress = 0.137841
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
