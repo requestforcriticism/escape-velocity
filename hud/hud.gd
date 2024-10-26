@@ -76,6 +76,10 @@ func _on_player_consum_count(cons) -> void:
 	$ContConsum/SBst/AmtLeft.text = str(consum[0])
 	$ContConsum/DBst/AmtLeft.text = str(consum[1])
 	$ContConsum/DRed/AmtLeft.text = str(consum[2])
+	
+	#$ContConsum/SBst/AmtLeft.text = str(Save.get_value(1, "STABST", 0))
+	#$ContConsum/DBst/AmtLeft.text = str(Save.get_value(1, "DMGBST", 0))
+	#$ContConsum/DRed/AmtLeft.text = str(Save.get_value(1, "DMGRED", 0))
 
 #cycle between the consumables   
 #consumable amounts [ stamina recovery, damage boost, damage reduction]

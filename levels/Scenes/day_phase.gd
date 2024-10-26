@@ -121,7 +121,12 @@ func end_day():
 		$Ship.modulate.g += .04
 		
 		await get_tree().create_timer(0.01).timeout
+	Save.set_value(1, "HLTHPCK", $player.Healthpacks)
+	Save.set_value(1, "STABST", $player.consum[0])
+	Save.set_value(1, "DMGBST", $player.consum[1])
+	Save.set_value(1, "DMGRED", $player.consum[2])
 	
+	#Save._save_file_win()  #save the game at the end of the day
 	LevelManager.load_night()
 	
 func _on_pause_menu_ending_the_day() -> void:

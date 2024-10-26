@@ -100,8 +100,8 @@ func _ready():
 	PlayerStats.set_DMGReduction(DamageRedBase)
 	$ShootTimer.wait_time = PlayerStats.get_shootSpeed()
 	availible_harvesters = max_harvesters
-	Healthpacks = 3
-	consum = [4,5,6]  #set the starting number of consumables
+	Healthpacks = Save.get_value(1, "HLTHPCK", 0)
+	consum = [Save.get_value(1, "STABST", 0),Save.get_value(1, "DMGBST", 0),Save.get_value(1, "DMGRED", 0)]  #set the starting number of consumables
 	toggleConsum.emit(toggle)
 	hpPackCount.emit(Healthpacks)
 	consumCount.emit(consum)
@@ -202,10 +202,7 @@ func _process(delta: float) -> void:
 		Use_cons()
 	#cycle between the available consumables
 	if Input.is_action_just_pressed("Toggle_consumables"):
-		if toggle == consum.size()-1:
-			toggle = 0
-		else:
-			toggle += 1
+		toggle = (toggle +1) %3
 		toggleConsum.emit(toggle)
 	
 	#drink that health potion! (Or whatever it's called)
