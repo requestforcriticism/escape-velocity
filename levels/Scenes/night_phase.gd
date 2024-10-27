@@ -123,3 +123,4 @@ func page_transition(start_page,end_page):
 
 func win_game():
 	print("You win the game!")
+	LevelManager.load_post_game()

@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 func show_collectables_for_fixing(ND,cons_name):
 	for j in cons_name.size():
 		if cons_name[j] > 0:
-			get_node(str(ND,"/",col_path_names[j])).text = str(cons_name[j])
+			get_node(str(ND,"/",col_path_names[j])).text = str(" ",cons_name[j])
 			get_node(str(ND,"/",col_path_names[j])).visible = true
 			get_node(str(ND,"/",col_path_images[j])).visible = true
 		else:
