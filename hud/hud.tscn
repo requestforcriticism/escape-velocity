@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ddo8sc41fi3mj"]
+[gd_scene load_steps=35 format=3 uid="uid://ddo8sc41fi3mj"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_bk8gt"]
 [ext_resource type="Texture2D" uid="uid://b1uojfaef3bxi" path="res://assets/hudAssets/button_square_header_blade_square.png" id="2_pxitt"]
@@ -12,11 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://bn62ykp5bvemj" path="res://assets/hudAssets/Backpack.png" id="9_bfy32"]
 [ext_resource type="Texture2D" uid="uid://ce7w6ucv46wlh" path="res://assets/hudAssets/keyboard_escape.png" id="11_w6sln"]
 [ext_resource type="Texture2D" uid="uid://b4xjqv4gmi4sb" path="res://assets/hudAssets/panel_rectangle_screws.png" id="12_j38nh"]
-[ext_resource type="Texture2D" path="res://hud/hudAssets/Stamboost.png" id="13_guwm7"]
 [ext_resource type="Texture2D" uid="uid://wgnh21pr6da7" path="res://assets/hudAssets/panel_glass_notches.png" id="13_ig5ei"]
-[ext_resource type="Texture2D" path="res://hud/hudAssets/Damageboost.png" id="14_6ix18"]
 [ext_resource type="Texture2D" uid="uid://c8uxk4x1ge14x" path="res://assets/hudAssets/Stamboost.png" id="14_nryws"]
-[ext_resource type="Texture2D" path="res://hud/hudAssets/DamageReduction.png" id="15_p5oud"]
 [ext_resource type="Texture2D" uid="uid://ckfe805f5ijot" path="res://assets/hudAssets/Damageboost.png" id="15_suoct"]
 [ext_resource type="Texture2D" uid="uid://5y13pla1fpku" path="res://assets/hudAssets/DamageReduction.png" id="16_261b7"]
 [ext_resource type="Texture2D" uid="uid://b3bjq28cxrn25" path="res://assets/hudAssets/keyboard_tab.png" id="17_vssp0"]
@@ -24,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://c20gt5fce4msw" path="res://assets/hudAssets/arrow_e.png" id="19_lbgcr"]
 [ext_resource type="Texture2D" uid="uid://c8qub0dmh5gpn" path="res://assets/hudAssets/flair_arrow_3.png" id="20_meolf"]
 [ext_resource type="Texture2D" uid="uid://d4kwt20g4glah" path="res://assets/harvester/harvester.png" id="22_ci0dj"]
+[ext_resource type="Texture2D" uid="uid://ekkai4xfbcm6" path="res://assets/hudAssets/minimap_background.png" id="24_81rbx"]
 [ext_resource type="Texture2D" uid="uid://dfq53nsh1s4f7" path="res://assets/hudAssets/button_square_header_small_square.png" id="24_vxgvv"]
 [ext_resource type="Texture2D" uid="uid://chceuoyiyodci" path="res://assets/hudAssets/keyboard_h.png" id="26_jdx07"]
 
@@ -392,7 +390,6 @@ columns = 2
 [node name="StaReg" type="TextureRect" parent="ContConsum/GridContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("13_guwm7")
 
 [node name="StaRegDur" type="Label" parent="ContConsum/GridContainer"]
 visible = false
@@ -403,7 +400,6 @@ text = "5 sec"
 [node name="DmgBst" type="TextureRect" parent="ContConsum/GridContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("14_6ix18")
 
 [node name="DmgBstDur" type="Label" parent="ContConsum/GridContainer"]
 visible = false
@@ -414,7 +410,6 @@ text = "10 sec"
 [node name="DmgRed" type="TextureRect" parent="ContConsum/GridContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("15_p5oud")
 
 [node name="DmgRedDur" type="Label" parent="ContConsum/GridContainer"]
 visible = false
@@ -498,6 +493,48 @@ horizontal_alignment = 1
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
+
+[node name="MiniMap" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+
+[node name="MMbackground" type="TextureRect" parent="MiniMap"]
+self_modulate = Color(1, 1, 1, 0.560784)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -288.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("24_81rbx")
+
+[node name="Label" type="Label" parent="MiniMap"]
+layout_mode = 0
+offset_left = -320.0
+offset_top = -245.0
+offset_right = -171.0
+offset_bottom = -190.0
+theme_override_font_sizes/font_size = 40
+text = "To Ship"
+horizontal_alignment = 1
+
+[node name="ArrowToShip" type="Sprite2D" parent="MiniMap"]
+position = Vector2(-245.333, -128)
+scale = Vector2(5.33334, 5.33334)
+texture = ExtResource("19_lbgcr")
 
 [connection signal="timeout" from="ContDTT/DayTrackerTimer" to="." method="_on_day_tracker_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

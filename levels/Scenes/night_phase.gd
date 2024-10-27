@@ -120,3 +120,6 @@ func end_day():
 
 func page_transition(start_page,end_page):
 	return lerp(start_page,end_page,lerp(0,1,.025))
+
+func win_game():
+	print("You win the game!")

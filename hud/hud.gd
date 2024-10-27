@@ -7,6 +7,7 @@ var OneMinWarn = false
 var countdown = false
 var HarvCount:int
 var HarvTotal:int
+var ArrowToShip
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,8 +37,8 @@ func _process(delta: float) -> void:
 	if DayTimeLeft <= 10 && DayTimeLeft > 0:
 		#$Timer.start()
 		countdown = true
-		
-	pass
+	
+	point_arrow_to_ship()
 		
 func _on_player_stamina_changed(stamina_changed,maxStamina) -> void:
 	$StaminaProgressBar.value = 100*stamina_changed/maxStamina
@@ -199,3 +200,7 @@ func letters_pop_out(LabelNode,fontStart,modul):
 		return false
 	else:
 		return true
+
+func point_arrow_to_ship():
+	ArrowToShip = $"../../../Ship".global_position - $"../..".global_position
+	$MiniMap/ArrowToShip.rotation = ArrowToShip.angle()

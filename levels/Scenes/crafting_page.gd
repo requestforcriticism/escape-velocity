@@ -36,7 +36,6 @@ func show_collectables_for_crafting(ND,cons_name):
 	var consCosts = get(cons_name)
 	var consTypePath = str(ND,"/",cons_name)
 	
-	print(consCosts)
 	for j in consCosts.size():
 		if consCosts[j] > 0:
 			get_node(str(ND,"/",cons_name,"/",col_path_names[j])).text = str(consCosts[j])

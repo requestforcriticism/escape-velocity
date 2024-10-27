@@ -14,12 +14,12 @@ func _on_quit_button_pressed() -> void:
 func _on_new_game_button_pressed() -> void:
 	Save.set_value(1, "SHIPREPAIR", 0)
 	Save.set_value(1, "DAY", 1)
-	Save.set_value(1, "FOO", 30)
-	Save.set_value(1, "WAT", 30)
-	Save.set_value(1, "OIL", 20)
-	Save.set_value(1, "IRO", 20)
-	Save.set_value(1, "URA", 20)
-	Save.set_value(1, "COM", 20)
+	Save.set_value(1, "FOO", 1300)
+	Save.set_value(1, "WAT", 1300)
+	Save.set_value(1, "OIL", 1200)
+	Save.set_value(1, "IRO", 1200)
+	Save.set_value(1, "URA", 1200)
+	Save.set_value(1, "COM", 1200)
 	Save.set_value(1, "HLTHPCK", 0)
 	Save.set_value(1, "STABST", 0)
 	Save.set_value(1, "DMGBST", 0)
@@ -37,4 +37,5 @@ func _on_new_game_button_pressed() -> void:
 	LevelManager.load_day()
 
 func _on_load_game_pressed() -> void:
+	#Save._load_file_win(1)
 	print("put some stuff for loading a previously played game")

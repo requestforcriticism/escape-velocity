@@ -1,8 +1,9 @@
-[gd_scene load_steps=69 format=3 uid="uid://dhmd88cnimtpn"]
+[gd_scene load_steps=72 format=3 uid="uid://dhmd88cnimtpn"]
 
 [ext_resource type="Script" path="res://levels/Scenes/night_phase.gd" id="1_y5447"]
 [ext_resource type="Texture2D" uid="uid://b14glxl3ey7ii" path="res://levels/Scenes/NightPhaseAssets/spaceship_interior.png" id="2_g30nj"]
 [ext_resource type="Texture2D" uid="uid://c46rv4vqhmx0w" path="res://assets/hudAssets/healthpack.png" id="3_ay0j2"]
+[ext_resource type="Script" path="res://levels/Scenes/landing_page.gd" id="3_s3rj1"]
 [ext_resource type="Script" path="res://levels/Scenes/crafting_page.gd" id="3_su4y4"]
 [ext_resource type="Texture2D" uid="uid://dn0ds7y7r0d7k" path="res://assets/collectabes/oil_bubble.png" id="4_l24yy"]
 [ext_resource type="Texture2D" uid="uid://nk7ocyd0d2y1" path="res://levels/Scenes/NightPhaseAssets/availabel_crafting_background.png" id="4_poicf"]
@@ -18,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://dm0rm00r4rudj" path="res://assets/collectabes/logic_card.png" id="8_3gktg"]
 [ext_resource type="Texture2D" uid="uid://da8y88xs5if1o" path="res://assets/collectabes/uranium_ore.png" id="9_u405p"]
 [ext_resource type="Texture2D" uid="uid://duu24sy6gjbqm" path="res://assets/harvester/Single_harverter.png" id="11_t7wt8"]
+[ext_resource type="Script" path="res://levels/Scenes/tech_tree_page.gd" id="17_26uw4"]
+[ext_resource type="Script" path="res://levels/Scenes/fix_ship_page.gd" id="20_epnti"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_n3o26"]
 
@@ -397,6 +400,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_s3rj1")
 
 [node name="TextureRect" type="TextureRect" parent="LandingPage"]
 visible = false
@@ -413,6 +417,132 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_n3o26")
 metadata/_edit_lock_ = true
+
+[node name="Available" type="Control" parent="LandingPage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -84.0
+offset_right = 158.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="availableBG" type="Sprite2D" parent="LandingPage/Available"]
+position = Vector2(761, 4)
+texture = ExtResource("4_poicf")
+
+[node name="FoodCollectable" type="AnimatedSprite2D" parent="LandingPage/Available"]
+position = Vector2(837, -256)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_lvrpj")
+animation = &"Food"
+
+[node name="FoodShipAmount" type="Label" parent="LandingPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = -289.0
+offset_right = 769.0
+offset_bottom = -216.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaterCollectable" type="AnimatedSprite2D" parent="LandingPage/Available"]
+position = Vector2(838, -139)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_8dr3v")
+animation = &"Food"
+
+[node name="WaterShipAmount" type="Label" parent="LandingPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = -175.0
+offset_right = 769.0
+offset_bottom = -102.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IronCollectable" type="AnimatedSprite2D" parent="LandingPage/Available"]
+position = Vector2(837, -27)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_0nqsd")
+animation = &"Iron"
+
+[node name="IronShipAmount" type="Label" parent="LandingPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = -61.0
+offset_right = 769.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OilCollectable" type="AnimatedSprite2D" parent="LandingPage/Available"]
+position = Vector2(837, 87)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_12053")
+animation = &"Oil"
+
+[node name="OilShipAmount" type="Label" parent="LandingPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 53.0
+offset_right = 769.0
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UraniumCollectable" type="AnimatedSprite2D" parent="LandingPage/Available"]
+position = Vector2(837, 202)
+scale = Vector2(2.25001, 2.25001)
+sprite_frames = SubResource("SpriteFrames_o1g8i")
+animation = &"Uranium"
+
+[node name="UraniumShipAmount" type="Label" parent="LandingPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 167.0
+offset_right = 769.0
+offset_bottom = 240.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompChipCollectable" type="AnimatedSprite2D" parent="LandingPage/Available"]
+position = Vector2(838, 317)
+scale = Vector2(2.25, 2.24999)
+sprite_frames = SubResource("SpriteFrames_edhaq")
+animation = &"CompChip"
+
+[node name="CompChipShipAmount" type="Label" parent="LandingPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 281.0
+offset_right = 769.0
+offset_bottom = 354.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="LandingPage"]
 visible = false
@@ -436,16 +566,16 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Craft Stuff"
 
-[node name="TechTreeButton" type="Button" parent="LandingPage/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "Tech Tree"
-
 [node name="FixShipButton" type="Button" parent="LandingPage/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Fix the Ship
 "
+
+[node name="TechTreeButton" type="Button" parent="LandingPage/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Tech Tree"
 
 [node name="EndNightButton" type="Button" parent="LandingPage/GridContainer"]
 layout_mode = 2
@@ -489,10 +619,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.0
-offset_top = -76.0
-offset_right = 134.0
-offset_bottom = -48.0
+offset_left = -32.0
+offset_top = -84.0
+offset_right = 158.0
+offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1235,6 +1365,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("17_26uw4")
 
 [node name="TechPageBG" type="TextureRect" parent="TechTreePage"]
 visible = false
@@ -1249,6 +1380,132 @@ offset_bottom = 1264.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_g30nj")
+
+[node name="Available" type="Control" parent="TechTreePage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -84.0
+offset_right = 158.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="availableBG" type="Sprite2D" parent="TechTreePage/Available"]
+position = Vector2(761, 4)
+texture = ExtResource("4_poicf")
+
+[node name="FoodCollectable" type="AnimatedSprite2D" parent="TechTreePage/Available"]
+position = Vector2(837, -256)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_lvrpj")
+animation = &"Food"
+
+[node name="FoodShipAmount" type="Label" parent="TechTreePage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = -289.0
+offset_right = 769.0
+offset_bottom = -216.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaterCollectable" type="AnimatedSprite2D" parent="TechTreePage/Available"]
+position = Vector2(838, -139)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_8dr3v")
+animation = &"Food"
+
+[node name="WaterShipAmount" type="Label" parent="TechTreePage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = -175.0
+offset_right = 769.0
+offset_bottom = -102.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IronCollectable" type="AnimatedSprite2D" parent="TechTreePage/Available"]
+position = Vector2(837, -27)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_0nqsd")
+animation = &"Iron"
+
+[node name="IronShipAmount" type="Label" parent="TechTreePage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = -61.0
+offset_right = 769.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OilCollectable" type="AnimatedSprite2D" parent="TechTreePage/Available"]
+position = Vector2(837, 87)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_12053")
+animation = &"Oil"
+
+[node name="OilShipAmount" type="Label" parent="TechTreePage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 53.0
+offset_right = 769.0
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UraniumCollectable" type="AnimatedSprite2D" parent="TechTreePage/Available"]
+position = Vector2(837, 202)
+scale = Vector2(2.25001, 2.25001)
+sprite_frames = SubResource("SpriteFrames_o1g8i")
+animation = &"Uranium"
+
+[node name="UraniumShipAmount" type="Label" parent="TechTreePage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 167.0
+offset_right = 769.0
+offset_bottom = 240.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompChipCollectable" type="AnimatedSprite2D" parent="TechTreePage/Available"]
+position = Vector2(838, 317)
+scale = Vector2(2.25, 2.24999)
+sprite_frames = SubResource("SpriteFrames_edhaq")
+animation = &"CompChip"
+
+[node name="CompChipShipAmount" type="Label" parent="TechTreePage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 281.0
+offset_right = 769.0
+offset_bottom = 354.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TechTree" parent="TechTreePage" instance=ExtResource("5_up0aw")]
 position = Vector2(-60, 11)
@@ -1275,6 +1532,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("20_epnti")
 
 [node name="FixPageBG" type="TextureRect" parent="FixShipPage"]
 visible = false
@@ -1290,24 +1548,277 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_g30nj")
 
+[node name="FixedShipProgressBar" type="ProgressBar" parent="FixShipPage"]
+layout_mode = 0
+offset_left = -448.0
+offset_top = -460.0
+offset_right = 384.0
+offset_bottom = -364.0
+step = 1.0
+
+[node name="Available" type="Control" parent="FixShipPage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -84.0
+offset_right = 158.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="availableBG" type="Sprite2D" parent="FixShipPage/Available"]
+position = Vector2(761, 4)
+texture = ExtResource("4_poicf")
+
+[node name="FoodCollectable" type="AnimatedSprite2D" parent="FixShipPage/Available"]
+position = Vector2(837, -256)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_lvrpj")
+animation = &"Food"
+
+[node name="FoodShipAmount" type="Label" parent="FixShipPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = -289.0
+offset_right = 769.0
+offset_bottom = -216.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaterCollectable" type="AnimatedSprite2D" parent="FixShipPage/Available"]
+position = Vector2(838, -139)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_8dr3v")
+animation = &"Food"
+
+[node name="WaterShipAmount" type="Label" parent="FixShipPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = -175.0
+offset_right = 769.0
+offset_bottom = -102.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IronCollectable" type="AnimatedSprite2D" parent="FixShipPage/Available"]
+position = Vector2(837, -27)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_0nqsd")
+animation = &"Iron"
+
+[node name="IronShipAmount" type="Label" parent="FixShipPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = -61.0
+offset_right = 769.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OilCollectable" type="AnimatedSprite2D" parent="FixShipPage/Available"]
+position = Vector2(837, 87)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_12053")
+animation = &"Oil"
+
+[node name="OilShipAmount" type="Label" parent="FixShipPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 53.0
+offset_right = 769.0
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UraniumCollectable" type="AnimatedSprite2D" parent="FixShipPage/Available"]
+position = Vector2(837, 202)
+scale = Vector2(2.25001, 2.25001)
+sprite_frames = SubResource("SpriteFrames_o1g8i")
+animation = &"Uranium"
+
+[node name="UraniumShipAmount" type="Label" parent="FixShipPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 167.0
+offset_right = 769.0
+offset_bottom = 240.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompChipCollectable" type="AnimatedSprite2D" parent="FixShipPage/Available"]
+position = Vector2(838, 317)
+scale = Vector2(2.25, 2.24999)
+sprite_frames = SubResource("SpriteFrames_edhaq")
+animation = &"CompChip"
+
+[node name="CompChipShipAmount" type="Label" parent="FixShipPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 281.0
+offset_right = 769.0
+offset_bottom = 354.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FixShipButton" type="Button" parent="FixShipPage"]
+layout_mode = 2
+offset_left = -168.0
+offset_top = 100.0
+offset_right = 174.0
+offset_bottom = 191.0
+theme_override_font_sizes/font_size = 60
+text = "Fix the Ship"
+
 [node name="GridContainer" type="GridContainer" parent="FixShipPage"]
 layout_mode = 1
-offset_left = -160.0
+offset_left = 768.0
 offset_top = 404.0
-offset_right = 936.0
+offset_right = 960.0
 offset_bottom = 532.0
 theme_override_constants/h_separation = 590
 columns = 2
-
-[node name="FixShipButton" type="Button" parent="FixShipPage/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "Fix the Ship"
 
 [node name="BackFromFIX" type="Button" parent="FixShipPage/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Back"
+
+[node name="FixShipCOST" type="GridContainer" parent="FixShipPage"]
+offset_left = -448.0
+offset_top = -228.0
+offset_right = -1.0
+offset_bottom = -182.0
+scale = Vector2(2, 2)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 13
+
+[node name="BlueCost" type="Label" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BLU" type="TextureRect" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+texture = ExtResource("5_yn8bc")
+
+[node name="FoodCost" type="Label" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FOO" type="TextureRect" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hxfch")
+
+[node name="WaterCost" type="Label" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WAT" type="TextureRect" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1cugw")
+expand_mode = 2
+
+[node name="IronCost" type="Label" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IRO" type="TextureRect" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w180e")
+expand_mode = 2
+
+[node name="OilCost" type="Label" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OIL" type="TextureRect" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_c5pkj")
+expand_mode = 2
+
+[node name="UraniumCost" type="Label" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 2
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="URA" type="TextureRect" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_v1m3d")
+expand_mode = 2
+
+[node name="ComputerChipCost" type="Label" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="COM" type="TextureRect" parent="FixShipPage/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ke814")
+expand_mode = 2
+
+[node name="Needfixship" type="Label" parent="FixShipPage"]
+layout_mode = 0
+offset_left = -280.0
+offset_top = -316.0
+offset_right = 286.0
+offset_bottom = -261.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Needed to fix part of the ship"
 
 [node name="DarkenBG" type="ColorRect" parent="."]
 visible = false
@@ -1422,8 +1933,8 @@ grow_vertical = 2
 color = Color(1, 0.160784, 1, 0.784314)
 
 [connection signal="pressed" from="LandingPage/GridContainer/CraftButton" to="." method="_on_craft_button_pressed"]
-[connection signal="pressed" from="LandingPage/GridContainer/TechTreeButton" to="." method="_on_tech_tree_button_pressed"]
 [connection signal="pressed" from="LandingPage/GridContainer/FixShipButton" to="." method="_on_fix_ship_button_pressed"]
+[connection signal="pressed" from="LandingPage/GridContainer/TechTreeButton" to="." method="_on_tech_tree_button_pressed"]
 [connection signal="pressed" from="LandingPage/GridContainer/EndNightButton" to="." method="_on_end_night_button_pressed"]
 [connection signal="pressed" from="CraftingPage/GridContainer/BackFromCFT" to="." method="_on_back_from_cft_pressed"]
 [connection signal="pressed" from="CraftingPage/CraftOptionsGridContainer/HLTHPCKCreateButton" to="CraftingPage" method="_on_hlthpck_create_button_pressed"]
@@ -1432,6 +1943,7 @@ color = Color(1, 0.160784, 1, 0.784314)
 [connection signal="pressed" from="CraftingPage/CraftOptionsGridContainer/DMGREDCreateButton" to="CraftingPage" method="_on_dmgred_create_button_pressed"]
 [connection signal="pressed" from="CraftingPage/CraftOptionsGridContainer/HarvesterCreateButton" to="CraftingPage" method="_on_harvester_create_button_pressed"]
 [connection signal="pressed" from="TechTreePage/GridContainer/BackFromTT" to="." method="_on_back_from_tt_pressed"]
+[connection signal="pressed" from="FixShipPage/FixShipButton" to="FixShipPage" method="_on_fix_ship_button_pressed"]
 [connection signal="pressed" from="FixShipPage/GridContainer/BackFromFIX" to="." method="_on_back_from_fix_pressed"]
 [connection signal="pressed" from="EndNightCheckBox/GridContainer/ENYesButton" to="." method="_on_en_yes_button_pressed"]
 [connection signal="pressed" from="EndNightCheckBox/GridContainer/ENNoButton" to="." method="_on_en_no_button_pressed"]
