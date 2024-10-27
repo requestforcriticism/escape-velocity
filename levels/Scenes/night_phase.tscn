@@ -1,12 +1,355 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhmd88cnimtpn"]
+[gd_scene load_steps=69 format=3 uid="uid://dhmd88cnimtpn"]
 
 [ext_resource type="Script" path="res://levels/Scenes/night_phase.gd" id="1_y5447"]
 [ext_resource type="Texture2D" uid="uid://b14glxl3ey7ii" path="res://levels/Scenes/NightPhaseAssets/spaceship_interior.png" id="2_g30nj"]
-[ext_resource type="Texture2D" uid="uid://d2dl3sbfp23ut" path="res://levels/Scenes/NightPhaseAssets/NightPhaseTechTreePageBGy.png" id="3_nyikl"]
+[ext_resource type="Texture2D" uid="uid://c46rv4vqhmx0w" path="res://assets/hudAssets/healthpack.png" id="3_ay0j2"]
+[ext_resource type="Script" path="res://levels/Scenes/crafting_page.gd" id="3_su4y4"]
+[ext_resource type="Texture2D" uid="uid://dn0ds7y7r0d7k" path="res://assets/collectabes/oil_bubble.png" id="4_l24yy"]
+[ext_resource type="Texture2D" uid="uid://nk7ocyd0d2y1" path="res://levels/Scenes/NightPhaseAssets/availabel_crafting_background.png" id="4_poicf"]
+[ext_resource type="Texture2D" uid="uid://c8uxk4x1ge14x" path="res://assets/hudAssets/Stamboost.png" id="4_q3cbo"]
+[ext_resource type="Texture2D" uid="uid://djx1u1qr6ilya" path="res://assets/collectabes/water_bubble.png" id="5_0w5xb"]
 [ext_resource type="Texture2D" uid="uid://cixuqsu0ipsgo" path="res://levels/Scenes/NightPhaseAssets/button_square_header_notch_rectangle_screws.png" id="5_3u3ma"]
+[ext_resource type="Texture2D" uid="uid://ckfe805f5ijot" path="res://assets/hudAssets/Damageboost.png" id="5_kx5nd"]
 [ext_resource type="PackedScene" uid="uid://hpfsxc40c02t" path="res://levels/Scenes/NightPhaseAssets/tech_tree.tscn" id="5_up0aw"]
+[ext_resource type="Texture2D" uid="uid://drglisvkhe6of" path="res://assets/collectabes/blue_collectable.png" id="5_yn8bc"]
+[ext_resource type="Texture2D" uid="uid://dr7ljsae3ovrl" path="res://assets/collectabes/food.png" id="6_5y3xq"]
+[ext_resource type="Texture2D" uid="uid://5y13pla1fpku" path="res://assets/hudAssets/DamageReduction.png" id="6_uk755"]
+[ext_resource type="Texture2D" uid="uid://cvn0blwa4chuc" path="res://assets/collectabes/iron_ore.png" id="7_jbwwl"]
+[ext_resource type="Texture2D" uid="uid://dm0rm00r4rudj" path="res://assets/collectabes/logic_card.png" id="8_3gktg"]
+[ext_resource type="Texture2D" uid="uid://da8y88xs5if1o" path="res://assets/collectabes/uranium_ore.png" id="9_u405p"]
+[ext_resource type="Texture2D" uid="uid://duu24sy6gjbqm" path="res://assets/harvester/Single_harverter.png" id="11_t7wt8"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_n3o26"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mlsn"]
+atlas = ExtResource("6_5y3xq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e48hk"]
+atlas = ExtResource("6_5y3xq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lvrpj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mlsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e48hk")
+}],
+"loop": true,
+"name": &"Food",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwlo2"]
+atlas = ExtResource("5_0w5xb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6u7i"]
+atlas = ExtResource("5_0w5xb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qgjf"]
+atlas = ExtResource("5_0w5xb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfdlc"]
+atlas = ExtResource("5_0w5xb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pi6wf"]
+atlas = ExtResource("5_0w5xb")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fr0p6"]
+atlas = ExtResource("5_0w5xb")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5fsq"]
+atlas = ExtResource("5_0w5xb")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8h31"]
+atlas = ExtResource("5_0w5xb")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8dr3v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwlo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6u7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qgjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfdlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pi6wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fr0p6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5fsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8h31")
+}],
+"loop": true,
+"name": &"Food",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbwvd"]
+atlas = ExtResource("7_jbwwl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0nqsd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbwvd")
+}],
+"loop": true,
+"name": &"Iron",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0cbr"]
+atlas = ExtResource("4_l24yy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eymer"]
+atlas = ExtResource("4_l24yy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxw28"]
+atlas = ExtResource("4_l24yy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xksha"]
+atlas = ExtResource("4_l24yy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqp0c"]
+atlas = ExtResource("4_l24yy")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq2t7"]
+atlas = ExtResource("4_l24yy")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brh8c"]
+atlas = ExtResource("4_l24yy")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4ymj"]
+atlas = ExtResource("4_l24yy")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_12053"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0cbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eymer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxw28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xksha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqp0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq2t7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brh8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4ymj")
+}],
+"loop": true,
+"name": &"Oil",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cji70"]
+atlas = ExtResource("9_u405p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x20lh"]
+atlas = ExtResource("9_u405p")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3chr3"]
+atlas = ExtResource("9_u405p")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6orr1"]
+atlas = ExtResource("9_u405p")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gggqk"]
+atlas = ExtResource("9_u405p")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ehd3"]
+atlas = ExtResource("9_u405p")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usp24"]
+atlas = ExtResource("9_u405p")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhgg1"]
+atlas = ExtResource("9_u405p")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcquh"]
+atlas = ExtResource("9_u405p")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbh2c"]
+atlas = ExtResource("9_u405p")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw8oc"]
+atlas = ExtResource("9_u405p")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v666l"]
+atlas = ExtResource("9_u405p")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk3fd"]
+atlas = ExtResource("9_u405p")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey18j"]
+atlas = ExtResource("9_u405p")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ula8w"]
+atlas = ExtResource("9_u405p")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r47fa"]
+atlas = ExtResource("9_u405p")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o1g8i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cji70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x20lh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3chr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6orr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gggqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ehd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usp24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhgg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcquh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbh2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw8oc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v666l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk3fd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ey18j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ula8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r47fa")
+}],
+"loop": true,
+"name": &"Uranium",
+"speed": 15.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua3ak"]
+atlas = ExtResource("8_3gktg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66llj"]
+atlas = ExtResource("8_3gktg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_edhaq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua3ak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66llj")
+}],
+"loop": true,
+"name": &"CompChip",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxfch"]
+atlas = ExtResource("6_5y3xq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cugw"]
+atlas = ExtResource("5_0w5xb")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w180e"]
+atlas = ExtResource("7_jbwwl")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5pkj"]
+atlas = ExtResource("4_l24yy")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1m3d"]
+atlas = ExtResource("9_u405p")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke814"]
+atlas = ExtResource("8_3gktg")
+region = Rect2(32, 0, 32, 32)
 
 [node name="NightPhase" type="Control"]
 layout_mode = 3
@@ -123,6 +466,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_su4y4")
 
 [node name="CraftingPageBG" type="TextureRect" parent="CraftingPage"]
 visible = false
@@ -130,13 +474,139 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -943.0
-offset_top = -1237.0
-offset_right = 4129.0
-offset_bottom = 1599.0
+offset_left = -940.0
+offset_top = -1520.0
+offset_right = 4941.0
+offset_bottom = 1771.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_nyikl")
+texture = ExtResource("2_g30nj")
+
+[node name="Available" type="Control" parent="CraftingPage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -76.0
+offset_right = 134.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="availableBG" type="Sprite2D" parent="CraftingPage/Available"]
+position = Vector2(761, 4)
+texture = ExtResource("4_poicf")
+
+[node name="FoodCollectable" type="AnimatedSprite2D" parent="CraftingPage/Available"]
+position = Vector2(837, -256)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_lvrpj")
+animation = &"Food"
+
+[node name="FoodShipAmount" type="Label" parent="CraftingPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = -289.0
+offset_right = 769.0
+offset_bottom = -216.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaterCollectable" type="AnimatedSprite2D" parent="CraftingPage/Available"]
+position = Vector2(838, -139)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_8dr3v")
+animation = &"Food"
+
+[node name="WaterShipAmount" type="Label" parent="CraftingPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = -175.0
+offset_right = 769.0
+offset_bottom = -102.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IronCollectable" type="AnimatedSprite2D" parent="CraftingPage/Available"]
+position = Vector2(837, -27)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_0nqsd")
+animation = &"Iron"
+
+[node name="IronShipAmount" type="Label" parent="CraftingPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = -61.0
+offset_right = 769.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OilCollectable" type="AnimatedSprite2D" parent="CraftingPage/Available"]
+position = Vector2(837, 87)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_12053")
+animation = &"Oil"
+
+[node name="OilShipAmount" type="Label" parent="CraftingPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 53.0
+offset_right = 769.0
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UraniumCollectable" type="AnimatedSprite2D" parent="CraftingPage/Available"]
+position = Vector2(837, 202)
+scale = Vector2(2.25001, 2.25001)
+sprite_frames = SubResource("SpriteFrames_o1g8i")
+animation = &"Uranium"
+
+[node name="UraniumShipAmount" type="Label" parent="CraftingPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 167.0
+offset_right = 769.0
+offset_bottom = 240.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompChipCollectable" type="AnimatedSprite2D" parent="CraftingPage/Available"]
+position = Vector2(838, 317)
+scale = Vector2(2.25, 2.24999)
+sprite_frames = SubResource("SpriteFrames_edhaq")
+animation = &"CompChip"
+
+[node name="CompChipShipAmount" type="Label" parent="CraftingPage/Available"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 281.0
+offset_right = 769.0
+offset_bottom = 354.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="CraftingPage"]
 layout_mode = 0
@@ -149,6 +619,607 @@ offset_bottom = 542.0
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Back"
+
+[node name="CraftOptionsGridContainer" type="GridContainer" parent="CraftingPage"]
+layout_mode = 2
+offset_left = -868.0
+offset_top = -448.0
+offset_right = -244.0
+offset_bottom = -19.0
+scale = Vector2(1.5, 1.5)
+columns = 3
+
+[node name="InInventory" type="Label" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Amount
+on Drone"
+horizontal_alignment = 1
+
+[node name="ConsumableItem" type="Label" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Consumable
+Item"
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Cost"
+horizontal_alignment = 1
+
+[node name="HLTPCKInInventory" type="Label" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "999
+"
+horizontal_alignment = 1
+
+[node name="HLTHPCKCreateButton" type="Button" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+icon = ExtResource("3_ay0j2")
+icon_alignment = 1
+
+[node name="HLTHPCKCOST" type="GridContainer" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 13
+
+[node name="BlueCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BLU" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+texture = ExtResource("5_yn8bc")
+
+[node name="FoodCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FOO" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hxfch")
+
+[node name="WaterCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WAT" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1cugw")
+expand_mode = 2
+
+[node name="IronCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IRO" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w180e")
+expand_mode = 2
+
+[node name="OilCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OIL" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_c5pkj")
+expand_mode = 2
+
+[node name="UraniumCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 2
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="URA" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_v1m3d")
+expand_mode = 2
+
+[node name="ComputerChipCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="COM" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HLTHPCKCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ke814")
+expand_mode = 2
+
+[node name="STABSTInInventory" type="Label" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "999
+"
+horizontal_alignment = 1
+
+[node name="STABSTCreateButton" type="Button" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+icon = ExtResource("4_q3cbo")
+icon_alignment = 1
+
+[node name="STABSTCOST" type="GridContainer" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 13
+
+[node name="BlueCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BLU" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+texture = ExtResource("5_yn8bc")
+
+[node name="FoodCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FOO" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hxfch")
+
+[node name="WaterCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WAT" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1cugw")
+expand_mode = 2
+
+[node name="IronCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IRO" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w180e")
+expand_mode = 2
+
+[node name="OilCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OIL" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_c5pkj")
+expand_mode = 2
+
+[node name="UraniumCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 2
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="URA" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_v1m3d")
+expand_mode = 2
+
+[node name="ComputerChipCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="COM" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/STABSTCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ke814")
+expand_mode = 2
+
+[node name="DMGBSTInInventory" type="Label" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "999
+"
+horizontal_alignment = 1
+
+[node name="DMGBSTCreateButton" type="Button" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+icon = ExtResource("5_kx5nd")
+icon_alignment = 1
+
+[node name="DMGBSTCOST" type="GridContainer" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 13
+
+[node name="BlueCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BLU" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+texture = ExtResource("5_yn8bc")
+
+[node name="FoodCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FOO" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hxfch")
+
+[node name="WaterCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WAT" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1cugw")
+expand_mode = 2
+
+[node name="IronCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IRO" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w180e")
+expand_mode = 2
+
+[node name="OilCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OIL" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_c5pkj")
+expand_mode = 2
+
+[node name="UraniumCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 2
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="URA" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_v1m3d")
+expand_mode = 2
+
+[node name="ComputerChipCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="COM" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGBSTCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ke814")
+expand_mode = 2
+
+[node name="DMGREDInInventory" type="Label" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "999
+"
+horizontal_alignment = 1
+
+[node name="DMGREDCreateButton" type="Button" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+icon = ExtResource("6_uk755")
+icon_alignment = 1
+
+[node name="DMGREDCOST" type="GridContainer" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 13
+
+[node name="BlueCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BLU" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+texture = ExtResource("5_yn8bc")
+
+[node name="FoodCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FOO" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hxfch")
+
+[node name="WaterCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WAT" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1cugw")
+expand_mode = 2
+
+[node name="IronCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IRO" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w180e")
+expand_mode = 2
+
+[node name="OilCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OIL" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_c5pkj")
+expand_mode = 2
+
+[node name="UraniumCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 2
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="URA" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_v1m3d")
+expand_mode = 2
+
+[node name="ComputerChipCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="COM" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/DMGREDCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ke814")
+expand_mode = 2
+
+[node name="HarversterInInventory" type="Label" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "999
+"
+horizontal_alignment = 1
+
+[node name="HarvesterCreateButton" type="Button" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+icon = ExtResource("11_t7wt8")
+icon_alignment = 1
+
+[node name="HarvesterCOST" type="GridContainer" parent="CraftingPage/CraftOptionsGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 13
+
+[node name="BlueCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BLU" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+texture = ExtResource("5_yn8bc")
+
+[node name="FoodCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FOO" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hxfch")
+
+[node name="WaterCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WAT" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1cugw")
+expand_mode = 2
+
+[node name="IronCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IRO" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w180e")
+expand_mode = 2
+
+[node name="OilCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OIL" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_c5pkj")
+expand_mode = 2
+
+[node name="UraniumCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 2
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="URA" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_v1m3d")
+expand_mode = 2
+
+[node name="ComputerChipCost" type="Label" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="COM" type="TextureRect" parent="CraftingPage/CraftOptionsGridContainer/HarvesterCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ke814")
+expand_mode = 2
 
 [node name="TechTreePage" type="Control" parent="."]
 visible = false
@@ -355,6 +1426,11 @@ color = Color(1, 0.160784, 1, 0.784314)
 [connection signal="pressed" from="LandingPage/GridContainer/FixShipButton" to="." method="_on_fix_ship_button_pressed"]
 [connection signal="pressed" from="LandingPage/GridContainer/EndNightButton" to="." method="_on_end_night_button_pressed"]
 [connection signal="pressed" from="CraftingPage/GridContainer/BackFromCFT" to="." method="_on_back_from_cft_pressed"]
+[connection signal="pressed" from="CraftingPage/CraftOptionsGridContainer/HLTHPCKCreateButton" to="CraftingPage" method="_on_hlthpck_create_button_pressed"]
+[connection signal="pressed" from="CraftingPage/CraftOptionsGridContainer/STABSTCreateButton" to="CraftingPage" method="_on_stabst_create_button_pressed"]
+[connection signal="pressed" from="CraftingPage/CraftOptionsGridContainer/DMGBSTCreateButton" to="CraftingPage" method="_on_dmgbst_create_button_pressed"]
+[connection signal="pressed" from="CraftingPage/CraftOptionsGridContainer/DMGREDCreateButton" to="CraftingPage" method="_on_dmgred_create_button_pressed"]
+[connection signal="pressed" from="CraftingPage/CraftOptionsGridContainer/HarvesterCreateButton" to="CraftingPage" method="_on_harvester_create_button_pressed"]
 [connection signal="pressed" from="TechTreePage/GridContainer/BackFromTT" to="." method="_on_back_from_tt_pressed"]
 [connection signal="pressed" from="FixShipPage/GridContainer/BackFromFIX" to="." method="_on_back_from_fix_pressed"]
 [connection signal="pressed" from="EndNightCheckBox/GridContainer/ENYesButton" to="." method="_on_en_yes_button_pressed"]

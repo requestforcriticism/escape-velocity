@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chceuoyiyodci"
-path="res://.godot/imported/keyboard_h.png-50faa443441b82815860ae931f895b1f.ctex"
+uid="uid://ckfe805f5ijot"
+path="res://.godot/imported/Damageboost.png-46ea976ec0e2285fa27335bf72e033c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/hudAssets/keyboard_h.png"
-dest_files=["res://.godot/imported/keyboard_h.png-50faa443441b82815860ae931f895b1f.ctex"]
+source_file="res://assets/hudAssets/Damageboost.png"
+dest_files=["res://.godot/imported/Damageboost.png-46ea976ec0e2285fa27335bf72e033c6.ctex"]
 
 [params]
 

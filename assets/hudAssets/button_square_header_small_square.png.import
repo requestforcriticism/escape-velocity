@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c46rv4vqhmx0w"
-path="res://.godot/imported/healthpack.png-97610ffa4aee43a778d8bfae72dc8d38.ctex"
+uid="uid://dfq53nsh1s4f7"
+path="res://.godot/imported/button_square_header_small_square.png-5ec3c8b4690696566c962a13908116fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/hudAssets/healthpack.png"
-dest_files=["res://.godot/imported/healthpack.png-97610ffa4aee43a778d8bfae72dc8d38.ctex"]
+source_file="res://assets/hudAssets/button_square_header_small_square.png"
+dest_files=["res://.godot/imported/button_square_header_small_square.png-5ec3c8b4690696566c962a13908116fd.ctex"]
 
 [params]
 

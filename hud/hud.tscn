@@ -1,48 +1,51 @@
-[gd_scene load_steps=34 format=3 uid="uid://ddo8sc41fi3mj"]
+[gd_scene load_steps=37 format=3 uid="uid://ddo8sc41fi3mj"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_bk8gt"]
-[ext_resource type="Texture2D" uid="uid://b1uojfaef3bxi" path="res://hud/hudAssets/button_square_header_blade_square.png" id="2_l4rbn"]
-[ext_resource type="Texture2D" uid="uid://c46rv4vqhmx0w" path="res://hud/hudAssets/healthpack.png" id="3_sv064"]
-[ext_resource type="Texture2D" uid="uid://bpe7ykwhmtmpk" path="res://hud/hudAssets/keyboard_r.png" id="4_tdxxr"]
+[ext_resource type="Texture2D" uid="uid://b1uojfaef3bxi" path="res://assets/hudAssets/button_square_header_blade_square.png" id="2_pxitt"]
+[ext_resource type="Texture2D" uid="uid://c46rv4vqhmx0w" path="res://assets/hudAssets/healthpack.png" id="3_f2ufm"]
+[ext_resource type="Texture2D" uid="uid://bpe7ykwhmtmpk" path="res://assets/hudAssets/keyboard_r.png" id="4_lcbht"]
 [ext_resource type="SpriteFrames" uid="uid://debd5ieq62j5w" path="res://components/Collectables/collectables_animations.tres" id="5_4m6ay"]
-[ext_resource type="Texture2D" uid="uid://ckojygrnc6ctp" path="res://hud/hudAssets/Battery.png" id="5_j5b1w"]
-[ext_resource type="Texture2D" uid="uid://beop71wr0brme" path="res://hud/hudAssets/heart.png" id="6_cuk7t"]
-[ext_resource type="Texture2D" uid="uid://ciqe0uu5lfa86" path="res://hud/hudAssets/Sun.png" id="7_y5faw"]
-[ext_resource type="Texture2D" uid="uid://csthlahxgrqv6" path="res://hud/hudAssets/horizon.png" id="8_ncjx3"]
-[ext_resource type="Texture2D" uid="uid://bn62ykp5bvemj" path="res://hud/hudAssets/Backpack.png" id="9_m72dy"]
-[ext_resource type="Texture2D" uid="uid://ce7w6ucv46wlh" path="res://hud/hudAssets/keyboard_escape.png" id="10_f2byy"]
-[ext_resource type="Texture2D" uid="uid://b4xjqv4gmi4sb" path="res://hud/hudAssets/panel_rectangle_screws.png" id="11_aujdx"]
-[ext_resource type="Texture2D" uid="uid://wgnh21pr6da7" path="res://hud/hudAssets/panel_glass_notches.png" id="12_8rmc5"]
-[ext_resource type="Texture2D" uid="uid://c8uxk4x1ge14x" path="res://hud/hudAssets/Stamboost.png" id="13_guwm7"]
-[ext_resource type="Texture2D" uid="uid://ckfe805f5ijot" path="res://hud/hudAssets/Damageboost.png" id="14_6ix18"]
-[ext_resource type="Texture2D" uid="uid://5y13pla1fpku" path="res://hud/hudAssets/DamageReduction.png" id="15_p5oud"]
-[ext_resource type="Texture2D" uid="uid://b3bjq28cxrn25" path="res://hud/hudAssets/keyboard_tab.png" id="16_jyb7g"]
-[ext_resource type="Texture2D" uid="uid://dtbnojj3axvt4" path="res://hud/hudAssets/keyboard_f.png" id="17_7ppwk"]
-[ext_resource type="Texture2D" uid="uid://c20gt5fce4msw" path="res://hud/hudAssets/arrow_e.png" id="18_bn1vl"]
-[ext_resource type="Texture2D" uid="uid://c8qub0dmh5gpn" path="res://hud/hudAssets/flair_arrow_3.png" id="19_5bfkw"]
-[ext_resource type="Texture2D" uid="uid://dfq53nsh1s4f7" path="res://hud/hudAssets/button_square_header_small_square.png" id="21_ivrv3"]
+[ext_resource type="Texture2D" uid="uid://ckojygrnc6ctp" path="res://assets/hudAssets/Battery.png" id="5_l1w1h"]
+[ext_resource type="Texture2D" uid="uid://beop71wr0brme" path="res://assets/hudAssets/heart.png" id="6_68dp4"]
+[ext_resource type="Texture2D" uid="uid://ciqe0uu5lfa86" path="res://assets/hudAssets/Sun.png" id="7_aevwj"]
+[ext_resource type="Texture2D" uid="uid://csthlahxgrqv6" path="res://assets/hudAssets/horizon.png" id="8_xtugr"]
+[ext_resource type="Texture2D" uid="uid://bn62ykp5bvemj" path="res://assets/hudAssets/Backpack.png" id="9_bfy32"]
+[ext_resource type="Texture2D" uid="uid://ce7w6ucv46wlh" path="res://assets/hudAssets/keyboard_escape.png" id="11_w6sln"]
+[ext_resource type="Texture2D" uid="uid://b4xjqv4gmi4sb" path="res://assets/hudAssets/panel_rectangle_screws.png" id="12_j38nh"]
+[ext_resource type="Texture2D" path="res://hud/hudAssets/Stamboost.png" id="13_guwm7"]
+[ext_resource type="Texture2D" uid="uid://wgnh21pr6da7" path="res://assets/hudAssets/panel_glass_notches.png" id="13_ig5ei"]
+[ext_resource type="Texture2D" path="res://hud/hudAssets/Damageboost.png" id="14_6ix18"]
+[ext_resource type="Texture2D" uid="uid://c8uxk4x1ge14x" path="res://assets/hudAssets/Stamboost.png" id="14_nryws"]
+[ext_resource type="Texture2D" path="res://hud/hudAssets/DamageReduction.png" id="15_p5oud"]
+[ext_resource type="Texture2D" uid="uid://ckfe805f5ijot" path="res://assets/hudAssets/Damageboost.png" id="15_suoct"]
+[ext_resource type="Texture2D" uid="uid://5y13pla1fpku" path="res://assets/hudAssets/DamageReduction.png" id="16_261b7"]
+[ext_resource type="Texture2D" uid="uid://b3bjq28cxrn25" path="res://assets/hudAssets/keyboard_tab.png" id="17_vssp0"]
+[ext_resource type="Texture2D" uid="uid://dtbnojj3axvt4" path="res://assets/hudAssets/keyboard_f.png" id="18_qwby4"]
+[ext_resource type="Texture2D" uid="uid://c20gt5fce4msw" path="res://assets/hudAssets/arrow_e.png" id="19_lbgcr"]
+[ext_resource type="Texture2D" uid="uid://c8qub0dmh5gpn" path="res://assets/hudAssets/flair_arrow_3.png" id="20_meolf"]
 [ext_resource type="Texture2D" uid="uid://d4kwt20g4glah" path="res://assets/harvester/harvester.png" id="22_ci0dj"]
-[ext_resource type="Texture2D" uid="uid://chceuoyiyodci" path="res://hud/hudAssets/keyboard_h.png" id="23_wwg20"]
+[ext_resource type="Texture2D" uid="uid://dfq53nsh1s4f7" path="res://assets/hudAssets/button_square_header_small_square.png" id="24_vxgvv"]
+[ext_resource type="Texture2D" uid="uid://chceuoyiyodci" path="res://assets/hudAssets/keyboard_h.png" id="26_jdx07"]
 
 [sub_resource type="Theme" id="Theme_skyi0"]
 default_font_size = 40
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xdkj7"]
-atlas = ExtResource("7_y5faw")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m56up"]
-atlas = ExtResource("7_y5faw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddl0y"]
+atlas = ExtResource("7_aevwj")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bofmo"]
+atlas = ExtResource("7_aevwj")
+region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q4gkt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xdkj7")
+"texture": SubResource("AtlasTexture_ddl0y")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m56up")
+"texture": SubResource("AtlasTexture_bofmo")
 }],
 "loop": true,
 "name": &"default",
@@ -120,17 +123,17 @@ vertical_alignment = 1
 show_behind_parent = true
 position = Vector2(248, 40)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_l4rbn")
+texture = ExtResource("2_pxitt")
 
 [node name="HealthPack" type="Sprite2D" parent="HealthPackContainer"]
 position = Vector2(246.75, 41.3478)
 scale = Vector2(1.28906, 1.27038)
-texture = ExtResource("3_sv064")
+texture = ExtResource("3_f2ufm")
 
 [node name="RLetter" type="Sprite2D" parent="HealthPackContainer"]
 position = Vector2(278, 10)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("4_tdxxr")
+texture = ExtResource("4_lcbht")
 
 [node name="StaminaProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0.180392, 1, 0.337255, 1)
@@ -147,7 +150,7 @@ metadata/_edit_lock_ = true
 [node name="BatterySprite2D" type="Sprite2D" parent="StaminaProgressBar"]
 position = Vector2(172.5, 163.213)
 scale = Vector2(1.37891, 1.83147)
-texture = ExtResource("5_j5b1w")
+texture = ExtResource("5_l1w1h")
 
 [node name="HPProgressBar" type="ProgressBar" parent="."]
 self_modulate = Color(1, 0, 0, 1)
@@ -163,7 +166,7 @@ value = 100.0
 show_behind_parent = true
 position = Vector2(56, 48)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("6_cuk7t")
+texture = ExtResource("6_68dp4")
 
 [node name="OneMinWarning" type="Label" parent="."]
 visible = false
@@ -207,7 +210,7 @@ frame_progress = 0.968346
 [node name="Sprite2D" type="Sprite2D" parent="ContDTT"]
 position = Vector2(2.67029e-05, 168)
 scale = Vector2(1.75, 1.625)
-texture = ExtResource("8_ncjx3")
+texture = ExtResource("8_xtugr")
 
 [node name="DayTrackerTimer" type="Timer" parent="ContDTT"]
 
@@ -247,7 +250,7 @@ grow_horizontal = 0
 [node name="Sprite2D" type="Sprite2D" parent="ContBp"]
 position = Vector2(-22.0001, 54)
 scale = Vector2(1.15625, 1.15625)
-texture = ExtResource("9_m72dy")
+texture = ExtResource("9_bfy32")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="ContBp"]
 position = Vector2(-32, -48)
@@ -264,7 +267,7 @@ position = Vector2(-96, 48)
 [node name="EscapeImage" type="Sprite2D" parent="ContBp"]
 position = Vector2(32, 8)
 scale = Vector2(0.968749, 0.984375)
-texture = ExtResource("10_f2byy")
+texture = ExtResource("11_w6sln")
 metadata/_edit_group_ = true
 
 [node name="ContConsum" type="Control" parent="."]
@@ -278,30 +281,30 @@ offset_bottom = 96.0
 [node name="ConsBG" type="Sprite2D" parent="ContConsum"]
 position = Vector2(207.227, 229.5)
 scale = Vector2(1.59139, 1.57813)
-texture = ExtResource("11_aujdx")
+texture = ExtResource("12_j38nh")
 metadata/_edit_group_ = true
 
 [node name="ChosenCons" type="Sprite2D" parent="ContConsum"]
 position = Vector2(204, 232)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("12_8rmc5")
+texture = ExtResource("13_ig5ei")
 metadata/_edit_group_ = true
 
 [node name="LeftCons" type="Sprite2D" parent="ContConsum"]
 position = Vector2(96, 216)
 scale = Vector2(1.04688, 1.04688)
-texture = ExtResource("12_8rmc5")
+texture = ExtResource("13_ig5ei")
 metadata/_edit_group_ = true
 
 [node name="RightCons" type="Sprite2D" parent="ContConsum"]
 position = Vector2(312, 232)
 scale = Vector2(1.04688, 1.04688)
-texture = ExtResource("12_8rmc5")
+texture = ExtResource("13_ig5ei")
 metadata/_edit_group_ = true
 
 [node name="SBst" type="Sprite2D" parent="ContConsum"]
 position = Vector2(136, -136)
-texture = ExtResource("13_guwm7")
+texture = ExtResource("14_nryws")
 metadata/_edit_group_ = true
 
 [node name="AmtLeft" type="Label" parent="ContConsum/SBst"]
@@ -315,7 +318,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="DBst" type="Sprite2D" parent="ContConsum"]
 position = Vector2(71.5, -135.5)
-texture = ExtResource("14_6ix18")
+texture = ExtResource("15_suoct")
 metadata/_edit_group_ = true
 
 [node name="AmtLeft" type="Label" parent="ContConsum/DBst"]
@@ -328,7 +331,7 @@ text = "3"
 
 [node name="DRed" type="Sprite2D" parent="ContConsum"]
 position = Vector2(200.5, -135.5)
-texture = ExtResource("15_p5oud")
+texture = ExtResource("16_261b7")
 metadata/_edit_group_ = true
 
 [node name="AmtLeft" type="Label" parent="ContConsum/DRed"]
@@ -343,31 +346,31 @@ metadata/_edit_use_anchors_ = true
 [node name="pressTab" type="Sprite2D" parent="ContConsum"]
 position = Vector2(75, 265)
 scale = Vector2(0.875, 0.875)
-texture = ExtResource("16_jyb7g")
+texture = ExtResource("17_vssp0")
 metadata/_edit_group_ = true
 
 [node name="PressF" type="Sprite2D" parent="ContConsum"]
 position = Vector2(240, 192)
 scale = Vector2(0.757815, 0.75781)
-texture = ExtResource("17_7ppwk")
+texture = ExtResource("18_qwby4")
 metadata/_edit_group_ = true
 
 [node name="ArrowRight" type="Sprite2D" parent="ContConsum"]
 position = Vector2(266, 232)
-texture = ExtResource("18_bn1vl")
+texture = ExtResource("19_lbgcr")
 metadata/_edit_group_ = true
 
 [node name="ArrowRight2" type="Sprite2D" parent="ContConsum"]
 position = Vector2(143, 223)
 rotation = 0.15708
-texture = ExtResource("18_bn1vl")
+texture = ExtResource("19_lbgcr")
 metadata/_edit_group_ = true
 
 [node name="CircleArrow" type="Sprite2D" parent="ContConsum"]
 modulate = Color(0.266667, 0, 0, 1)
 position = Vector2(120, 264)
 scale = Vector2(0.625, 0.625)
-texture = ExtResource("19_5bfkw")
+texture = ExtResource("20_meolf")
 metadata/_edit_group_ = true
 
 [node name="Path2D" type="Path2D" parent="ContConsum"]
@@ -430,7 +433,7 @@ offset_bottom = 176.0
 [node name="Sprite2D" type="Sprite2D" parent="HarvesterControl"]
 position = Vector2(32, 56)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("21_ivrv3")
+texture = ExtResource("24_vxgvv")
 
 [node name="HarvesterCount" type="Label" parent="HarvesterControl"]
 layout_mode = 2
@@ -451,7 +454,7 @@ animation = &"Available"
 [node name="Sprite2D2" type="Sprite2D" parent="HarvesterControl"]
 position = Vector2(72, 96)
 scale = Vector2(0.71289, 0.712891)
-texture = ExtResource("23_wwg20")
+texture = ExtResource("26_jdx07")
 
 [node name="DayNumber" type="Label" parent="."]
 anchors_preset = 8

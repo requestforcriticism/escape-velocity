@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beop71wr0brme"
-path="res://.godot/imported/heart.png-3fa3cd5199033766df7101200557f7d1.ctex"
+uid="uid://c8qub0dmh5gpn"
+path="res://.godot/imported/flair_arrow_3.png-ee46b819be9a20c9a945ed650ed455e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/hudAssets/heart.png"
-dest_files=["res://.godot/imported/heart.png-3fa3cd5199033766df7101200557f7d1.ctex"]
+source_file="res://assets/hudAssets/flair_arrow_3.png"
+dest_files=["res://.godot/imported/flair_arrow_3.png-ee46b819be9a20c9a945ed650ed455e6.ctex"]
 
 [params]
 

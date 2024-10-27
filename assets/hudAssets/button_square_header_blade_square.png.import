@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckfe805f5ijot"
-path="res://.godot/imported/Damageboost.png-c83d3291a6d71e4d0522e62756dc59e9.ctex"
+uid="uid://b1uojfaef3bxi"
+path="res://.godot/imported/button_square_header_blade_square.png-e1c1cf4eb733a539e2f57eec4088578e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/hudAssets/Damageboost.png"
-dest_files=["res://.godot/imported/Damageboost.png-c83d3291a6d71e4d0522e62756dc59e9.ctex"]
+source_file="res://assets/hudAssets/button_square_header_blade_square.png"
+dest_files=["res://.godot/imported/button_square_header_blade_square.png-e1c1cf4eb733a539e2f57eec4088578e.ctex"]
 
 [params]
 

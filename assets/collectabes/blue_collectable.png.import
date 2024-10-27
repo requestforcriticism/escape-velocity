@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn62ykp5bvemj"
-path="res://.godot/imported/Backpack.png-92804ca8c2d36c3fb8687708e7617faa.ctex"
+uid="uid://drglisvkhe6of"
+path="res://.godot/imported/blue_collectable.png-c5ac3e973f7449cace17f8e961449273.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/hudAssets/Backpack.png"
-dest_files=["res://.godot/imported/Backpack.png-92804ca8c2d36c3fb8687708e7617faa.ctex"]
+source_file="res://assets/collectabes/blue_collectable.png"
+dest_files=["res://.godot/imported/blue_collectable.png-c5ac3e973f7449cace17f8e961449273.ctex"]
 
 [params]
 

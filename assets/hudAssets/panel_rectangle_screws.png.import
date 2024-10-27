@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8uxk4x1ge14x"
-path="res://.godot/imported/Stamboost.png-d4e7d3f0330e1f077d60416fc134815d.ctex"
+uid="uid://b4xjqv4gmi4sb"
+path="res://.godot/imported/panel_rectangle_screws.png-8c3b028ee0060aea3528db7e1691ea03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/hudAssets/Stamboost.png"
-dest_files=["res://.godot/imported/Stamboost.png-d4e7d3f0330e1f077d60416fc134815d.ctex"]
+source_file="res://assets/hudAssets/panel_rectangle_screws.png"
+dest_files=["res://.godot/imported/panel_rectangle_screws.png-8c3b028ee0060aea3528db7e1691ea03.ctex"]
 
 [params]
 

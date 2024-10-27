@@ -16,6 +16,7 @@ func _ready() -> void:
 	$ContConsum/GridContainer/StaRegDur.text = str("0 secs")
 	$ContConsum/GridContainer/DmgBstDur.text = str("0 secs")
 	$ContConsum/GridContainer/DmgRedDur.text = str("0 secs")
+	$ContDTT/AnimatedSprite2D.position = $ContDTT/Path2D/PathFollow2D.position
 
 func start_day(dayLength):
 	DayTimeLeft = dayLength

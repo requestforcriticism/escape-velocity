@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8qub0dmh5gpn"
-path="res://.godot/imported/flair_arrow_3.png-19e03f015daf4c4f6759cec24307c2af.ctex"
+uid="uid://bpe7ykwhmtmpk"
+path="res://.godot/imported/keyboard_r.png-a36d7c115826cb12da5b9bbd5479e42b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/hudAssets/flair_arrow_3.png"
-dest_files=["res://.godot/imported/flair_arrow_3.png-19e03f015daf4c4f6759cec24307c2af.ctex"]
+source_file="res://assets/hudAssets/keyboard_r.png"
+dest_files=["res://.godot/imported/keyboard_r.png-a36d7c115826cb12da5b9bbd5479e42b.ctex"]
 
 [params]
 

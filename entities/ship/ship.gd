@@ -15,7 +15,7 @@ func _process(delta):
 func collect(item, amount:int = 1):
 	var current_item_count = Save.get_value(1, item, 0)
 	Save.set_value(1, item, current_item_count + amount)
-	Save.save_file(1)
+	#Save.save_file(1)
 
 #when player enters, copy stuff over
 func _on_area_2d_body_entered(body):

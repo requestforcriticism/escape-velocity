@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wgnh21pr6da7"
-path="res://.godot/imported/panel_glass_notches.png-1c97b93f81991e98299485fcfa823233.ctex"
+uid="uid://c8uxk4x1ge14x"
+path="res://.godot/imported/Stamboost.png-d388f86ae571e1ae707074cc58c411ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/hudAssets/panel_glass_notches.png"
-dest_files=["res://.godot/imported/panel_glass_notches.png-1c97b93f81991e98299485fcfa823233.ctex"]
+source_file="res://assets/hudAssets/Stamboost.png"
+dest_files=["res://.godot/imported/Stamboost.png-d388f86ae571e1ae707074cc58c411ae.ctex"]
 
 [params]
 

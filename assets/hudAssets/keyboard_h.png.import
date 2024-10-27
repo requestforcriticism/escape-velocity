@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1uojfaef3bxi"
-path="res://.godot/imported/button_square_header_blade_square.png-08d21cbe2b9a1172efff1d46524a4d67.ctex"
+uid="uid://chceuoyiyodci"
+path="res://.godot/imported/keyboard_h.png-7f4c9751bb91e61f5cd7b88624099527.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/hudAssets/button_square_header_blade_square.png"
-dest_files=["res://.godot/imported/button_square_header_blade_square.png-08d21cbe2b9a1172efff1d46524a4d67.ctex"]
+source_file="res://assets/hudAssets/keyboard_h.png"
+dest_files=["res://.godot/imported/keyboard_h.png-7f4c9751bb91e61f5cd7b88624099527.ctex"]
 
 [params]
 

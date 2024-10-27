@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4xjqv4gmi4sb"
-path="res://.godot/imported/panel_rectangle_screws.png-925b7ddbd68c225b7337739ba9b603bc.ctex"
+uid="uid://nk7ocyd0d2y1"
+path="res://.godot/imported/availabel_crafting_background.png-477506b6f3a0d567fb206954045f8a5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hud/hudAssets/panel_rectangle_screws.png"
-dest_files=["res://.godot/imported/panel_rectangle_screws.png-925b7ddbd68c225b7337739ba9b603bc.ctex"]
+source_file="res://levels/Scenes/NightPhaseAssets/availabel_crafting_background.png"
+dest_files=["res://.godot/imported/availabel_crafting_background.png-477506b6f3a0d567fb206954045f8a5c.ctex"]
 
 [params]
 

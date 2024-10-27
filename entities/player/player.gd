@@ -44,7 +44,7 @@ var consDurRate = 15
 var ConsumActive = [false,false,false]
 
 @export var availible_harvesters:int
-@export var max_harvesters:int = 5
+@export var max_harvesters:int = Save.get_value(1, "HARV", 1)
 
 @export var DMG:float
 
@@ -106,7 +106,7 @@ func _ready():
 	hpPackCount.emit(Healthpacks)
 	consumCount.emit(consum)
 	DMG = 5 #+ tech tree bonus
-	colable = [0,0,0,0,0,0, 0] #These are the collectable startup values
+	colable = [0,0,0,0,0,0,0] #These are the collectable startup values
 	looking = Vector2(1,0)
 	lastlook = Vector2(1,0)
 	lastMouse = Vector2(1,0)

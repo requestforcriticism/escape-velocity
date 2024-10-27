@@ -24,7 +24,7 @@ func _get_value_mem(file: int, key: String, default_value=null):
 	
 	if !save_files[file].has(key):
 		save_files[file][key] = default_value
-	print("old ", save_files[file][key])
+	#print("old ", save_files[file][key])
 	return save_files[file][key]
 	
 func _set_value_mem(file: int, key: String, value):
