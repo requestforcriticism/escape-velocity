@@ -1,6 +1,6 @@
 extends Control
 
-	#					= ["BLU","IRO"	,"OIL"	,"WAT"	,"URA"	,"FOO"	,"COM"	]
+	#				= ["BLU","IRO"	,"OIL"	,"WAT"	,"URA"	,"FOO"	,"COM"	]
 var HLTHPCKCOST 	= [0	,0	  	,5		,5	  	,0		,0		,0		]
 var STABSTCOST 		= [0	,7	  	,10		,3	  	,0		,0		,0		]
 var DMGBSTCOST 		= [0	,3	  	,5		,2	  	,1		,0		,0		]
