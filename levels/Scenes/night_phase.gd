@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 var Days
 var starting:bool
@@ -93,7 +93,7 @@ func _on_back_from_fix_pressed() -> void:
 	page_state = PAGE_STATE.LANDING
 
 func _on_en_yes_button_pressed() -> void:
-	release_focus()
+	#release_focus()
 	end_day()
 
 func _on_en_no_button_pressed() -> void:
