@@ -185,6 +185,7 @@ func type_in_letters(LabelNode):
 	return true
 
 var FontStart:int = 1
+
 func letters_pop_out(LabelNode,fontStart,modul):
 	if fontStart > FontStart:
 		FontStart = fontStart

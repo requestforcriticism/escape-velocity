@@ -292,7 +292,7 @@ func _on_dash_wait_timeout() -> void:
 func _on_shoot_timer_timeout() -> void:
 	shootRdy = true
 	$ShootTimer.wait_time = PlayerStats.get_shootSpeed()
-	$ShootTimer.stop()
+	#$ShootTimer.stop()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if "damage" in area:
