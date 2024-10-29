@@ -88,18 +88,23 @@ func _on_day_timer_timeout() -> void:
 		end_day()
 		
 func end_day():
+	ending_day.emit()
+	#await get_tree().create_timer(0.5).timeout
+	get_tree().paused = true
 	for i in $player.colable.size():
 		$player.colable[i] = 0
-	get_tree().paused = true
+	
+	
 	$player/Camera2D/hud.visible = false
 	for i in 100:
 		$".".modulate.r += -.01
 		$".".modulate.b += -.01
 		$".".modulate.g += -.01
 		await get_tree().create_timer(0.01).timeout
-	ending_day.emit()
+	
 	var Mooo = 100+15
 	get_tree().paused = false
+	
 	$player.position = $Ship.position + Vector2(0,Mooo)
 	var CamZoom = $player/Camera2D.zoom
 	$player/Camera2D.zoom = CamZoom * 1.3
@@ -127,6 +132,9 @@ func end_day():
 	Save.set_value(1, "STABST", $player.consum[0])
 	Save.set_value(1, "DMGBST", $player.consum[1])
 	Save.set_value(1, "DMGRED", $player.consum[2])
+	
+	
+	
 	
 	#Save._save_file_win()  #save the game at the end of the day
 	#Save._save_file_win(1)
