@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://8i5uq6ig7c8g"]
+
+[ext_resource type="Texture2D" uid="uid://de6b4h2a6ovhs" path="res://levels/Scenes/new_game_assets/sphere0.png" id="1_3xpno"]
+[ext_resource type="Texture2D" uid="uid://1o21ne138vw1" path="res://levels/Scenes/new_game_assets/noise18.png" id="2_dmxhu"]
+[ext_resource type="Texture2D" uid="uid://d2vx8q8xwli8s" path="res://levels/Scenes/new_game_assets/noise09.png" id="3_ex3dp"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_payyl"]
+
+[node name="planet" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.0931487, 0.148092, 0.459446, 1)
+texture = ExtResource("1_3xpno")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.315362, 0.329741, 4.81308e-08, 1)
+texture = ExtResource("2_dmxhu")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+self_modulate = Color(0.129412, 1, 0.623529, 0.356863)
+texture_repeat = 2
+material = SubResource("CanvasItemMaterial_payyl")
+texture = ExtResource("3_ex3dp")
