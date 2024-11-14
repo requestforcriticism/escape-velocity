@@ -390,6 +390,7 @@ columns = 2
 [node name="StaReg" type="TextureRect" parent="ContConsum/GridContainer"]
 visible = false
 layout_mode = 2
+texture = ExtResource("14_nryws")
 
 [node name="StaRegDur" type="Label" parent="ContConsum/GridContainer"]
 visible = false
@@ -400,6 +401,7 @@ text = "5 sec"
 [node name="DmgBst" type="TextureRect" parent="ContConsum/GridContainer"]
 visible = false
 layout_mode = 2
+texture = ExtResource("15_suoct")
 
 [node name="DmgBstDur" type="Label" parent="ContConsum/GridContainer"]
 visible = false
@@ -410,6 +412,7 @@ text = "10 sec"
 [node name="DmgRed" type="TextureRect" parent="ContConsum/GridContainer"]
 visible = false
 layout_mode = 2
+texture = ExtResource("16_261b7")
 
 [node name="DmgRedDur" type="Label" parent="ContConsum/GridContainer"]
 visible = false

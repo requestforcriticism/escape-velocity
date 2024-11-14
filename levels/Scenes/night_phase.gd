@@ -17,6 +17,9 @@ var page_state
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if get_tree().paused:
+		print("the game was still paused.")
+		get_tree().paused = false
 	page_state = PAGE_STATE.LANDING 
 	BG_landing_pos = $landingPageBG.position
 	BG_craft_pos = $CraftingPage/CraftingPageBG.position
