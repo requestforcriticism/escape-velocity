@@ -45,7 +45,6 @@ autoplay = "default"
 shape = SubResource("RectangleShape2D_2i8lf")
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true
 
 [node name="Area2D2" type="Area2D" parent="."]
 collision_layer = 0

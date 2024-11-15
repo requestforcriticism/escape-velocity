@@ -1,0 +1,186 @@
+[gd_scene load_steps=17 format=3 uid="uid://bl531akvp285q"]
+
+[ext_resource type="Texture2D" uid="uid://bqa4og6auhg2p" path="res://levels/Scenes/tutorials/tutorial1.png" id="1_6x3ss"]
+[ext_resource type="PackedScene" uid="uid://md5w04hdljf1" path="res://PauseMenu/pause_menu.tscn" id="2_wmu3k"]
+[ext_resource type="Texture2D" uid="uid://bw5gm5k0eotcx" path="res://levels/Scenes/tutorials/tutorial2.png" id="3_lkv1p"]
+[ext_resource type="Script" path="res://levels/Scenes/tutorials/page_2.gd" id="4_lu0hy"]
+[ext_resource type="Texture2D" uid="uid://dvwyeng136xkm" path="res://entities/player/drone.png" id="5_3s1aq"]
+[ext_resource type="PackedScene" uid="uid://4xrk0xcxfw6e" path="res://components/playerBullet/player_bullet.tscn" id="6_1doia"]
+[ext_resource type="Texture2D" uid="uid://d2ba3htw8qn1x" path="res://levels/Scenes/tutorials/tutorial3.png" id="7_m8hjl"]
+[ext_resource type="Script" path="res://levels/Scenes/tutorials/page_3.gd" id="8_by6h1"]
+[ext_resource type="PackedScene" uid="uid://c4nfwj1m0xsvk" path="res://resources/base_resource/oil_well.tscn" id="9_qa656"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xml8"]
+atlas = ExtResource("5_3s1aq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xylrp"]
+atlas = ExtResource("5_3s1aq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gxnwe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xml8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xylrp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5rq2"]
+atlas = ExtResource("5_3s1aq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_khav0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5rq2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_a8xga"]
+a = Vector2(1, -213)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4oje"]
+size = Vector2(96, 274)
+
+[node name="tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="page1" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -850.0
+offset_top = -425.0
+offset_right = 850.0
+offset_bottom = 425.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6x3ss")
+
+[node name="PauseMenu" parent="page1" instance=ExtResource("2_wmu3k")]
+layout_mode = 1
+offset_left = 938.0
+offset_top = 400.0
+offset_right = 938.0
+offset_bottom = 400.0
+scale = Vector2(0.35, 0.35)
+buttons_active = false
+
+[node name="page2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -850.0
+offset_top = -425.0
+offset_right = 850.0
+offset_bottom = 425.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_lkv1p")
+script = ExtResource("4_lu0hy")
+playerBullet = ExtResource("6_1doia")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="page2"]
+position = Vector2(615, 545)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_gxnwe")
+frame_progress = 0.64277
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="page2"]
+position = Vector2(1529, 531)
+rotation = 3.14159
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_khav0")
+
+[node name="Marker2D" type="Marker2D" parent="page2"]
+position = Vector2(1456, 466)
+rotation = -3.14159
+scale = Vector2(6, 6)
+
+[node name="ShootTimer" type="Timer" parent="page2"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="page2"]
+position = Vector2(-142, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="page2/Area2D"]
+position = Vector2(918, 600)
+shape = SubResource("SegmentShape2D_a8xga")
+
+[node name="page3" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -850.0
+offset_top = -425.0
+offset_right = 850.0
+offset_bottom = 425.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_m8hjl")
+script = ExtResource("8_by6h1")
+playerBullet = ExtResource("6_1doia")
+oilresource = ExtResource("9_qa656")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="page3"]
+position = Vector2(140, 496)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_khav0")
+
+[node name="Marker2D" type="Marker2D" parent="page3"]
+position = Vector2(211, 559)
+rotation = -3.14159
+scale = Vector2(6, 6)
+
+[node name="ShootTimer" type="Timer" parent="page3"]
+wait_time = 0.2
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="page3"]
+position = Vector2(-1239, 3)
+collision_layer = 38
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="page3/Area2D"]
+position = Vector2(1941, 455)
+shape = SubResource("RectangleShape2D_o4oje")
+
+[node name="Timergather" type="Timer" parent="page3"]
+autostart = true
+
+[connection signal="timeout" from="page2/ShootTimer" to="page2" method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="page3/ShootTimer" to="page2" method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="page3/ShootTimer" to="page3" method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="page3/Timergather" to="page3" method="_on_timergather_timeout"]

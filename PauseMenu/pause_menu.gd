@@ -2,9 +2,10 @@ extends Control
 
 signal EndingTheDay
 
-func _ready() -> void:
-	pass # Replace with function body.
+@export var buttons_active:bool = true
 
+func _ready() -> void:
+	$GridContainer.visible = buttons_active
 
 func _process(delta: float) -> void:
 	if visible == true:
