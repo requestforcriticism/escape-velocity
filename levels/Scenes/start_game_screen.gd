@@ -87,6 +87,7 @@ func _start_new_game():
 	Save.set_value(1, "DMGBST", 0)
 	Save.set_value(1, "DMGRED", 0)
 	Save.set_value(1, "HARV", 1)
+	Save.set_value(1, "Tutor", 1)
 	
 	# For the end of game stats
 	Save.set_value(1, "SHOTS", 0)  #number of total shots fired

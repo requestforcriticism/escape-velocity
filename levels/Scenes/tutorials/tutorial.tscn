@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://bl531akvp285q"]
+[gd_scene load_steps=26 format=3 uid="uid://bl531akvp285q"]
 
 [ext_resource type="Texture2D" uid="uid://bqa4og6auhg2p" path="res://levels/Scenes/tutorials/tutorial1.png" id="1_6x3ss"]
+[ext_resource type="Script" path="res://levels/Scenes/tutorials/tutorial.gd" id="1_kskg8"]
 [ext_resource type="PackedScene" uid="uid://md5w04hdljf1" path="res://PauseMenu/pause_menu.tscn" id="2_wmu3k"]
 [ext_resource type="Texture2D" uid="uid://bw5gm5k0eotcx" path="res://levels/Scenes/tutorials/tutorial2.png" id="3_lkv1p"]
 [ext_resource type="Script" path="res://levels/Scenes/tutorials/page_2.gd" id="4_lu0hy"]
@@ -9,6 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://d2ba3htw8qn1x" path="res://levels/Scenes/tutorials/tutorial3.png" id="7_m8hjl"]
 [ext_resource type="Script" path="res://levels/Scenes/tutorials/page_3.gd" id="8_by6h1"]
 [ext_resource type="PackedScene" uid="uid://c4nfwj1m0xsvk" path="res://resources/base_resource/oil_well.tscn" id="9_qa656"]
+[ext_resource type="Texture2D" uid="uid://bf0gqoh1mr85p" path="res://levels/Scenes/tutorials/button_rectangle.png" id="11_6880d"]
+[ext_resource type="Texture2D" uid="uid://mgoeq5p7lqhd" path="res://levels/Scenes/tutorials/tutorial4.png" id="11_uaa2v"]
+[ext_resource type="Texture2D" uid="uid://ctpyv0naoh1a8" path="res://levels/Scenes/tutorials/tutorial5.png" id="12_k5l0t"]
+[ext_resource type="Texture2D" uid="uid://drwkpafk51uvi" path="res://levels/Scenes/tutorials/tutorial6.png" id="13_xbu1q"]
+[ext_resource type="Texture2D" uid="uid://c0up8rgx4h1fu" path="res://levels/Scenes/tutorials/tutorial7.png" id="14_42x4b"]
+[ext_resource type="Texture2D" uid="uid://k8godcxwgbo4" path="res://levels/Scenes/tutorials/tutorial8.png" id="15_u16kb"]
+[ext_resource type="Texture2D" uid="uid://d31st2mijex4e" path="res://levels/Scenes/tutorials/tutorial9.png" id="16_6bol4"]
+[ext_resource type="Texture2D" uid="uid://jk8xeutfc0dh" path="res://levels/Scenes/tutorials/tutorial10.png" id="17_1gxtt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6xml8"]
 atlas = ExtResource("5_3s1aq")
@@ -54,6 +63,7 @@ a = Vector2(1, -213)
 size = Vector2(96, 274)
 
 [node name="tutorial" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -62,9 +72,9 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kskg8")
 
-[node name="page1" type="TextureRect" parent="."]
-visible = false
+[node name="page0" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -79,7 +89,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_6x3ss")
 
-[node name="PauseMenu" parent="page1" instance=ExtResource("2_wmu3k")]
+[node name="PauseMenu" parent="page0" instance=ExtResource("2_wmu3k")]
 layout_mode = 1
 offset_left = 938.0
 offset_top = 400.0
@@ -88,7 +98,9 @@ offset_bottom = 400.0
 scale = Vector2(0.35, 0.35)
 buttons_active = false
 
-[node name="page2" type="TextureRect" parent="."]
+[node name="page1" type="TextureRect" parent="."]
+process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -105,37 +117,43 @@ texture = ExtResource("3_lkv1p")
 script = ExtResource("4_lu0hy")
 playerBullet = ExtResource("6_1doia")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="page2"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="page1"]
 position = Vector2(615, 545)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_gxnwe")
 frame_progress = 0.64277
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="page2"]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="page1"]
 position = Vector2(1529, 531)
 rotation = 3.14159
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_khav0")
 
-[node name="Marker2D" type="Marker2D" parent="page2"]
+[node name="Marker2D" type="Marker2D" parent="page1"]
 position = Vector2(1456, 466)
 rotation = -3.14159
 scale = Vector2(6, 6)
 
-[node name="ShootTimer" type="Timer" parent="page2"]
+[node name="ShootTimer" type="Timer" parent="page1"]
 wait_time = 0.2
 one_shot = true
 
-[node name="Area2D" type="Area2D" parent="page2"]
+[node name="Area2D" type="Area2D" parent="page1"]
+process_mode = 3
+process_priority = 1
+process_physics_priority = 1
 position = Vector2(-142, 0)
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="page2/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="page1/Area2D"]
+process_mode = 3
+process_priority = 1
+process_physics_priority = 1
 position = Vector2(918, 600)
 shape = SubResource("SegmentShape2D_a8xga")
 
-[node name="page3" type="TextureRect" parent="."]
+[node name="page2" type="TextureRect" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -154,33 +172,168 @@ script = ExtResource("8_by6h1")
 playerBullet = ExtResource("6_1doia")
 oilresource = ExtResource("9_qa656")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="page3"]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="page2"]
 position = Vector2(140, 496)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_khav0")
 
-[node name="Marker2D" type="Marker2D" parent="page3"]
+[node name="Marker2D" type="Marker2D" parent="page2"]
 position = Vector2(211, 559)
 rotation = -3.14159
 scale = Vector2(6, 6)
 
-[node name="ShootTimer" type="Timer" parent="page3"]
+[node name="ShootTimer" type="Timer" parent="page2"]
 wait_time = 0.2
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="page3"]
+[node name="Area2D" type="Area2D" parent="page2"]
 position = Vector2(-1239, 3)
 collision_layer = 38
 collision_mask = 32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="page3/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="page2/Area2D"]
 position = Vector2(1941, 455)
 shape = SubResource("RectangleShape2D_o4oje")
 
-[node name="Timergather" type="Timer" parent="page3"]
+[node name="Timergather" type="Timer" parent="page2"]
 autostart = true
 
+[node name="page3" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -850.0
+offset_top = -425.0
+offset_right = -810.0
+offset_bottom = -385.0
+texture = ExtResource("11_uaa2v")
+
+[node name="page4" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -850.0
+offset_top = -425.0
+offset_right = -810.0
+offset_bottom = -385.0
+texture = ExtResource("12_k5l0t")
+
+[node name="page5" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -850.0
+offset_top = -425.0
+offset_right = -810.0
+offset_bottom = -385.0
+texture = ExtResource("13_xbu1q")
+
+[node name="page6" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -850.0
+offset_top = -425.0
+offset_right = -810.0
+offset_bottom = -385.0
+texture = ExtResource("14_42x4b")
+
+[node name="page7" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -850.0
+offset_top = -425.0
+offset_right = -810.0
+offset_bottom = -385.0
+texture = ExtResource("15_u16kb")
+
+[node name="page8" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -850.0
+offset_top = -425.0
+offset_right = -810.0
+offset_bottom = -385.0
+texture = ExtResource("16_6bol4")
+
+[node name="page9" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -850.0
+offset_top = -425.0
+offset_right = -810.0
+offset_bottom = -385.0
+texture = ExtResource("17_1gxtt")
+
+[node name="Buttonnext" type="Button" parent="."]
+layout_mode = 0
+offset_left = 680.0
+offset_top = -404.0
+offset_right = 792.0
+offset_bottom = -341.0
+theme_override_font_sizes/font_size = 40
+text = "Next"
+
+[node name="Buttonprevious" type="Button" parent="."]
+layout_mode = 0
+offset_left = -792.0
+offset_top = -404.0
+offset_right = -596.0
+offset_bottom = -341.0
+theme_override_font_sizes/font_size = 40
+text = "Previous"
+
+[node name="ButtonexitH2P" type="Button" parent="."]
+layout_mode = 0
+offset_left = -792.0
+offset_top = 340.0
+offset_right = -511.0
+offset_bottom = 397.0
+theme_override_font_sizes/font_size = 35
+text = "End How to Play"
+
+[node name="tutorialreminder" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="tutorialreminder"]
+layout_mode = 0
+offset_left = -408.0
+offset_top = -140.0
+offset_right = 408.0
+offset_bottom = 132.0
+texture = ExtResource("11_6880d")
+
+[node name="Buttonclosewindow" type="Button" parent="tutorialreminder"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 44.0
+offset_right = 40.0
+offset_bottom = 107.0
+theme_override_font_sizes/font_size = 40
+text = "OK"
+
+[node name="words" type="Label" parent="tutorialreminder"]
+layout_mode = 0
+offset_left = -336.0
+offset_top = -100.0
+offset_right = 336.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "How to Play info can be found in the inventory/pause menu."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="timeout" from="page1/ShootTimer" to="page1" method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="page2/ShootTimer" to="page1" method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="page2/ShootTimer" to="page2" method="_on_shoot_timer_timeout"]
-[connection signal="timeout" from="page3/ShootTimer" to="page2" method="_on_shoot_timer_timeout"]
-[connection signal="timeout" from="page3/ShootTimer" to="page3" method="_on_shoot_timer_timeout"]
-[connection signal="timeout" from="page3/Timergather" to="page3" method="_on_timergather_timeout"]
+[connection signal="timeout" from="page2/Timergather" to="page2" method="_on_timergather_timeout"]
+[connection signal="pressed" from="Buttonnext" to="." method="_on_buttonnext_pressed"]
+[connection signal="pressed" from="Buttonprevious" to="." method="_on_buttonprevious_pressed"]
+[connection signal="pressed" from="ButtonexitH2P" to="." method="_on_buttonexit_h_2p_pressed"]
+[connection signal="pressed" from="tutorialreminder/Buttonclosewindow" to="." method="_on_buttonclosewindow_pressed"]

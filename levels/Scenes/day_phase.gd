@@ -8,7 +8,7 @@ signal ending_day
 @export var tile_size = 32
 @export var chunk_size = 32
 @export var render_distance = 1
-@export var dayLength = 10*60 	# In seconds
+@export var dayLength =5*60 	# In seconds
 @export var dayTimeLeft:int
 
 # Called when the node enters the scene tree for the first time.
@@ -72,6 +72,11 @@ func _ready():
 	new_collectable.type = "COM"
 	new_collectable.position = Vector2(-150,50)
 	add_child(new_collectable)
+	
+	if Save.get_value(1, "Tutor", 1):
+		$player/Camera2D/TutorialCanvasLayer.visible = true
+	
+	
 	
 #all the stuff to start a new day
 func start_day():

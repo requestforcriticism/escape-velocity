@@ -107,6 +107,7 @@ func _ready():
 	consumCount.emit(consum)
 	DMG = 5 #+ tech tree bonus
 	colable = [0,0,0,0,0,0,0] #These are the collectable startup values
+	$Camera2D/PauseCanvasLayer/PauseMenu.colable = colable
 	looking = Vector2(1,0)
 	lastlook = Vector2(1,0)
 	lastMouse = Vector2(1,0)
@@ -306,6 +307,7 @@ func _on_area_2d_collectable_area_entered(area: Area2D) -> void:
 	for i in colnames.size():
 		if area.name.left(3) == colnames[i]:
 			colable[i] += 1
+			$Camera2D/PauseCanvasLayer/PauseMenu.colable[i] = colable[i] 
 			gathered.emit(area.name.left(3))
 			area.hide()
 			area.queue_free()
@@ -336,7 +338,7 @@ func _on_consumable_timer_timeout() -> void:
 func using_consumable(tog:int, using:bool):
 	if tog == 0: #Stamina recovery
 		if using == true && ConsumActive[tog] == false:
-			PlayerStats.set_StaInitialWait(PlayerStats.get_StaInitialWait() * 0.25)
+			PlayerStats.set_StaInitialWait(PlayerStats.get_StaInitialWait() * 0.5)
 			PlayerStats.set_StaRegen(PlayerStats.get_StaRegen() * 2)
 			ConsumActive[tog] = true
 		elif using == false:

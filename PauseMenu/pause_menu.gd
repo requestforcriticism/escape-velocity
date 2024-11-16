@@ -4,6 +4,8 @@ signal EndingTheDay
 
 @export var buttons_active:bool = true
 
+@export var colable = [0,0,0,0,0,0,0]
+
 func _ready() -> void:
 	$GridContainer.visible = buttons_active
 
@@ -27,14 +29,14 @@ var _is_paused:bool = false:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause_day_phase"):
 		_is_paused = !_is_paused
-		
+		print(colable)
 		#["BLU","IRO","OIL","WAT","URA", "FOO", "COM"]
-		$MainWindow/FoodPlayerAmount.text = str($"../../..".colable[5])
-		$MainWindow/WaterPlayerAmount.text = str($"../../..".colable[3])
-		$MainWindow/OilPlayerAmount.text = str($"../../..".colable[2])
-		$MainWindow/IronPlayerAmount.text = str($"../../..".colable[1])
-		$MainWindow/UraniumPlayerAmount.text = str($"../../..".colable[4])
-		$MainWindow/CompChipPlayerAmount.text = str($"../../..".colable[6])
+		$MainWindow/FoodPlayerAmount.text = str(colable[5])
+		$MainWindow/WaterPlayerAmount.text = str(colable[3])
+		$MainWindow/OilPlayerAmount.text = str(colable[2])
+		$MainWindow/IronPlayerAmount.text = str(colable[1])
+		$MainWindow/UraniumPlayerAmount.text = str(colable[4])
+		$MainWindow/CompChipPlayerAmount.text = str(colable[6])
 		
 		$MainWindow/FoodShipAmount.text = str(Save.get_value(1, "FOO", 0))
 		$MainWindow/WaterShipAmount.text = str(Save.get_value(1, "WAT", 0))
