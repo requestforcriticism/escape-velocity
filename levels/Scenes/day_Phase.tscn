@@ -63,6 +63,7 @@ position = Vector2(-243, -139)
 
 [connection signal="ending_day" from="." to="player" method="_on_day_phase_ending_day"]
 [connection signal="consDuration" from="player" to="player/Camera2D/hud" method="_on_player_cons_duration"]
+[connection signal="consDuration" from="player" to="player/Camera2D/PauseCanvasLayer/PauseMenu" method="_on_player_cons_duration"]
 [connection signal="consumCount" from="player" to="player/Camera2D/hud" method="_on_player_consum_count"]
 [connection signal="gathered" from="player" to="player/Camera2D/hud" method="_on_player_gathered"]
 [connection signal="gathered" from="player" to="player/Camera2D/PauseCanvasLayer/PauseMenu" method="_on_player_gathered"]
@@ -75,4 +76,9 @@ position = Vector2(-243, -139)
 [connection signal="stamina_changed" from="player" to="player/Camera2D/hud" method="_on_player_stamina_changed"]
 [connection signal="toggleConsum" from="player" to="player/Camera2D/hud" method="_on_player_toggle_consum"]
 [connection signal="EndingTheDay" from="player/Camera2D/PauseCanvasLayer/PauseMenu" to="." method="_on_pause_menu_ending_the_day"]
+[connection signal="consumCount" from="player/Camera2D/PauseCanvasLayer/PauseMenu" to="player/Camera2D/hud" method="_on_pause_menu_consum_count"]
+[connection signal="turnontutorial" from="player/Camera2D/PauseCanvasLayer/PauseMenu" to="player/Camera2D/TutorialCanvasLayer/tutorial" method="_on_pause_menu_turnontutorial"]
+[connection signal="using_DMGBST" from="player/Camera2D/PauseCanvasLayer/PauseMenu" to="player" method="_on_pause_menu_using_dmgbst"]
+[connection signal="using_DMGRED" from="player/Camera2D/PauseCanvasLayer/PauseMenu" to="player" method="_on_pause_menu_using_dmgred"]
+[connection signal="using_STABST" from="player/Camera2D/PauseCanvasLayer/PauseMenu" to="player" method="_on_pause_menu_using_stabst"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]

@@ -1540,11 +1540,13 @@ grow_vertical = 2
 texture = ExtResource("2_g30nj")
 
 [node name="FixedShipProgressBar" type="ProgressBar" parent="FixShipPage"]
+modulate = Color(0, 0.490196, 1, 1)
 layout_mode = 0
 offset_left = -448.0
 offset_top = -460.0
 offset_right = 384.0
 offset_bottom = -364.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 step = 1.0
 
 [node name="Available" type="Control" parent="FixShipPage"]
@@ -1929,7 +1931,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.160784, 1, 0.784314)
+color = Color(1, 1, 1, 0.784314)
 
 [connection signal="pressed" from="LandingPage/GridContainer/CraftButton" to="." method="_on_craft_button_pressed"]
 [connection signal="pressed" from="LandingPage/GridContainer/FixShipButton" to="." method="_on_fix_ship_button_pressed"]

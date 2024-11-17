@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ddo8sc41fi3mj"]
+[gd_scene load_steps=33 format=3 uid="uid://ddo8sc41fi3mj"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_bk8gt"]
 [ext_resource type="Texture2D" uid="uid://b1uojfaef3bxi" path="res://assets/hudAssets/button_square_header_blade_square.png" id="2_pxitt"]
@@ -16,8 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://c8uxk4x1ge14x" path="res://assets/hudAssets/Stamboost.png" id="14_nryws"]
 [ext_resource type="Texture2D" uid="uid://ckfe805f5ijot" path="res://assets/hudAssets/Damageboost.png" id="15_suoct"]
 [ext_resource type="Texture2D" uid="uid://5y13pla1fpku" path="res://assets/hudAssets/DamageReduction.png" id="16_261b7"]
-[ext_resource type="Texture2D" uid="uid://b3bjq28cxrn25" path="res://assets/hudAssets/keyboard_tab.png" id="17_vssp0"]
-[ext_resource type="Texture2D" uid="uid://dtbnojj3axvt4" path="res://assets/hudAssets/keyboard_f.png" id="18_qwby4"]
 [ext_resource type="Texture2D" uid="uid://c20gt5fce4msw" path="res://assets/hudAssets/arrow_e.png" id="19_lbgcr"]
 [ext_resource type="Texture2D" uid="uid://c8qub0dmh5gpn" path="res://assets/hudAssets/flair_arrow_3.png" id="20_meolf"]
 [ext_resource type="Texture2D" uid="uid://d4kwt20g4glah" path="res://assets/harvester/harvester.png" id="22_ci0dj"]
@@ -276,115 +274,12 @@ offset_top = 56.0
 offset_right = 24.0
 offset_bottom = 96.0
 
-[node name="ConsBG" type="Sprite2D" parent="ContConsum"]
-position = Vector2(207.227, 229.5)
-scale = Vector2(1.59139, 1.57813)
-texture = ExtResource("12_j38nh")
-metadata/_edit_group_ = true
-
-[node name="ChosenCons" type="Sprite2D" parent="ContConsum"]
-position = Vector2(204, 232)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("13_ig5ei")
-metadata/_edit_group_ = true
-
-[node name="LeftCons" type="Sprite2D" parent="ContConsum"]
-position = Vector2(96, 216)
-scale = Vector2(1.04688, 1.04688)
-texture = ExtResource("13_ig5ei")
-metadata/_edit_group_ = true
-
-[node name="RightCons" type="Sprite2D" parent="ContConsum"]
-position = Vector2(312, 232)
-scale = Vector2(1.04688, 1.04688)
-texture = ExtResource("13_ig5ei")
-metadata/_edit_group_ = true
-
-[node name="SBst" type="Sprite2D" parent="ContConsum"]
-position = Vector2(136, -136)
-texture = ExtResource("14_nryws")
-metadata/_edit_group_ = true
-
-[node name="AmtLeft" type="Label" parent="ContConsum/SBst"]
-offset_left = 12.0
-offset_top = -6.0
-offset_right = 52.0
-offset_bottom = 36.0
-theme_override_font_sizes/font_size = 30
-text = "3"
-metadata/_edit_use_anchors_ = true
-
-[node name="DBst" type="Sprite2D" parent="ContConsum"]
-position = Vector2(71.5, -135.5)
-texture = ExtResource("15_suoct")
-metadata/_edit_group_ = true
-
-[node name="AmtLeft" type="Label" parent="ContConsum/DBst"]
-offset_left = 12.0
-offset_top = -6.0
-offset_right = 52.0
-offset_bottom = 36.0
-theme_override_font_sizes/font_size = 30
-text = "3"
-
-[node name="DRed" type="Sprite2D" parent="ContConsum"]
-position = Vector2(200.5, -135.5)
-texture = ExtResource("16_261b7")
-metadata/_edit_group_ = true
-
-[node name="AmtLeft" type="Label" parent="ContConsum/DRed"]
-offset_left = 12.0
-offset_top = -6.0
-offset_right = 52.0
-offset_bottom = 36.0
-theme_override_font_sizes/font_size = 30
-text = "3"
-metadata/_edit_use_anchors_ = true
-
-[node name="pressTab" type="Sprite2D" parent="ContConsum"]
-position = Vector2(75, 265)
-scale = Vector2(0.875, 0.875)
-texture = ExtResource("17_vssp0")
-metadata/_edit_group_ = true
-
-[node name="PressF" type="Sprite2D" parent="ContConsum"]
-position = Vector2(240, 192)
-scale = Vector2(0.757815, 0.75781)
-texture = ExtResource("18_qwby4")
-metadata/_edit_group_ = true
-
-[node name="ArrowRight" type="Sprite2D" parent="ContConsum"]
-position = Vector2(266, 232)
-texture = ExtResource("19_lbgcr")
-metadata/_edit_group_ = true
-
-[node name="ArrowRight2" type="Sprite2D" parent="ContConsum"]
-position = Vector2(143, 223)
-rotation = 0.15708
-texture = ExtResource("19_lbgcr")
-metadata/_edit_group_ = true
-
-[node name="CircleArrow" type="Sprite2D" parent="ContConsum"]
-modulate = Color(0.266667, 0, 0, 1)
-position = Vector2(120, 264)
-scale = Vector2(0.625, 0.625)
-texture = ExtResource("20_meolf")
-metadata/_edit_group_ = true
-
-[node name="Path2D" type="Path2D" parent="ContConsum"]
-curve = SubResource("Curve2D_u8jqa")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="ContConsum/Path2D"]
-position = Vector2(203.425, 231.947)
-rotation = 0.147078
-progress = 108.612
-
 [node name="GridContainer" type="GridContainer" parent="ContConsum"]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 296.0
-offset_right = 664.0
-offset_bottom = 904.0
+offset_left = 40.0
+offset_top = 176.0
+offset_right = 632.0
+offset_bottom = 784.0
 columns = 2
 
 [node name="StaReg" type="TextureRect" parent="ContConsum/GridContainer"]
@@ -419,6 +314,106 @@ visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "15 sec"
+
+[node name="Weapons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1296.0
+offset_top = -160.0
+offset_right = 1336.0
+offset_bottom = -120.0
+
+[node name="ConsBG" type="Sprite2D" parent="Weapons"]
+position = Vector2(207.227, 229.5)
+scale = Vector2(1.59139, 1.57813)
+texture = ExtResource("12_j38nh")
+metadata/_edit_group_ = true
+
+[node name="ChosenCons" type="Sprite2D" parent="Weapons"]
+position = Vector2(204, 232)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("13_ig5ei")
+metadata/_edit_group_ = true
+
+[node name="LeftCons" type="Sprite2D" parent="Weapons"]
+position = Vector2(96, 216)
+scale = Vector2(1.04688, 1.04688)
+texture = ExtResource("13_ig5ei")
+metadata/_edit_group_ = true
+
+[node name="RightCons" type="Sprite2D" parent="Weapons"]
+position = Vector2(312, 232)
+scale = Vector2(1.04688, 1.04688)
+texture = ExtResource("13_ig5ei")
+metadata/_edit_group_ = true
+
+[node name="SBst" type="Sprite2D" parent="Weapons"]
+position = Vector2(136, -136)
+texture = ExtResource("14_nryws")
+metadata/_edit_group_ = true
+
+[node name="AmtLeft" type="Label" parent="Weapons/SBst"]
+offset_left = 12.0
+offset_top = -6.0
+offset_right = 52.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 30
+text = "3"
+metadata/_edit_use_anchors_ = true
+
+[node name="DBst" type="Sprite2D" parent="Weapons"]
+position = Vector2(71.5, -135.5)
+texture = ExtResource("15_suoct")
+metadata/_edit_group_ = true
+
+[node name="AmtLeft" type="Label" parent="Weapons/DBst"]
+offset_left = 12.0
+offset_top = -6.0
+offset_right = 52.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 30
+text = "3"
+metadata/_edit_use_anchors_ = true
+
+[node name="DRed" type="Sprite2D" parent="Weapons"]
+position = Vector2(200.5, -135.5)
+texture = ExtResource("16_261b7")
+metadata/_edit_group_ = true
+
+[node name="AmtLeft" type="Label" parent="Weapons/DRed"]
+offset_left = 12.0
+offset_top = -6.0
+offset_right = 52.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 30
+text = "3"
+metadata/_edit_use_anchors_ = true
+
+[node name="ArrowRight" type="Sprite2D" parent="Weapons"]
+position = Vector2(266, 232)
+texture = ExtResource("19_lbgcr")
+metadata/_edit_group_ = true
+
+[node name="ArrowRight2" type="Sprite2D" parent="Weapons"]
+position = Vector2(143, 223)
+rotation = 0.15708
+texture = ExtResource("19_lbgcr")
+metadata/_edit_group_ = true
+
+[node name="CircleArrow" type="Sprite2D" parent="Weapons"]
+modulate = Color(0.266667, 0, 0, 1)
+position = Vector2(120, 264)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("20_meolf")
+metadata/_edit_group_ = true
+
+[node name="Path2D" type="Path2D" parent="Weapons"]
+curve = SubResource("Curve2D_u8jqa")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Weapons/Path2D"]
+position = Vector2(203.425, 231.947)
+rotation = 0.147078
+progress = 108.612
 
 [node name="HarvesterControl" type="Control" parent="."]
 layout_mode = 3

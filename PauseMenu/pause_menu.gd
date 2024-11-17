@@ -1,13 +1,30 @@
 extends Control
 
+signal using_STABST
+signal using_DMGBST
+signal using_DMGRED
+signal consumCount
 signal EndingTheDay
+signal turnontutorial
+
+var consum
+var consDur
+var ConsDurRate
 
 @export var buttons_active:bool = true
 
 @export var colable = [0,0,0,0,0,0,0]
 
 func _ready() -> void:
+	consDur = [0,0,0]
+	consum = [Save.get_value(1, "STABST", 0),Save.get_value(1, "DMGBST", 0),Save.get_value(1, "DMGRED", 0)]
+	$Consumables/TBSTABST/amount.text = str(consum[0])
+	$Consumables/TBDMGBST/amount.text = str(consum[1])
+	$Consumables/TBDMGRED/amount.text = str(consum[2])
 	$GridContainer.visible = buttons_active
+	$Consumables/TBSTABST/duration.text = str(0," secs")
+	$Consumables/TBDMGBST/duration.text = str(0," secs")
+	$Consumables/TBDMGRED/duration.text = str(0," secs")
 
 func _process(delta: float) -> void:
 	if visible == true:
@@ -29,7 +46,6 @@ var _is_paused:bool = false:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause_day_phase"):
 		_is_paused = !_is_paused
-		print(colable)
 		#["BLU","IRO","OIL","WAT","URA", "FOO", "COM"]
 		$MainWindow/FoodPlayerAmount.text = str(colable[5])
 		$MainWindow/WaterPlayerAmount.text = str(colable[3])
@@ -89,3 +105,41 @@ func close_checkbox():
 	$GridContainer/ResumeButton.disabled = false
 	$GridContainer/QuitGameButton.disabled = false
 	$ColorRectMenuCheck.visible = false
+
+func _on_tbstabst_pressed() -> void:
+	if consum[0] != 0:
+		consum[0] += -1
+		using_STABST.emit()
+		Save.set_value(1, "STABST", consum[0])
+		consumCount.emit(consum)
+		$Consumables/TBSTABST/amount.text = str(consum[0])
+		#$Consumables/TBSTABST/duration.text = str(consDur[0] + ConsDurRate," secs")
+
+func _on_tbdmgbst_pressed() -> void:
+	if consum[1] != 0:
+		consum[1] += -1
+		using_DMGBST.emit()
+		Save.set_value(1, "DMGBST", consum[1])
+		consumCount.emit(consum)
+		$Consumables/TBDMGBST/amount.text = str(consum[1])
+		#$Consumables/TBDMGBST/duration.text = str(consDur[1] + ConsDurRate," secs")
+
+func _on_tbdmgred_pressed() -> void:
+	if consum[2] != 0:
+		consum[2] += -1
+		using_DMGRED.emit()
+		Save.set_value(1, "DMGRED", consum[2])
+		consumCount.emit(consum)
+		$Consumables/TBDMGRED/amount.text = str(consum[2])
+		#$Consumables/TBDMGRED/duration.text = str(consDur[2] + ConsDurRate," secs")
+
+func _on_player_cons_duration(CD) -> void:
+	consDur = CD
+	$Consumables/TBSTABST/duration.text = str(consDur[0]," secs")
+	$Consumables/TBDMGBST/duration.text = str(consDur[1]," secs")
+	$Consumables/TBDMGRED/duration.text = str(consDur[2]," secs")
+
+func _on_how_to_play_button_pressed() -> void:
+	_is_paused = !_is_paused
+	
+	turnontutorial.emit()

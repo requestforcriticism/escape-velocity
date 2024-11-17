@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://md5w04hdljf1"]
+[gd_scene load_steps=66 format=3 uid="uid://md5w04hdljf1"]
 
 [ext_resource type="Script" path="res://PauseMenu/pause_menu.gd" id="1_jo7hg"]
 [ext_resource type="Texture2D" uid="uid://t3mgixlesxv8" path="res://PauseMenu/bar_round_gloss_large.png" id="2_4ep3y"]
@@ -10,6 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://da8y88xs5if1o" path="res://assets/collectabes/uranium_ore.png" id="7_6uuvc"]
 [ext_resource type="Texture2D" uid="uid://ne55vqwgrujs" path="res://PauseMenu/button_square_header_notch_rectangle_screws.png" id="8_q84uo"]
 [ext_resource type="Texture2D" uid="uid://dm0rm00r4rudj" path="res://assets/collectabes/logic_card.png" id="9_eeh45"]
+[ext_resource type="Texture2D" uid="uid://drglisvkhe6of" path="res://assets/collectabes/blue_collectable.png" id="11_nv0rl"]
+[ext_resource type="Script" path="res://PauseMenu/fixedship.gd" id="11_r6lp1"]
+[ext_resource type="PackedScene" uid="uid://dhmd88cnimtpn" path="res://levels/Scenes/night_phase.tscn" id="12_70g4t"]
+[ext_resource type="Texture2D" uid="uid://c8uxk4x1ge14x" path="res://assets/hudAssets/Stamboost.png" id="14_shtka"]
+[ext_resource type="Texture2D" uid="uid://ckfe805f5ijot" path="res://assets/hudAssets/Damageboost.png" id="15_s84a8"]
+[ext_resource type="Texture2D" uid="uid://5y13pla1fpku" path="res://assets/hudAssets/DamageReduction.png" id="16_ghsko"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2mlsn"]
 atlas = ExtResource("4_l8w37")
@@ -318,6 +324,29 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_isja0"]
+atlas = ExtResource("4_l8w37")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjrey"]
+atlas = ExtResource("4_40kaq")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojmpf"]
+atlas = ExtResource("6_0nybk")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioji6"]
+atlas = ExtResource("5_uuvda")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4ju0"]
+atlas = ExtResource("7_6uuvc")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkjqu"]
+atlas = ExtResource("9_eeh45")
+region = Rect2(32, 0, 32, 32)
+
 [node name="PauseMenu" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -573,6 +602,302 @@ text = "99999"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="fixedship" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_r6lp1")
+
+[node name="FixedShipProgressBar" type="ProgressBar" parent="fixedship"]
+modulate = Color(0, 0.490196, 1, 1)
+layout_mode = 0
+offset_left = -205.0
+offset_top = -313.0
+offset_right = 255.0
+offset_bottom = -249.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+step = 1.0
+
+[node name="FixShipCOST" type="GridContainer" parent="fixedship"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -235.0
+offset_top = -149.0
+offset_right = -14.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 6
+
+[node name="BlueCost" type="Label" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BLU" type="TextureRect" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+texture = ExtResource("11_nv0rl")
+
+[node name="FoodCost" type="Label" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FOO" type="TextureRect" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_isja0")
+
+[node name="WaterCost" type="Label" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WAT" type="TextureRect" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hjrey")
+expand_mode = 2
+
+[node name="IronCost" type="Label" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IRO" type="TextureRect" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ojmpf")
+expand_mode = 2
+
+[node name="OilCost" type="Label" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OIL" type="TextureRect" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ioji6")
+expand_mode = 2
+
+[node name="UraniumCost" type="Label" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 2
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="URA" type="TextureRect" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_m4ju0")
+expand_mode = 2
+
+[node name="ComputerChipCost" type="Label" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="COM" type="TextureRect" parent="fixedship/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_tkjqu")
+expand_mode = 2
+
+[node name="Needfixship" type="Label" parent="fixedship"]
+layout_mode = 0
+offset_left = -187.0
+offset_top = -247.0
+offset_right = 239.0
+offset_bottom = -96.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Collectables needed for next repair"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="percshipfix" type="Label" parent="fixedship"]
+layout_mode = 0
+offset_left = -234.0
+offset_top = -371.0
+offset_right = 285.0
+offset_bottom = -316.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Percent of ship repaired"
+horizontal_alignment = 1
+
+[node name="NightPhase" parent="fixedship" instance=ExtResource("12_70g4t")]
+process_mode = 3
+visible = false
+layout_mode = 1
+
+[node name="Label" type="Label" parent="fixedship"]
+layout_mode = 0
+offset_left = -220.0
+offset_top = 49.0
+offset_right = 281.0
+offset_bottom = 196.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "The ship can be repaired during the night."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Consumables" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TBSTABST" type="TextureButton" parent="Consumables"]
+layout_mode = 0
+offset_left = -771.0
+offset_top = -224.0
+offset_right = -707.0
+offset_bottom = -160.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("14_shtka")
+
+[node name="amount" type="Label" parent="Consumables/TBSTABST"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 26.0
+offset_right = 60.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 30
+text = "3"
+horizontal_alignment = 2
+
+[node name="duration" type="Label" parent="Consumables/TBSTABST"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 22.0
+offset_right = 124.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "99999 secs"
+
+[node name="TBDMGBST" type="TextureButton" parent="Consumables"]
+layout_mode = 0
+offset_left = -771.0
+offset_top = -96.0
+offset_right = -707.0
+offset_bottom = -32.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("15_s84a8")
+
+[node name="amount" type="Label" parent="Consumables/TBDMGBST"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 26.0
+offset_right = 60.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 30
+text = "3"
+horizontal_alignment = 2
+
+[node name="duration" type="Label" parent="Consumables/TBDMGBST"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 22.0
+offset_right = 124.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "99999 secs"
+
+[node name="TBDMGRED" type="TextureButton" parent="Consumables"]
+layout_mode = 0
+offset_left = -771.0
+offset_top = 35.0
+offset_right = -707.0
+offset_bottom = 99.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("16_ghsko")
+
+[node name="amount" type="Label" parent="Consumables/TBDMGRED"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 26.0
+offset_right = 60.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 30
+text = "3"
+horizontal_alignment = 2
+
+[node name="duration" type="Label" parent="Consumables/TBDMGRED"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 22.0
+offset_right = 124.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "99999 secs"
+
+[node name="Label" type="Label" parent="Consumables"]
+layout_mode = 0
+offset_left = -765.0
+offset_top = -347.0
+offset_right = -505.0
+offset_bottom = -292.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Consumables"
+
+[node name="Label2" type="Label" parent="Consumables"]
+layout_mode = 0
+offset_left = -623.0
+offset_top = -273.0
+offset_right = -494.0
+offset_bottom = -231.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Duration"
+
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -585,18 +910,23 @@ offset_top = -96.0
 offset_right = 712.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/h_separation = 250
-columns = 3
+theme_override_constants/h_separation = 150
+columns = 4
+
+[node name="ResumeButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Resume"
 
 [node name="EndDayButton" type="Button" parent="GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "End the day"
 
-[node name="ResumeButton" type="Button" parent="GridContainer"]
+[node name="HowToPlayButton" type="Button" parent="GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
-text = "Resume"
+text = "How to Play"
 
 [node name="QuitGameButton" type="Button" parent="GridContainer"]
 layout_mode = 2
@@ -612,89 +942,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.258824, 0.258824, 0.258824, 0.764706)
-
-[node name="CheckMainMenu" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BoxImageMM" type="TextureRect" parent="CheckMainMenu"]
-layout_mode = 2
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -192.0
-offset_top = -64.0
-offset_right = 192.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_q84uo")
-
-[node name="BoxTitleMM" type="Label" parent="CheckMainMenu"]
-layout_mode = 2
-offset_left = -230.0
-offset_top = -112.0
-offset_right = 270.0
-offset_bottom = -63.0
-theme_override_font_sizes/font_size = 35
-text = "Quit to Main Menu"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-uppercase = true
-
-[node name="BoxTextMM" type="Label" parent="CheckMainMenu"]
-layout_mode = 2
-offset_left = -219.0
-offset_top = -59.0
-offset_right = 259.0
-offset_bottom = 139.0
-theme_override_colors/font_color = Color(0.473976, 0.473976, 0.473976, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 29
-text = "Are you sure you want to quit to the main menu?  All collected resources will be lost for this day."
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="GridContainer2" type="GridContainer" parent="CheckMainMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -119.0
-offset_top = 60.0
-offset_right = 119.0
-offset_bottom = 128.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/h_separation = 100
-columns = 2
-
-[node name="MMYesButton" type="Button" parent="CheckMainMenu/GridContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Yes"
-
-[node name="MMNoButton" type="Button" parent="CheckMainMenu/GridContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "No"
 
 [node name="CheckEndDay" type="Control" parent="."]
 visible = false
@@ -779,10 +1026,97 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "No"
 
-[connection signal="pressed" from="GridContainer/EndDayButton" to="." method="_on_end_day_button_pressed"]
+[node name="CheckMainMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxImageMM" type="TextureRect" parent="CheckMainMenu"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -64.0
+offset_right = 192.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_q84uo")
+
+[node name="BoxTitleMM" type="Label" parent="CheckMainMenu"]
+layout_mode = 2
+offset_left = -230.0
+offset_top = -112.0
+offset_right = 270.0
+offset_bottom = -63.0
+theme_override_font_sizes/font_size = 35
+text = "Quit to Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="BoxTextMM" type="Label" parent="CheckMainMenu"]
+layout_mode = 2
+offset_left = -219.0
+offset_top = -59.0
+offset_right = 259.0
+offset_bottom = 139.0
+theme_override_colors/font_color = Color(0.473976, 0.473976, 0.473976, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 29
+text = "Are you sure you want to quit to the main menu?  All collected resources will be lost for this day."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="GridContainer2" type="GridContainer" parent="CheckMainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = 60.0
+offset_right = 119.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="MMYesButton" type="Button" parent="CheckMainMenu/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Yes"
+
+[node name="MMNoButton" type="Button" parent="CheckMainMenu/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "No"
+
+[connection signal="pressed" from="Consumables/TBSTABST" to="." method="_on_tbstabst_pressed"]
+[connection signal="pressed" from="Consumables/TBDMGBST" to="." method="_on_tbdmgbst_pressed"]
+[connection signal="pressed" from="Consumables/TBDMGRED" to="." method="_on_tbdmgred_pressed"]
 [connection signal="pressed" from="GridContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="GridContainer/EndDayButton" to="." method="_on_end_day_button_pressed"]
+[connection signal="pressed" from="GridContainer/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
 [connection signal="pressed" from="GridContainer/QuitGameButton" to="." method="_on_quit_game_button_pressed"]
-[connection signal="pressed" from="CheckMainMenu/GridContainer2/MMYesButton" to="." method="_on_mm_yes_button_pressed"]
-[connection signal="pressed" from="CheckMainMenu/GridContainer2/MMNoButton" to="." method="_on_mm_no_button_pressed"]
 [connection signal="pressed" from="CheckEndDay/GridContainer3/EDYesButton" to="." method="_on_ed_yes_button_pressed"]
 [connection signal="pressed" from="CheckEndDay/GridContainer3/EDNoButton" to="." method="_on_ed_no_button_pressed"]
+[connection signal="pressed" from="CheckMainMenu/GridContainer2/MMYesButton" to="." method="_on_mm_yes_button_pressed"]
+[connection signal="pressed" from="CheckMainMenu/GridContainer2/MMNoButton" to="." method="_on_mm_no_button_pressed"]

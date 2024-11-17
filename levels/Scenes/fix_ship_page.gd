@@ -1,28 +1,24 @@
 extends Control
 
 	#		= ["BLU","IRO"	,"OIL"	,"WAT"	,"URA"	,"FOO"	,"COM"	]
-var fix_req = [[0	,10	  	,0		,0	  	,0		,0		,1		], #to fix Lvl 1
+@export var fix_req = [[0	,10	  	,0		,0	  	,0		,0		,1		], #to fix Lvl 1
 				[0	,20	  	,5		,5	  	,1		,0		,2		], #to fix Lvl 2
 				[0	,40	  	,10		,10	  	,5		,0		,4		], #to fix Lvl 3
 				[0	,70	  	,20		,20	  	,10		,0		,7		], #to fix Lvl 4
 				[0	,110	,40		,40	  	,20		,40		,11		]] #to fix Lvl 5
 
-var col_path_names = ["BlueCost","IronCost","OilCost","WaterCost","UraniumCost","FoodCost","ComputerChipCost"]
-var col_path_images = ["BLU","IRO","OIL","WAT","URA","FOO","COM"]
+@export var col_path_names = ["BlueCost","IronCost","OilCost","WaterCost","UraniumCost","FoodCost","ComputerChipCost"]
+@export var col_path_images = ["BLU","IRO","OIL","WAT","URA","FOO","COM"]
 
-var ND_path = "./FixShipCOST"
+@export var ND_path = "./FixShipCOST"
 
-var fix_progress:int
+@export var fix_progress:int
 var restest:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fix_progress = Save.get_value(1, "SHIPREPAIR", 0)
 	$FixedShipProgressBar.value = fix_progress*20
-	#print(fix_req)
-	#print(fix_req.size())
-	#print(fix_req[0].size())
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -17,7 +17,6 @@ signal toggleConsum
 signal on_harvester_count_changed
 signal on_harvester_max_changed
 
-
 @export_group("Procgen Properties")
 @export var tile_size = 32
 @export var chunk_size = 32
@@ -327,7 +326,6 @@ func _on_consumable_timer_timeout() -> void:
 		$ConsumableTimer.stop()
 	for i in consDur.size():
 		if consDur[i] > 0:
-			
 			consDur[i] = snapped(consDur[i] - .1, .1)
 			consDuration.emit(consDur)
 		else:
@@ -382,3 +380,26 @@ func _on_mining_timer_timeout() -> void:
 
 func _on_harvester_timer_timeout() -> void:
 	is_harverter = false
+
+func _on_pause_menu_using_stabst() -> void:
+	using_consumable(0, true)
+	_check_cons_timer()
+	consDur[0] += consDurRate
+	consDuration.emit(consDur)
+
+func _on_pause_menu_using_dmgbst() -> void:
+	using_consumable(1, true)
+	_check_cons_timer()
+	consDur[1] += consDurRate
+	consDuration.emit(consDur)
+
+func _on_pause_menu_using_dmgred() -> void:
+	using_consumable(2, true)
+	_check_cons_timer()
+	consDur[2] += consDurRate
+	consDuration.emit(consDur)
+	
+func _check_cons_timer():
+	if $ConsumableTimer.is_stopped() == true:
+		$ConsumableTimer.start()
+	
