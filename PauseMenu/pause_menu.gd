@@ -10,6 +10,7 @@ signal turnontutorial
 var consum
 var consDur
 var ConsDurRate
+var menu_cursor = preload("res://assets/cursors/pointer_b.png")
 
 @export var buttons_active:bool = true
 
@@ -18,22 +19,23 @@ var ConsDurRate
 func _ready() -> void:
 	consDur = [0,0,0]
 	consum = [Save.get_value(1, "STABST", 0),Save.get_value(1, "DMGBST", 0),Save.get_value(1, "DMGRED", 0)]
-	$Consumables/TBSTABST/amount.text = str(consum[0])
-	$Consumables/TBDMGBST/amount.text = str(consum[1])
-	$Consumables/TBDMGRED/amount.text = str(consum[2])
+	$Consumables/GridContainer/TBSTABST/amount.text = str(consum[0])
+	$Consumables/GridContainer/TBDMGBST/amount.text = str(consum[1])
+	$Consumables/GridContainer/TBDMGRED/amount.text = str(consum[2])
 	$GridContainer.visible = buttons_active
-	$Consumables/TBSTABST/duration.text = str(0," secs")
-	$Consumables/TBDMGBST/duration.text = str(0," secs")
-	$Consumables/TBDMGRED/duration.text = str(0," secs")
+	$Consumables/GridContainer/TBSTABST/duration.text = str(0," secs")
+	$Consumables/GridContainer/TBDMGBST/duration.text = str(0," secs")
+	$Consumables/GridContainer/TBDMGRED/duration.text = str(0," secs")
 
 func _process(delta: float) -> void:
-	if visible == true:
+	if visible:
 		$MainWindow/FoodCollectable.play()
 		$MainWindow/WaterCollectable.play()
 		$MainWindow/OilCollectable.play()
 		$MainWindow/IronCollectable.play()
 		$MainWindow/UraniumCollectable.play()
 		$MainWindow/CompChipCollectable.play()
+		Input.set_custom_mouse_cursor(menu_cursor,Input.CURSOR_ARROW,Vector2(20,16))
 
 var _is_paused:bool = false:
 	set(value):
@@ -112,7 +114,7 @@ func _on_tbstabst_pressed() -> void:
 		using_STABST.emit()
 		Save.set_value(1, "STABST", consum[0])
 		consumCount.emit(consum)
-		$Consumables/TBSTABST/amount.text = str(consum[0])
+		$Consumables/GridContainer/TBSTABST/amount.text = str(consum[0])
 		#$Consumables/TBSTABST/duration.text = str(consDur[0] + ConsDurRate," secs")
 
 func _on_tbdmgbst_pressed() -> void:
@@ -121,7 +123,7 @@ func _on_tbdmgbst_pressed() -> void:
 		using_DMGBST.emit()
 		Save.set_value(1, "DMGBST", consum[1])
 		consumCount.emit(consum)
-		$Consumables/TBDMGBST/amount.text = str(consum[1])
+		$Consumables/GridContainer/TBDMGBST/amount.text = str(consum[1])
 		#$Consumables/TBDMGBST/duration.text = str(consDur[1] + ConsDurRate," secs")
 
 func _on_tbdmgred_pressed() -> void:
@@ -130,14 +132,14 @@ func _on_tbdmgred_pressed() -> void:
 		using_DMGRED.emit()
 		Save.set_value(1, "DMGRED", consum[2])
 		consumCount.emit(consum)
-		$Consumables/TBDMGRED/amount.text = str(consum[2])
+		$Consumables/GridContainer/TBDMGRED/amount.text = str(consum[2])
 		#$Consumables/TBDMGRED/duration.text = str(consDur[2] + ConsDurRate," secs")
 
 func _on_player_cons_duration(CD) -> void:
 	consDur = CD
-	$Consumables/TBSTABST/duration.text = str(consDur[0]," secs")
-	$Consumables/TBDMGBST/duration.text = str(consDur[1]," secs")
-	$Consumables/TBDMGRED/duration.text = str(consDur[2]," secs")
+	$Consumables/GridContainer/TBSTABST/duration.text = str(consDur[0]," secs")
+	$Consumables/GridContainer/TBDMGBST/duration.text = str(consDur[1]," secs")
+	$Consumables/GridContainer/TBDMGRED/duration.text = str(consDur[2]," secs")
 
 func _on_how_to_play_button_pressed() -> void:
 	_is_paused = !_is_paused

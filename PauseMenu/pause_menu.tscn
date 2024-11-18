@@ -794,16 +794,19 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TBSTABST" type="TextureButton" parent="Consumables"]
+[node name="GridContainer" type="GridContainer" parent="Consumables"]
 layout_mode = 0
-offset_left = -771.0
-offset_top = -224.0
-offset_right = -707.0
-offset_bottom = -160.0
+offset_left = -777.0
+offset_top = -212.0
+offset_right = -705.0
+offset_bottom = 12.0
 scale = Vector2(2, 2)
-texture_normal = ExtResource("14_shtka")
 
-[node name="amount" type="Label" parent="Consumables/TBSTABST"]
+[node name="TBSTABST" type="Button" parent="Consumables/GridContainer"]
+layout_mode = 2
+icon = ExtResource("14_shtka")
+
+[node name="amount" type="Label" parent="Consumables/GridContainer/TBSTABST"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 26.0
@@ -813,7 +816,7 @@ theme_override_font_sizes/font_size = 30
 text = "3"
 horizontal_alignment = 2
 
-[node name="duration" type="Label" parent="Consumables/TBSTABST"]
+[node name="duration" type="Label" parent="Consumables/GridContainer/TBSTABST"]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 22.0
@@ -822,16 +825,11 @@ offset_bottom = 45.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "99999 secs"
 
-[node name="TBDMGBST" type="TextureButton" parent="Consumables"]
-layout_mode = 0
-offset_left = -771.0
-offset_top = -96.0
-offset_right = -707.0
-offset_bottom = -32.0
-scale = Vector2(2, 2)
-texture_normal = ExtResource("15_s84a8")
+[node name="TBDMGBST" type="Button" parent="Consumables/GridContainer"]
+layout_mode = 2
+icon = ExtResource("15_s84a8")
 
-[node name="amount" type="Label" parent="Consumables/TBDMGBST"]
+[node name="amount" type="Label" parent="Consumables/GridContainer/TBDMGBST"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 26.0
@@ -841,7 +839,7 @@ theme_override_font_sizes/font_size = 30
 text = "3"
 horizontal_alignment = 2
 
-[node name="duration" type="Label" parent="Consumables/TBDMGBST"]
+[node name="duration" type="Label" parent="Consumables/GridContainer/TBDMGBST"]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 22.0
@@ -850,16 +848,11 @@ offset_bottom = 45.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "99999 secs"
 
-[node name="TBDMGRED" type="TextureButton" parent="Consumables"]
-layout_mode = 0
-offset_left = -771.0
-offset_top = 35.0
-offset_right = -707.0
-offset_bottom = 99.0
-scale = Vector2(2, 2)
-texture_normal = ExtResource("16_ghsko")
+[node name="TBDMGRED" type="Button" parent="Consumables/GridContainer"]
+layout_mode = 2
+icon = ExtResource("16_ghsko")
 
-[node name="amount" type="Label" parent="Consumables/TBDMGRED"]
+[node name="amount" type="Label" parent="Consumables/GridContainer/TBDMGRED"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 26.0
@@ -869,7 +862,7 @@ theme_override_font_sizes/font_size = 30
 text = "3"
 horizontal_alignment = 2
 
-[node name="duration" type="Label" parent="Consumables/TBDMGRED"]
+[node name="duration" type="Label" parent="Consumables/GridContainer/TBDMGRED"]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 22.0
@@ -1109,9 +1102,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "No"
 
-[connection signal="pressed" from="Consumables/TBSTABST" to="." method="_on_tbstabst_pressed"]
-[connection signal="pressed" from="Consumables/TBDMGBST" to="." method="_on_tbdmgbst_pressed"]
-[connection signal="pressed" from="Consumables/TBDMGRED" to="." method="_on_tbdmgred_pressed"]
+[connection signal="pressed" from="Consumables/GridContainer/TBSTABST" to="." method="_on_tbstabst_pressed"]
+[connection signal="pressed" from="Consumables/GridContainer/TBDMGBST" to="." method="_on_tbdmgbst_pressed"]
+[connection signal="pressed" from="Consumables/GridContainer/TBDMGRED" to="." method="_on_tbdmgred_pressed"]
 [connection signal="pressed" from="GridContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="GridContainer/EndDayButton" to="." method="_on_end_day_button_pressed"]
 [connection signal="pressed" from="GridContainer/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]

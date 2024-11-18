@@ -11,8 +11,14 @@ signal ending_day
 @export var dayLength =5*60 	# In seconds
 @export var dayTimeLeft:int
 
+var default_cursor = preload("res://assets/cursors/target_round_b.png")
+var mining_cursor = preload("res://assets/cursors/tool_pickaxe.png")
+var interectinfo
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Input.set_custom_mouse_cursor(default_cursor,Input.CURSOR_ARROW,Vector2(32,32))
+	
 	dayTimeLeft = dayLength
 	$player/Camera2D.make_current()
 	$player/Camera2D/PauseCanvasLayer/PauseMenu.visible = false
@@ -85,6 +91,25 @@ func start_day():
 
 func _process(delta):
 	pass
+	#if !get_tree().paused:
+	#	Input.set_custom_mouse_cursor(default_cursor,Input.CURSOR_ARROW,Vector2(32,32))
+
+func _physics_process(delta):
+	var pp = PhysicsPointQueryParameters2D.new()
+	pp.collide_with_areas = true  
+	pp.position = get_global_mouse_position()
+	
+	if get_world_2d().direct_space_state.intersect_point(pp, 1):
+		print("HIT")
+		interectinfo = get_world_2d().direct_space_state.intersect_point(pp, 1)
+		print(interectinfo)
+		print(str(interectinfo[0]["collider"]).left(8))
+		if str(interectinfo[0]["collider"]).left(8) == "resource":
+			Input.set_custom_mouse_cursor(mining_cursor,Input.CURSOR_ARROW,Vector2(32,32))
+		else:
+			Input.set_custom_mouse_cursor(default_cursor,Input.CURSOR_ARROW,Vector2(32,32))
+	else:
+		Input.set_custom_mouse_cursor(default_cursor,Input.CURSOR_ARROW,Vector2(32,32))
 
 func _on_day_timer_timeout() -> void:
 	dayTimeLeft += -1
@@ -96,6 +121,7 @@ func end_day():
 	ending_day.emit()
 	#await get_tree().create_timer(0.5).timeout
 	get_tree().paused = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	for i in $player.colable.size():
 		$player.colable[i] = 0
 	

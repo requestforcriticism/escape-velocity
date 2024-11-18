@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 var Days
 var starting:bool
@@ -15,8 +15,12 @@ enum PAGE_STATE {LANDING, CRAFTING, TECH, FIX}
 
 var page_state
 
+var menu_cursor = preload("res://assets/cursors/pointer_b.png")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 	if get_tree().paused:
 		get_tree().paused = false
 	page_state = PAGE_STATE.LANDING 
@@ -35,6 +39,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if visible:
+		Input.set_custom_mouse_cursor(menu_cursor,Input.CURSOR_ARROW,Vector2(20,16))
 	if starting == true:
 		$WhitenBG.visible = true
 		for i in 50:

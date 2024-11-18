@@ -32,6 +32,7 @@ func mine(miner):
 		return [0, null]
 	elif state == RESOURCE_STATE.PASSIVE:
 		state = RESOURCE_STATE.MINED
+		name = "resource"
 		$AnimatedSprite2D.play("mined")
 		
 	#resource should be mineable now
@@ -40,6 +41,7 @@ func mine(miner):
 	# if resource already at max
 	if mined_drops >= max_drops:
 		state = RESOURCE_STATE.DEAD
+		name = "deadresource"
 		$AnimatedSprite2D.play("depleted")
 		return  [0, null]
 	
@@ -59,11 +61,13 @@ func _ready():
 	$HealthBar.value = currentHealth
 	$AnimatedSprite2D.play("default")
 	state = RESOURCE_STATE.AGGESSIVE
+	name = "aggressiveresource"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if state == RESOURCE_STATE.AGGESSIVE and currentHealth <=0:
+		name = "resource"
 		$AnimatedSprite2D.play("tamed")
 		state = RESOURCE_STATE.PASSIVE
 		$HealthBar.queue_free()
