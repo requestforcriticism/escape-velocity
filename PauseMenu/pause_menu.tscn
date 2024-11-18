@@ -766,7 +766,6 @@ horizontal_alignment = 1
 [node name="NightPhase" parent="fixedship" instance=ExtResource("12_70g4t")]
 process_mode = 3
 visible = false
-layout_mode = 1
 
 [node name="Label" type="Label" parent="fixedship"]
 layout_mode = 0

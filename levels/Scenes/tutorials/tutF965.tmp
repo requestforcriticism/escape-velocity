@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bl531akvp285q"]
+[gd_scene load_steps=49 format=3 uid="uid://bl531akvp285q"]
 
 [ext_resource type="Texture2D" uid="uid://bqa4og6auhg2p" path="res://levels/Scenes/tutorials/tutorial1.png" id="1_6x3ss"]
 [ext_resource type="Script" path="res://levels/Scenes/tutorials/tutorial.gd" id="1_kskg8"]
@@ -85,9 +85,6 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1ujb"]
-size = Vector2(24.1667, 29.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r8prk"]
 atlas = ExtResource("15_htgpg")
@@ -314,6 +311,7 @@ shape = SubResource("RectangleShape2D_o4oje")
 autostart = true
 
 [node name="page3" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = -850.0
 offset_top = -425.0
@@ -322,7 +320,7 @@ offset_bottom = -385.0
 texture = ExtResource("11_uaa2v")
 script = ExtResource("12_vhjvd")
 
-[node name="ProgressBar" type="ProgressBar" parent="page3"]
+[node name="HPProgressBar" type="ProgressBar" parent="page3"]
 self_modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -330,44 +328,31 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -550.0
-offset_top = -87.0
-offset_right = -201.0
-offset_bottom = 10.0
+offset_left = -795.0
+offset_top = -93.0
+offset_right = -443.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 value = 100.0
 
-[node name="HeartSprite2D" type="Sprite2D" parent="page3/ProgressBar"]
+[node name="HeartSprite2D" type="Sprite2D" parent="page3/HPProgressBar"]
 show_behind_parent = true
-position = Vector2(57, 53)
+position = Vector2(56, 48)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("9_ove57")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="page3"]
-position = Vector2(719, 684)
-rotation = 1.5708
+position = Vector2(157, 563)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_tia3m")
 
-[node name="Area2Ddetectenemybullet" type="Area2D" parent="page3"]
-position = Vector2(719, 684)
-rotation = 1.5708
-scale = Vector2(6, 6)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="page3/Area2Ddetectenemybullet"]
-position = Vector2(-4.41666, -0.0833435)
-shape = SubResource("RectangleShape2D_j1ujb")
-
 [node name="BaseResource" parent="page3" instance=ExtResource("10_j3h85")]
-position = Vector2(133, 635)
+position = Vector2(700, 538)
 scale = Vector2(6, 6)
 attack_able = false
-tut = true
 
 [node name="page4" type="TextureRect" parent="."]
 visible = false
@@ -561,7 +546,6 @@ autowrap_mode = 3
 [connection signal="timeout" from="page2/ShootTimer" to="page1" method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="page2/ShootTimer" to="page2" method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="page2/Timergather" to="page2" method="_on_timergather_timeout"]
-[connection signal="area_entered" from="page3/Area2Ddetectenemybullet" to="page3" method="_on_area_2_ddetectenemybullet_area_entered"]
 [connection signal="pressed" from="Buttonnext" to="." method="_on_buttonnext_pressed"]
 [connection signal="pressed" from="Buttonprevious" to="." method="_on_buttonprevious_pressed"]
 [connection signal="pressed" from="ButtonexitH2P" to="." method="_on_buttonexit_h_2p_pressed"]
