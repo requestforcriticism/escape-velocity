@@ -426,6 +426,7 @@ offset_bottom = 40.0
 size_flags_horizontal = 4
 
 [node name="Window" type="TextureRect" parent="eating"]
+visible = false
 layout_mode = 0
 offset_left = -408.0
 offset_top = -140.0

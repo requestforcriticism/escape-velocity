@@ -37,8 +37,8 @@ func _ready() -> void:
 	starting = true
 	$landingPageBG.modulate.a += -50*.01
 
-	
-	_eat()
+	if visible:
+		_eat()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if visible:
@@ -149,6 +149,7 @@ func win_game():
 	$win.visible = true
 
 func _lose_game(node):
+	$eating/Window.visible = true
 	node.visible = true
 	$"eating/End game timer".start()
 	await get_tree().create_timer(2).timeout
