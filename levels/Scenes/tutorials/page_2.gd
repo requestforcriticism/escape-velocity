@@ -60,15 +60,16 @@ func reset_res_left():
 	new_oil_left.hide()
 	spawn_left = true
 
-
 func _on_timergather_timeout() -> void:
-	new_oil_right.spawn_collectable()
-	i += 1
-	if i == 5:
-		await get_tree().create_timer(1.0).timeout
-		new_oil_right.queue_free()
-		new_oil_right.hide()
-		spawn_right = true
-		i=0
+	if visible:
+		i += 1
+		if i<=5:
+			new_oil_right.spawn_collectable()
+		if i == 5:
+			await get_tree().create_timer(2.0).timeout
+			new_oil_right.queue_free()
+			new_oil_right.hide()
+			spawn_right = true
+			i=0
 	#var event_lmb = InputEventMouseButton.new()
 	#event_lmb.position = Vector2(1350,530)

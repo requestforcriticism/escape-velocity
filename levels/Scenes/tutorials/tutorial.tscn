@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bl531akvp285q"]
+[gd_scene load_steps=70 format=3 uid="uid://bl531akvp285q"]
 
 [ext_resource type="Texture2D" uid="uid://bqa4og6auhg2p" path="res://levels/Scenes/tutorials/tutorial1.png" id="1_6x3ss"]
 [ext_resource type="Script" path="res://levels/Scenes/tutorials/tutorial.gd" id="1_kskg8"]
@@ -17,16 +17,24 @@
 [ext_resource type="Script" path="res://levels/Scenes/tutorials/page_3.gd" id="12_vhjvd"]
 [ext_resource type="Texture2D" uid="uid://drwkpafk51uvi" path="res://levels/Scenes/tutorials/tutorial6.png" id="13_xbu1q"]
 [ext_resource type="Texture2D" uid="uid://c0up8rgx4h1fu" path="res://levels/Scenes/tutorials/tutorial7.png" id="14_42x4b"]
+[ext_resource type="Texture2D" uid="uid://cw7ouvvqgms0y" path="res://entities/player/Fire.png" id="15_7ah65"]
+[ext_resource type="Script" path="res://levels/Scenes/tutorials/page_4.gd" id="15_f28do"]
 [ext_resource type="Texture2D" uid="uid://dr7ljsae3ovrl" path="res://assets/collectabes/food.png" id="15_htgpg"]
 [ext_resource type="Texture2D" uid="uid://k8godcxwgbo4" path="res://levels/Scenes/tutorials/tutorial8.png" id="15_u16kb"]
 [ext_resource type="Texture2D" uid="uid://d31st2mijex4e" path="res://levels/Scenes/tutorials/tutorial9.png" id="16_6bol4"]
+[ext_resource type="Texture2D" uid="uid://ckojygrnc6ctp" path="res://assets/hudAssets/Battery.png" id="16_35lo8"]
 [ext_resource type="Texture2D" uid="uid://djx1u1qr6ilya" path="res://assets/collectabes/water_bubble.png" id="16_uch1s"]
 [ext_resource type="Texture2D" uid="uid://jk8xeutfc0dh" path="res://levels/Scenes/tutorials/tutorial10.png" id="17_1gxtt"]
 [ext_resource type="Texture2D" uid="uid://c46rv4vqhmx0w" path="res://assets/hudAssets/healthpack.png" id="19_37ptr"]
 [ext_resource type="Texture2D" uid="uid://c8uxk4x1ge14x" path="res://assets/hudAssets/Stamboost.png" id="20_5n0tf"]
+[ext_resource type="Script" path="res://levels/Scenes/tutorials/page_6.gd" id="20_rms7o"]
 [ext_resource type="Texture2D" uid="uid://ckfe805f5ijot" path="res://assets/hudAssets/Damageboost.png" id="21_tv16b"]
+[ext_resource type="Texture2D" uid="uid://dfq53nsh1s4f7" path="res://assets/hudAssets/button_square_header_small_square.png" id="22_pxoir"]
 [ext_resource type="Texture2D" uid="uid://5y13pla1fpku" path="res://assets/hudAssets/DamageReduction.png" id="22_upcll"]
+[ext_resource type="Texture2D" uid="uid://bp22ayyc51xnm" path="res://levels/Scenes/tutorials/tutorial11.png" id="22_yjbio"]
+[ext_resource type="Texture2D" uid="uid://d4kwt20g4glah" path="res://assets/harvester/harvester.png" id="23_6nc6q"]
 [ext_resource type="Texture2D" uid="uid://duu24sy6gjbqm" path="res://assets/harvester/Single_harverter.png" id="23_xyxnc"]
+[ext_resource type="Texture2D" uid="uid://dcmij6c2f0wwm" path="res://levels/Scenes/tutorials/tutorial12.png" id="28_b0p33"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6xml8"]
 atlas = ExtResource("5_3s1aq")
@@ -88,6 +96,99 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1ujb"]
 size = Vector2(24.1667, 29.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsc02"]
+atlas = ExtResource("5_3s1aq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bo36c"]
+atlas = ExtResource("5_3s1aq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4s21r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsc02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bo36c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbqnu"]
+atlas = ExtResource("15_7ah65")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ll88"]
+atlas = ExtResource("15_7ah65")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ooidc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbqnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ll88")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2v3t"]
+atlas = ExtResource("5_3s1aq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1yyr"]
+atlas = ExtResource("5_3s1aq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wbed8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2v3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1yyr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_and6j"]
+atlas = ExtResource("23_6nc6q")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7fbn"]
+atlas = ExtResource("23_6nc6q")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_swa0n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_and6j")
+}],
+"loop": true,
+"name": &"Available",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7fbn")
+}],
+"loop": true,
+"name": &"Empty",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r8prk"]
 atlas = ExtResource("15_htgpg")
@@ -311,9 +412,11 @@ position = Vector2(1941, 455)
 shape = SubResource("RectangleShape2D_o4oje")
 
 [node name="Timergather" type="Timer" parent="page2"]
+wait_time = 0.5
 autostart = true
 
 [node name="page3" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = -850.0
 offset_top = -425.0
@@ -377,6 +480,64 @@ offset_top = -425.0
 offset_right = -810.0
 offset_bottom = -385.0
 texture = ExtResource("12_k5l0t")
+script = ExtResource("15_f28do")
+
+[node name="StaminaProgressBar" type="ProgressBar" parent="page4"]
+modulate = Color(0.180392, 1, 0.337255, 1)
+layout_mode = 0
+offset_left = 55.0
+offset_top = 473.0
+offset_right = 388.0
+offset_bottom = 562.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+value = 100.0
+show_percentage = false
+
+[node name="BatterySprite2D" type="Sprite2D" parent="page4/StaminaProgressBar"]
+position = Vector2(172.5, 163.213)
+scale = Vector2(1.37891, 1.83147)
+texture = ExtResource("16_35lo8")
+
+[node name="StaminaProgressBar2" type="ProgressBar" parent="page4"]
+modulate = Color(0.180392, 1, 0.337255, 1)
+layout_mode = 0
+offset_left = 900.0
+offset_top = 466.0
+offset_right = 1233.0
+offset_bottom = 555.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+value = 100.0
+show_percentage = false
+
+[node name="BatterySprite2D" type="Sprite2D" parent="page4/StaminaProgressBar2"]
+position = Vector2(172.5, 163.213)
+scale = Vector2(1.37891, 1.83147)
+texture = ExtResource("16_35lo8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="page4"]
+position = Vector2(568, 517)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_4s21r")
+autoplay = "default"
+
+[node name="AnimatedSprite2DFire" type="AnimatedSprite2D" parent="page4"]
+visible = false
+position = Vector2(1316.06, 511)
+scale = Vector2(4.31641, 2.25)
+sprite_frames = SubResource("SpriteFrames_ooidc")
+frame_progress = 0.716684
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="page4"]
+position = Vector2(1476, 511)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_wbed8")
+autoplay = "default"
+
+[node name="dashTimer" type="Timer" parent="page4"]
+wait_time = 0.5
+autostart = true
 
 [node name="page5" type="TextureRect" parent="."]
 visible = false
@@ -395,20 +556,12 @@ offset_top = -425.0
 offset_right = -810.0
 offset_bottom = -385.0
 texture = ExtResource("14_42x4b")
+script = ExtResource("20_rms7o")
+oilresource = ExtResource("10_j3h85")
 
-[node name="food" type="AnimatedSprite2D" parent="page6"]
-position = Vector2(1117, 384)
-scale = Vector2(2.5, 2.5)
-sprite_frames = SubResource("SpriteFrames_6wmon")
-autoplay = "default"
-frame_progress = 0.925044
-
-[node name="water" type="AnimatedSprite2D" parent="page6"]
-position = Vector2(1371, 384)
-scale = Vector2(2.5, 2.5)
-sprite_frames = SubResource("SpriteFrames_whkc4")
-autoplay = "default"
-frame_progress = 0.0321586
+[node name="Timergather" type="Timer" parent="page6"]
+wait_time = 0.5
+autostart = true
 
 [node name="page7" type="TextureRect" parent="."]
 visible = false
@@ -419,6 +572,36 @@ offset_right = -810.0
 offset_bottom = -385.0
 texture = ExtResource("15_u16kb")
 
+[node name="HarvesterControl" type="Control" parent="page7"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1495.0
+offset_top = 523.0
+offset_right = 1606.0
+offset_bottom = 579.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="page7/HarvesterControl"]
+position = Vector2(32, 56)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("22_pxoir")
+
+[node name="HarvesterCount" type="Label" parent="page7/HarvesterControl"]
+layout_mode = 2
+offset_left = -16.0
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 28
+text = "5/7"
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="page7/HarvesterControl"]
+position = Vector2(32, 72)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_swa0n")
+animation = &"Available"
+
 [node name="page8" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
@@ -428,50 +611,19 @@ offset_right = -810.0
 offset_bottom = -385.0
 texture = ExtResource("16_6bol4")
 
-[node name="TextureRectHP" type="TextureRect" parent="page8"]
-layout_mode = 0
-offset_left = 117.0
-offset_top = 333.0
-offset_right = 181.0
-offset_bottom = 397.0
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("19_37ptr")
+[node name="food" type="AnimatedSprite2D" parent="page8"]
+position = Vector2(1117, 384)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_6wmon")
+autoplay = "default"
+frame_progress = 0.925044
 
-[node name="TextureRectSTBST" type="TextureRect" parent="page8"]
-layout_mode = 0
-offset_left = 117.0
-offset_top = 435.0
-offset_right = 181.0
-offset_bottom = 499.0
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("20_5n0tf")
-
-[node name="TextureRectDMGBST" type="TextureRect" parent="page8"]
-layout_mode = 0
-offset_left = 117.0
-offset_top = 520.0
-offset_right = 181.0
-offset_bottom = 584.0
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("21_tv16b")
-
-[node name="TextureRectDMGRED" type="TextureRect" parent="page8"]
-layout_mode = 0
-offset_left = 118.0
-offset_top = 605.0
-offset_right = 182.0
-offset_bottom = 669.0
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("22_upcll")
-
-[node name="TextureRectHarvester" type="TextureRect" parent="page8"]
-layout_mode = 0
-offset_left = 118.0
-offset_top = 688.0
-offset_right = 182.0
-offset_bottom = 752.0
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("23_xyxnc")
+[node name="water" type="AnimatedSprite2D" parent="page8"]
+position = Vector2(1371, 384)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_whkc4")
+autoplay = "default"
+frame_progress = 0.0321586
 
 [node name="page9" type="TextureRect" parent="."]
 visible = false
@@ -488,6 +640,83 @@ offset_bottom = 425.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("17_1gxtt")
+
+[node name="page10" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -850.0
+offset_top = -425.0
+offset_right = 850.0
+offset_bottom = 425.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("22_yjbio")
+
+[node name="TextureRectHP" type="TextureRect" parent="page10"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 332.0
+offset_right = 193.0
+offset_bottom = 396.0
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("19_37ptr")
+
+[node name="TextureRectSTBST" type="TextureRect" parent="page10"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 434.0
+offset_right = 193.0
+offset_bottom = 498.0
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("20_5n0tf")
+
+[node name="TextureRectDMGBST" type="TextureRect" parent="page10"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 519.0
+offset_right = 193.0
+offset_bottom = 583.0
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("21_tv16b")
+
+[node name="TextureRectDMGRED" type="TextureRect" parent="page10"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 604.0
+offset_right = 194.0
+offset_bottom = 668.0
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("22_upcll")
+
+[node name="TextureRectHarvester" type="TextureRect" parent="page10"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 687.0
+offset_right = 194.0
+offset_bottom = 751.0
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("23_xyxnc")
+
+[node name="page11" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -850.0
+offset_top = -425.0
+offset_right = 850.0
+offset_bottom = 425.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("28_b0p33")
 
 [node name="Buttonnext" type="Button" parent="."]
 layout_mode = 0
@@ -562,6 +791,8 @@ autowrap_mode = 3
 [connection signal="timeout" from="page2/ShootTimer" to="page2" method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="page2/Timergather" to="page2" method="_on_timergather_timeout"]
 [connection signal="area_entered" from="page3/Area2Ddetectenemybullet" to="page3" method="_on_area_2_ddetectenemybullet_area_entered"]
+[connection signal="timeout" from="page4/dashTimer" to="page4" method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="page6/Timergather" to="page6" method="_on_timergather_timeout"]
 [connection signal="pressed" from="Buttonnext" to="." method="_on_buttonnext_pressed"]
 [connection signal="pressed" from="Buttonprevious" to="." method="_on_buttonprevious_pressed"]
 [connection signal="pressed" from="ButtonexitH2P" to="." method="_on_buttonexit_h_2p_pressed"]

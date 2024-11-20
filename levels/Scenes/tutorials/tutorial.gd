@@ -1,13 +1,12 @@
 extends Control
 
-var numberpages = 10
+var numberpages = 12
 var pagenumber:int
 var pause_menu_input_events
 var inputdisabling:bool
 var restartTut
 var menu_cursor = preload("res://assets/cursors/pointer_b.png")
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(.5).timeout
 	if Save.get_value(1, "Tutor", 1):
@@ -15,7 +14,6 @@ func _ready() -> void:
 	else:
 		visible = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("end_tutorial"):
 		if $tutorialreminder.visible:
