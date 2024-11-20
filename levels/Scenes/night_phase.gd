@@ -37,6 +37,8 @@ func _ready() -> void:
 	starting = true
 	$landingPageBG.modulate.a += -50*.01
 
+	if visible:
+		_eat()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if visible:
@@ -113,6 +115,18 @@ func _on_en_no_button_pressed() -> void:
 	$EndNightCheckBox.visible = false
 	pass # Replace with function body.
 	
+func _eat():
+	if Save.get_value(1, "FOO", 0) < 10:
+		if Save.get_value(1, "WAT", 0) <10:
+			_lose_game($eating/Window/nofoodwater)
+		else:
+			_lose_game($eating/Window/nofood)
+	elif Save.get_value(1, "WAT", 0) <10:
+		_lose_game($eating/Window/nowater)
+	else:
+		Save.set_value(1, "FOO", Save.get_value(1, "FOO", 0) -10)
+		Save.set_value(1, "WAT", Save.get_value(1, "WAT", 0) -10)
+	
 func end_day():
 	print("Start playing sleeping sounds.")
 	for i in 100:
@@ -130,4 +144,20 @@ func page_transition(start_page,end_page):
 
 func win_game():
 	print("You win the game!")
+	Save.set_value(1, "WIN", 1)
+	$"eating/End game timer".start()
+	$win.visible = true
+
+func _lose_game(node):
+	$eating/Window.visible = true
+	node.visible = true
+	$"eating/End game timer".start()
+	await get_tree().create_timer(2).timeout
+	for i in 100:
+		$".".modulate.r += -.01
+		$".".modulate.b += -.01
+		$".".modulate.g += -.01
+		await get_tree().create_timer(0.01).timeout
+
+func _on_end_game_timer_timeout() -> void:
 	LevelManager.load_post_game()

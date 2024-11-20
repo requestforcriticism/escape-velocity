@@ -14,6 +14,9 @@ signal health_changed
 @export var DMG = 10  #damage the bullet deals
 @export var drop_throw_distance = 0
 @export var is_attacking:bool = true
+@export var attack_able:bool = true
+
+@export var tut:bool =false
 
 var mined_drops = 0 #num resources mined so fat
 var miners = []
@@ -24,7 +27,7 @@ enum RESOURCE_STATE { AGGESSIVE , PASSIVE , MINED , DEAD }
 
 @export var state : RESOURCE_STATE
 
-var shoot_state = 0
+@export var shoot_state = 0
 
 func mine(miner):
 	
@@ -54,6 +57,7 @@ func mine(miner):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Area2D/CollisionShape2D.disabled = !attack_able
 	$Timer.autostart = is_attacking
 	if is_attacking:
 		$Timer.start()
@@ -76,9 +80,13 @@ func _process(delta):
 		#$Area2D.queue_free()
 	
 func attack():
-	var shoot_angle = deg_to_rad((shoot_state * 90) % 360)
-	shoot_bullet(shoot_angle, 1, 10, 1)
-	shoot_state += 1
+	if !tut:
+		var shoot_angle = deg_to_rad((shoot_state * 90) % 360)
+		shoot_bullet(shoot_angle, 1, 10, 1)
+		shoot_state += 1
+	else:
+		var shoot_angle = deg_to_rad((shoot_state * 90) % 360)
+		shoot_bullet(shoot_angle, 1, 10, 1)
 
 func shoot_bullet(angle, expiration, damage, size):
 	var bullet = bullet_scene.instantiate()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=72 format=3 uid="uid://dhmd88cnimtpn"]
+[gd_scene load_steps=73 format=3 uid="uid://dhmd88cnimtpn"]
 
 [ext_resource type="Script" path="res://levels/Scenes/night_phase.gd" id="1_y5447"]
 [ext_resource type="Texture2D" uid="uid://b14glxl3ey7ii" path="res://levels/Scenes/NightPhaseAssets/spaceship_interior.png" id="2_g30nj"]
 [ext_resource type="Texture2D" uid="uid://c46rv4vqhmx0w" path="res://assets/hudAssets/healthpack.png" id="3_ay0j2"]
 [ext_resource type="Script" path="res://levels/Scenes/landing_page.gd" id="3_s3rj1"]
 [ext_resource type="Script" path="res://levels/Scenes/crafting_page.gd" id="3_su4y4"]
+[ext_resource type="Texture2D" uid="uid://bf0gqoh1mr85p" path="res://levels/Scenes/tutorials/button_rectangle.png" id="3_wuujd"]
 [ext_resource type="Texture2D" uid="uid://dn0ds7y7r0d7k" path="res://assets/collectabes/oil_bubble.png" id="4_l24yy"]
 [ext_resource type="Texture2D" uid="uid://nk7ocyd0d2y1" path="res://levels/Scenes/NightPhaseAssets/availabel_crafting_background.png" id="4_poicf"]
 [ext_resource type="Texture2D" uid="uid://c8uxk4x1ge14x" path="res://assets/hudAssets/Stamboost.png" id="4_q3cbo"]
@@ -381,6 +382,124 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_g30nj")
 metadata/_edit_lock_ = true
+
+[node name="win" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Window" type="TextureRect" parent="win"]
+layout_mode = 0
+offset_left = -408.0
+offset_top = -140.0
+offset_right = 408.0
+offset_bottom = 132.0
+texture = ExtResource("3_wuujd")
+
+[node name="nofood" type="Label" parent="win/Window"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -132.0
+offset_right = 256.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "You successfully fixed the ship!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="eating" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+
+[node name="Window" type="TextureRect" parent="eating"]
+visible = false
+layout_mode = 0
+offset_left = -408.0
+offset_top = -140.0
+offset_right = 408.0
+offset_bottom = 132.0
+texture = ExtResource("3_wuujd")
+
+[node name="nofood" type="Label" parent="eating/Window"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -344.0
+offset_top = -132.0
+offset_right = 344.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "The Starfarer has starved from lack of food..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="nowater" type="Label" parent="eating/Window"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -344.0
+offset_top = -132.0
+offset_right = 344.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "The Starfarer has starved from lack of water..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="nofoodwater" type="Label" parent="eating/Window"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -344.0
+offset_top = -132.0
+offset_right = 344.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "The Starfarer has starved from lack of food and water..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="End game timer" type="Timer" parent="eating"]
+wait_time = 5.0
+one_shot = true
 
 [node name="LandingPage" type="Control" parent="."]
 layout_mode = 3
@@ -1495,6 +1614,7 @@ vertical_alignment = 1
 position = Vector2(-60, 11)
 
 [node name="GridContainer" type="GridContainer" parent="TechTreePage"]
+layout_mode = 0
 offset_left = 788.0
 offset_top = 424.0
 offset_right = 964.0
@@ -1923,6 +2043,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.784314)
 
+[connection signal="timeout" from="eating/End game timer" to="." method="_on_end_game_timer_timeout"]
 [connection signal="pressed" from="LandingPage/GridContainer/CraftButton" to="." method="_on_craft_button_pressed"]
 [connection signal="pressed" from="LandingPage/GridContainer/FixShipButton" to="." method="_on_fix_ship_button_pressed"]
 [connection signal="pressed" from="LandingPage/GridContainer/TechTreeButton" to="." method="_on_tech_tree_button_pressed"]

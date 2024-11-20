@@ -5,6 +5,7 @@ var i:int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	New_game_scene = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -76,12 +77,13 @@ func _on_load_game_pressed() -> void:
 func _start_new_game():
 	Save.set_value(1, "SHIPREPAIR", 0)
 	Save.set_value(1, "DAY", 1)
-	Save.set_value(1, "FOO", 1300)
-	Save.set_value(1, "WAT", 1300)
-	Save.set_value(1, "OIL", 1200)
-	Save.set_value(1, "IRO", 1200)
-	Save.set_value(1, "URA", 1200)
-	Save.set_value(1, "COM", 1200)
+	Save.set_value(1, "WIN", 0)
+	Save.set_value(1, "FOO", 30)
+	Save.set_value(1, "WAT", 30)
+	Save.set_value(1, "OIL", 0)
+	Save.set_value(1, "IRO", 0)
+	Save.set_value(1, "URA", 0)
+	Save.set_value(1, "COM", 0)
 	Save.set_value(1, "HLTHPCK", 5)
 	Save.set_value(1, "STABST", 6)
 	Save.set_value(1, "DMGBST", 7)

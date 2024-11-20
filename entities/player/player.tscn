@@ -278,7 +278,7 @@ position = Vector2(-27.25, -1.19209e-07)
 scale = Vector2(0.765625, 0.375)
 sprite_frames = SubResource("SpriteFrames_r6j14")
 animation = &"dash"
-frame_progress = 0.571006
+frame_progress = 0.843865
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lgv1p")
