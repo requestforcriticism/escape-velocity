@@ -15,5 +15,6 @@ func _on_die_timer_timeout():
 	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
+	print("hit")
 	hide()
 	queue_free()

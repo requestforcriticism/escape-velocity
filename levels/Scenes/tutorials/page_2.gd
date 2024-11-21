@@ -9,13 +9,11 @@ var spawn_right:bool
 var new_oil_left
 var new_oil_right
 var i = 0
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	spawn_left = true
 	spawn_right = true
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$Area2D/CollisionShape2D.disabled = $".".visible
 
@@ -45,23 +43,28 @@ func _process(delta: float) -> void:
 		add_child(new_oil_right)
 		new_oil_right.take_damage(100)
 		spawn_right = false
-		
 	
-	if new_oil_left.currentHealth <= 0:
+	if new_oil_left != null && new_oil_left.currentHealth <= 0:
 		reset_res_left()
 	
+	#if !visible:
+		#if new_oil_left !=null:
+			#new_oil_left.queue_free()
+			#new_oil_left.hide()
+		#if new_oil_right !=null:
+			#new_oil_right.queue_free()
+			#new_oil_right.hide()
 
 func _on_shoot_timer_timeout() -> void:
 	shootRdy = true
 
 func reset_res_left():
-	await get_tree().create_timer(1.0).timeout
 	new_oil_left.queue_free()
 	new_oil_left.hide()
 	spawn_left = true
 
 func _on_timergather_timeout() -> void:
-	if visible:
+	if visible && new_oil_right != null:
 		i += 1
 		if i<=5:
 			new_oil_right.spawn_collectable()
@@ -71,5 +74,3 @@ func _on_timergather_timeout() -> void:
 			new_oil_right.hide()
 			spawn_right = true
 			i=0
-	#var event_lmb = InputEventMouseButton.new()
-	#event_lmb.position = Vector2(1350,530)

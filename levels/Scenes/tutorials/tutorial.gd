@@ -37,7 +37,6 @@ func _process(delta: float) -> void:
 				renable_pause_menu()
 				visible = false
 	if visible:
-		print(delta,"still visible")
 		Input.set_custom_mouse_cursor(menu_cursor,Input.CURSOR_ARROW,Vector2(20,16))
 		pass
 
@@ -77,13 +76,15 @@ func _on_buttonexit_h_2p_pressed() -> void:
 		restartTut = false
 		renable_pause_menu()
 		visible = false
+		#process_mode = 4 # disable process
 
 func _UL_page(PN):
 	get_node(str("page",PN)).visible = false
+	get_node(str("page",PN)).process_mode = Node.PROCESS_MODE_DISABLED
 
 func _L_page(PN):
 	get_node(str("page",PN)).visible = true
-
+	get_node(str("page",PN)).process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
 func _on_buttonclosewindow_pressed() -> void:
 	restartTut = false
@@ -92,6 +93,7 @@ func _on_buttonclosewindow_pressed() -> void:
 	$tutorialreminder.visible = false
 	renable_pause_menu()
 	visible = false
+	#process_mode = 4 # disable process
 	
 func disable_pause_menu():
 	pause_menu_input_events = InputMap.action_get_events("pause_day_phase")
@@ -104,13 +106,5 @@ func renable_pause_menu():
 
 func _on_pause_menu_turnontutorial() -> void:
 	visible = true
+	#process_mode = 2 #2 mean when while paused
 	_startup()
-	#get_tree().paused = true
-	#print("show me tutorial")
-	#$Buttonnext.visible = true
-	#$Buttonprevious.visible = true
-	#$ButtonexitH2P.visible = true
-	#pagenumber = 0
-	#_L_page(pagenumber)
-	#restartTut = true
-	

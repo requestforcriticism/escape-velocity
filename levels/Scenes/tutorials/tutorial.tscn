@@ -75,6 +75,7 @@ animations = [{
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_a8xga"]
 a = Vector2(1, -213)
+b = Vector2(-1, 67)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4oje"]
 size = Vector2(96, 274)
@@ -277,7 +278,7 @@ animations = [{
 }]
 
 [node name="tutorial" type="Control"]
-process_mode = 3
+process_mode = 2
 top_level = true
 layout_mode = 3
 anchors_preset = 8
@@ -290,6 +291,7 @@ grow_vertical = 2
 script = ExtResource("1_kskg8")
 
 [node name="page0" type="TextureRect" parent="."]
+process_mode = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -315,8 +317,7 @@ scale = Vector2(0.35, 0.35)
 buttons_active = false
 
 [node name="page1" type="TextureRect" parent="."]
-process_mode = 3
-visible = false
+process_mode = 4
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -355,21 +356,17 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Area2D" type="Area2D" parent="page1"]
-process_mode = 3
-process_priority = 1
-process_physics_priority = 1
 position = Vector2(-142, 0)
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="page1/Area2D"]
-process_mode = 3
-process_priority = 1
-process_physics_priority = 1
 position = Vector2(918, 600)
 shape = SubResource("SegmentShape2D_a8xga")
+debug_color = Color(4.62055e-06, 0.587025, 0.769168, 0.42)
 
 [node name="page2" type="TextureRect" parent="."]
+process_mode = 4
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -416,6 +413,7 @@ wait_time = 0.5
 autostart = true
 
 [node name="page3" type="TextureRect" parent="."]
+process_mode = 4
 visible = false
 layout_mode = 0
 offset_left = -850.0
@@ -469,10 +467,12 @@ shape = SubResource("RectangleShape2D_j1ujb")
 [node name="BaseResource" parent="page3" instance=ExtResource("10_j3h85")]
 position = Vector2(133, 635)
 scale = Vector2(6, 6)
+DMG = 0
 attack_able = false
 tut = true
 
 [node name="page4" type="TextureRect" parent="."]
+process_mode = 4
 visible = false
 layout_mode = 0
 offset_left = -850.0
@@ -540,6 +540,7 @@ wait_time = 0.5
 autostart = true
 
 [node name="page5" type="TextureRect" parent="."]
+process_mode = 4
 visible = false
 layout_mode = 0
 offset_left = -850.0
@@ -549,6 +550,7 @@ offset_bottom = -385.0
 texture = ExtResource("13_xbu1q")
 
 [node name="page6" type="TextureRect" parent="."]
+process_mode = 4
 visible = false
 layout_mode = 0
 offset_left = -850.0
@@ -564,6 +566,7 @@ wait_time = 0.5
 autostart = true
 
 [node name="page7" type="TextureRect" parent="."]
+process_mode = 4
 visible = false
 layout_mode = 0
 offset_left = -850.0
@@ -603,6 +606,7 @@ sprite_frames = SubResource("SpriteFrames_swa0n")
 animation = &"Available"
 
 [node name="page8" type="TextureRect" parent="."]
+process_mode = 4
 visible = false
 layout_mode = 0
 offset_left = -850.0
@@ -626,6 +630,7 @@ autoplay = "default"
 frame_progress = 0.0321586
 
 [node name="page9" type="TextureRect" parent="."]
+process_mode = 4
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -642,6 +647,7 @@ grow_vertical = 2
 texture = ExtResource("17_1gxtt")
 
 [node name="page10" type="TextureRect" parent="."]
+process_mode = 4
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -703,6 +709,7 @@ scale = Vector2(1.3, 1.3)
 texture = ExtResource("23_xyxnc")
 
 [node name="page11" type="TextureRect" parent="."]
+process_mode = 4
 visible = false
 layout_mode = 1
 anchors_preset = 8
