@@ -1,0 +1,113 @@
+[gd_scene load_steps=17 format=3 uid="uid://b1l8eca6xw2m"]
+
+[ext_resource type="Texture2D" uid="uid://b1abwegabwav2" path="res://components/playerBullet/pj2_scifi_missile_small_white/spritesheet.png" id="1_pjw0s"]
+[ext_resource type="Script" path="res://components/playerBullet/player_bullet_missile.gd" id="1_s7opa"]
+[ext_resource type="PackedScene" uid="uid://vkbolncu7xoa" path="res://components/playerBullet/missileexplosion.tscn" id="2_a0dwv"]
+[ext_resource type="Script" path="res://components/Collectables/collectable_sprite_frames.gd" id="2_cxrrt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shweh"]
+atlas = ExtResource("1_pjw0s")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h45l7"]
+atlas = ExtResource("1_pjw0s")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdem0"]
+atlas = ExtResource("1_pjw0s")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsl01"]
+atlas = ExtResource("1_pjw0s")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4s2q"]
+atlas = ExtResource("1_pjw0s")
+region = Rect2(128, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1es8l"]
+atlas = ExtResource("1_pjw0s")
+region = Rect2(160, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndvsi"]
+atlas = ExtResource("1_pjw0s")
+region = Rect2(192, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g22x0"]
+atlas = ExtResource("1_pjw0s")
+region = Rect2(224, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8jvo"]
+atlas = ExtResource("1_pjw0s")
+region = Rect2(256, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14xmu"]
+atlas = ExtResource("1_pjw0s")
+region = Rect2(288, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3nmav"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shweh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h45l7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdem0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsl01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4s2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1es8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndvsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g22x0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8jvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14xmu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+script = ExtResource("2_cxrrt")
+name = ""
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d8ry1"]
+radius = 3.0
+height = 18.0
+
+[node name="PlayerBulletmissile" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_s7opa")
+explosion = ExtResource("2_a0dwv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3nmav")
+autoplay = "default"
+frame_progress = 0.807558
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_d8ry1")
+
+[node name="DieTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="DieTimer" to="." method="_on_die_timer_timeout"]

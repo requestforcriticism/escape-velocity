@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://vkbolncu7xoa"]
+
+[ext_resource type="Script" path="res://components/playerBullet/missileexplosion.gd" id="1_aayib"]
+[ext_resource type="Texture2D" uid="uid://c4myhm2x67go5" path="res://components/playerBullet/fx3_toon_explosion_large_red/spritesheet.png" id="1_cu4c7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mne6q"]
+atlas = ExtResource("1_cu4c7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih22e"]
+atlas = ExtResource("1_cu4c7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg7kp"]
+atlas = ExtResource("1_cu4c7")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq1or"]
+atlas = ExtResource("1_cu4c7")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xjhi"]
+atlas = ExtResource("1_cu4c7")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73olu"]
+atlas = ExtResource("1_cu4c7")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd6w6"]
+atlas = ExtResource("1_cu4c7")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qq4p0"]
+atlas = ExtResource("1_cu4c7")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ep2ly"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mne6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih22e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg7kp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq1or")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xjhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73olu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cd6w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qq4p0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2khja"]
+radius = 45.0111
+
+[node name="missileexplosion" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_aayib")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.59375, 1.59375)
+sprite_frames = SubResource("SpriteFrames_ep2ly")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2khja")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

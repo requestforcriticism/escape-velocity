@@ -32,7 +32,7 @@ func on_damage(bullet):
 		hp -= bullet.damage
 		$HealthBar.value = hp
 		#print("hit for, ", bullet.damage, " now at ", hp)
-		bullet.queue_free()
+		#bullet.queue_free()
 	if hp <= 0:
 		on_die.emit()
 		queue_free()

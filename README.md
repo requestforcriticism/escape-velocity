@@ -20,4 +20,5 @@ Resources Used
 - kenney_input-prompts from https://kenney.nl/
 - kenney_particle-pack from https://kenney.nl/
 - Kenney Fonts from https://kenney.nl/
-
+- super-pixel-projectiles-pack-2-pixel-art-animated-projectiles from https://www.gamedevmarket.net
+- super-pixel-effects-pack-3-pixel-art-effect-animations from https://www.gamedevmarket.net

@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export_group("External Scenes")
 @export var playerBullet : PackedScene
+@export var playerBulletMissile : PackedScene
+@export var playerBulletSpray : PackedScene
 @export var harvester_scene : PackedScene
 @export var main_scn : Node
 @export var ship_scn : Node
@@ -47,6 +49,9 @@ var ConsumActive = [false,false,false]
 
 @export var DMG:float
 
+enum PLAYER_WEAPONS { BASE, MISSILE, SPRAY}
+var weapon_state
+
 #type of collectables [blue,red,green,yellow,orange,purple]
 @export var colable = [0,0,0,0,0,0,0,0]
 @export var colnames = ["BLU","IRO","OIL","WAT","URA", "FOO", "COM"]
@@ -56,6 +61,8 @@ var ConsumActive = [false,false,false]
 
 @export var player_tag = true
 
+
+
 var running = 0
 var dashDistance = 600
 var dashing:int
@@ -64,7 +71,9 @@ var current_chunk = null
 var looking
 var ang
 var lastlook
-var shootRdy:bool
+var BaseBulletshootRdy:bool
+var MissileBulletshootRdy:bool
+var SprayBulletshootRdy:bool
 var Whereismousy
 var lastMouse
 var HealthPotionHeal = 50
@@ -84,6 +93,7 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	weapon_state = PLAYER_WEAPONS.BASE
 	Move_state = "IDLE"
 	Action_State = "PASSIVE"
 	EndingDay = false
@@ -97,7 +107,9 @@ func _ready():
 	PlayerStats.set_DMG(Damage)
 	PlayerStats.set_shootSpeed(ShootSpeed)
 	PlayerStats.set_DMGReduction(DamageRedBase)
-	$ShootTimer.wait_time = PlayerStats.get_shootSpeed()
+	$BaseBulletShootTimer.wait_time = PlayerStats.get_shootSpeed()
+	$MissileBulletShootTimer.wait_time = 5*PlayerStats.get_shootSpeed()
+	$SprayBulletShootTimer.wait_time = .25*PlayerStats.get_shootSpeed()
 	availible_harvesters = max_harvesters
 	Healthpacks = Save.get_value(1, "HLTHPCK", 0)
 	consum = [Save.get_value(1, "STABST", 0),Save.get_value(1, "DMGBST", 0),Save.get_value(1, "DMGRED", 0)]  #set the starting number of consumables
@@ -110,7 +122,9 @@ func _ready():
 	looking = Vector2(1,0)
 	lastlook = Vector2(1,0)
 	lastMouse = Vector2(1,0)
-	shootRdy = true
+	BaseBulletshootRdy = true
+	MissileBulletshootRdy = true
+	SprayBulletshootRdy = true
 	$AnimatedSprite2D.animation = "walking"
 	dashRdy =true
 	stamina_changed.emit(PlayerStats.get_currentSTA(),PlayerStats.get_MaxSTA())
@@ -125,7 +139,7 @@ func _ready():
 func _process(delta: float) -> void:
 	Move_state = "IDLE"
 	Action_State = "PASSIVE"
-	var velocity = Vector2.ZERO
+	velocity = Vector2.ZERO
 	
 	if EndingDay == true:
 		Move_state = "WALKING"
@@ -179,23 +193,13 @@ func _process(delta: float) -> void:
 				Action_State = "DOUBLE_SHOOTING"
 		else:
 			Action_State = "SHOOTING"
-		if shootRdy == true:
-			var new_bullet = playerBullet.instantiate()
-			new_bullet.rotation = lastlook.angle()
-			new_bullet.damage = PlayerStats.get_DMG()
-			if consDur[1] > 0:
-				if bulletAlternate == true:
-					new_bullet.position = $Marker2Dright.global_position
-					bulletAlternate = false
-				else:
-					new_bullet.position = $Marker2Dleft.global_position
-					bulletAlternate = true
-			else:
-				new_bullet.position = $Marker2Dright.global_position
-			new_bullet.direction = lastlook.normalized()
-			add_sibling(new_bullet)
-			shootRdy = false
-			$ShootTimer.start()
+		
+		if weapon_state == PLAYER_WEAPONS.MISSILE:
+			_missile_bullet()
+		elif weapon_state == PLAYER_WEAPONS.SPRAY:
+			_spray_bullet()
+		else:
+			_base_bullet()
 	
 	#Use the selected Consumable
 	if Input.is_action_just_pressed("Use_consumable"):
@@ -217,7 +221,6 @@ func _process(delta: float) -> void:
 		is_harverter = true
 		availible_harvesters += -1
 		on_harvester_count_changed.emit(availible_harvesters)
-		#print("spawning harvester")
 		var harvester = harvester_scene.instantiate()
 		#harvester.position = position
 		harvester.position = $Marker2Dright.global_position
@@ -250,16 +253,6 @@ func _process(delta: float) -> void:
 			$AnimatedSprite2DFire.visible = false
 			$Area2D/DamageCollisionShape2D.disabled = false
 
-	#if running slow down
-	#if running > 0:
-		#running =+ -.01
-	#else:
-		#running = 0
-
-	#create animation for standing still
-	#$AnimatedSprite2D.animation = "standing"
-	#$AnimatedSprite2D.play()
-	
 	var chunk_id = pos_to_chunk(position.x, position.y)
 	
 	if current_chunk.x != chunk_id.x || current_chunk.y != chunk_id.y:
@@ -272,7 +265,71 @@ func _process(delta: float) -> void:
 		Action_State = "HARVESTER"
 	$AnimatedSprite2D.change_state(Move_state,Action_State)
 
-	
+func _input(event):
+	if event.is_action_pressed("pressed_one"):
+		weapon_state = PLAYER_WEAPONS.BASE
+	if event.is_action_pressed("pressed_two"): # && unlocked in tech tree
+		weapon_state = PLAYER_WEAPONS.MISSILE
+	if event.is_action_pressed("pressed_three"): # && unlocked in tech tree
+		weapon_state = PLAYER_WEAPONS.SPRAY	
+
+func _base_bullet():
+	if BaseBulletshootRdy == true:
+			var new_bullet = playerBullet.instantiate()
+			new_bullet.rotation = lastlook.angle()
+			new_bullet.damage = PlayerStats.get_DMG()
+			if consDur[1] > 0:
+				if bulletAlternate == true:
+					new_bullet.position = $Marker2Dright.global_position
+					bulletAlternate = false
+				else:
+					new_bullet.position = $Marker2Dleft.global_position
+					bulletAlternate = true
+			else:
+				new_bullet.position = $Marker2Dright.global_position
+			new_bullet.direction = lastlook.normalized()
+			add_sibling(new_bullet)
+			BaseBulletshootRdy = false
+			$BaseBulletShootTimer.start()
+
+func _missile_bullet():
+	if MissileBulletshootRdy == true:
+			var new_bullet = playerBulletMissile.instantiate()
+			new_bullet.rotation = lastlook.angle()
+			new_bullet.damage = 0
+			new_bullet.explosiondamage = 5 * PlayerStats.get_DMG()
+			if consDur[1] > 0:
+				if bulletAlternate == true:
+					new_bullet.position = $Marker2Dright.global_position
+					bulletAlternate = false
+				else:
+					new_bullet.position = $Marker2Dleft.global_position
+					bulletAlternate = true
+			else:
+				new_bullet.position = $Marker2Dright.global_position
+			new_bullet.direction = lastlook.normalized()
+			add_sibling(new_bullet)
+			MissileBulletshootRdy = false
+			$MissileBulletShootTimer.start()
+
+func _spray_bullet():
+	if SprayBulletshootRdy == true:
+			var new_bullet_missile = playerBulletSpray.instantiate()
+			new_bullet_missile.rotation = lastlook.angle()
+			new_bullet_missile.damage = PlayerStats.get_DMG()
+			if consDur[1] > 0:
+				if bulletAlternate == true:
+					new_bullet_missile.position = $Marker2Dright.global_position
+					bulletAlternate = false
+				else:
+					new_bullet_missile.position = $Marker2Dleft.global_position
+					bulletAlternate = true
+			else:
+				new_bullet_missile.position = $Marker2Dright.global_position
+			new_bullet_missile.direction = lastlook.normalized()
+			add_sibling(new_bullet_missile)
+			SprayBulletshootRdy = false
+			$SprayBulletShootTimer.start()
 
 func harvester_return():
 	availible_harvesters += 1
@@ -290,9 +347,16 @@ func _on_dash_wait_timeout() -> void:
 	dashRdy =true
 
 func _on_shoot_timer_timeout() -> void:
-	shootRdy = true
-	$ShootTimer.wait_time = PlayerStats.get_shootSpeed()
-	#$ShootTimer.stop()
+	BaseBulletshootRdy = true
+	$BaseBulletShootTimer.wait_time = PlayerStats.get_shootSpeed()
+
+func _on_missile_bullet_shoot_timer_timeout() -> void:
+	MissileBulletshootRdy = true
+	$MissileBulletShootTimer.wait_time = 5*PlayerStats.get_shootSpeed()
+
+func _on_spray_bullet_shoot_timer_timeout() -> void:
+	SprayBulletshootRdy = true
+	$SprayBulletShootTimer.wait_time = .25*PlayerStats.get_shootSpeed()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if "damage" in area:
