@@ -8,9 +8,11 @@ var countdown = false
 var HarvCount:int
 var HarvTotal:int
 var ArrowToShip
+enum PLAYER_WEAPONS { BASE, MISSILE, SPRAY}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$StaminaProgressBar.modulate = "green"
 	$HPProgressBar/HeartSprite2D.modulate = Color.RED
 	$ContConsum/GridContainer/StaRegDur.text = str("0 secs")
 	$ContConsum/GridContainer/DmgBstDur.text = str("0 secs")
@@ -63,58 +65,8 @@ func _on_player_gathered(colname) -> void:
 		await get_tree().create_timer(0.01).timeout
 	$ContBp/AnimatedSprite2D2.hide()	
 
-func _on_player_toggle_consumables() -> void:
-	pass # Replace with function body.
-
 func _on_player_hp_pack_count(hpPacks) -> void:
 	$HealthPackContainer/Label.text = str(hpPacks)
-
-#how many of each comsumable does the player have?  Let's update it.
-
-#func _on_pause_menu_consum_count(cons) -> void:
-	#consum=cons
-	#$ContConsum/SBst/AmtLeft.text = str(consum[0])
-	#$ContConsum/DBst/AmtLeft.text = str(consum[1])
-	#$ContConsum/DRed/AmtLeft.text = str(consum[2])
-
-#func _on_player_consum_count(cons) -> void:
-	#pass
-	#$ContConsum/SBst/AmtLeft.text = str(Save.get_value(1, "STABST", 0))
-	#$ContConsum/DBst/AmtLeft.text = str(Save.get_value(1, "DMGBST", 0))
-	#$ContConsum/DRed/AmtLeft.text = str(Save.get_value(1, "DMGRED", 0))
-
-
-
-#Use this for the Weapons stuff 
-#cycle between the consumables   
-#consumable amounts [ stamina recovery, damage boost, damage reduction]
-#func _on_player_toggle_consum(toggle) -> void:
-	#$ContConsum/ArrowRight.modulate = Color.DARK_GRAY
-	#$ContConsum/ArrowRight2.modulate = Color.DARK_GRAY
-	#await get_tree().create_timer(0.1).timeout
-	#$ContConsum/ArrowRight.modulate = Color.WHITE
-	#$ContConsum/ArrowRight2.modulate = Color.WHITE
-	#
-	#$ContConsum/Path2D/PathFollow2D.progress_ratio = ((toggle+1)% 3 )/2.0
-	#$ContConsum/SBst.position = $ContConsum/Path2D/PathFollow2D.position
-	#if $ContConsum/Path2D/PathFollow2D.progress_ratio !=.5:
-		#$ContConsum/SBst.scale = Vector2(.9,.9)
-	#else:
-		#$ContConsum/SBst.scale = Vector2(1.3,1.3)
-	 #
-	#$ContConsum/Path2D/PathFollow2D.progress_ratio = ((toggle+2)% 3 )/2.0
-	#$ContConsum/DRed.position = $ContConsum/Path2D/PathFollow2D.position
-	#if $ContConsum/Path2D/PathFollow2D.progress_ratio !=.5:
-		#$ContConsum/DRed.scale = Vector2(.9,.9)
-	#else:
-		#$ContConsum/DRed.scale = Vector2(1.3,1.3)
-	#
-	#$ContConsum/Path2D/PathFollow2D.progress_ratio = ((toggle+0)% 3 )/2.0
-	#$ContConsum/DBst.position = $ContConsum/Path2D/PathFollow2D.position
-	#if $ContConsum/Path2D/PathFollow2D.progress_ratio !=.5:
-		#$ContConsum/DBst.scale = Vector2(.9,.9)
-	#else:
-		#$ContConsum/DBst.scale = Vector2(1.3,1.3)
 
 func _on_player_on_harvester_count_changed(amt):
 	HarvCount = amt
@@ -208,3 +160,24 @@ func letters_pop_out(LabelNode,fontStart,modul):
 func point_arrow_to_ship():
 	ArrowToShip = $"../../../Ship".global_position - $"../..".global_position
 	$MiniMap/ArrowToShip.rotation = ArrowToShip.angle()
+
+
+func _on_player_notenoughsta() -> void:
+	$StaminaProgressBar/BatterySprite2D.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	$StaminaProgressBar/BatterySprite2D.modulate = Color.BLACK
+
+
+func _on_player_usingweapon(usingweapon) -> void:
+	if usingweapon == PLAYER_WEAPONS.MISSILE:
+		$Weapons/LeftBaseBG/LeftUsing.visible = false
+		$Weapons/MiddleBaseBG/Middleusing.visible = true
+		$Weapons/RightBaseBG/Rightusing.visible = false
+	elif usingweapon == PLAYER_WEAPONS.SPRAY:
+		$Weapons/LeftBaseBG/LeftUsing.visible = false
+		$Weapons/MiddleBaseBG/Middleusing.visible = false
+		$Weapons/RightBaseBG/Rightusing.visible = true
+	else:
+		$Weapons/LeftBaseBG/LeftUsing.visible = true
+		$Weapons/MiddleBaseBG/Middleusing.visible = false
+		$Weapons/RightBaseBG/Rightusing.visible = false

@@ -4,7 +4,7 @@ signal health_changed
 
 @export var bullet_scene : PackedScene
 @export var maxHealth = 100
-@export var currentHealth:int
+@export var currentHealth:float
 @export var healthRegen = 1
 @export var collectable_scn: PackedScene
 @export var drop_type: String

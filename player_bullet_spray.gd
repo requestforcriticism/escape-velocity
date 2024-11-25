@@ -1,10 +1,11 @@
 extends Area2D
 
 @export var speed = 800
-@export var damage:int
+@export var damage:float
 @export var direction:Vector2
 
 func _ready():
+	name = "playerbullet"
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,5 +17,6 @@ func _on_die_timer_timeout():
 	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
-	hide()
-	queue_free()
+	if area.name.left(12) != "playerbullet":
+		hide()
+		queue_free()

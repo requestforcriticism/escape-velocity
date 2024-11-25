@@ -17,7 +17,6 @@ func _on_die_timer_timeout():
 	explode()
 
 func _on_area_entered(area: Area2D) -> void:
-	print("area entered missile")
 	explode()
 	
 func explode():

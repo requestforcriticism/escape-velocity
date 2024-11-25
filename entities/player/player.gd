@@ -18,6 +18,8 @@ signal consDuration
 signal toggleConsum
 signal on_harvester_count_changed
 signal on_harvester_max_changed
+signal notenoughsta
+signal usingweapon
 
 @export_group("Procgen Properties")
 @export var tile_size = 32
@@ -34,6 +36,8 @@ signal on_harvester_max_changed
 @export var Damage = 5				#Base damage from base weapon
 @export var ShootSpeed = .2			#Bullets shoot at this rate in seconds.
 @export var DamageRedBase = 0		#Reduce damage taken by static amount.
+@export var missileStacost = 10		#Stamina cost to fire a missile.
+@export var sprayStacost = 1		#Stamina cost to fire 1 bullet using the spray gun.
 var PS = load("res://entities/player/player_stats.gd")
 var PlayerStats
 
@@ -94,6 +98,7 @@ func pos_to_chunk(x, y):
 
 func _ready():
 	weapon_state = PLAYER_WEAPONS.BASE
+	usingweapon.emit(weapon_state)
 	Move_state = "IDLE"
 	Action_State = "PASSIVE"
 	EndingDay = false
@@ -146,14 +151,12 @@ func _process(delta: float) -> void:
 		#$AnimatedSprite2D.animation = "walking"
 		#$AnimatedSprite2D.play("walking")
 	
-	if Input.is_action_pressed("running") && PlayerStats.get_currentSTA() > 0:
-		$StaminaRegen.stop()
-		running = 1
-		PlayerStats.set_currentSTA(-1) #maybe multiply by delta
-		stamina_changed.emit(PlayerStats.get_currentSTA(),PlayerStats.get_MaxSTA())
-		$StaminaRegen.wait_time = PlayerStats.get_StaInitialWait()
-		$StaminaRegen.start()
-		$StaminaRegen.wait_time = .05
+	if Input.is_action_pressed("running"):
+		if PlayerStats.get_currentSTA() > 0:
+			running = 1
+			_using_stamina(-1)
+		else:
+			notenoughsta.emit()
 	
 	velocity = Input.get_vector("move_left","move_right","move_up","move_down").normalized()
 
@@ -231,19 +234,18 @@ func _process(delta: float) -> void:
 		main_scn.add_child(harvester)
 	
 	#logic for dashing
-	if dashRdy == true && Input.is_action_just_pressed("dash") && PlayerStats.get_currentSTA() > dashStaminaCost && EndingDay == false:
-		$StaminaRegen.stop()
-		$Area2D/DamageCollisionShape2D.disabled = true
-		PlayerStats.set_currentSTA(-dashStaminaCost)
-		stamina_changed.emit(PlayerStats.get_currentSTA(),PlayerStats.get_MaxSTA())
-		dashing = 10
-		$StaminaRegen.wait_time = PlayerStats.get_StaInitialWait()
-		$StaminaRegen.start()
-		$StaminaRegen.wait_time = .05
-		dashRdy = false
-		$DashWait.start()
-		$AnimatedSprite2DFire.play("dash")
-		$AnimatedSprite2DFire.visible = true
+	if dashRdy == true && Input.is_action_just_pressed("dash") && EndingDay == false:
+		if PlayerStats.get_currentSTA() > dashStaminaCost:
+			dashing = 10
+			$Area2D/DamageCollisionShape2D.disabled = true
+			_using_stamina(-dashStaminaCost)
+			dashRdy = false
+			$DashWait.start()
+			$AnimatedSprite2DFire.play("dash")
+			$AnimatedSprite2DFire.visible = true
+		else:
+			notenoughsta.emit()
+		
 	if dashing > 0:
 		dashing += -1
 		position += velocity.normalized()*dashDistance*delta
@@ -265,13 +267,24 @@ func _process(delta: float) -> void:
 		Action_State = "HARVESTER"
 	$AnimatedSprite2D.change_state(Move_state,Action_State)
 
+func _using_stamina(Stacost):
+	$StaminaRegen.stop()
+	PlayerStats.set_currentSTA(Stacost)
+	stamina_changed.emit(PlayerStats.get_currentSTA(),PlayerStats.get_MaxSTA())
+	$StaminaRegen.wait_time = PlayerStats.get_StaInitialWait()
+	$StaminaRegen.start()
+	$StaminaRegen.wait_time = .05
+
 func _input(event):
 	if event.is_action_pressed("pressed_one"):
 		weapon_state = PLAYER_WEAPONS.BASE
+		usingweapon.emit(weapon_state)
 	if event.is_action_pressed("pressed_two"): # && unlocked in tech tree
 		weapon_state = PLAYER_WEAPONS.MISSILE
+		usingweapon.emit(weapon_state)
 	if event.is_action_pressed("pressed_three"): # && unlocked in tech tree
-		weapon_state = PLAYER_WEAPONS.SPRAY	
+		weapon_state = PLAYER_WEAPONS.SPRAY
+		usingweapon.emit(weapon_state)
 
 func _base_bullet():
 	if BaseBulletshootRdy == true:
@@ -294,6 +307,8 @@ func _base_bullet():
 
 func _missile_bullet():
 	if MissileBulletshootRdy == true:
+		if PlayerStats.get_currentSTA() >= missileStacost:
+			_using_stamina(-missileStacost)
 			var new_bullet = playerBulletMissile.instantiate()
 			new_bullet.rotation = lastlook.angle()
 			new_bullet.damage = 0
@@ -311,25 +326,32 @@ func _missile_bullet():
 			add_sibling(new_bullet)
 			MissileBulletshootRdy = false
 			$MissileBulletShootTimer.start()
+		else:
+			notenoughsta.emit()
 
 func _spray_bullet():
 	if SprayBulletshootRdy == true:
-			var new_bullet_missile = playerBulletSpray.instantiate()
-			new_bullet_missile.rotation = lastlook.angle()
-			new_bullet_missile.damage = PlayerStats.get_DMG()
+		if PlayerStats.get_currentSTA() >= sprayStacost:
+			_using_stamina(-sprayStacost)
+			var new_bullet_Spray = playerBulletSpray.instantiate()
+			var mod_bullet = randf_range(-PI / 32, PI / 32)
+			new_bullet_Spray.rotation = lastlook.angle() + mod_bullet
+			new_bullet_Spray.damage = .8 * PlayerStats.get_DMG()
 			if consDur[1] > 0:
 				if bulletAlternate == true:
-					new_bullet_missile.position = $Marker2Dright.global_position
+					new_bullet_Spray.position = $Marker2Dright.global_position
 					bulletAlternate = false
 				else:
-					new_bullet_missile.position = $Marker2Dleft.global_position
+					new_bullet_Spray.position = $Marker2Dleft.global_position
 					bulletAlternate = true
 			else:
-				new_bullet_missile.position = $Marker2Dright.global_position
-			new_bullet_missile.direction = lastlook.normalized()
-			add_sibling(new_bullet_missile)
+				new_bullet_Spray.position = $Marker2Dright.global_position
+			new_bullet_Spray.direction = Vector2.from_angle(lastlook.angle() + mod_bullet).normalized()
+			add_sibling(new_bullet_Spray)
 			SprayBulletshootRdy = false
 			$SprayBulletShootTimer.start()
+		else:
+			notenoughsta.emit()
 
 func harvester_return():
 	availible_harvesters += 1
@@ -356,7 +378,7 @@ func _on_missile_bullet_shoot_timer_timeout() -> void:
 
 func _on_spray_bullet_shoot_timer_timeout() -> void:
 	SprayBulletshootRdy = true
-	$SprayBulletShootTimer.wait_time = .25*PlayerStats.get_shootSpeed()
+	$SprayBulletShootTimer.wait_time = .5*PlayerStats.get_shootSpeed()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if "damage" in area:

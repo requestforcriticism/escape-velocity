@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://bq3xsv8vnryue"]
+
+[ext_resource type="Script" path="res://player_bullet_spray.gd" id="1_eqwti"]
+[ext_resource type="Texture2D" uid="uid://b727fyg6iks0t" path="res://components/playerBullet/pj2_magic_missile_small_red/spritesheet.png" id="2_uakkf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnmwd"]
+atlas = ExtResource("2_uakkf")
+region = Rect2(0, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qx1u7"]
+atlas = ExtResource("2_uakkf")
+region = Rect2(24, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykuf4"]
+atlas = ExtResource("2_uakkf")
+region = Rect2(48, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrwyw"]
+atlas = ExtResource("2_uakkf")
+region = Rect2(72, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uk5f"]
+atlas = ExtResource("2_uakkf")
+region = Rect2(96, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqqkb"]
+atlas = ExtResource("2_uakkf")
+region = Rect2(120, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y7sg"]
+atlas = ExtResource("2_uakkf")
+region = Rect2(144, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxpif"]
+atlas = ExtResource("2_uakkf")
+region = Rect2(168, 0, 24, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_snxt3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnmwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qx1u7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykuf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrwyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uk5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqqkb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y7sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxpif")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tq2cy"]
+radius = 3.0
+height = 14.0
+
+[node name="player_bullet_spray" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_eqwti")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.666667, 0.5)
+sprite_frames = SubResource("SpriteFrames_snxt3")
+autoplay = "default"
+frame_progress = 0.524929
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_tq2cy")
+
+[node name="DieTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="DieTimer" to="." method="_on_die_timer_timeout"]

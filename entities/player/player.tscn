@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ctcrca36054ed"]
+[gd_scene load_steps=36 format=3 uid="uid://ctcrca36054ed"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_cefws"]
 [ext_resource type="Texture2D" uid="uid://ctm4dy1kv1utq" path="res://entities/player/Fire Arrow.png" id="2_1ikru"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xlnycmyrhc2o" path="res://entities/harvester/harvester.tscn" id="3_3j10a"]
 [ext_resource type="PackedScene" uid="uid://b1l8eca6xw2m" path="res://components/playerBullet/player_bullet_missile.tscn" id="3_7xsj7"]
 [ext_resource type="Texture2D" uid="uid://cw7ouvvqgms0y" path="res://entities/player/Fire.png" id="4_qt47l"]
+[ext_resource type="PackedScene" uid="uid://bq3xsv8vnryue" path="res://components/playerBullet/player_bullet_spray.tscn" id="4_xev2f"]
 [ext_resource type="Texture2D" uid="uid://dvwyeng136xkm" path="res://entities/player/drone.png" id="5_my1ht"]
 [ext_resource type="Script" path="res://entities/player/animated_sprite_2d.gd" id="6_uy3mu"]
 
@@ -255,6 +256,7 @@ collision_layer = 81
 script = ExtResource("1_cefws")
 playerBullet = ExtResource("2_y1ein")
 playerBulletMissile = ExtResource("3_7xsj7")
+playerBulletSpray = ExtResource("4_xev2f")
 harvester_scene = ExtResource("3_3j10a")
 
 [node name="Area2D" type="Area2D" parent="."]
