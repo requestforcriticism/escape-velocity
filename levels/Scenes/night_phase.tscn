@@ -1459,7 +1459,6 @@ texture = SubResource("AtlasTexture_ke814")
 expand_mode = 2
 
 [node name="TechTreePage" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

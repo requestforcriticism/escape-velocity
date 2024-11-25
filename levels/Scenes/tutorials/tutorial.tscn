@@ -484,7 +484,6 @@ texture = ExtResource("12_k5l0t")
 script = ExtResource("15_f28do")
 
 [node name="StaminaProgressBar" type="ProgressBar" parent="page4"]
-modulate = Color(0.180392, 1, 0.337255, 1)
 layout_mode = 0
 offset_left = 55.0
 offset_top = 473.0
@@ -496,12 +495,12 @@ value = 100.0
 show_percentage = false
 
 [node name="BatterySprite2D" type="Sprite2D" parent="page4/StaminaProgressBar"]
-position = Vector2(172.5, 163.213)
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(171, 43)
 scale = Vector2(1.37891, 1.83147)
 texture = ExtResource("16_35lo8")
 
 [node name="StaminaProgressBar2" type="ProgressBar" parent="page4"]
-modulate = Color(0.180392, 1, 0.337255, 1)
 layout_mode = 0
 offset_left = 900.0
 offset_top = 466.0
@@ -513,7 +512,8 @@ value = 100.0
 show_percentage = false
 
 [node name="BatterySprite2D" type="Sprite2D" parent="page4/StaminaProgressBar2"]
-position = Vector2(172.5, 163.213)
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(172, 46)
 scale = Vector2(1.37891, 1.83147)
 texture = ExtResource("16_35lo8")
 
