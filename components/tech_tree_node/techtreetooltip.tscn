@@ -1,0 +1,197 @@
+[gd_scene load_steps=16 format=3 uid="uid://1i3rejvqwrg8"]
+
+[ext_resource type="Script" path="res://components/tech_tree_node/techtreetooltip.gd" id="1_jdywt"]
+[ext_resource type="Texture2D" uid="uid://drglisvkhe6of" path="res://assets/collectabes/blue_collectable.png" id="1_wagev"]
+[ext_resource type="Texture2D" uid="uid://dr7ljsae3ovrl" path="res://assets/collectabes/food.png" id="2_ljfjy"]
+[ext_resource type="Texture2D" uid="uid://djx1u1qr6ilya" path="res://assets/collectabes/water_bubble.png" id="3_3ub4u"]
+[ext_resource type="Texture2D" uid="uid://cvn0blwa4chuc" path="res://assets/collectabes/iron_ore.png" id="4_detdc"]
+[ext_resource type="Texture2D" uid="uid://dn0ds7y7r0d7k" path="res://assets/collectabes/oil_bubble.png" id="5_hg304"]
+[ext_resource type="Texture2D" uid="uid://da8y88xs5if1o" path="res://assets/collectabes/uranium_ore.png" id="6_4tg1o"]
+[ext_resource type="Texture2D" uid="uid://dm0rm00r4rudj" path="res://assets/collectabes/logic_card.png" id="7_py6du"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yo4ty"]
+bg_color = Color(0.822855, 0.526312, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyx2h"]
+atlas = ExtResource("2_ljfjy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_excb7"]
+atlas = ExtResource("3_3ub4u")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spfr8"]
+atlas = ExtResource("4_detdc")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bomo"]
+atlas = ExtResource("5_hg304")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7dl5"]
+atlas = ExtResource("6_4tg1o")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u50u6"]
+atlas = ExtResource("7_py6du")
+region = Rect2(32, 0, 32, 32)
+
+[node name="PopupPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 242.0
+script = ExtResource("1_jdywt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PopupPanel" type="PopupPanel" parent="CanvasLayer"]
+position = Vector2i(797, 414)
+size = Vector2i(374, 358)
+theme_override_styles/panel = SubResource("StyleBoxFlat_yo4ty")
+
+[node name="GridContainer" type="VBoxContainer" parent="CanvasLayer/PopupPanel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 369.0
+offset_bottom = 467.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Label" parent="CanvasLayer/PopupPanel/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Tech Tree node name"
+
+[node name="desc" type="Label" parent="CanvasLayer/PopupPanel/GridContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "This is was the node gives once paid forThis is was the node gives once paid for"
+autowrap_mode = 3
+
+[node name="cost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Cost to upgrade"
+
+[node name="Purchased" type="Label" parent="CanvasLayer/PopupPanel/GridContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Upgrade Complete"
+
+[node name="FixShipCOST" type="GridContainer" parent="CanvasLayer/PopupPanel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 6
+
+[node name="BlueCost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BLU" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+texture = ExtResource("1_wagev")
+
+[node name="FoodCost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FOO" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_uyx2h")
+
+[node name="WaterCost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WAT" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_excb7")
+expand_mode = 2
+
+[node name="IronCost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IRO" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_spfr8")
+expand_mode = 2
+
+[node name="OilCost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OIL" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0bomo")
+expand_mode = 2
+
+[node name="UraniumCost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 2
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="URA" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_a7dl5")
+expand_mode = 2
+
+[node name="ComputerChipCost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="COM" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/FixShipCOST"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_u50u6")
+expand_mode = 2

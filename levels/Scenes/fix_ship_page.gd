@@ -1,5 +1,7 @@
 extends Control
 
+signal on_purchase
+
 	#		= ["BLU","IRO"	,"OIL"	,"WAT"	,"URA"	,"FOO"	,"COM"	]
 @export var fix_req = [[0	,10	  	,0		,0	  	,0		,0		,1		], #to fix Lvl 1
 				[0	,20	  	,5		,5	  	,1		,0		,2		], #to fix Lvl 2
@@ -58,6 +60,7 @@ func try_fix(typeCost,buttonPath):
 				Save.set_value(1,col_path_images[i],Save.get_value(1,col_path_images[i], 0)-typeCost[i])
 		fix_progress += 1
 		Save.set_value(1, "SHIPREPAIR", fix_progress)
+		on_purchase.emit()
 		$FixedShipProgressBar.value = fix_progress*20
 		if fix_progress == 5:
 			$"..".win_game()

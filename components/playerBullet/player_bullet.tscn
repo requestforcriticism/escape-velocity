@@ -231,6 +231,7 @@ collision_mask = 4
 script = ExtResource("1_4hmrc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0, 0.850924, 0.855323, 1)
 scale = Vector2(0.4375, 0.5)
 sprite_frames = SubResource("SpriteFrames_1sx0v")
 autoplay = "default"

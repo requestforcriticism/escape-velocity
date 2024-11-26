@@ -50,6 +50,11 @@ size = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_yjakj")
 animation = &"unlocked"
 script = ExtResource("2_yiv3f")
+state = null
+upgrade_key = null
+shipfixreq = null
+costs = null
+desc = null
 
 [node name="Area2D" type="Area2D" parent="."]
 

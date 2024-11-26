@@ -1,9 +1,10 @@
-[gd_scene load_steps=53 format=3 uid="uid://hpfsxc40c02t"]
+[gd_scene load_steps=62 format=3 uid="uid://hpfsxc40c02t"]
 
 [ext_resource type="PackedScene" uid="uid://64fo02ts1lfd" path="res://components/tech_tree_node/tech_tree_node.tscn" id="1_i3rcu"]
 [ext_resource type="Script" path="res://levels/Scenes/NightPhaseAssets/tech_tree.gd" id="1_jjqdn"]
 [ext_resource type="PackedScene" uid="uid://dbc6idcvlv4lo" path="res://components/tech_tree_node/tech_tree_line.tscn" id="2_ou2et"]
 [ext_resource type="Texture2D" uid="uid://466br6rm2yxh" path="res://components/tech_tree_node/tech_tree_icons.png" id="3_55snm"]
+[ext_resource type="Texture2D" uid="uid://dyrlmso8cl8e4" path="res://assets/tech-tree/tech_tree_icons_weapons.png" id="5_w8ero"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o6iil"]
 atlas = ExtResource("3_55snm")
@@ -473,46 +474,143 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="TechTree" type="Node2D"]
-position = Vector2(552, 311)
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5fys"]
+atlas = ExtResource("5_w8ero")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l21a0"]
+atlas = ExtResource("5_w8ero")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6b4ay"]
+atlas = ExtResource("5_w8ero")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ku14t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5fys")
+}],
+"loop": true,
+"name": &"locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l21a0")
+}],
+"loop": true,
+"name": &"purchased",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6b4ay")
+}],
+"loop": true,
+"name": &"unlocked",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3vp1"]
+atlas = ExtResource("5_w8ero")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drbw5"]
+atlas = ExtResource("5_w8ero")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgpb5"]
+atlas = ExtResource("5_w8ero")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c06il"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3vp1")
+}],
+"loop": true,
+"name": &"locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drbw5")
+}],
+"loop": true,
+"name": &"purchased",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgpb5")
+}],
+"loop": true,
+"name": &"unlocked",
+"speed": 5.0
+}]
+
+[node name="TechTree" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -24.0
+offset_right = -8.0
+offset_bottom = -24.0
 scale = Vector2(2, 2)
 script = ExtResource("1_jjqdn")
 metadata/_edit_group_ = true
 
 [node name="LogicUnlock" parent="." node_paths=PackedStringArray("depended_by_lines") instance=ExtResource("1_i3rcu")]
-position = Vector2(-2, 142)
+position = Vector2(4, 140)
+animation = &"locked"
 state = 1
-depended_by_lines = [NodePath("TechTreeLine"), NodePath("TechTreeLine2"), NodePath("TechTreeLine3"), NodePath("TechTreeLine4")]
+depended_by_lines = [NodePath("TechTreeLine"), NodePath("TechTreeLine3"), NodePath("TechTreeLine4"), NodePath("TechTreeLine5"), NodePath("TechTreeLine7"), NodePath("TechTreeLine2")]
+upgrade_key = "LogicUnlock"
 
 [node name="TechTreeLine" parent="LogicUnlock" instance=ExtResource("2_ou2et")]
 position = Vector2(1, -33.9203)
 rotation = 1.5708
 scale = Vector2(1.53806, 1)
 
-[node name="TechTreeLine2" parent="LogicUnlock" instance=ExtResource("2_ou2et")]
-position = Vector2(-1.89342, -31)
-rotation = -3.14159
-scale = Vector2(6.08532, 1)
-
 [node name="TechTreeLine3" parent="LogicUnlock" instance=ExtResource("2_ou2et")]
-position = Vector2(-96, -43)
+position = Vector2(-64, -44)
 rotation = -1.5708
 
 [node name="TechTreeLine4" parent="LogicUnlock" instance=ExtResource("2_ou2et")]
-position = Vector2(91, -44)
+position = Vector2(64, -44)
 rotation = -1.5708
+
+[node name="TechTreeLine5" parent="LogicUnlock" instance=ExtResource("2_ou2et")]
+position = Vector2(128, -71.0468)
+rotation = -1.5708
+scale = Vector2(2.69043, 1)
+
+[node name="TechTreeLine7" parent="LogicUnlock" instance=ExtResource("2_ou2et")]
+position = Vector2(192, -72)
+rotation = -1.5708
+scale = Vector2(2.69043, 1)
+
+[node name="TechTreeLine2" parent="LogicUnlock" instance=ExtResource("2_ou2et")]
+position = Vector2(62.9535, -30.9998)
+rotation = -3.14159
+scale = Vector2(8.18381, 1)
 
 [node name="HealthTree" type="Node2D" parent="."]
 position = Vector2(-98, -16)
 metadata/_edit_group_ = true
 
 [node name="HealthUp1" parent="HealthTree" node_paths=PackedStringArray("depends_on_nodes", "depended_by_lines") instance=ExtResource("1_i3rcu")]
-position = Vector2(0, 94)
+position = Vector2(38, 92)
 sprite_frames = SubResource("SpriteFrames_ut2eu")
 animation = &"locked"
 depends_on_nodes = [NodePath("../../LogicUnlock")]
 depended_by_lines = [NodePath("TechTreeLine")]
-upgrade_key = "health1"
+upgrade_key = "Health1"
+shipfixreq = 1
+costs = [null]
 
 [node name="TechTreeLine" parent="HealthTree/HealthUp1" instance=ExtResource("2_ou2et")]
 position = Vector2(6.56514e-07, -25.0193)
@@ -520,12 +618,13 @@ rotation = 1.5708
 scale = Vector2(1.85996, 1)
 
 [node name="HealthUp2" parent="HealthTree" node_paths=PackedStringArray("depends_on_nodes", "depended_by_lines") instance=ExtResource("1_i3rcu")]
-position = Vector2(0, 30)
+position = Vector2(38, 28)
 sprite_frames = SubResource("SpriteFrames_fu80j")
 animation = &"locked"
 depends_on_nodes = [NodePath("../HealthUp1")]
 depended_by_lines = [NodePath("TechTreeLine")]
-upgrade_key = "health2"
+upgrade_key = "Health2"
+shipfixreq = 2
 
 [node name="TechTreeLine" parent="HealthTree/HealthUp2" instance=ExtResource("2_ou2et")]
 position = Vector2(-1.77725e-06, -26.6587)
@@ -533,33 +632,38 @@ rotation = -1.5708
 scale = Vector2(1.7734, 1)
 
 [node name="HealthUp3" parent="HealthTree" node_paths=PackedStringArray("depends_on_nodes", "depended_by_lines") instance=ExtResource("1_i3rcu")]
-position = Vector2(0, -34)
+position = Vector2(38, -36)
 sprite_frames = SubResource("SpriteFrames_2lax7")
+animation = &"locked"
 depends_on_nodes = [NodePath("../HealthUp2")]
 depended_by_lines = [NodePath("TechTreeLine")]
-upgrade_key = "health3"
+upgrade_key = "Health3"
+shipfixreq = 3
 
 [node name="TechTreeLine" parent="HealthTree/HealthUp3" instance=ExtResource("2_ou2et")]
 position = Vector2(0, -32)
 rotation = 1.5708
 
 [node name="HealthUp4" parent="HealthTree" node_paths=PackedStringArray("depends_on_nodes") instance=ExtResource("1_i3rcu")]
-position = Vector2(0, -98)
+position = Vector2(38, -100)
 sprite_frames = SubResource("SpriteFrames_bh78i")
+animation = &"locked"
 depends_on_nodes = [NodePath("../HealthUp3")]
-upgrade_key = "health4"
+upgrade_key = "Health4"
+shipfixreq = 4
 
 [node name="StaTree" type="Node2D" parent="."]
 position = Vector2(-2, -17)
 metadata/_edit_group_ = true
 
 [node name="StaUp1" parent="StaTree" node_paths=PackedStringArray("depends_on_nodes", "depended_by_lines") instance=ExtResource("1_i3rcu")]
-position = Vector2(0, 94)
+position = Vector2(6, 93)
 sprite_frames = SubResource("SpriteFrames_jckvo")
 animation = &"locked"
 depends_on_nodes = [NodePath("../../LogicUnlock")]
 depended_by_lines = [NodePath("TechTreeLine")]
-upgrade_key = "sta1"
+upgrade_key = "Capacitor1"
+shipfixreq = 1
 
 [node name="TechTreeLine" parent="StaTree/StaUp1" instance=ExtResource("2_ou2et")]
 position = Vector2(6.56514e-07, -25.0193)
@@ -567,11 +671,12 @@ rotation = 1.5708
 scale = Vector2(1.85996, 1)
 
 [node name="StaUp2" parent="StaTree" node_paths=PackedStringArray("depends_on_nodes", "depended_by_lines") instance=ExtResource("1_i3rcu")]
-position = Vector2(0, 30)
+position = Vector2(6, 29)
 sprite_frames = SubResource("SpriteFrames_p14ye")
 depends_on_nodes = [NodePath("../StaUp1")]
 depended_by_lines = [NodePath("TechTreeLine")]
-upgrade_key = "sta2"
+upgrade_key = "Capacitor2"
+shipfixreq = 2
 
 [node name="TechTreeLine" parent="StaTree/StaUp2" instance=ExtResource("2_ou2et")]
 position = Vector2(-1.77725e-06, -26.6587)
@@ -579,33 +684,37 @@ rotation = -1.5708
 scale = Vector2(1.7734, 1)
 
 [node name="StaUp3" parent="StaTree" node_paths=PackedStringArray("depends_on_nodes", "depended_by_lines") instance=ExtResource("1_i3rcu")]
-position = Vector2(0, -34)
+position = Vector2(6, -35)
 sprite_frames = SubResource("SpriteFrames_038on")
 animation = &"locked"
 depends_on_nodes = [NodePath("../StaUp2")]
 depended_by_lines = [NodePath("TechTreeLine")]
-upgrade_key = "sta3"
+upgrade_key = "Capacitor3"
+shipfixreq = 3
 
 [node name="TechTreeLine" parent="StaTree/StaUp3" instance=ExtResource("2_ou2et")]
 position = Vector2(0, -32)
 rotation = 1.5708
 
 [node name="StaUp4" parent="StaTree" node_paths=PackedStringArray("depends_on_nodes") instance=ExtResource("1_i3rcu")]
-position = Vector2(0, -98)
+position = Vector2(6, -99)
 sprite_frames = SubResource("SpriteFrames_cmeto")
 depends_on_nodes = [NodePath("../StaUp3")]
-upgrade_key = "sta4"
+upgrade_key = "Capacitor4"
+shipfixreq = 4
 
 [node name="DmgTree" type="Node2D" parent="."]
 position = Vector2(88, -14)
 metadata/_edit_group_ = true
 
 [node name="DmgUp1" parent="DmgTree" node_paths=PackedStringArray("depends_on_nodes", "depended_by_lines") instance=ExtResource("1_i3rcu")]
-position = Vector2(0, 94)
+position = Vector2(-20, 90)
 sprite_frames = SubResource("SpriteFrames_uqo55")
+animation = &"purchased"
 depends_on_nodes = [NodePath("../../LogicUnlock")]
 depended_by_lines = [NodePath("TechTreeLine")]
-upgrade_key = "dmg1"
+upgrade_key = "Damage1"
+shipfixreq = 1
 
 [node name="TechTreeLine" parent="DmgTree/DmgUp1" instance=ExtResource("2_ou2et")]
 position = Vector2(6.56514e-07, -25.0193)
@@ -613,11 +722,12 @@ rotation = 1.5708
 scale = Vector2(1.85996, 1)
 
 [node name="DmgUp2" parent="DmgTree" node_paths=PackedStringArray("depends_on_nodes", "depended_by_lines") instance=ExtResource("1_i3rcu")]
-position = Vector2(0, 30)
+position = Vector2(-20, 26)
 sprite_frames = SubResource("SpriteFrames_2ly5j")
 depends_on_nodes = [NodePath("../DmgUp1")]
 depended_by_lines = [NodePath("TechTreeLine")]
-upgrade_key = "dmg2"
+upgrade_key = "Damage2"
+shipfixreq = 2
 
 [node name="TechTreeLine" parent="DmgTree/DmgUp2" instance=ExtResource("2_ou2et")]
 position = Vector2(-1.77725e-06, -26.6587)
@@ -625,18 +735,42 @@ rotation = -1.5708
 scale = Vector2(1.7734, 1)
 
 [node name="DmgUp3" parent="DmgTree" node_paths=PackedStringArray("depends_on_nodes", "depended_by_lines") instance=ExtResource("1_i3rcu")]
-position = Vector2(0, -34)
+position = Vector2(-20, -38)
 sprite_frames = SubResource("SpriteFrames_atq6u")
 depends_on_nodes = [NodePath("../DmgUp2")]
 depended_by_lines = [NodePath("TechTreeLine")]
-upgrade_key = "dmg3"
+upgrade_key = "Damage3"
+shipfixreq = 3
 
 [node name="TechTreeLine" parent="DmgTree/DmgUp3" instance=ExtResource("2_ou2et")]
 position = Vector2(0, -32)
 rotation = 1.5708
 
 [node name="DmgUp4" parent="DmgTree" node_paths=PackedStringArray("depends_on_nodes") instance=ExtResource("1_i3rcu")]
-position = Vector2(0, -98)
+position = Vector2(-20, -102)
 sprite_frames = SubResource("SpriteFrames_6xajh")
 depends_on_nodes = [NodePath("../DmgUp3")]
-upgrade_key = "dmg4"
+upgrade_key = "Damage4"
+shipfixreq = 4
+
+[node name="WeaponMissileTree" type="Node2D" parent="."]
+position = Vector2(132, -80)
+metadata/_edit_group_ = true
+
+[node name="MissileUp1" parent="WeaponMissileTree" node_paths=PackedStringArray("depends_on_nodes") instance=ExtResource("1_i3rcu")]
+position = Vector2(0, 92)
+sprite_frames = SubResource("SpriteFrames_ku14t")
+depends_on_nodes = [NodePath("../../LogicUnlock")]
+upgrade_key = "MissileWeapon"
+shipfixreq = 2
+
+[node name="SprayTree" type="Node2D" parent="."]
+position = Vector2(264, -160)
+metadata/_edit_group_ = true
+
+[node name="SprayUp1" parent="SprayTree" node_paths=PackedStringArray("depends_on_nodes") instance=ExtResource("1_i3rcu")]
+position = Vector2(-68, 172)
+sprite_frames = SubResource("SpriteFrames_c06il")
+depends_on_nodes = [NodePath("../../LogicUnlock")]
+upgrade_key = "SprayWeapon"
+shipfixreq = 2

@@ -19,6 +19,7 @@ var menu_cursor = preload("res://assets/cursors/pointer_b.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	PhysicsServer2D.set_active(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	if get_tree().paused:

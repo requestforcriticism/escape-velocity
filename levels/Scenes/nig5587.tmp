@@ -380,7 +380,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 texture = ExtResource("2_g30nj")
 metadata/_edit_lock_ = true
 
@@ -1484,10 +1483,7 @@ offset_right = 942.0
 offset_bottom = 1264.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 texture = ExtResource("2_g30nj")
-
-[node name="TechTree" parent="TechTreePage" instance=ExtResource("5_up0aw")]
 
 [node name="Available" type="Control" parent="TechTreePage"]
 layout_mode = 1
@@ -1614,6 +1610,9 @@ theme_override_font_sizes/font_size = 45
 text = "99999"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TechTree" parent="TechTreePage" instance=ExtResource("5_up0aw")]
+layout_mode = 1
 
 [node name="GridContainer" type="GridContainer" parent="TechTreePage"]
 layout_mode = 0
