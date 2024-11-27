@@ -11,12 +11,14 @@ var consum
 var consDur
 var ConsDurRate
 var menu_cursor = preload("res://assets/cursors/pointer_b.png")
+var endingday:bool
 
 @export var buttons_active:bool = true
 
 @export var colable = [0,0,0,0,0,0,0]
 
 func _ready() -> void:
+	endingday = false
 	consDur = [0,0,0]
 	consum = [Save.get_value(1, "STABST", 0),Save.get_value(1, "DMGBST", 0),Save.get_value(1, "DMGRED", 0)]
 	$Consumables/GridContainer/TBSTABST/amount.text = str(consum[0])
@@ -46,7 +48,7 @@ var _is_paused:bool = false:
 			close_checkbox()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause_day_phase"):
+	if event.is_action_pressed("pause_day_phase") && !endingday:
 		_is_paused = !_is_paused
 		#["BLU","IRO","OIL","WAT","URA", "FOO", "COM"]
 		$MainWindow/FoodPlayerAmount.text = str(colable[5])
@@ -145,3 +147,7 @@ func _on_how_to_play_button_pressed() -> void:
 	_is_paused = !_is_paused
 	
 	turnontutorial.emit()
+
+
+func _on_day_phase_ending_day() -> void:
+	endingday = true

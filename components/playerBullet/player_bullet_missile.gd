@@ -17,7 +17,9 @@ func _on_die_timer_timeout():
 	explode()
 
 func _on_area_entered(area: Area2D) -> void:
-	explode()
+	print(area.name.left(9))
+	if area.name.left(9) != "explosion":
+		explode()
 	
 func explode():
 	var new_expolsion = explosion.instantiate()

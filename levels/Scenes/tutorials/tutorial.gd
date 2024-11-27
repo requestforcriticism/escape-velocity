@@ -8,7 +8,7 @@ var restartTut
 var menu_cursor = preload("res://assets/cursors/pointer_b.png")
 
 func _ready() -> void:
-	await get_tree().create_timer(.5).timeout
+	await get_tree().create_timer(.05).timeout
 	if Save.get_value(1, "Tutor", 1):
 		_startup()
 	else:

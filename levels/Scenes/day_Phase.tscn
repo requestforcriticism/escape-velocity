@@ -64,6 +64,7 @@ position = Vector2(-243, -139)
 [node name="DayTimer" type="Timer" parent="."]
 
 [connection signal="ending_day" from="." to="player" method="_on_day_phase_ending_day"]
+[connection signal="ending_day" from="." to="player/Camera2D/PauseCanvasLayer/PauseMenu" method="_on_day_phase_ending_day"]
 [connection signal="consDuration" from="player" to="player/Camera2D/hud" method="_on_player_cons_duration"]
 [connection signal="consDuration" from="player" to="player/Camera2D/PauseCanvasLayer/PauseMenu" method="_on_player_cons_duration"]
 [connection signal="consumCount" from="player" to="player/Camera2D/hud" method="_on_player_consum_count"]

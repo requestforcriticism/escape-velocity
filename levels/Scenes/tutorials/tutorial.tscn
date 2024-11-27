@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bl531akvp285q"]
+[gd_scene load_steps=73 format=3 uid="uid://bl531akvp285q"]
 
 [ext_resource type="Texture2D" uid="uid://bqa4og6auhg2p" path="res://levels/Scenes/tutorials/tutorial1.png" id="1_6x3ss"]
 [ext_resource type="Script" path="res://levels/Scenes/tutorials/tutorial.gd" id="1_kskg8"]
@@ -26,9 +26,12 @@
 [ext_resource type="Texture2D" uid="uid://djx1u1qr6ilya" path="res://assets/collectabes/water_bubble.png" id="16_uch1s"]
 [ext_resource type="Texture2D" uid="uid://jk8xeutfc0dh" path="res://levels/Scenes/tutorials/tutorial10.png" id="17_1gxtt"]
 [ext_resource type="Texture2D" uid="uid://c46rv4vqhmx0w" path="res://assets/hudAssets/healthpack.png" id="19_37ptr"]
+[ext_resource type="Texture2D" uid="uid://d0oaarnkqdjn0" path="res://assets/hudAssets/baseimage.png" id="19_blgkg"]
 [ext_resource type="Texture2D" uid="uid://c8uxk4x1ge14x" path="res://assets/hudAssets/Stamboost.png" id="20_5n0tf"]
+[ext_resource type="Texture2D" uid="uid://de2ldt82qhfb7" path="res://assets/hudAssets/missileimage.png" id="20_d5mny"]
 [ext_resource type="Script" path="res://levels/Scenes/tutorials/page_6.gd" id="20_rms7o"]
 [ext_resource type="Texture2D" uid="uid://ckfe805f5ijot" path="res://assets/hudAssets/Damageboost.png" id="21_tv16b"]
+[ext_resource type="Texture2D" uid="uid://c65dxs8y34q4l" path="res://assets/hudAssets/sprayimage.png" id="21_ybdne"]
 [ext_resource type="Texture2D" uid="uid://dfq53nsh1s4f7" path="res://assets/hudAssets/button_square_header_small_square.png" id="22_pxoir"]
 [ext_resource type="Texture2D" uid="uid://5y13pla1fpku" path="res://assets/hudAssets/DamageReduction.png" id="22_upcll"]
 [ext_resource type="Texture2D" uid="uid://bp22ayyc51xnm" path="res://levels/Scenes/tutorials/tutorial11.png" id="22_yjbio"]
@@ -549,6 +552,36 @@ offset_top = -425.0
 offset_right = -810.0
 offset_bottom = -385.0
 texture = ExtResource("13_xbu1q")
+
+[node name="base" type="TextureRect" parent="page5"]
+self_modulate = Color(0, 0, 1, 1)
+layout_mode = 0
+offset_left = 224.0
+offset_top = 327.0
+offset_right = 288.0
+offset_bottom = 391.0
+scale = Vector2(3, 3)
+texture = ExtResource("19_blgkg")
+
+[node name="missile" type="TextureRect" parent="page5"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 778.0
+offset_top = 322.0
+offset_right = 842.0
+offset_bottom = 386.0
+scale = Vector2(3, 3)
+texture = ExtResource("20_d5mny")
+
+[node name="SP" type="TextureRect" parent="page5"]
+self_modulate = Color(1, 0.529412, 0, 1)
+layout_mode = 0
+offset_left = 1322.0
+offset_top = 327.0
+offset_right = 1386.0
+offset_bottom = 391.0
+scale = Vector2(3, 3)
+texture = ExtResource("21_ybdne")
 
 [node name="page6" type="TextureRect" parent="."]
 process_mode = 4

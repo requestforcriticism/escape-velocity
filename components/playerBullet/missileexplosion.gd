@@ -5,6 +5,7 @@ extends Area2D
 @export var direction:Vector2
 
 func _ready():
+	name = "explosion"
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

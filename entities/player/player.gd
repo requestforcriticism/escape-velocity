@@ -115,7 +115,6 @@ func _ready():
 	PlayerStats.set_shootSpeed(ShootSpeed)
 	PlayerStats.set_DMGReduction(DamageRedBase)
 	$BaseBulletShootTimer.wait_time = PlayerStats.get_shootSpeed()
-	print($BaseBulletShootTimer.wait_time)
 	$MissileBulletShootTimer.wait_time = 5*PlayerStats.get_shootSpeed()
 	$SprayBulletShootTimer.wait_time = .25*PlayerStats.get_shootSpeed()
 	availible_harvesters = max_harvesters
@@ -257,7 +256,6 @@ func _process(delta: float) -> void:
 		current_chunk = chunk_id
 		on_chunk_changed.emit(current_chunk)
 	
-	print("distance: ",global_position.distance_to(startpos))
 	distancetraveled += global_position.distance_to(startpos)
 	
 	if is_mining == true:
