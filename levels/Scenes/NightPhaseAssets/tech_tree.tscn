@@ -760,6 +760,7 @@ metadata/_edit_group_ = true
 [node name="MissileUp1" parent="WeaponMissileTree" node_paths=PackedStringArray("depends_on_nodes") instance=ExtResource("1_i3rcu")]
 position = Vector2(0, 92)
 sprite_frames = SubResource("SpriteFrames_ku14t")
+animation = &"locked"
 depends_on_nodes = [NodePath("../../LogicUnlock")]
 upgrade_key = "MissileWeapon"
 shipfixreq = 2
@@ -771,6 +772,7 @@ metadata/_edit_group_ = true
 [node name="SprayUp1" parent="SprayTree" node_paths=PackedStringArray("depends_on_nodes") instance=ExtResource("1_i3rcu")]
 position = Vector2(-68, 172)
 sprite_frames = SubResource("SpriteFrames_c06il")
+animation = &"locked"
 depends_on_nodes = [NodePath("../../LogicUnlock")]
 upgrade_key = "SprayWeapon"
 shipfixreq = 2

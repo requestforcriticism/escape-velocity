@@ -12,6 +12,14 @@ enum PLAYER_WEAPONS { BASE, MISSILE, SPRAY}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if Save.get_value(1, str("MissileWeapon"), 0) == 2:
+		$Weapons/MissileWeapon.visible = true
+		$Weapons/Missileunlocknote.visible = false
+	
+	if Save.get_value(1, str("SprayWeapon"), 0) == 2:
+		$Weapons/SprayWeapon.visible = true
+		$Weapons/Sprayunlocknote.visible = false
+		
 	$StaminaProgressBar.modulate = "green"
 	$HPProgressBar/HeartSprite2D.modulate = Color.RED
 	$ContConsum/GridContainer/StaRegDur.text = str("0 secs")
@@ -54,6 +62,7 @@ func _on_player_health_changed(currentHealth,maxHealth) -> void:
 		await get_tree().create_timer(0.1).timeout
 		$HPProgressBar/HeartSprite2D.modulate = Color.RED
 	$HPProgressBar.value = 100*currentHealth/maxHealth
+	$HPProgressBar/Hpvalues.text = str(currentHealth,"/",maxHealth)
 
 func _on_player_gathered(colname) -> void:
 	$ContBp/AnimatedSprite2D2.animation = colname
@@ -161,12 +170,10 @@ func point_arrow_to_ship():
 	ArrowToShip = $"../../../Ship".global_position - $"../..".global_position
 	$MiniMap/ArrowToShip.rotation = ArrowToShip.angle()
 
-
 func _on_player_notenoughsta() -> void:
 	$StaminaProgressBar/BatterySprite2D.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	$StaminaProgressBar/BatterySprite2D.modulate = Color.BLACK
-
 
 func _on_player_usingweapon(usingweapon) -> void:
 	if usingweapon == PLAYER_WEAPONS.MISSILE:

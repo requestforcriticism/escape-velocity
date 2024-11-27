@@ -97,6 +97,7 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	
 	weapon_state = PLAYER_WEAPONS.BASE
 	usingweapon.emit(weapon_state)
 	Move_state = "IDLE"
@@ -113,6 +114,7 @@ func _ready():
 	PlayerStats.set_shootSpeed(ShootSpeed)
 	PlayerStats.set_DMGReduction(DamageRedBase)
 	$BaseBulletShootTimer.wait_time = PlayerStats.get_shootSpeed()
+	print($BaseBulletShootTimer.wait_time)
 	$MissileBulletShootTimer.wait_time = 5*PlayerStats.get_shootSpeed()
 	$SprayBulletShootTimer.wait_time = .25*PlayerStats.get_shootSpeed()
 	availible_harvesters = max_harvesters
@@ -279,10 +281,10 @@ func _input(event):
 	if event.is_action_pressed("pressed_one"):
 		weapon_state = PLAYER_WEAPONS.BASE
 		usingweapon.emit(weapon_state)
-	if event.is_action_pressed("pressed_two"): # && unlocked in tech tree
+	if event.is_action_pressed("pressed_two") && Save.get_value(1, str("MissileWeapon"), 0) == 2:
 		weapon_state = PLAYER_WEAPONS.MISSILE
 		usingweapon.emit(weapon_state)
-	if event.is_action_pressed("pressed_three"): # && unlocked in tech tree
+	if event.is_action_pressed("pressed_three") && Save.get_value(1, str("SprayWeapon"), 0) == 2:
 		weapon_state = PLAYER_WEAPONS.SPRAY
 		usingweapon.emit(weapon_state)
 
@@ -422,8 +424,8 @@ func _on_consumable_timer_timeout() -> void:
 func using_consumable(tog:int, using:bool):
 	if tog == 0: #Stamina recovery
 		if using == true && ConsumActive[tog] == false:
-			PlayerStats.set_StaInitialWait(PlayerStats.get_StaInitialWait() * 0.5)
-			PlayerStats.set_StaRegen(PlayerStats.get_StaRegen() * 2)
+			PlayerStats.set_StaInitialWait(StaBaseWait * 0.5)
+			PlayerStats.set_StaRegen(StaRegen * 2)
 			ConsumActive[tog] = true
 		elif using == false:
 			PlayerStats.set_StaInitialWait(StaBaseWait)
@@ -431,8 +433,8 @@ func using_consumable(tog:int, using:bool):
 			ConsumActive[tog] = false
 	if tog == 1: #Damage Boost
 		if using == true && ConsumActive[tog] == false:
-			PlayerStats.set_DMG(PlayerStats.get_DMG() * 1.5)
-			PlayerStats.set_shootSpeed(PlayerStats.get_shootSpeed() * 0.5)
+			PlayerStats.set_DMG(Damage * 1.5)
+			PlayerStats.set_shootSpeed(ShootSpeed * 0.5)
 			ConsumActive[tog] = true
 		elif using == false:
 			PlayerStats.set_DMG(Damage)
@@ -440,8 +442,8 @@ func using_consumable(tog:int, using:bool):
 			ConsumActive[tog] = false
 	if tog == 2: #Damage Reduction & small Health Regeneration
 		if using == true && ConsumActive[tog] == false:
-			PlayerStats.set_DMGReduction(PlayerStats.get_DMGReduction() + 2)
-			PlayerStats.set_HealthRegen(PlayerStats.get_HealthRegen() + 1)
+			PlayerStats.set_DMGReduction(DamageRedBase + 2)
+			PlayerStats.set_HealthRegen(BasehealthRegen + 1)
 			ConsumActive[tog] = true
 		elif using == false:
 			PlayerStats.set_DMGReduction(DamageRedBase)

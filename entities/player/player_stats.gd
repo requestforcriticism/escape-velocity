@@ -1,22 +1,27 @@
 extends Node
 
-@export var maxHealth:int
-@export var currentHealth:int
-@export var healthRegen:int  #A techtree upgrade may improve this.
-@export var speed:int
-@export var maxStamina:int
-@export var currentStamina = maxStamina
-@export var dashStaminaCost = 25
-@export var resourceA:int
-@export var StaRegenBase:float = .05  #This just lowers the wait time between the StaminaRegen timer
-@export var StaWaitTimeBase:float = 1 #The initial wait time for stamina to start regenerating
-@export var Damage:int
-@export var ShootSpeed:float
-@export var DamageReduction:float
+var maxHealth:int
+var currentHealth:int
+var healthRegen:int  #A techtree upgrade may improve this.
+var speed:int
+var maxStamina:int
+var currentStamina = maxStamina
+var dashStaminaCost = 25
+var resourceA:int
+var StaRegenBase:float = .05  #This just lowers the wait time between the StaminaRegen timer
+var StaWaitTimeBase:float = 1 #The initial wait time for stamina to start regenerating
+var Damage:float
+var ShootSpeed:float
+var DamageReduction:float
 	
 func set_MaxHP(maxHP):
 	maxHealth = maxHP
-	currentHealth = maxHP
+	if Save.get_value(1, str("LogicUnlock"), 1) == 2:
+			maxHealth += .05*maxHP
+	for i in 4:
+		if Save.get_value(1, str("Health",i+1), 1) == 2:
+			maxHealth += .25*maxHP
+	currentHealth = maxHealth
 	
 func get_MaxHP():
 	return maxHealth
@@ -33,6 +38,9 @@ func get_currentHP():
 
 func set_HealthRegen(val):
 	healthRegen = val
+	for i in 4:
+		if Save.get_value(1, str("Health",i+1), 1) == 2:
+			healthRegen += 1
 
 func get_HealthRegen():
 	return healthRegen
@@ -42,7 +50,12 @@ func Regen_HP():
 
 func set_MaxSTA(maxSTA):
 	maxStamina = maxSTA
-	currentStamina = maxSTA
+	if Save.get_value(1, str("LogicUnlock"), 1) == 2:
+			maxStamina += .05*maxSTA
+	for i in 4:
+		if Save.get_value(1, str("Capacitor",i+1), 1) == 2:
+			maxStamina += .25*maxSTA
+	currentStamina = maxStamina
 
 func get_MaxSTA():
 	return maxStamina
@@ -65,6 +78,9 @@ func get_StaInitialWait():
 
 func set_StaRegen(StaReg):
 	StaRegenBase = StaReg
+	for i in 4:
+		if Save.get_value(1, str("Capacitor",i+1), 1) == 2:
+			StaRegenBase += .25*StaReg
 
 func get_StaRegen():
 	return StaRegenBase
@@ -77,12 +93,20 @@ func get_speed():
 	
 func set_DMG(DMG):
 	Damage = DMG
+	for i in 4:
+		if Save.get_value(1, str("Damage",i+1), 1) == 2:
+			Damage += .25*DMG
 
 func get_DMG():
 	return Damage
 
 func set_shootSpeed(ASPD):
 	ShootSpeed = ASPD
+	if Save.get_value(1, str("LogicUnlock"), 1) == 2:
+			ShootSpeed += -.05*ASPD
+	for i in 4:
+		if Save.get_value(1, str("Damage",i+1), 1) == 2:
+			ShootSpeed += -.10*ASPD
 
 func get_shootSpeed():
 	return ShootSpeed

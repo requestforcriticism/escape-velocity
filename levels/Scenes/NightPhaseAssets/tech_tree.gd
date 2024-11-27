@@ -1,39 +1,39 @@
 extends Control
 
 	#				= 	["BLU","IRO"	,"OIL"	,"WAT"	,"URA"	,"FOO"	,"COM"	]
-var CostsLogicUnlock=	[0	,8	  	,2		,1	  	,0		,0		,1		]
+var CostsLogicUnlock=		[0	,5	  	,3		,3	  	,0		,3		,0		]
 
-var CostsHealthUp=	[[0	,8	  	,2		,1	  	,0		,0		,1		], #to Lvl 1
-							[0	,20	  	,5		,5	  	,1		,0		,2		], #to Lvl 2
-							[0	,40	  	,10		,10	  	,5		,0		,4		], #to Lvl 3
-							[0	,70	  	,20		,20	  	,10		,0		,7		]] #to Lvl 4
+var CostsHealthUp=			[[0	,10	  	,5		,1	  	,0		,0		,0		], #to Lvl 1
+							[0	,20	  	,10		,5	  	,0		,0		,0		], #to Lvl 2
+							[0	,40	  	,20		,10	  	,5		,0		,0		], #to Lvl 3
+							[0	,70	  	,20		,20	  	,10		,0		,0		]] #to Lvl 4
 
-var CostsStaUp=		[[0	,8	  	,2		,1	  	,0		,0		,1		], #to Lvl 1
-							[0	,20	  	,5		,5	  	,1		,0		,2		], #to Lvl 2
-							[0	,40	  	,10		,10	  	,5		,0		,4		], #to Lvl 3
-							[0	,70	  	,20		,20	  	,10		,0		,7		]] #to Lvl 4
+var CostsStaUp=				[[0	,5	  	,8		,5	  	,0		,2		,0		], #to Lvl 1
+							[0	,8	  	,14		,11	  	,2		,7		,0		], #to Lvl 2
+							[0	,13	  	,28		,21	  	,6		,17		,0		], #to Lvl 3
+							[0	,21	  	,41		,43	  	,11		,31		,0		]] #to Lvl 4
 
-var CostsDmgUp=		[[0	,8	  	,2		,1	  	,0		,0		,1		], #to Lvl 1
-							[0	,20	  	,5		,5	  	,1		,0		,2		], #to Lvl 2
-							[0	,40	  	,10		,10	  	,5		,0		,4		], #to Lvl 3
-							[0	,70	  	,20		,20	  	,10		,0		,7		]] #to Lvl 4
+var CostsDmgUp=				[[0	,8	  	,8		,5	  	,0		,0		,0		], #to Lvl 1
+							[0	,13	  	,13		,9	  	,2		,0		,0		], #to Lvl 2
+							[0	,22	  	,22		,17	  	,7		,0		,0		], #to Lvl 3
+							[0	,34	  	,34		,28	  	,12		,0		,0		]] #to Lvl 4
 
-var CostsMissile=	[0	,8	  	,2		,1	  	,0		,0		,1		]
+var CostsMissile=			[0	,30	  	,20		,10	  	,3		,0		,2		]
 
-var CostsSpray=		[0	,8	  	,2		,1	  	,0		,0		,1		]
+var CostsSpray=				[0	,20	  	,30		,20	  	,2		,0		,2		]
 
-var DescLogicUnlock: String = "+1% Max HP
-+1% Max Capacitor Capacity
-+1% Shoot Speed"
+var DescLogicUnlock: String = "+5% Max HP
++5% Max Capacitor Capacity
++5% Shoot Speed"
 
 var DescHPup: String = "+25% Max HP
 HP Regen +1/sec"
 
-var DescSTAup: String = "+25% Max Capacitor Capacity
-Capacitor Regen +10%"
+var DescSTAup: String = "+25% Max Capacitor Capacitance
+Capacitor Regen +25%"
 
-var DescDmgup: String = "+10% Weapon Damage
-+5% Shoot Speed"
+var DescDmgup: String = "+25% Weapon Damage
++10% Shoot Speed"
 
 var DescMissile: String = "Unlock the Missile launcher weapon!
 Missiles explode on impact or after 1 second dealing AOE damage."

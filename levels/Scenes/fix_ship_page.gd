@@ -2,12 +2,12 @@ extends Control
 
 signal on_purchase
 
-	#		= ["BLU","IRO"	,"OIL"	,"WAT"	,"URA"	,"FOO"	,"COM"	]
+	#				= ["BLU","IRO"	,"OIL"	,"WAT"	,"URA"	,"FOO"	,"COM"	]
 @export var fix_req = [[0	,10	  	,0		,0	  	,0		,0		,1		], #to fix Lvl 1
-				[0	,20	  	,5		,5	  	,1		,0		,2		], #to fix Lvl 2
-				[0	,40	  	,10		,10	  	,5		,0		,4		], #to fix Lvl 3
-				[0	,70	  	,20		,20	  	,10		,0		,7		], #to fix Lvl 4
-				[0	,110	,40		,40	  	,20		,40		,11		]] #to fix Lvl 5
+						[0	,25	  	,10		,10	  	,2		,0		,2		], #to fix Lvl 2
+						[0	,50	  	,20		,20	  	,7		,0		,4		], #to fix Lvl 3
+						[0	,85	  	,40		,40	  	,15		,0		,7		], #to fix Lvl 4
+						[0	,130	,70		,70	  	,30		,100	,11		]] #to fix Lvl 5
 
 @export var col_path_names = ["BlueCost","IronCost","OilCost","WaterCost","UraniumCost","FoodCost","ComputerChipCost"]
 @export var col_path_images = ["BLU","IRO","OIL","WAT","URA","FOO","COM"]

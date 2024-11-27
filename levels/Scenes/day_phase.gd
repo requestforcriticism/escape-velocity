@@ -161,9 +161,6 @@ func end_day():
 	Save.set_value(1, "DMGBST", $player.consum[1])
 	Save.set_value(1, "DMGRED", $player.consum[2])
 	
-	
-	
-	
 	#Save._save_file_win()  #save the game at the end of the day
 	#Save._save_file_win(1)
 	LevelManager.load_night()

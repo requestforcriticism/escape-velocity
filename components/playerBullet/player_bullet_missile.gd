@@ -3,8 +3,8 @@ extends Area2D
 @export var explosion: PackedScene
 
 @export var speed = 400
-@export var damage:int
-@export var explosiondamage:int
+@export var damage:float
+@export var explosiondamage:float
 @export var direction:Vector2
 
 func _ready():

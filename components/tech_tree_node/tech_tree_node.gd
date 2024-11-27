@@ -14,6 +14,8 @@ enum TECH_TREE_STATE {LOCKED, UNLOCKED, PURCHASED}
 @export var costs : Array = []
 @export var desc : String
 
+var col_path_images = ["BLU","IRO","OIL","WAT","URA","FOO","COM"]
+
 var setupTT:bool =true
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,19 +51,23 @@ func _on_dep_purchased():
 			is_unlocked = false
 	
 	if is_unlocked && (Save.get_value(1, "SHIPREPAIR",0) >= shipfixreq):
+		print(upgrade_key,shipfixreq)
 		state = TECH_TREE_STATE.UNLOCKED
 		play("unlocked")
 		save_progress()
 
 func _on_purchase():
 	if state == TECH_TREE_STATE.UNLOCKED:
-		if true:# TODO check if resources are availible to spend
+		if try_upgrade():# TODO check if resources are availible to spend
 			state = TECH_TREE_STATE.PURCHASED
 			$Techtreetooltip.info_setup(upgrade_key,desc,costs,state == TECH_TREE_STATE.PURCHASED)
 			unlock_lines()
 			on_purchase.emit()
 			play("purchased")
 			save_progress()
+			upgrade()
+		else:
+			cant_upgrade()
 
 func lock_lines():
 	for ln in depended_by_lines:
@@ -87,3 +93,21 @@ func _on_upgrade_click(viewport, event, shape_idx):
 	if Input.is_action_pressed("mouse_left_click"):
 		print("clicked ", upgrade_key, " - ", state)
 		_on_purchase()
+
+func try_upgrade():
+	var restest = true
+	for i in costs.size():
+		if costs[i] > Save.get_value(1,col_path_images[i], 0):
+			restest = false
+			break
+	return restest
+
+func upgrade():
+	for i in col_path_images.size():
+		if costs[i] > 0:
+			Save.set_value(1,col_path_images[i],Save.get_value(1,col_path_images[i], 0)-costs[i])
+
+func cant_upgrade():
+	self_modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	self_modulate = Color.WHITE
