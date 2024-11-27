@@ -27,11 +27,17 @@ func get_MaxHP():
 	return maxHealth
 
 func set_currentHP(difference):
+	if difference < 0:
+		if currentHealth + difference >= 0:
+			Save.set_value(1, "DAMAGET", Save.get_value(1, "DAMAGET", 0) - difference)
+		else:
+			Save.set_value(1, "DAMAGET", Save.get_value(1, "DAMAGET", 0) + currentHealth)
 	currentHealth += difference
 	if currentHealth > maxHealth:
 		currentHealth = maxHealth
 	elif currentHealth < 0:
 		currentHealth = 0
+	
 		
 func get_currentHP():
 	return currentHealth

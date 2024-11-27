@@ -39,12 +39,17 @@ func show_collectables_for_fixing(ND,cons_name):
 			get_node(str(ND,"/",col_path_names[j])).visible = false
 			get_node(str(ND,"/",col_path_images[j])).visible = false
 
-func info_setup(title,desc,Costs,purchased):
+func info_setup(title,desc,Costs,purchased,shipreq):
 	if purchased:
 		$CanvasLayer/PopupPanel/GridContainer/Purchased.visible = true
 		$CanvasLayer/PopupPanel/GridContainer/cost.visible = false
 		$CanvasLayer/PopupPanel/GridContainer/FixShipCOST.visible = false
 	else:
+		if shipreq<=Save.get_value(1, "SHIPREPAIR",0):
+			$CanvasLayer/PopupPanel/GridContainer/shipfixedreq.visible=false
+		else:
+			$CanvasLayer/PopupPanel/GridContainer/shipfixedreq.visible=true
+			$CanvasLayer/PopupPanel/GridContainer/shipfixedreq.text = str("SHIP REPAIR ",20*shipreq,"% REQUIRED")
 		show_collectables_for_fixing(ND_path,Costs)
 	$CanvasLayer/PopupPanel/GridContainer/title.text = title
 	$CanvasLayer/PopupPanel/GridContainer/desc.text = desc

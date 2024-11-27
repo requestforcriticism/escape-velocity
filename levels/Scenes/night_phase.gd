@@ -145,7 +145,7 @@ func page_transition(start_page,end_page):
 
 func win_game():
 	print("You win the game!")
-	Save.set_value(1, "WIN", 1)
+	Save.set_value(1, "WINLOSE", 1)
 	$"eating/End game timer".start()
 	$win.visible = true
 

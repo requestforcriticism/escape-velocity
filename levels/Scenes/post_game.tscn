@@ -1,7 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://ipsb1u036iwl"]
+[gd_scene load_steps=15 format=3 uid="uid://ipsb1u036iwl"]
 
 [ext_resource type="Texture2D" uid="uid://blh7nqab0ihuh" path="res://levels/Scenes/PostGameAssets/PostGameBackground.png" id="1_34cdf"]
 [ext_resource type="Script" path="res://levels/Scenes/post_game.gd" id="1_x5lo0"]
+[ext_resource type="Texture2D" uid="uid://dr7ljsae3ovrl" path="res://assets/collectabes/food.png" id="3_e6f7n"]
+[ext_resource type="Texture2D" uid="uid://djx1u1qr6ilya" path="res://assets/collectabes/water_bubble.png" id="4_vramf"]
+[ext_resource type="Texture2D" uid="uid://cvn0blwa4chuc" path="res://assets/collectabes/iron_ore.png" id="5_cqqnq"]
+[ext_resource type="Texture2D" uid="uid://dn0ds7y7r0d7k" path="res://assets/collectabes/oil_bubble.png" id="6_1dcv7"]
+[ext_resource type="Texture2D" uid="uid://da8y88xs5if1o" path="res://assets/collectabes/uranium_ore.png" id="7_yi36x"]
+[ext_resource type="Texture2D" uid="uid://dm0rm00r4rudj" path="res://assets/collectabes/logic_card.png" id="8_h5l4f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikdka"]
+atlas = ExtResource("3_e6f7n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx22t"]
+atlas = ExtResource("4_vramf")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seadf"]
+atlas = ExtResource("5_cqqnq")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l88ym"]
+atlas = ExtResource("6_1dcv7")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lg1n"]
+atlas = ExtResource("7_yi36x")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2gx6"]
+atlas = ExtResource("8_h5l4f")
+region = Rect2(32, 0, 32, 32)
 
 [node name="postGame" type="Control"]
 layout_mode = 3
@@ -23,6 +52,397 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_34cdf")
 
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 1176.0
+offset_top = 248.0
+offset_right = 1880.0
+offset_bottom = 993.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Designers: 
+Matthew Melendez
+ Rogelio Long
+
+Art Assets:
+- Night Phase ship from Marisol Long
+- Splosion image from Godot World project
+- kenney_ui-pack-space-expansion from https://kenney.nl/
+- kenney_cursor-pack from https://kenney.nl/
+- kenney_input-prompts from https://kenney.nl/
+- kenney_particle-pack from https://kenney.nl/
+- Kenney Fonts from https://kenney.nl/
+- super-pixel-projectiles-pack-2-pixel-art-animated-projectiles from https://www.gamedevmarket.net
+- super-pixel-effects-pack-3-pixel-art-effect-animations from https://www.gamedevmarket.net"
+autowrap_mode = 3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PostGame" type="Label" parent="."]
+layout_mode = 0
+offset_left = -952.0
+offset_top = -524.0
+offset_right = -504.0
+offset_bottom = -421.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "Post Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="stats" type="Label" parent="."]
+offset_left = -952.0
+offset_top = -386.0
+offset_right = 216.0
+offset_bottom = -276.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="credits" type="Label" parent="."]
+offset_left = 216.0
+offset_top = -386.0
+offset_right = 968.0
+offset_bottom = -276.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Winner" type="Label" parent="."]
+visible = false
+offset_left = -189.0
+offset_top = -492.0
+offset_right = 189.0
+offset_bottom = -355.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "Winner!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Failed" type="Label" parent="."]
+visible = false
+offset_left = -157.0
+offset_top = -492.0
+offset_right = 158.0
+offset_bottom = -355.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "Failed!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoxContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = -904.0
+offset_top = -292.0
+offset_right = 294.0
+offset_bottom = 452.0
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="Left" type="GridContainer" parent="BoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="BulletsFired" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Bullets Fired:
+"
+
+[node name="empty" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 
+"
+
+[node name="Base" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "- Base:"
+
+[node name="Basevalue" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "99999"
+
+[node name="missile" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "- Missile:"
+
+[node name="missilevalue" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "99999"
+
+[node name="SP" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "- Spray&Pray:"
+
+[node name="SPvalue" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "99999"
+
+[node name="empty3" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 
+"
+
+[node name="empty2" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 
+"
+
+[node name="DamageTaken" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Damage Recieved:
+"
+
+[node name="DamageTakenvalue" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "99999
+"
+
+[node name="empty4" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 
+"
+
+[node name="empty5" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 
+"
+
+[node name="Distancetraveled" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Distance traveled:
+"
+
+[node name="Distancetraveledvalue" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "99999 km
+"
+
+[node name="empty7" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 
+"
+
+[node name="empty8" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 
+"
+
+[node name="MonstersKilled" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Monsters Killed:
+"
+
+[node name="empty6" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 
+"
+
+[node name="ResourceMonster" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "- Resource Monsters:"
+
+[node name="ResourceMonstervalue" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "99999"
+
+[node name="OtherMonsters" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "- Other Monsters:"
+
+[node name="OtherMonstersvalue" type="Label" parent="BoxContainer/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "99999"
+
+[node name="Right" type="GridContainer" parent="BoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Days" type="Label" parent="BoxContainer/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Days Survived: 
+"
+
+[node name="Daysvalue" type="Label" parent="BoxContainer/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "99999
+"
+
+[node name="empty7" type="Label" parent="BoxContainer/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 
+"
+
+[node name="empty8" type="Label" parent="BoxContainer/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 
+"
+
+[node name="Collectables Collected" type="Label" parent="BoxContainer/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Collectables
+ Collected:
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="empty" type="Label" parent="BoxContainer/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "
+ "
+
+[node name="FOO" type="TextureRect" parent="BoxContainer/Right"]
+layout_mode = 2
+localize_numeral_system = false
+texture = SubResource("AtlasTexture_ikdka")
+stretch_mode = 5
+
+[node name="Foodvalue" type="Label" parent="BoxContainer/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WAT" type="TextureRect" parent="BoxContainer/Right"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_gx22t")
+stretch_mode = 5
+
+[node name="Watervalue" type="Label" parent="BoxContainer/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IRO" type="TextureRect" parent="BoxContainer/Right"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_seadf")
+stretch_mode = 5
+
+[node name="Ironvalue" type="Label" parent="BoxContainer/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OIL" type="TextureRect" parent="BoxContainer/Right"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_l88ym")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Oilvalue" type="Label" parent="BoxContainer/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="URA" type="TextureRect" parent="BoxContainer/Right"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5lg1n")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Uraniumvalue" type="Label" parent="BoxContainer/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = " 2
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="COM" type="TextureRect" parent="BoxContainer/Right"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_k2gx6")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ComputerChipvalue" type="Label" parent="BoxContainer/Right"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ReturntoStart" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -30,15 +450,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -304.0
-offset_top = 348.0
-offset_right = 317.0
-offset_bottom = 439.0
+offset_left = -310.5
+offset_top = 396.0
+offset_right = 310.5
+offset_bottom = 487.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 60
 text = "Return to Start Menu"
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="pressed" from="ReturntoStart" to="." method="_on_returnto_start_pressed"]

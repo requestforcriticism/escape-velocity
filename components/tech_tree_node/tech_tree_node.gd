@@ -36,12 +36,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if costs != [] && setupTT:
-		$Techtreetooltip.info_setup(upgrade_key,desc,costs,state == TECH_TREE_STATE.PURCHASED)
+		$Techtreetooltip.info_setup(upgrade_key,desc,costs,state == TECH_TREE_STATE.PURCHASED,shipfixreq)
 		setupTT = false
 	if shipfixreq <= Save.get_value(1, "SHIPREPAIR",0):
 		_on_dep_purchased()
 	
 func _on_dep_purchased():
+	$Techtreetooltip.info_setup(upgrade_key,desc,costs,state == TECH_TREE_STATE.PURCHASED,shipfixreq)
 	if state != TECH_TREE_STATE.LOCKED:
 		return
 		
@@ -58,9 +59,9 @@ func _on_dep_purchased():
 
 func _on_purchase():
 	if state == TECH_TREE_STATE.UNLOCKED:
-		if try_upgrade():# TODO check if resources are availible to spend
+		if try_upgrade():
 			state = TECH_TREE_STATE.PURCHASED
-			$Techtreetooltip.info_setup(upgrade_key,desc,costs,state == TECH_TREE_STATE.PURCHASED)
+			$Techtreetooltip.info_setup(upgrade_key,desc,costs,state == TECH_TREE_STATE.PURCHASED,shipfixreq)
 			unlock_lines()
 			on_purchase.emit()
 			play("purchased")

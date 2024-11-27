@@ -75,9 +75,9 @@ func _on_load_game_pressed() -> void:
 	print("put some stuff for loading a previously played game")
 
 func _start_new_game():
+	Save.set_value(1, "WINLOSE", 0)
 	Save.set_value(1, "SHIPREPAIR", 0)
 	Save.set_value(1, "DAY", 1)
-	Save.set_value(1, "WIN", 0)
 	Save.set_value(1, "FOO", 930)
 	Save.set_value(1, "WAT", 930)
 	Save.set_value(1, "OIL", 940)
@@ -92,11 +92,19 @@ func _start_new_game():
 	Save.set_value(1, "Tutor", 1)
 	
 	# For the end of game stats
-	Save.set_value(1, "SHOTS", 0)  #number of total shots fired
+	Save.set_value(1, "BASESHOTS", 0)  #number of total base shots fired
+	Save.set_value(1, "MISSILESHOTS", 0)  #number of total missile shots fired
+	Save.set_value(1, "SPRAYSHOTS", 0)  #number of total spray shots fired
 	Save.set_value(1, "DAMAGET", 0) #amount of damage taken
-	Save.set_value(1, "DISTRAVEL", 0) #distance traveled in pixels.  convert to some distance later.
+	Save.set_value(1, "DISTRAVEL", 0.0) #distance traveled in pixels.  convert to some distance later.
 	Save.set_value(1, "BRDEF", 0) #number of Base Resourses defeated
 	Save.set_value(1, "MONDEF", 0) #number of monsters defeated
+	Save.set_value(1, "COLLECTEDFOO", 0) #number of food collected during the game
+	Save.set_value(1, "COLLECTEDWAT", 0) #number of water collected during the game
+	Save.set_value(1, "COLLECTEDOIL", 0) #number of oil collected during the game
+	Save.set_value(1, "COLLECTEDIRO", 0) #number of iron collected during the game
+	Save.set_value(1, "COLLECTEDURA", 0) #number of uranium collected during the game
+	Save.set_value(1, "COLLECTEDCOM", 0) #number of computer chips collected during the game
 	
 	release_focus()
 	LevelManager.load_day()

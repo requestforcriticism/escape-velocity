@@ -24,7 +24,7 @@ var CostsSpray=				[0	,20	  	,30		,20	  	,2		,0		,2		]
 
 var DescLogicUnlock: String = "+5% Max HP
 +5% Max Capacitor Capacity
-+5% Shoot Speed"
+-5% Shoot Speed"
 
 var DescHPup: String = "+25% Max HP
 HP Regen +1/sec"

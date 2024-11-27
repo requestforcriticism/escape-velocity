@@ -88,6 +88,7 @@ var Action_State
 var is_mining = false
 var is_harverter = false
 var bulletAlternate:bool = true
+var distancetraveled
 
 func pos_to_chunk(x, y):
 	var tile_x = floor(x / tile_size)
@@ -97,7 +98,7 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
-	
+	distancetraveled = 0
 	weapon_state = PLAYER_WEAPONS.BASE
 	usingweapon.emit(weapon_state)
 	Move_state = "IDLE"
@@ -144,6 +145,7 @@ func _ready():
 	on_harvester_max_changed.emit(max_harvesters)
 
 func _process(delta: float) -> void:
+	var startpos = global_position
 	Move_state = "IDLE"
 	Action_State = "PASSIVE"
 	velocity = Vector2.ZERO
@@ -206,14 +208,6 @@ func _process(delta: float) -> void:
 		else:
 			_base_bullet()
 	
-	#Use the selected Consumable
-	if Input.is_action_just_pressed("Use_consumable"):
-		Use_cons()
-	#cycle between the available consumables
-	if Input.is_action_just_pressed("Toggle_consumables"):
-		toggle = (toggle +1) %3
-		toggleConsum.emit(toggle)
-	
 	#drink that health potion! (Or whatever it's called)
 	if Input.is_action_just_pressed("Consume_HealthP") && Healthpacks != 0 && PlayerStats.get_currentHP() < PlayerStats.get_MaxHP():
 		Healthpacks += -1
@@ -263,6 +257,9 @@ func _process(delta: float) -> void:
 		current_chunk = chunk_id
 		on_chunk_changed.emit(current_chunk)
 	
+	print("distance: ",global_position.distance_to(startpos))
+	distancetraveled += global_position.distance_to(startpos)
+	
 	if is_mining == true:
 		Action_State = "MINING"
 	if is_harverter == true:
@@ -304,6 +301,7 @@ func _base_bullet():
 				new_bullet.position = $Marker2Dright.global_position
 			new_bullet.direction = lastlook.normalized()
 			add_sibling(new_bullet)
+			Save.set_value(1, "BASESHOTS", Save.get_value(1, "BASESHOTS", 0)+1)
 			BaseBulletshootRdy = false
 			$BaseBulletShootTimer.start()
 
@@ -325,6 +323,7 @@ func _missile_bullet():
 			else:
 				new_bullet.position = $Marker2Dright.global_position
 			new_bullet.direction = lastlook.normalized()
+			Save.set_value(1, "MISSILESHOTS", Save.get_value(1, "MISSILESHOTS", 0)+1)
 			add_sibling(new_bullet)
 			MissileBulletshootRdy = false
 			$MissileBulletShootTimer.start()
@@ -349,6 +348,7 @@ func _spray_bullet():
 			else:
 				new_bullet_Spray.position = $Marker2Dright.global_position
 			new_bullet_Spray.direction = Vector2.from_angle(lastlook.angle() + mod_bullet).normalized()
+			Save.set_value(1, "SPRAYSHOTS", Save.get_value(1, "SPRAYSHOTS", 0)+1)
 			add_sibling(new_bullet_Spray)
 			SprayBulletshootRdy = false
 			$SprayBulletShootTimer.start()
@@ -390,6 +390,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		await get_tree().create_timer(0.1).timeout
 		$AnimatedSprite2D.modulate = Color.WHITE
 
+#	colnames = ["BLU","IRO","OIL","WAT","URA", "FOO", "COM"]
 func _on_area_2d_collectable_area_entered(area: Area2D) -> void:
 	for i in colnames.size():
 		if area.name.left(3) == colnames[i]:
@@ -453,6 +454,8 @@ func using_consumable(tog:int, using:bool):
 func _on_day_phase_ending_day() -> void:
 	EndingDay = true
 	rotation = -PI/2
+	Save.set_value(1, "DISTRAVEL", Save.get_value(1, "DISTRAVEL", 0) + distancetraveled)  
+	
 
 func _on_base_resource_getting_gathered(message) -> void:
 	is_mining = true

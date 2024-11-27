@@ -34,6 +34,7 @@ func on_damage(bullet):
 		#print("hit for, ", bullet.damage, " now at ", hp)
 		#bullet.queue_free()
 	if hp <= 0:
+		Save.set_value(1, "MONDEF", Save.get_value(1, "MONDEF", 0)+1)
 		on_die.emit()
 		queue_free()
 

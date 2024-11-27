@@ -15,6 +15,8 @@ var default_cursor = preload("res://assets/cursors/target_round_b.png")
 var mining_cursor = preload("res://assets/cursors/tool_pickaxe.png")
 var interectinfo
 
+var daystarcolables: Array =[0,0,0,0,0,0]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_custom_mouse_cursor(default_cursor,Input.CURSOR_ARROW,Vector2(32,32))
@@ -79,10 +81,15 @@ func _ready():
 	new_collectable.position = Vector2(-150,50)
 	add_child(new_collectable)
 	
+	daystarcolables[0] = Save.get_value(1, "FOO", 0)
+	daystarcolables[1] = Save.get_value(1, "WAT", 0)
+	daystarcolables[2] = Save.get_value(1, "OIL", 0)
+	daystarcolables[3] = Save.get_value(1, "IRO", 0)
+	daystarcolables[4] = Save.get_value(1, "URA", 0)
+	daystarcolables[5] = Save.get_value(1, "COM", 0)
+
 	if Save.get_value(1, "Tutor", 1):
 		$player/Camera2D/TutorialCanvasLayer.visible = true
-	
-	
 	
 #all the stuff to start a new day
 func start_day():
@@ -160,6 +167,13 @@ func end_day():
 	Save.set_value(1, "STABST", $player.consum[0])
 	Save.set_value(1, "DMGBST", $player.consum[1])
 	Save.set_value(1, "DMGRED", $player.consum[2])
+	
+	Save.set_value(1, "COLLECTEDFOO", Save.get_value(1, "COLLECTEDFOO", 0) + Save.get_value(1, "FOO", 0) - daystarcolables[0]) #number of food collected during the game
+	Save.set_value(1, "COLLECTEDWAT", Save.get_value(1, "COLLECTEDWAT", 0)+ Save.get_value(1, "WAT", 0) - daystarcolables[1]) #number of water collected during the game
+	Save.set_value(1, "COLLECTEDOIL", Save.get_value(1, "COLLECTEDOIL", 0)+ Save.get_value(1, "OIL", 0) - daystarcolables[2]) #number of oil collected during the game
+	Save.set_value(1, "COLLECTEDIRO", Save.get_value(1, "COLLECTEDIRO", 0)+ Save.get_value(1, "IRO", 0) - daystarcolables[3]) #number of iron collected during the game
+	Save.set_value(1, "COLLECTEDURA", Save.get_value(1, "COLLECTEDURA", 0)+ Save.get_value(1, "URA", 0) - daystarcolables[4]) #number of uranium collected during the game
+	Save.set_value(1, "COLLECTEDCOM", Save.get_value(1, "COLLECTEDCOM", 0)+ Save.get_value(1, "COM", 0) - daystarcolables[5]) #number of computer chips collected during the game
 	
 	#Save._save_file_win()  #save the game at the end of the day
 	#Save._save_file_win(1)

@@ -4,7 +4,24 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
+	$BoxContainer/Left/Basevalue.text = str(Save.get_value(1, "BASESHOTS", 0))
+	$BoxContainer/Left/missilevalue.text = str(Save.get_value(1, "MISSILESHOTS", 0))
+	$BoxContainer/Left/SPvalue.text = str(Save.get_value(1, "SPRAYSHOTS", 0))
+	$BoxContainer/Left/DamageTakenvalue.text = str(Save.get_value(1, "DAMAGET", 0))
+	$BoxContainer/Left/Distancetraveledvalue.text = str(snapped(Save.get_value(1, "DISTRAVEL", 0)/32000.0,0.01)," km")
+	$BoxContainer/Left/ResourceMonstervalue.text = str(Save.get_value(1, "BRDEF", 0))
+	$BoxContainer/Left/OtherMonstersvalue.text = str(Save.get_value(1, "MONDEF", 0))
+	$BoxContainer/Right/Daysvalue.text = str(Save.get_value(1, "DAY", 0))
+	$BoxContainer/Right/Foodvalue.text = str(Save.get_value(1, "COLLECTEDFOO", 0))
+	$BoxContainer/Right/Watervalue.text = str(Save.get_value(1, "COLLECTEDWAT", 0))
+	$BoxContainer/Right/Ironvalue.text = str(Save.get_value(1, "COLLECTEDIRO", 0))
+	$BoxContainer/Right/Oilvalue.text = str(Save.get_value(1, "COLLECTEDOIL", 0))
+	$BoxContainer/Right/Uraniumvalue.text = str(Save.get_value(1, "COLLECTEDURA", 0))
+	$BoxContainer/Right/ComputerChipvalue.text = str(Save.get_value(1, "COLLECTEDCOM", 0))
+	if Save.get_value(1, "WINLOSE", 0):
+		$Winner.visible = true
+	else:
+		$Failed.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

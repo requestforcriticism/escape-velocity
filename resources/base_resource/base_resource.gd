@@ -71,6 +71,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if state == RESOURCE_STATE.AGGESSIVE and currentHealth <=0:
+		Save.set_value(1, "BRDEF", Save.get_value(1, "BRDEF", 0)+1)
 		name = "resource"
 		$AnimatedSprite2D.play("tamed")
 		state = RESOURCE_STATE.PASSIVE
