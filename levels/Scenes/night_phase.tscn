@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://dhmd88cnimtpn"]
+[gd_scene load_steps=92 format=3 uid="uid://dhmd88cnimtpn"]
 
 [ext_resource type="Script" path="res://levels/Scenes/night_phase.gd" id="1_y5447"]
 [ext_resource type="Texture2D" uid="uid://b14glxl3ey7ii" path="res://levels/Scenes/NightPhaseAssets/spaceship_interior.png" id="2_g30nj"]
@@ -20,10 +20,27 @@
 [ext_resource type="Texture2D" uid="uid://dm0rm00r4rudj" path="res://assets/collectabes/logic_card.png" id="8_3gktg"]
 [ext_resource type="Texture2D" uid="uid://da8y88xs5if1o" path="res://assets/collectabes/uranium_ore.png" id="9_u405p"]
 [ext_resource type="Texture2D" uid="uid://duu24sy6gjbqm" path="res://assets/harvester/Single_harverter.png" id="11_t7wt8"]
+[ext_resource type="Script" path="res://levels/Scenes/craft_button.gd" id="11_twmaj"]
+[ext_resource type="Script" path="res://levels/Scenes/fix_ship_button.gd" id="12_0co8u"]
+[ext_resource type="Script" path="res://levels/Scenes/l_fix_ship_button.gd" id="12_ceieq"]
+[ext_resource type="Script" path="res://levels/Scenes/tech_tree_button.gd" id="13_51g7y"]
+[ext_resource type="Script" path="res://levels/Scenes/end_night_button.gd" id="14_y2b70"]
+[ext_resource type="Script" path="res://levels/Scenes/back_from_cft.gd" id="16_5gxr5"]
 [ext_resource type="Script" path="res://levels/Scenes/tech_tree_page.gd" id="17_26uw4"]
 [ext_resource type="Script" path="res://levels/Scenes/fix_ship_page.gd" id="20_epnti"]
 [ext_resource type="Texture2D" uid="uid://bxylsavmw7bq7" path="res://levels/Scenes/NightPhaseAssets/tech tree stats background.png" id="21_7nyun"]
 [ext_resource type="Theme" uid="uid://m3ds5kbomh4t" path="res://levels/Scenes/NightPhaseAssets/theme_bonus_stats.tres" id="22_vmaom"]
+[ext_resource type="AudioStream" uid="uid://bcxwiyo8txb7e" path="res://assets/Sounds/Between Train Cars.wav" id="25_ci56s"]
+[ext_resource type="Script" path="res://levels/Scenes/back_from_tt.gd" id="25_ntodh"]
+[ext_resource type="Script" path="res://levels/Scenes/backgroundmusic.gd" id="26_hkuf1"]
+[ext_resource type="AudioStream" uid="uid://cf0r6b4lhnb8n" path="res://assets/Sounds/Update Flashlight A.wav" id="27_qxqpn"]
+[ext_resource type="AudioStream" uid="uid://dls0upghjmfca" path="res://assets/Sounds/Update Flashlight C.wav" id="28_km36g"]
+[ext_resource type="Script" path="res://levels/Scenes/back_from_fix.gd" id="29_27eca"]
+[ext_resource type="AudioStream" uid="uid://scwgdpqdrxdr" path="res://assets/Sounds/Sanding Success.wav" id="29_fb3is"]
+[ext_resource type="AudioStream" uid="uid://bfjkh2k85jycs" path="res://assets/Sounds/Craft Error.wav" id="30_nxksg"]
+[ext_resource type="AudioStream" uid="uid://ba7e43r8wlod8" path="res://assets/Sounds/Alert Craft.wav" id="31_7juwg"]
+[ext_resource type="Script" path="res://levels/Scenes/en_yes_button.gd" id="32_xce4o"]
+[ext_resource type="Script" path="res://levels/Scenes/en_no_button.gd" id="33_l7oyi"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_n3o26"]
 
@@ -560,22 +577,26 @@ columns = 4
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Craft Stuff"
+script = ExtResource("11_twmaj")
 
-[node name="FixShipButton" type="Button" parent="LandingPage/GridContainer"]
+[node name="LFixShipButton" type="Button" parent="LandingPage/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Fix the Ship
 "
+script = ExtResource("12_ceieq")
 
 [node name="TechTreeButton" type="Button" parent="LandingPage/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Tech Tree"
+script = ExtResource("13_51g7y")
 
 [node name="EndNightButton" type="Button" parent="LandingPage/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "End the Night"
+script = ExtResource("14_y2b70")
 
 [node name="CraftingPage" type="Control" parent="."]
 visible = false
@@ -740,6 +761,7 @@ offset_bottom = 542.0
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Back"
+script = ExtResource("16_5gxr5")
 
 [node name="CraftOptionsGridContainer" type="GridContainer" parent="CraftingPage"]
 layout_mode = 2
@@ -1509,6 +1531,7 @@ offset_bottom = 542.0
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Back"
+script = ExtResource("25_ntodh")
 
 [node name="stats" type="TextureRect" parent="TechTreePage"]
 layout_mode = 0
@@ -1763,6 +1786,7 @@ offset_right = 174.0
 offset_bottom = 191.0
 theme_override_font_sizes/font_size = 60
 text = "Fix the Ship"
+script = ExtResource("12_0co8u")
 
 [node name="GridContainer" type="GridContainer" parent="FixShipPage"]
 layout_mode = 1
@@ -1777,6 +1801,7 @@ columns = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Back"
+script = ExtResource("29_27eca")
 
 [node name="FixShipCOST" type="GridContainer" parent="FixShipPage"]
 layout_mode = 1
@@ -1996,11 +2021,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Yes
 "
+script = ExtResource("32_xce4o")
 
 [node name="ENNoButton" type="Button" parent="EndNightCheckBox/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "No"
+script = ExtResource("33_l7oyi")
 
 [node name="WhitenBG" type="ColorRect" parent="."]
 visible = false
@@ -2130,19 +2157,64 @@ autowrap_mode = 3
 wait_time = 5.0
 one_shot = true
 
+[node name="Sounds" type="Node" parent="."]
+
+[node name="backgroundmusic" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("25_ci56s")
+volume_db = -20.58
+autoplay = true
+script = ExtResource("26_hkuf1")
+
+[node name="buttonpressed" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("28_km36g")
+volume_db = -10.0
+
+[node name="buttonhovered" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("27_qxqpn")
+volume_db = -10.0
+
+[node name="craftingsuccess" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("29_fb3is")
+
+[node name="craftingfailed" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("30_nxksg")
+
+[node name="fixingship" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("31_7juwg")
+
+[connection signal="mouse_entered" from="LandingPage/GridContainer/CraftButton" to="LandingPage/GridContainer/CraftButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="LandingPage/GridContainer/CraftButton" to="." method="_on_craft_button_pressed"]
-[connection signal="pressed" from="LandingPage/GridContainer/FixShipButton" to="." method="_on_fix_ship_button_pressed"]
+[connection signal="pressed" from="LandingPage/GridContainer/CraftButton" to="LandingPage/GridContainer/CraftButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="LandingPage/GridContainer/LFixShipButton" to="LandingPage/GridContainer/LFixShipButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="LandingPage/GridContainer/LFixShipButton" to="." method="_on_fix_ship_button_pressed"]
+[connection signal="pressed" from="LandingPage/GridContainer/LFixShipButton" to="LandingPage/GridContainer/LFixShipButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="LandingPage/GridContainer/TechTreeButton" to="LandingPage/GridContainer/TechTreeButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="LandingPage/GridContainer/TechTreeButton" to="." method="_on_tech_tree_button_pressed"]
+[connection signal="pressed" from="LandingPage/GridContainer/TechTreeButton" to="LandingPage/GridContainer/TechTreeButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="LandingPage/GridContainer/EndNightButton" to="LandingPage/GridContainer/EndNightButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="LandingPage/GridContainer/EndNightButton" to="." method="_on_end_night_button_pressed"]
+[connection signal="pressed" from="LandingPage/GridContainer/EndNightButton" to="LandingPage/GridContainer/EndNightButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="CraftingPage/GridContainer/BackFromCFT" to="CraftingPage/GridContainer/BackFromCFT" method="_on_mouse_entered"]
 [connection signal="pressed" from="CraftingPage/GridContainer/BackFromCFT" to="." method="_on_back_from_cft_pressed"]
+[connection signal="pressed" from="CraftingPage/GridContainer/BackFromCFT" to="CraftingPage/GridContainer/BackFromCFT" method="_on_pressed"]
 [connection signal="pressed" from="CraftingPage/CraftOptionsGridContainer/HLTHPCKCreateButton" to="CraftingPage" method="_on_hlthpck_create_button_pressed"]
 [connection signal="pressed" from="CraftingPage/CraftOptionsGridContainer/STABSTCreateButton" to="CraftingPage" method="_on_stabst_create_button_pressed"]
 [connection signal="pressed" from="CraftingPage/CraftOptionsGridContainer/DMGBSTCreateButton" to="CraftingPage" method="_on_dmgbst_create_button_pressed"]
 [connection signal="pressed" from="CraftingPage/CraftOptionsGridContainer/DMGREDCreateButton" to="CraftingPage" method="_on_dmgred_create_button_pressed"]
 [connection signal="pressed" from="CraftingPage/CraftOptionsGridContainer/HarvesterCreateButton" to="CraftingPage" method="_on_harvester_create_button_pressed"]
+[connection signal="mouse_entered" from="TechTreePage/GridContainer/BackFromTT" to="TechTreePage/GridContainer/BackFromTT" method="_on_mouse_entered"]
 [connection signal="pressed" from="TechTreePage/GridContainer/BackFromTT" to="." method="_on_back_from_tt_pressed"]
+[connection signal="pressed" from="TechTreePage/GridContainer/BackFromTT" to="TechTreePage/GridContainer/BackFromTT" method="_on_pressed"]
+[connection signal="mouse_entered" from="FixShipPage/FixShipButton" to="FixShipPage/FixShipButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="FixShipPage/FixShipButton" to="FixShipPage" method="_on_fix_ship_button_pressed"]
+[connection signal="mouse_entered" from="FixShipPage/GridContainer/BackFromFIX" to="FixShipPage/GridContainer/BackFromFIX" method="_on_mouse_entered"]
 [connection signal="pressed" from="FixShipPage/GridContainer/BackFromFIX" to="." method="_on_back_from_fix_pressed"]
+[connection signal="pressed" from="FixShipPage/GridContainer/BackFromFIX" to="FixShipPage/GridContainer/BackFromFIX" method="_on_pressed"]
+[connection signal="mouse_entered" from="EndNightCheckBox/GridContainer/ENYesButton" to="EndNightCheckBox/GridContainer/ENYesButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="EndNightCheckBox/GridContainer/ENYesButton" to="." method="_on_en_yes_button_pressed"]
+[connection signal="pressed" from="EndNightCheckBox/GridContainer/ENYesButton" to="EndNightCheckBox/GridContainer/ENYesButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="EndNightCheckBox/GridContainer/ENNoButton" to="EndNightCheckBox/GridContainer/ENNoButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="EndNightCheckBox/GridContainer/ENNoButton" to="." method="_on_en_no_button_pressed"]
+[connection signal="pressed" from="EndNightCheckBox/GridContainer/ENNoButton" to="EndNightCheckBox/GridContainer/ENNoButton" method="_on_pressed"]
 [connection signal="timeout" from="eating/End game timer" to="." method="_on_end_game_timer_timeout"]
+[connection signal="finished" from="Sounds/backgroundmusic" to="Sounds/backgroundmusic" method="_on_finished"]

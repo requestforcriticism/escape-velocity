@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://64fo02ts1lfd"]
+[gd_scene load_steps=11 format=3 uid="uid://64fo02ts1lfd"]
 
 [ext_resource type="Texture2D" uid="uid://466br6rm2yxh" path="res://components/tech_tree_node/tech_tree_icons.png" id="1_gulsg"]
 [ext_resource type="Script" path="res://components/tech_tree_node/tech_tree_node.gd" id="2_yiv3f"]
 [ext_resource type="PackedScene" uid="uid://1i3rejvqwrg8" path="res://components/tech_tree_node/techtreetooltip.tscn" id="3_g7hkh"]
+[ext_resource type="AudioStream" uid="uid://scwgdpqdrxdr" path="res://assets/Sounds/Sanding Success.wav" id="4_86ivb"]
+[ext_resource type="AudioStream" uid="uid://bfjkh2k85jycs" path="res://assets/Sounds/Craft Error.wav" id="5_owhuj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pypw5"]
 atlas = ExtResource("1_gulsg")
@@ -59,6 +61,12 @@ shape = SubResource("RectangleShape2D_6j6uy")
 [node name="Techtreetooltip" parent="." instance=ExtResource("3_g7hkh")]
 visible = false
 offset_bottom = 1256.0
+
+[node name="craftingsuccess" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_86ivb")
+
+[node name="craftingfailed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_owhuj")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_upgrade_click"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

@@ -65,8 +65,10 @@ func try_craft(typeCost,typeCons,invPath,buttonPath):
 	for i in col_path_images.size():
 		if typeCost[i] > Save.get_value(1,col_path_images[i], 0):
 			restest = false
+			$"../Sounds/craftingfailed".play()
 			break
 	if restest == true:
+		$"../Sounds/craftingsuccess".play()
 		for i in col_path_images.size():
 			if typeCost[i] > 0:
 				Save.set_value(1,col_path_images[i],Save.get_value(1,col_path_images[i], 0)-typeCost[i])

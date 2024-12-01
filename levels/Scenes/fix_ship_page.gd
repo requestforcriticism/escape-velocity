@@ -46,15 +46,16 @@ func show_collectables_for_fixing(ND,cons_name):
 
 func _on_fix_ship_button_pressed() -> void:
 	try_fix(fix_req[fix_progress],$FixShipButton)
-	pass # Replace with function body.
 
 func try_fix(typeCost,buttonPath):
 	restest = true
 	for i in col_path_images.size():
 		if typeCost[i] > Save.get_value(1,col_path_images[i], 0):
 			restest = false
+			$"../Sounds/craftingfailed".play()
 			break
 	if restest == true:
+		$"../Sounds/fixingship".play()
 		for i in col_path_images.size():
 			if typeCost[i] > 0:
 				Save.set_value(1,col_path_images[i],Save.get_value(1,col_path_images[i], 0)-typeCost[i])

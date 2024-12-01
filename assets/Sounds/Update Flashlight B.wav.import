@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cwtun83e01ad3"
+path="res://.godot/imported/Update Flashlight B.wav-a63fa318bbf5ac9b26203c8c9322a92f.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/Update Flashlight B.wav"
+dest_files=["res://.godot/imported/Update Flashlight B.wav-a63fa318bbf5ac9b26203c8c9322a92f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

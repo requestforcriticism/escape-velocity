@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c2sj1djis4hen"
+path="res://.godot/imported/Ambient Vol6 Battle Tech Main.wav-6278d8d69d8bbcb89484723f2cb0e05d.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/Battle Tech (RT 2.1)/Ambient Vol6 Battle Tech Main.wav"
+dest_files=["res://.godot/imported/Ambient Vol6 Battle Tech Main.wav-6278d8d69d8bbcb89484723f2cb0e05d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

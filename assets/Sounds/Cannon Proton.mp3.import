@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://sy5epkjhqm8g"
+path="res://.godot/imported/Cannon Proton.mp3-8dfe164b34f23f52894c254e9fabbc01.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/Cannon Proton.mp3"
+dest_files=["res://.godot/imported/Cannon Proton.mp3-8dfe164b34f23f52894c254e9fabbc01.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

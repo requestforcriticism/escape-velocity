@@ -84,7 +84,7 @@ func _on_end_night_button_pressed() -> void:
 	$DarkenBG.visible = true
 	$LandingPage/GridContainer/CraftButton.disabled = true
 	$LandingPage/GridContainer/TechTreeButton.disabled = true
-	$LandingPage/GridContainer/FixShipButton.disabled = true
+	$LandingPage/GridContainer/LFixShipButton.disabled = true
 	$LandingPage/GridContainer/EndNightButton.disabled = true
 	$EndNightCheckBox.visible = true
 
@@ -111,7 +111,7 @@ func _on_en_no_button_pressed() -> void:
 	$DarkenBG.visible = false
 	$LandingPage/GridContainer/CraftButton.disabled = false
 	$LandingPage/GridContainer/TechTreeButton.disabled = false
-	$LandingPage/GridContainer/FixShipButton.disabled = false
+	$LandingPage/GridContainer/LFixShipButton.disabled = false
 	$LandingPage/GridContainer/EndNightButton.disabled = false
 	$EndNightCheckBox.visible = false
 	pass # Replace with function body.

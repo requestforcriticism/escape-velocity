@@ -104,11 +104,13 @@ func try_upgrade():
 	return restest
 
 func upgrade():
+	$craftingsuccess.play()
 	for i in col_path_images.size():
 		if costs[i] > 0:
 			Save.set_value(1,col_path_images[i],Save.get_value(1,col_path_images[i], 0)-costs[i])
 
 func cant_upgrade():
+	$craftingfailed.play()
 	self_modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	self_modulate = Color.WHITE

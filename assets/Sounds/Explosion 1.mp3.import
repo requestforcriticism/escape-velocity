@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://drgog84eqdchn"
+path="res://.godot/imported/Explosion 1.mp3-00d82ff5db936c997226b285bf05423b.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/Explosion 1.mp3"
+dest_files=["res://.godot/imported/Explosion 1.mp3-00d82ff5db936c997226b285bf05423b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
