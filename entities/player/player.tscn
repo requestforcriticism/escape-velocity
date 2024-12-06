@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ctcrca36054ed"]
+[gd_scene load_steps=45 format=3 uid="uid://ctcrca36054ed"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_cefws"]
 [ext_resource type="Texture2D" uid="uid://ctm4dy1kv1utq" path="res://entities/player/Fire Arrow.png" id="2_1ikru"]
@@ -9,6 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://bq3xsv8vnryue" path="res://components/playerBullet/player_bullet_spray.tscn" id="4_xev2f"]
 [ext_resource type="Texture2D" uid="uid://dvwyeng136xkm" path="res://entities/player/drone.png" id="5_my1ht"]
 [ext_resource type="Script" path="res://entities/player/animated_sprite_2d.gd" id="6_uy3mu"]
+[ext_resource type="AudioStream" uid="uid://sdbui7r4pf7h" path="res://assets/Sounds/Cannon Ion.mp3" id="10_ey6a0"]
+[ext_resource type="AudioStream" uid="uid://buk5bd4m2vugk" path="res://assets/Sounds/Cannon Generic.mp3" id="11_wja25"]
+[ext_resource type="AudioStream" uid="uid://sy5epkjhqm8g" path="res://assets/Sounds/Cannon Proton.mp3" id="12_e1pws"]
+[ext_resource type="AudioStream" uid="uid://bjhd6ewx0ymgq" path="res://assets/Sounds/Shoe Step Grass Medium A.wav" id="13_s00g7"]
+[ext_resource type="AudioStream" uid="uid://hs8yienhqyr6" path="res://assets/Sounds/Shoe Step Grass Medium B.wav" id="14_gn1ct"]
+[ext_resource type="AudioStream" uid="uid://ccf7eo1ijok0y" path="res://assets/Sounds/Shoe Step Grass Medium C.wav" id="15_nbtga"]
+[ext_resource type="AudioStream" uid="uid://dh8iwqyw3wgko" path="res://assets/Sounds/Shoe Step Grass Medium D.wav" id="16_gjith"]
+[ext_resource type="AudioStream" uid="uid://bqf2xubntuhen" path="res://assets/Sounds/Shoe Step Grass Medium E.wav" id="17_70xjq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ht3oy"]
 size = Vector2(26, 26)
@@ -251,6 +259,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_458b2"]
+random_pitch = 1.5
+streams_count = 5
+stream_0/stream = ExtResource("13_s00g7")
+stream_1/stream = ExtResource("14_gn1ct")
+stream_2/stream = ExtResource("15_nbtga")
+stream_3/stream = ExtResource("16_gjith")
+stream_4/stream = ExtResource("17_70xjq")
+
 [node name="player" type="CharacterBody2D"]
 collision_layer = 81
 script = ExtResource("1_cefws")
@@ -322,11 +339,39 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
+[node name="walkingsoundTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [node name="Marker2Dright" type="Marker2D" parent="."]
 position = Vector2(13, 11)
 
 [node name="Marker2Dleft" type="Marker2D" parent="."]
 position = Vector2(13, -11)
+
+[node name="sounds" type="Node" parent="."]
+
+[node name="basebullet" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("10_ey6a0")
+volume_db = -10.0
+max_polyphony = 100
+
+[node name="missilebullet" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("11_wja25")
+volume_db = -10.0
+max_polyphony = 100
+
+[node name="spraybullet" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("12_e1pws")
+volume_db = -10.0
+pitch_scale = 3.57
+max_polyphony = 100
+
+[node name="walking" type="AudioStreamPlayer" parent="sounds"]
+stream = SubResource("AudioStreamRandomizer_458b2")
+volume_db = -5.0
+pitch_scale = 0.5
+max_polyphony = 10
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
@@ -340,3 +385,4 @@ position = Vector2(13, -11)
 [connection signal="timeout" from="ConsumableTimer" to="." method="_on_consumable_timer_timeout"]
 [connection signal="timeout" from="miningTimer" to="." method="_on_mining_timer_timeout"]
 [connection signal="timeout" from="harvesterTimer" to="." method="_on_harvester_timer_timeout"]
+[connection signal="timeout" from="walkingsoundTimer" to="." method="_on_walkingsound_timer_timeout"]

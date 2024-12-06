@@ -9,7 +9,7 @@ extends Area2D
 
 func _ready():
 	damage = 0
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
 	position += direction * delta * speed
 
@@ -26,6 +26,5 @@ func explode():
 	new_expolsion.damage = explosiondamage
 	new_expolsion.position = global_position
 	add_sibling(new_expolsion)
-	
 	hide()
 	queue_free()

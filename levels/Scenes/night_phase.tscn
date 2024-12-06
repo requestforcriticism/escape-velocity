@@ -2161,17 +2161,15 @@ one_shot = true
 
 [node name="backgroundmusic" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("25_ci56s")
-volume_db = -20.58
 autoplay = true
 script = ExtResource("26_hkuf1")
 
 [node name="buttonpressed" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("28_km36g")
-volume_db = -10.0
 
 [node name="buttonhovered" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("27_qxqpn")
-volume_db = -10.0
+volume_db = -5.0
 
 [node name="craftingsuccess" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("29_fb3is")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bvxg5xnknue6h"]
+[gd_scene load_steps=17 format=3 uid="uid://bvxg5xnknue6h"]
 
 [ext_resource type="Script" path="res://levels/Scenes/day_phase.gd" id="1_87mw8"]
 [ext_resource type="PackedScene" uid="uid://4xrk0xcxfw6e" path="res://components/playerBullet/player_bullet.tscn" id="2_frl4x"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://dijpoceqauarg" path="res://entities/base_monster/base_monster.tscn" id="10_8844s"]
 [ext_resource type="PackedScene" uid="uid://s5q3ymqj5dkb" path="res://entities/base_monster/reeb.tscn" id="11_gg31y"]
 [ext_resource type="PackedScene" uid="uid://bql2ao0kvjwyb" path="res://resources/terminal/terminal.tscn" id="12_ohxex"]
+[ext_resource type="AudioStream" uid="uid://c2sj1djis4hen" path="res://assets/Sounds/Battle Tech (RT 2.1)/Ambient Vol6 Battle Tech Main.wav" id="15_vgiit"]
+[ext_resource type="Script" path="res://levels/Scenes/day_b_gmusic.gd" id="16_cinen"]
 
 [node name="DayPhase" type="Node2D"]
 modulate = Color(0.868985, 0.868985, 0.868985, 1)
@@ -63,6 +65,13 @@ position = Vector2(-243, -139)
 
 [node name="DayTimer" type="Timer" parent="."]
 
+[node name="dayBGmusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("15_vgiit")
+volume_db = -5.0
+autoplay = true
+script = ExtResource("16_cinen")
+
 [connection signal="ending_day" from="." to="player" method="_on_day_phase_ending_day"]
 [connection signal="ending_day" from="." to="player/Camera2D/PauseCanvasLayer/PauseMenu" method="_on_day_phase_ending_day"]
 [connection signal="consDuration" from="player" to="player/Camera2D/hud" method="_on_player_cons_duration"]
@@ -87,3 +96,4 @@ position = Vector2(-243, -139)
 [connection signal="using_DMGRED" from="player/Camera2D/PauseCanvasLayer/PauseMenu" to="player" method="_on_pause_menu_using_dmgred"]
 [connection signal="using_STABST" from="player/Camera2D/PauseCanvasLayer/PauseMenu" to="player" method="_on_pause_menu_using_stabst"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
+[connection signal="finished" from="dayBGmusic" to="dayBGmusic" method="_on_finished"]

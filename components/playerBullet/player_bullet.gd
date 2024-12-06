@@ -12,9 +12,11 @@ func _process(delta):
 	position += direction * delta * speed
 
 func _on_die_timer_timeout():
-	hide()
-	queue_free()
-
+	_kill_bullet()
+	
 func _on_area_entered(area: Area2D) -> void:
+	_kill_bullet()
+
+func _kill_bullet():
 	hide()
 	queue_free()

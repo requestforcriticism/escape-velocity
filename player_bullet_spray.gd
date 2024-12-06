@@ -6,17 +6,17 @@ extends Area2D
 
 func _ready():
 	name = "playerbullet"
-	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position += direction * delta * speed
 
 func _on_die_timer_timeout():
-	hide()
-	queue_free()
+	_kill_bullet()
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.name.left(12) != "playerbullet":
-		hide()
-		queue_free()
+		_kill_bullet()
+
+func _kill_bullet():
+	hide()
+	queue_free()

@@ -3,23 +3,24 @@ extends Area2D
 @export var speed = 800
 @export var damage:float
 @export var direction:Vector2
+var done:bool = false
+var audiodone:bool = false
 
 func _ready():
 	name = "explosion"
-	pass
+	$AudioStreamPlayer.play()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
-func _on_die_timer_timeout():
-	hide()
-	queue_free()
-
-func _on_area_entered(area: Area2D) -> void:
-	hide()
-	queue_free()
+	if done && audiodone:
+		_kill_bullet()
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	hide()
+	done = true
+	damage = 0
+
+func _on_audio_stream_player_finished() -> void:
+	audiodone = true
+
+func _kill_bullet():
 	queue_free()

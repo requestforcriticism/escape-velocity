@@ -31,6 +31,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if visible:
+		_is_paused = true
 		$MainWindow/FoodCollectable.play()
 		$MainWindow/WaterCollectable.play()
 		$MainWindow/OilCollectable.play()

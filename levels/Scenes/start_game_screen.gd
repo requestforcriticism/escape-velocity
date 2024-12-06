@@ -106,6 +106,10 @@ func _start_new_game():
 	Save.set_value(1, "COLLECTEDURA", 0) #number of uranium collected during the game
 	Save.set_value(1, "COLLECTEDCOM", 0) #number of computer chips collected during the game
 	
+	Save.set_value(1, str("MissileWeapon"), 2)
+	Save.set_value(1, str("SprayWeapon"), 2)
+	
+	
 	release_focus()
 	LevelManager.load_day()
 	

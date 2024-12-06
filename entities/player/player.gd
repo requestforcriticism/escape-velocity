@@ -89,6 +89,8 @@ var is_mining = false
 var is_harverter = false
 var bulletAlternate:bool = true
 var distancetraveled
+var walking:bool
+var walksoundrdy:bool
 
 func pos_to_chunk(x, y):
 	var tile_x = floor(x / tile_size)
@@ -98,6 +100,8 @@ func pos_to_chunk(x, y):
 	return Vector2(chunk_x, chunk_y)
 
 func _ready():
+	walking = false
+	walksoundrdy = true
 	distancetraveled = 0
 	weapon_state = PLAYER_WEAPONS.BASE
 	usingweapon.emit(weapon_state)
@@ -153,13 +157,8 @@ func _process(delta: float) -> void:
 		Move_state = "WALKING"
 		#$AnimatedSprite2D.animation = "walking"
 		#$AnimatedSprite2D.play("walking")
+
 	
-	if Input.is_action_pressed("running"):
-		if PlayerStats.get_currentSTA() > 0:
-			running = 1
-			_using_stamina(-1)
-		else:
-			notenoughsta.emit()
 	
 	velocity = Input.get_vector("move_left","move_right","move_up","move_down").normalized()
 
@@ -168,12 +167,24 @@ func _process(delta: float) -> void:
 		velocity = velocity * PlayerStats.get_speed()
 		if dashing == 0:
 			Move_state = "WALKING"
+			walking = true
+			$walkingsoundTimer.wait_time = .4
 			#$AnimatedSprite2D.animation = "walking"
 			#$AnimatedSprite2D.play()
-		
+	else:
+		walking = false
+	
+	if Input.is_action_pressed("running"):
+		if PlayerStats.get_currentSTA() > 0:
+			running = 1
+			_using_stamina(-1)
+			$walkingsoundTimer.wait_time = .2
+		else:
+			notenoughsta.emit()
+	
 	#elif velocity.length() == 0  && dashing == 0 && EndingDay == false:
 		#$AnimatedSprite2D.stop()
-		
+	
 	if running >0:
 		position += (velocity + velocity*running*run) * delta
 		running += -.05			#if running slow down
@@ -263,6 +274,13 @@ func _process(delta: float) -> void:
 	if is_harverter == true:
 		Action_State = "HARVESTER"
 	$AnimatedSprite2D.change_state(Move_state,Action_State)
+	
+	if walking && walksoundrdy:
+		print("walking here")
+		$sounds/walking.play()
+		$walkingsoundTimer.start()
+		walksoundrdy=false
+	
 
 func _using_stamina(Stacost):
 	$StaminaRegen.stop()
@@ -301,6 +319,7 @@ func _base_bullet():
 			add_sibling(new_bullet)
 			Save.set_value(1, "BASESHOTS", Save.get_value(1, "BASESHOTS", 0)+1)
 			BaseBulletshootRdy = false
+			$sounds/basebullet.play()
 			$BaseBulletShootTimer.start()
 
 func _missile_bullet():
@@ -324,6 +343,7 @@ func _missile_bullet():
 			Save.set_value(1, "MISSILESHOTS", Save.get_value(1, "MISSILESHOTS", 0)+1)
 			add_sibling(new_bullet)
 			MissileBulletshootRdy = false
+			$sounds/missilebullet.play()
 			$MissileBulletShootTimer.start()
 		else:
 			notenoughsta.emit()
@@ -349,6 +369,7 @@ func _spray_bullet():
 			Save.set_value(1, "SPRAYSHOTS", Save.get_value(1, "SPRAYSHOTS", 0)+1)
 			add_sibling(new_bullet_Spray)
 			SprayBulletshootRdy = false
+			$sounds/spraybullet.play()
 			$SprayBulletShootTimer.start()
 		else:
 			notenoughsta.emit()
@@ -492,3 +513,8 @@ func _check_cons_timer():
 	if $ConsumableTimer.is_stopped() == true:
 		$ConsumableTimer.start()
 	
+
+
+func _on_walkingsound_timer_timeout() -> void:
+	walksoundrdy = true
+	print("here")
