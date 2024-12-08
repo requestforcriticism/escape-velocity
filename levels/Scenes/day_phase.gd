@@ -176,7 +176,8 @@ func end_day():
 	Save.set_value(1, "COLLECTEDCOM", Save.get_value(1, "COLLECTEDCOM", 0)+ Save.get_value(1, "COM", 0) - daystarcolables[5]) #number of computer chips collected during the game
 	
 	#Save._save_file_win()  #save the game at the end of the day
-	#Save._save_file_win(1)
+	Save.set_value(1, "Phase", 1)
+	Save.save_file(1)
 	LevelManager.load_night()
 	
 func _on_pause_menu_ending_the_day() -> void:

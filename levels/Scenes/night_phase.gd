@@ -1,6 +1,5 @@
 extends Node2D
 
-var Days
 var starting:bool
 var BG_landing_pos
 var BG_craft_pos
@@ -136,8 +135,9 @@ func end_day():
 		$".".modulate.g += -.01
 		await get_tree().create_timer(0.01).timeout
 	
-	Days = Save.get_value(1, "DAY", 0)
-	Save.set_value(1, "DAY", Days+1)
+	Save.set_value(1, "DAY", Save.get_value(1, "DAY", 0)+1)
+	Save.set_value(1, "Phase", 0)
+	Save.save_file(1)
 	LevelManager.load_day()
 
 func page_transition(start_page,end_page):

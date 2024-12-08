@@ -45,6 +45,7 @@ func _save_file_win(file: int):
 		var text = JSON.stringify(save_files[file])
 		var fd = FileAccess.open("user://save" + str(file) + ".txt", FileAccess.WRITE)
 		print(save_files[file])
+		print("user://save" + str(file) + ".txt")
 		fd.store_string(text)
 
 func _load_file_win(file: int):

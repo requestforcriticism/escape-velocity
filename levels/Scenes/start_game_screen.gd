@@ -2,11 +2,20 @@ extends Control
 
 var New_game_scene:bool
 var i:int = 0
+var Savefileavail:bool
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Save.load_file(1)
+	print(Save.get_value(1, "DAY", 0))
+	if Save.get_value(1, "DAY", 0) != 0:
+		
+		Savefileavail = true
+	else:
+		Savefileavail = false
+
 	New_game_scene = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	pass # Replace with function body.
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -71,23 +80,32 @@ func _on_new_game_button_pressed() -> void:
 	New_game_scene = true
 
 func _on_load_game_pressed() -> void:
-	#Save._load_file_win(1)
-	print("put some stuff for loading a previously played game")
+	if Savefileavail:
+		release_focus()
+		if Save.get_value(1, "Phase", 0):
+			LevelManager.load_night()
+		else:
+			LevelManager.load_day()
+	else:
+		$GridContainer/LoadGame.modulate = Color.RED
+		await get_tree().create_timer(0.1).timeout
+		$GridContainer/LoadGame.modulate = Color.WHITE
 
 func _start_new_game():
 	Save.set_value(1, "WINLOSE", 0)
 	Save.set_value(1, "SHIPREPAIR", 0)
+	Save.set_value(1, "Phase", 0) 	 	# 0 = day ,1 = night
 	Save.set_value(1, "DAY", 1)
 	Save.set_value(1, "FOO", 30)
 	Save.set_value(1, "WAT", 30)
-	Save.set_value(1, "OIL", 40)
-	Save.set_value(1, "IRO", 40)
-	Save.set_value(1, "URA", 40)
-	Save.set_value(1, "COM", 40)
-	Save.set_value(1, "HLTHPCK", 5)
-	Save.set_value(1, "STABST", 6)
-	Save.set_value(1, "DMGBST", 7)
-	Save.set_value(1, "DMGRED", 8)
+	Save.set_value(1, "OIL", 0)
+	Save.set_value(1, "IRO", 0)
+	Save.set_value(1, "URA", 0)
+	Save.set_value(1, "COM", 0)
+	Save.set_value(1, "HLTHPCK", 0)
+	Save.set_value(1, "STABST", 0)
+	Save.set_value(1, "DMGBST", 0)
+	Save.set_value(1, "DMGRED", 0)
 	Save.set_value(1, "HARV", 1)
 	Save.set_value(1, "Tutor", 1)
 	
@@ -106,10 +124,14 @@ func _start_new_game():
 	Save.set_value(1, "COLLECTEDURA", 0) #number of uranium collected during the game
 	Save.set_value(1, "COLLECTEDCOM", 0) #number of computer chips collected during the game
 	
-	Save.set_value(1, str("MissileWeapon"), 2)
-	Save.set_value(1, str("SprayWeapon"), 2)
-	
+	#Save.set_value(1, str("MissileWeapon"), 2)
+	#Save.set_value(1, str("SprayWeapon"), 2)
 	
 	release_focus()
 	LevelManager.load_day()
+
+func _on_load_game_mouse_entered() -> void:
+	$LoadGamePopupPanel.PopupPanel(Rect2i( Vector2i(global_position) , Vector2i(448,120) ),null)
 	
+func _on_load_game_mouse_exited() -> void:
+	$LoadGamePopupPanel.HidePopupPanel()

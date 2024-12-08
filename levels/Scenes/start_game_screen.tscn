@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bybn6lqxrp42"]
+[gd_scene load_steps=25 format=3 uid="uid://bybn6lqxrp42"]
 
 [ext_resource type="Script" path="res://levels/Scenes/start_game_screen.gd" id="1_ghi3h"]
 [ext_resource type="Texture2D" uid="uid://c8w44bew3ics8" path="res://levels/Scenes/new_game_assets/introbackground.png" id="2_7mg62"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cw7ouvvqgms0y" path="res://entities/player/Fire.png" id="12_i7nbi"]
 [ext_resource type="PackedScene" uid="uid://8i5uq6ig7c8g" path="res://levels/Scenes/new_game_assets/planet.tscn" id="13_btwy0"]
 [ext_resource type="FontFile" uid="uid://d01vh463x8jsf" path="res://assets/fonts/Kenney Future Narrow.ttf" id="14_63qgv"]
+[ext_resource type="PackedScene" uid="uid://caivva6ueveq8" path="res://levels/Scenes/load_game_popup_panel.tscn" id="16_5ofyu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_17yf7"]
 shader = ExtResource("5_s83od")
@@ -213,6 +214,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 80
 text = "Quit Game"
 
+[node name="LoadGamePopupPanel" parent="." instance=ExtResource("16_5ofyu")]
+layout_mode = 1
+
 [connection signal="pressed" from="GridContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="mouse_entered" from="GridContainer/LoadGame" to="." method="_on_load_game_mouse_entered"]
+[connection signal="mouse_exited" from="GridContainer/LoadGame" to="." method="_on_load_game_mouse_exited"]
 [connection signal="pressed" from="GridContainer/LoadGame" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="GridContainer/QuitButton" to="." method="_on_quit_button_pressed"]

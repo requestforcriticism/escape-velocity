@@ -1,0 +1,419 @@
+[gd_scene load_steps=21 format=3 uid="uid://caivva6ueveq8"]
+
+[ext_resource type="Texture2D" uid="uid://dr7ljsae3ovrl" path="res://assets/collectabes/food.png" id="2_trckf"]
+[ext_resource type="Texture2D" uid="uid://djx1u1qr6ilya" path="res://assets/collectabes/water_bubble.png" id="3_cjfki"]
+[ext_resource type="Texture2D" uid="uid://cvn0blwa4chuc" path="res://assets/collectabes/iron_ore.png" id="4_vwkti"]
+[ext_resource type="Texture2D" uid="uid://dn0ds7y7r0d7k" path="res://assets/collectabes/oil_bubble.png" id="5_o7qn6"]
+[ext_resource type="Texture2D" uid="uid://da8y88xs5if1o" path="res://assets/collectabes/uranium_ore.png" id="6_asmo2"]
+[ext_resource type="Texture2D" uid="uid://dm0rm00r4rudj" path="res://assets/collectabes/logic_card.png" id="7_ec7b6"]
+[ext_resource type="Texture2D" uid="uid://c46rv4vqhmx0w" path="res://assets/hudAssets/healthpack.png" id="7_iy0g1"]
+[ext_resource type="Texture2D" uid="uid://c8uxk4x1ge14x" path="res://assets/hudAssets/Stamboost.png" id="9_okhys"]
+[ext_resource type="Texture2D" uid="uid://ckfe805f5ijot" path="res://assets/hudAssets/Damageboost.png" id="10_7kqal"]
+[ext_resource type="Texture2D" uid="uid://5y13pla1fpku" path="res://assets/hudAssets/DamageReduction.png" id="11_7uapw"]
+[ext_resource type="Texture2D" uid="uid://duu24sy6gjbqm" path="res://assets/harvester/Single_harverter.png" id="12_ge5r7"]
+[ext_resource type="Theme" uid="uid://m3ds5kbomh4t" path="res://levels/Scenes/NightPhaseAssets/theme_bonus_stats.tres" id="12_pqlw1"]
+
+[sub_resource type="GDScript" id="GDScript_840so"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Save.get_value(1, \"DAY\", 0) == 0:
+		$\"CanvasLayer/PopupPanel/No filel\".visible = true
+	else:
+		$CanvasLayer/PopupPanel/GridContainer.visible = true
+		$\"CanvasLayer/PopupPanel/GridContainer/Ship Repair\".text = str(Save.get_value(1, \"SHIPREPAIR\", 0)*20,\"% of Ship Repaired\")
+		
+		if Save.get_value(1, \"Phase\", 0):
+			$CanvasLayer/PopupPanel/GridContainer/title.text = str(\"Day \",Save.get_value(1, \"DAY\", 0),\" (Starting Night Phase)\")
+		else:
+			$CanvasLayer/PopupPanel/GridContainer/title.text = str(\"Day \",Save.get_value(1, \"DAY\", 0),\" (Starting Day Phase)\")
+
+		$CanvasLayer/PopupPanel/GridContainer/collectables/FoodCost.text = str(Save.get_value(1, \"FOO\", 0))
+		$CanvasLayer/PopupPanel/GridContainer/collectables/WaterCost.text = str(Save.get_value(1, \"WAT\", 0))
+		$CanvasLayer/PopupPanel/GridContainer/collectables/IronCost.text = str(Save.get_value(1, \"IRO\", 0))
+		$CanvasLayer/PopupPanel/GridContainer/collectables/OilCost.text = str(Save.get_value(1, \"OIL\", 0))
+		$CanvasLayer/PopupPanel/GridContainer/collectables/UraniumCost.text = str(Save.get_value(1, \"URA\", 0))
+		$CanvasLayer/PopupPanel/GridContainer/collectables/ComputerChipCost.text = str(Save.get_value(1, \"COM\", 0))
+		
+		$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer/HLTPCKInInventory.text = str(Save.get_value(1, \"HLTHPCK\", 0))
+		$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer/STABSTInInventory.text = str(Save.get_value(1, \"STABST\", 0))
+		$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer/DMGBSTInInventory.text = str(Save.get_value(1, \"DMGBST\", 0))
+		$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer/DMGREDInInventory.text = str(Save.get_value(1, \"DMGRED\", 0))
+		$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer/HarversterInInventory.text = str(Save.get_value(1, \"HARV\", 0))
+		
+		
+		if Save.get_value(1, str(\"LogicUnlock\"), 1) == 2:
+			$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/BonusHP.visible = true
+			$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/CapacitorCapacitance.visible = true
+			$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/ShootSpeed.visible = true
+		
+			var countHP = 0
+			var countCC = 0
+			var countSS = 0
+			for i in 4:
+				if Save.get_value(1, str(\"Health\",i+1), 1) == 2:
+					countHP += 1
+				if Save.get_value(1, str(\"Capacitor\",i+1), 1) == 2:
+					countCC += 1
+				if Save.get_value(1, str(\"Damage\",i+1), 1) == 2:
+					countSS += 1
+				if countHP > 0:
+					$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/HPRegen.visible = true
+					$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/HPRegen.text = str(\"Health Regen: +\",countHP,\"HP/sec\")
+				if countCC > 0:
+					$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/CapacitorRegen.visible = true
+					$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/CapacitorRegen.text = str(\"Capacitor Regen: +\",100*(countCC*.25),\"%\")
+				if countSS > 0:	
+					$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/WeaponDmg.visible = true
+					$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/WeaponDmg.text = str(\"Weapon Damage: +\",100*(countSS*.25),\"%\")
+				if Save.get_value(1, str(\"MissileWeapon\"), 0) == 2:
+					$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/Missileunlocked.visible = true
+				if Save.get_value(1, str(\"SprayWeapon\"), 0) == 2:
+					$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/SprayUnlocked.visible = true
+				
+			$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/BonusHP.text = str(\"Bonus HP: +\",100*(.05+countHP*.25),\"%\")
+			$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/CapacitorCapacitance.text = str(\"Capacitor Capacitance: +\",100*(.05+countCC*.25),\"%\")
+			$CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer/ShootSpeed.text = str(\"Shoot Speed: +\",100*(.05+countSS*.10),\"%\")
+
+# Called when the node enters the scene tree for the first time.
+func PopupPanel(slot: Rect2i,item):
+	var mouse_pos = get_viewport().get_mouse_position()
+	var padding = -215
+	var correction = Vector2i(slot.size.x+ padding,-64)
+	#var correction = Vector2i(-(slot.size.x+$CanvasLayer/PopupPanel.size.x+ padding),0)
+	var fix = get_viewport().get_visible_rect().size
+
+	$CanvasLayer/PopupPanel.popup(Rect2i( slot.position + Vector2i(fix/2) + correction, $CanvasLayer/PopupPanel.size))
+
+func HidePopupPanel():
+	$CanvasLayer/PopupPanel.hide()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yue3m"]
+bg_color = Color(0.822855, 0.526312, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04wd2"]
+atlas = ExtResource("2_trckf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0ofo"]
+atlas = ExtResource("3_cjfki")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh6aj"]
+atlas = ExtResource("4_vwkti")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_un8p6"]
+atlas = ExtResource("5_o7qn6")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uv68f"]
+atlas = ExtResource("6_asmo2")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgsch"]
+atlas = ExtResource("7_ec7b6")
+region = Rect2(32, 0, 32, 32)
+
+[node name="LoadGamePopupPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_840so")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PopupPanel" type="PopupPanel" parent="CanvasLayer"]
+auto_translate_mode = 1
+position = Vector2i(157, 0)
+size = Vector2i(549, 583)
+visible = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_yue3m")
+
+[node name="No filel" type="Label" parent="CanvasLayer/PopupPanel"]
+visible = false
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 544.0
+offset_bottom = 578.0
+theme_override_font_sizes/font_size = 30
+text = "No Previous Save File
+
+Press New Game"
+
+[node name="GridContainer" type="VBoxContainer" parent="CanvasLayer/PopupPanel"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -269.5
+offset_top = -286.5
+offset_right = 269.5
+offset_bottom = 286.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="title" type="Label" parent="CanvasLayer/PopupPanel/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Day: 999"
+
+[node name="Ship Repair" type="Label" parent="CanvasLayer/PopupPanel/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "20% of Ship Repaired"
+
+[node name="cost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Collectables in Ship"
+
+[node name="collectables" type="GridContainer" parent="CanvasLayer/PopupPanel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 12
+
+[node name="FoodCost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/collectables"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FOO" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/collectables"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_04wd2")
+
+[node name="WaterCost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/collectables"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WAT" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/collectables"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_f0ofo")
+expand_mode = 2
+
+[node name="IronCost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/collectables"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IRO" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/collectables"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_eh6aj")
+expand_mode = 2
+
+[node name="OilCost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/collectables"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OIL" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/collectables"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_un8p6")
+expand_mode = 2
+
+[node name="UraniumCost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/collectables"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = " 2
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="URA" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/collectables"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_uv68f")
+expand_mode = 2
+
+[node name="ComputerChipCost" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/collectables"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="COM" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/collectables"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hgsch")
+expand_mode = 2
+
+[node name="HBoxContainer" type="GridContainer" parent="CanvasLayer/PopupPanel/GridContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 25
+columns = 2
+
+[node name="consumables" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Consumables"
+
+[node name="Drone Upgrades" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Drone Upgrades"
+
+[node name="CraftOptionsGridContainer" type="GridContainer" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="HLTPCKInInventory" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "999
+"
+horizontal_alignment = 1
+
+[node name="HLTHPCKCreateButton" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer"]
+layout_mode = 2
+texture = ExtResource("7_iy0g1")
+
+[node name="STABSTInInventory" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "999
+"
+horizontal_alignment = 1
+
+[node name="STABSTCreateButton" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer"]
+layout_mode = 2
+texture = ExtResource("9_okhys")
+
+[node name="DMGBSTInInventory" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "999
+"
+horizontal_alignment = 1
+
+[node name="DMGBSTCreateButton" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer"]
+layout_mode = 2
+texture = ExtResource("10_7kqal")
+
+[node name="DMGREDInInventory" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "999
+"
+horizontal_alignment = 1
+
+[node name="DMGREDCreateButton" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer"]
+layout_mode = 2
+texture = ExtResource("11_7uapw")
+
+[node name="HarversterInInventory" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "999
+"
+horizontal_alignment = 1
+
+[node name="HarvesterCreateButton" type="TextureRect" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/CraftOptionsGridContainer"]
+layout_mode = 2
+texture = ExtResource("12_ge5r7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="BonusHP" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("12_pqlw1")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Bonus HP"
+
+[node name="HPRegen" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("12_pqlw1")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Health Regen"
+
+[node name="CapacitorCapacitance" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("12_pqlw1")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Capacitor Capacitance"
+
+[node name="CapacitorRegen" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("12_pqlw1")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Capacitor Regen"
+
+[node name="WeaponDmg" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("12_pqlw1")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Weapon Damage"
+
+[node name="ShootSpeed" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("12_pqlw1")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Shoot Speed"
+
+[node name="Missileunlocked" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("12_pqlw1")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Missile Launcher Unlocked"
+
+[node name="SprayUnlocked" type="Label" parent="CanvasLayer/PopupPanel/GridContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("12_pqlw1")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Spray&Pray Unlocked"
