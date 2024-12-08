@@ -80,6 +80,7 @@ func _on_new_game_button_pressed() -> void:
 	New_game_scene = true
 
 func _on_load_game_pressed() -> void:
+	
 	if Savefileavail:
 		release_focus()
 		if Save.get_value(1, "Phase", 0):
@@ -131,7 +132,8 @@ func _start_new_game():
 	LevelManager.load_day()
 
 func _on_load_game_mouse_entered() -> void:
-	$LoadGamePopupPanel.PopupPanel(Rect2i( Vector2i(global_position) , Vector2i(448,120) ),null)
+	if !New_game_scene:
+		$LoadGamePopupPanel.PopupPanel(Rect2i( Vector2i(global_position) , Vector2i(448,120) ),null)
 	
 func _on_load_game_mouse_exited() -> void:
 	$LoadGamePopupPanel.HidePopupPanel()

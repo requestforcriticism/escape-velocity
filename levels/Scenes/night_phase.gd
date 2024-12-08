@@ -150,6 +150,7 @@ func win_game():
 	$win.visible = true
 
 func _lose_game(node):
+	$eating.visible = true
 	$eating/Window.visible = true
 	node.visible = true
 	$"eating/End game timer".start()
