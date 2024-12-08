@@ -3,6 +3,9 @@ extends Control
 var New_game_scene:bool
 var i:int = 0
 var Savefileavail:bool
+
+var menu_cursor = preload("res://assets/cursors/pointer_b.png")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Save.load_file(1)
@@ -15,10 +18,12 @@ func _ready() -> void:
 
 	New_game_scene = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.set_custom_mouse_cursor(menu_cursor,Input.CURSOR_ARROW,Vector2(20,16))
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	Input.set_custom_mouse_cursor(menu_cursor,Input.CURSOR_ARROW,Vector2(20,16))
 	if New_game_scene:
 		if Input.is_action_pressed("skip_scene"):
 			_start_new_game()

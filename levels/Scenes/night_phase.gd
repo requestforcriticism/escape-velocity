@@ -101,6 +101,14 @@ func _on_back_from_fix_pressed() -> void:
 	$FixShipPage.visible = false
 	$LandingPage.visible = true
 	page_state = PAGE_STATE.LANDING
+	
+func _on_main_menu_button_pressed() -> void:
+	$CheckMainMenu.visible = true
+	$LandingPage/GridContainer/CraftButton.disabled = true
+	$LandingPage/GridContainer/LFixShipButton.disabled = true
+	$LandingPage/GridContainer/TechTreeButton.disabled = true
+	$LandingPage/GridContainer/EndNightButton.disabled = true
+	$LandingPage/GridContainer/MainMenuButton.disabled = true
 
 func _on_en_yes_button_pressed() -> void:
 	#release_focus()
@@ -113,7 +121,6 @@ func _on_en_no_button_pressed() -> void:
 	$LandingPage/GridContainer/LFixShipButton.disabled = false
 	$LandingPage/GridContainer/EndNightButton.disabled = false
 	$EndNightCheckBox.visible = false
-	pass # Replace with function body.
 	
 func _eat():
 	if Save.get_value(1, "FOO", 0) < 10:
@@ -126,6 +133,14 @@ func _eat():
 	else:
 		Save.set_value(1, "FOO", Save.get_value(1, "FOO", 0) -10)
 		Save.set_value(1, "WAT", Save.get_value(1, "WAT", 0) -10)
+		$eating/Window/EatingGridContainer.visible = true
+		await get_tree().create_timer(1.0).timeout
+		for i in 100:
+			$eating/Window/EatingGridContainer.modulate.a += -.01
+			$eating/Window.modulate.a += -.01
+			await get_tree().create_timer(0.01).timeout
+		$eating/Window.visible = false
+		$eating/Window/EatingGridContainer.visible = false
 	
 func end_day():
 	print("Start playing sleeping sounds.")
