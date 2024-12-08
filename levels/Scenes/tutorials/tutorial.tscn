@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://bl531akvp285q"]
+[gd_scene load_steps=79 format=3 uid="uid://bl531akvp285q"]
 
 [ext_resource type="Texture2D" uid="uid://bqa4og6auhg2p" path="res://levels/Scenes/tutorials/tutorial1.png" id="1_6x3ss"]
 [ext_resource type="Script" path="res://levels/Scenes/tutorials/tutorial.gd" id="1_kskg8"]
@@ -38,6 +38,12 @@
 [ext_resource type="Texture2D" uid="uid://d4kwt20g4glah" path="res://assets/harvester/harvester.png" id="23_6nc6q"]
 [ext_resource type="Texture2D" uid="uid://duu24sy6gjbqm" path="res://assets/harvester/Single_harverter.png" id="23_xyxnc"]
 [ext_resource type="Texture2D" uid="uid://dcmij6c2f0wwm" path="res://levels/Scenes/tutorials/tutorial12.png" id="28_b0p33"]
+[ext_resource type="Script" path="res://levels/Scenes/tutorials/buttonnext.gd" id="38_ses5i"]
+[ext_resource type="AudioStream" uid="uid://dls0upghjmfca" path="res://assets/Sounds/Update Flashlight C.wav" id="39_2yt21"]
+[ext_resource type="Script" path="res://levels/Scenes/tutorials/buttonprevious.gd" id="39_t5i05"]
+[ext_resource type="Script" path="res://levels/Scenes/tutorials/buttonexit_h_2p.gd" id="40_guwx6"]
+[ext_resource type="AudioStream" uid="uid://cf0r6b4lhnb8n" path="res://assets/Sounds/Update Flashlight A.wav" id="40_ym5ek"]
+[ext_resource type="Script" path="res://levels/Scenes/tutorials/buttonclosewindow.gd" id="42_2uf3p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6xml8"]
 atlas = ExtResource("5_3s1aq")
@@ -767,6 +773,7 @@ offset_right = 792.0
 offset_bottom = -341.0
 theme_override_font_sizes/font_size = 40
 text = "Next"
+script = ExtResource("38_ses5i")
 
 [node name="Buttonprevious" type="Button" parent="."]
 layout_mode = 0
@@ -776,6 +783,7 @@ offset_right = -596.0
 offset_bottom = -341.0
 theme_override_font_sizes/font_size = 40
 text = "Previous"
+script = ExtResource("39_t5i05")
 
 [node name="ButtonexitH2P" type="Button" parent="."]
 layout_mode = 0
@@ -785,6 +793,7 @@ offset_right = -511.0
 offset_bottom = 405.0
 theme_override_font_sizes/font_size = 35
 text = "End How to Play"
+script = ExtResource("40_guwx6")
 
 [node name="tutorialreminder" type="Control" parent="."]
 visible = false
@@ -813,6 +822,7 @@ offset_right = 40.0
 offset_bottom = 107.0
 theme_override_font_sizes/font_size = 40
 text = "OK"
+script = ExtResource("42_2uf3p")
 
 [node name="words" type="Label" parent="tutorialreminder"]
 layout_mode = 0
@@ -827,6 +837,15 @@ text = "How to Play info can be found in the inventory/pause menu."
 horizontal_alignment = 1
 autowrap_mode = 3
 
+[node name="Sounds" type="Node" parent="."]
+
+[node name="buttonpressed" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("39_2yt21")
+
+[node name="buttonhovered" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("40_ym5ek")
+volume_db = -5.0
+
 [connection signal="timeout" from="page1/ShootTimer" to="page1" method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="page2/ShootTimer" to="page1" method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="page2/ShootTimer" to="page2" method="_on_shoot_timer_timeout"]
@@ -834,7 +853,15 @@ autowrap_mode = 3
 [connection signal="area_entered" from="page3/Area2Ddetectenemybullet" to="page3" method="_on_area_2_ddetectenemybullet_area_entered"]
 [connection signal="timeout" from="page4/dashTimer" to="page4" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="page6/Timergather" to="page6" method="_on_timergather_timeout"]
+[connection signal="mouse_entered" from="Buttonnext" to="Buttonnext" method="_on_mouse_entered"]
 [connection signal="pressed" from="Buttonnext" to="." method="_on_buttonnext_pressed"]
+[connection signal="pressed" from="Buttonnext" to="Buttonnext" method="_on_pressed"]
+[connection signal="mouse_entered" from="Buttonprevious" to="Buttonprevious" method="_on_mouse_entered"]
 [connection signal="pressed" from="Buttonprevious" to="." method="_on_buttonprevious_pressed"]
+[connection signal="pressed" from="Buttonprevious" to="Buttonprevious" method="_on_pressed"]
+[connection signal="mouse_entered" from="ButtonexitH2P" to="ButtonexitH2P" method="_on_mouse_entered"]
 [connection signal="pressed" from="ButtonexitH2P" to="." method="_on_buttonexit_h_2p_pressed"]
+[connection signal="pressed" from="ButtonexitH2P" to="ButtonexitH2P" method="_on_pressed"]
+[connection signal="mouse_entered" from="tutorialreminder/Buttonclosewindow" to="tutorialreminder/Buttonclosewindow" method="_on_mouse_entered"]
 [connection signal="pressed" from="tutorialreminder/Buttonclosewindow" to="." method="_on_buttonclosewindow_pressed"]
+[connection signal="pressed" from="tutorialreminder/Buttonclosewindow" to="tutorialreminder/Buttonclosewindow" method="_on_pressed"]

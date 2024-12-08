@@ -79,13 +79,14 @@ func _process(delta: float) -> void:
 		i += 1
 	
 func _on_quit_button_pressed() -> void:
+	await get_tree().create_timer(0.5).timeout
 	get_tree().quit()
 
 func _on_new_game_button_pressed() -> void:
 	New_game_scene = true
 
 func _on_load_game_pressed() -> void:
-	
+	await get_tree().create_timer(0.5).timeout
 	if Savefileavail:
 		release_focus()
 		if Save.get_value(1, "Phase", 0):

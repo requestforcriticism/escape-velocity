@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://md5w04hdljf1"]
+[gd_scene load_steps=76 format=3 uid="uid://md5w04hdljf1"]
 
 [ext_resource type="Script" path="res://PauseMenu/pause_menu.gd" id="1_jo7hg"]
 [ext_resource type="Texture2D" uid="uid://t3mgixlesxv8" path="res://PauseMenu/bar_round_gloss_large.png" id="2_4ep3y"]
@@ -15,7 +15,17 @@
 [ext_resource type="PackedScene" uid="uid://dhmd88cnimtpn" path="res://levels/Scenes/night_phase.tscn" id="12_70g4t"]
 [ext_resource type="Texture2D" uid="uid://c8uxk4x1ge14x" path="res://assets/hudAssets/Stamboost.png" id="14_shtka"]
 [ext_resource type="Texture2D" uid="uid://ckfe805f5ijot" path="res://assets/hudAssets/Damageboost.png" id="15_s84a8"]
+[ext_resource type="Script" path="res://PauseMenu/resume_button.gd" id="16_4e13v"]
 [ext_resource type="Texture2D" uid="uid://5y13pla1fpku" path="res://assets/hudAssets/DamageReduction.png" id="16_ghsko"]
+[ext_resource type="Script" path="res://PauseMenu/end_day_button.gd" id="17_382mv"]
+[ext_resource type="AudioStream" uid="uid://dls0upghjmfca" path="res://assets/Sounds/Update Flashlight C.wav" id="17_taxk3"]
+[ext_resource type="Script" path="res://PauseMenu/how_to_play_button.gd" id="18_nixc4"]
+[ext_resource type="AudioStream" uid="uid://cf0r6b4lhnb8n" path="res://assets/Sounds/Update Flashlight A.wav" id="18_sia2g"]
+[ext_resource type="Script" path="res://PauseMenu/quit_game_button.gd" id="19_vm0sq"]
+[ext_resource type="Script" path="res://PauseMenu/ed_yes_button.gd" id="21_tmujq"]
+[ext_resource type="Script" path="res://PauseMenu/ed_no_button.gd" id="22_kxx14"]
+[ext_resource type="Script" path="res://PauseMenu/mm_yes_button.gd" id="23_k32jk"]
+[ext_resource type="Script" path="res://PauseMenu/mm_no_button.gd" id="24_jjrja"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2mlsn"]
 atlas = ExtResource("4_l8w37")
@@ -909,21 +919,25 @@ columns = 4
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Resume"
+script = ExtResource("16_4e13v")
 
 [node name="EndDayButton" type="Button" parent="GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "End the day"
+script = ExtResource("17_382mv")
 
 [node name="HowToPlayButton" type="Button" parent="GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "How to Play"
+script = ExtResource("18_nixc4")
 
 [node name="QuitGameButton" type="Button" parent="GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Main Menu"
+script = ExtResource("19_vm0sq")
 
 [node name="ColorRectMenuCheck" type="ColorRect" parent="."]
 visible = false
@@ -1012,11 +1026,13 @@ columns = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Yes"
+script = ExtResource("21_tmujq")
 
 [node name="EDNoButton" type="Button" parent="CheckEndDay/GridContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "No"
+script = ExtResource("22_kxx14")
 
 [node name="CheckMainMenu" type="Control" parent="."]
 visible = false
@@ -1095,20 +1111,47 @@ columns = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Yes"
+script = ExtResource("23_k32jk")
 
 [node name="MMNoButton" type="Button" parent="CheckMainMenu/GridContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "No"
+script = ExtResource("24_jjrja")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="buttonpressed" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("17_taxk3")
+
+[node name="buttonhovered" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("18_sia2g")
+volume_db = -5.0
 
 [connection signal="pressed" from="Consumables/GridContainer/TBSTABST" to="." method="_on_tbstabst_pressed"]
 [connection signal="pressed" from="Consumables/GridContainer/TBDMGBST" to="." method="_on_tbdmgbst_pressed"]
 [connection signal="pressed" from="Consumables/GridContainer/TBDMGRED" to="." method="_on_tbdmgred_pressed"]
+[connection signal="mouse_entered" from="GridContainer/ResumeButton" to="GridContainer/ResumeButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="GridContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="GridContainer/ResumeButton" to="GridContainer/ResumeButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="GridContainer/EndDayButton" to="GridContainer/EndDayButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="GridContainer/EndDayButton" to="." method="_on_end_day_button_pressed"]
+[connection signal="pressed" from="GridContainer/EndDayButton" to="GridContainer/EndDayButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="GridContainer/HowToPlayButton" to="GridContainer/HowToPlayButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="GridContainer/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
+[connection signal="pressed" from="GridContainer/HowToPlayButton" to="GridContainer/HowToPlayButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="GridContainer/QuitGameButton" to="GridContainer/QuitGameButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="GridContainer/QuitGameButton" to="." method="_on_quit_game_button_pressed"]
+[connection signal="pressed" from="GridContainer/QuitGameButton" to="GridContainer/QuitGameButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="CheckEndDay/GridContainer3/EDYesButton" to="CheckEndDay/GridContainer3/EDYesButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="CheckEndDay/GridContainer3/EDYesButton" to="." method="_on_ed_yes_button_pressed"]
+[connection signal="pressed" from="CheckEndDay/GridContainer3/EDYesButton" to="CheckEndDay/GridContainer3/EDYesButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="CheckEndDay/GridContainer3/EDNoButton" to="CheckEndDay/GridContainer3/EDNoButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="CheckEndDay/GridContainer3/EDNoButton" to="." method="_on_ed_no_button_pressed"]
+[connection signal="pressed" from="CheckEndDay/GridContainer3/EDNoButton" to="CheckEndDay/GridContainer3/EDNoButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="CheckMainMenu/GridContainer2/MMYesButton" to="CheckMainMenu/GridContainer2/MMYesButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="CheckMainMenu/GridContainer2/MMYesButton" to="." method="_on_mm_yes_button_pressed"]
+[connection signal="pressed" from="CheckMainMenu/GridContainer2/MMYesButton" to="CheckMainMenu/GridContainer2/MMYesButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="CheckMainMenu/GridContainer2/MMNoButton" to="CheckMainMenu/GridContainer2/MMNoButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="CheckMainMenu/GridContainer2/MMNoButton" to="." method="_on_mm_no_button_pressed"]
+[connection signal="pressed" from="CheckMainMenu/GridContainer2/MMNoButton" to="CheckMainMenu/GridContainer2/MMNoButton" method="_on_pressed"]
