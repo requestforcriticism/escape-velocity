@@ -18,9 +18,11 @@ var interectinfo
 var daystarcolables: Array =[0,0,0,0,0,0]
 
 var dev_mode = false
+var endingday:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	endingday = false
 	Input.set_custom_mouse_cursor(default_cursor,Input.CURSOR_ARROW,Vector2(32,32))
 	
 	dayTimeLeft = dayLength
@@ -181,11 +183,13 @@ func end_day():
 	#Save._save_file_win()  #save the game at the end of the day
 	Save.set_value(1, "Phase", 1)
 	Save.save_file(1)
+	print("loading night phase")
 	LevelManager.load_night()
 	
 func _on_pause_menu_ending_the_day() -> void:
 	end_day()
 
 func _on_player_health_changed(health,maxhealth) -> void:
-	if health <= 0:
+	if !endingday && health <= 0:
+		endingday = true
 		end_day()

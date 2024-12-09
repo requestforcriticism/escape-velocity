@@ -9,7 +9,6 @@ var menu_cursor = preload("res://assets/cursors/pointer_b.png")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Save.load_file(1)
-	print(Save.get_value(1, "DAY", 0))
 	if Save.get_value(1, "DAY", 0) != 0:
 		
 		Savefileavail = true
@@ -103,12 +102,12 @@ func _start_new_game():
 	Save.set_value(1, "SHIPREPAIR", 0)
 	Save.set_value(1, "Phase", 0) 	 	# 0 = day ,1 = night
 	Save.set_value(1, "DAY", 1)
-	Save.set_value(1, "FOO", 30)
-	Save.set_value(1, "WAT", 30)
-	Save.set_value(1, "OIL", 0)
-	Save.set_value(1, "IRO", 0)
-	Save.set_value(1, "URA", 0)
-	Save.set_value(1, "COM", 0)
+	Save.set_value(1, "FOO", 930)
+	Save.set_value(1, "WAT", 930)
+	Save.set_value(1, "OIL", 990)
+	Save.set_value(1, "IRO", 990)
+	Save.set_value(1, "URA", 990)
+	Save.set_value(1, "COM", 990)
 	Save.set_value(1, "HLTHPCK", 0)
 	Save.set_value(1, "STABST", 0)
 	Save.set_value(1, "DMGBST", 0)
@@ -131,8 +130,13 @@ func _start_new_game():
 	Save.set_value(1, "COLLECTEDURA", 0) #number of uranium collected during the game
 	Save.set_value(1, "COLLECTEDCOM", 0) #number of computer chips collected during the game
 	
-	#Save.set_value(1, str("MissileWeapon"), 2)
-	#Save.set_value(1, str("SprayWeapon"), 2)
+	Save.set_value(1, str("LogicUnlock"), 0)
+	for i in 4:
+		Save.set_value(1, str("Health",i+1), 0)
+		Save.set_value(1, str("Capacitor",i+1), 0)
+		Save.set_value(1, str("Damage",i+1), 0)
+	Save.set_value(1, str("MissileWeapon"), 0)
+	Save.set_value(1, str("SprayWeapon"), 0)
 	
 	release_focus()
 	LevelManager.load_day()

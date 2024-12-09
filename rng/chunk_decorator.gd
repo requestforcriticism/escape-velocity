@@ -97,7 +97,7 @@ func generate_ruin(x , y):
 	roof_layer.set_cell(Vector2(bound_right, bound_top), 4, Vector2i(3,1))
 	roof_layer.set_cell(Vector2(bound_right, bound_bottom), 4, Vector2i(3,4))
 	
-	print("spawning terminal at", floori((bound_right-bound_left)/2), ",", floori((bound_bottom-bound_top)/2))
+	#print("spawning terminal at", floori((bound_right-bound_left)/2), ",", floori((bound_bottom-bound_top)/2))
 	spawn_feature(terminal, floori((bound_right+bound_left)/2), floori((bound_bottom+bound_top)/2), x, y)
 	
 	#pick side to opend

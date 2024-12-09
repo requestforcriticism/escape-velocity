@@ -279,7 +279,6 @@ func _process(delta: float) -> void:
 	$AnimatedSprite2D.change_state(Move_state,Action_State)
 	
 	if walking && walksoundrdy:
-		print("walking here")
 		$sounds/walking.play()
 		$walkingsoundTimer.start()
 		walksoundrdy=false
@@ -526,10 +525,9 @@ func _check_cons_timer():
 	
 func _on_walkingsound_timer_timeout() -> void:
 	walksoundrdy = true
-	print("here")
 
 func _on_monster_spawn_timer_timeout():
-	var spawn_radius = 100
+	var spawn_radius = 500
 	var roll = randi_range(0, 10)
 	var x_offset = randi_range(-spawn_radius, spawn_radius)
 	var y_offset = randi_range(-spawn_radius, spawn_radius)

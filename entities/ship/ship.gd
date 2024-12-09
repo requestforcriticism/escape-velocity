@@ -21,6 +21,6 @@ func collect(item, amount:int = 1):
 func _on_area_2d_body_entered(body):
 	if body == player and "colable" in body:
 		for i in range(0, player.colable.size()):
-			print(player.colable[i], " ", player.colnames[i])
+			#print(player.colable[i], " ", player.colnames[i])
 			collect(player.colnames[i], player.colable[i])
 			player.colable[i] = 0

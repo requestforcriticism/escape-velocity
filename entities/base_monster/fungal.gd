@@ -8,7 +8,7 @@ func attack(target):
 	$SplodeTimer.start()
 
 func splode():
-	print("fungal attacking")
+	#print("fungal attacking")
 	var num_balls = 8
 	var splosion_angle = (2 * PI) / num_balls
 	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
@@ -25,7 +25,7 @@ func splode():
 		new_bullet.damage = 10
 		new_bullet.direction = Vector2.RIGHT.rotated(splosion_angle * i)
 		add_child(new_bullet)
-		print("added bullet")
+		#print("added bullet")
 
 func _on_attack_area_body_exited(body):
 	$SplodeTimer.stop()
