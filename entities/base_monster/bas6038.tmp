@@ -1,0 +1,93 @@
+[gd_scene load_steps=11 format=3 uid="uid://dijpoceqauarg"]
+
+[ext_resource type="Texture2D" uid="uid://c604bbjrm0wbj" path="res://assets/monsters/base_monster.png" id="1_7adwy"]
+[ext_resource type="Script" path="res://entities/base_monster/base_monster.gd" id="1_v7btk"]
+[ext_resource type="PackedScene" uid="uid://c6m8ul241aisc" path="res://entities/base_monster/wander_target.tscn" id="2_bf8sp"]
+[ext_resource type="PackedScene" uid="uid://duqednbeuh318" path="res://components/Collectables/collectables.tscn" id="3_60daa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ifrqo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7adwy")
+}],
+"loop": true,
+"name": &"roaming",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2umc6"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d8yuy"]
+radius = 138.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_265mb"]
+radius = 192.023
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_exsoa"]
+radius = 282.016
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtivo"]
+size = Vector2(32, 32)
+
+[node name="BaseMonster" type="CharacterBody2D"]
+script = ExtResource("1_v7btk")
+wander_target = ExtResource("2_bf8sp")
+col_scn = ExtResource("3_60daa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ifrqo")
+animation = &"roaming"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2umc6")
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_d8yuy")
+
+[node name="SearchArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SearchArea"]
+shape = SubResource("CircleShape2D_265mb")
+
+[node name="ChaseArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseArea"]
+shape = SubResource("CircleShape2D_exsoa")
+
+[node name="WanderExpireTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -16.0
+offset_top = -30.0
+offset_right = 16.0
+offset_bottom = -22.0
+show_percentage = false
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_mtivo")
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="body_entered" from="SearchArea" to="." method="_on_search_area_body_entered"]
+[connection signal="body_exited" from="ChaseArea" to="." method="_on_chase_area_body_exited"]
+[connection signal="timeout" from="WanderExpireTimer" to="." method="_on_wander_expire_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="attack"]
+[connection signal="area_entered" from="HitBox" to="." method="on_damage"]
