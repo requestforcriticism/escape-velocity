@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://ctcrca36054ed"]
+[gd_scene load_steps=47 format=3 uid="uid://ctcrca36054ed"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_cefws"]
 [ext_resource type="Texture2D" uid="uid://ctm4dy1kv1utq" path="res://entities/player/Fire Arrow.png" id="2_1ikru"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://cw7ouvvqgms0y" path="res://entities/player/Fire.png" id="4_qt47l"]
 [ext_resource type="PackedScene" uid="uid://bq3xsv8vnryue" path="res://components/playerBullet/player_bullet_spray.tscn" id="4_xev2f"]
 [ext_resource type="Texture2D" uid="uid://dvwyeng136xkm" path="res://entities/player/drone.png" id="5_my1ht"]
+[ext_resource type="PackedScene" uid="uid://s5q3ymqj5dkb" path="res://entities/base_monster/reeb.tscn" id="6_6jn1g"]
 [ext_resource type="Script" path="res://entities/player/animated_sprite_2d.gd" id="6_uy3mu"]
+[ext_resource type="PackedScene" uid="uid://ig6jkojp8a06" path="res://entities/base_monster/fungal.tscn" id="7_litp5"]
 [ext_resource type="AudioStream" uid="uid://sdbui7r4pf7h" path="res://assets/Sounds/Cannon Ion.mp3" id="10_ey6a0"]
 [ext_resource type="AudioStream" uid="uid://buk5bd4m2vugk" path="res://assets/Sounds/Cannon Generic.mp3" id="11_wja25"]
 [ext_resource type="AudioStream" uid="uid://sy5epkjhqm8g" path="res://assets/Sounds/Cannon Proton.mp3" id="12_e1pws"]
@@ -275,6 +277,9 @@ playerBullet = ExtResource("2_y1ein")
 playerBulletMissile = ExtResource("3_7xsj7")
 playerBulletSpray = ExtResource("4_xev2f")
 harvester_scene = ExtResource("3_3j10a")
+reeb_scn = ExtResource("6_6jn1g")
+fungal_scn = ExtResource("7_litp5")
+tree_scn = ExtResource("7_litp5")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -373,6 +378,9 @@ volume_db = -5.0
 pitch_scale = 0.5
 max_polyphony = 10
 
+[node name="MonsterSpawnTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="area_entered" from="Area2DCollectable" to="." method="_on_area_2d_collectable_area_entered"]
@@ -386,3 +394,4 @@ max_polyphony = 10
 [connection signal="timeout" from="miningTimer" to="." method="_on_mining_timer_timeout"]
 [connection signal="timeout" from="harvesterTimer" to="." method="_on_harvester_timer_timeout"]
 [connection signal="timeout" from="walkingsoundTimer" to="." method="_on_walkingsound_timer_timeout"]
+[connection signal="timeout" from="MonsterSpawnTimer" to="." method="_on_monster_spawn_timer_timeout"]

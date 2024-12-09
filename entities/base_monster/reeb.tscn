@@ -29,6 +29,7 @@ radius = 557.291
 
 [node name="Reeb" instance=ExtResource("1_qudv3")]
 script = ExtResource("2_8br0h")
+damage = 10
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_dkscj")

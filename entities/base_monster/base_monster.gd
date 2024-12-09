@@ -10,11 +10,12 @@ var state = MONSTER_STATE.PASSIVE
 var target : Node2D
 var current_wander_target : Node2D
 
-@export var wander_target : PackedScene
+var wander_target : PackedScene = load("res://entities/base_monster/wander_target.tscn")
 @export var patrol_speed = 150
 @export var chase_speed = 200
 @export var attack_speed = 400
 @export var player : Node2D = null
+var col_scn : PackedScene = load("res://components/Collectables/collectables.tscn")
 
 @export var max_hp : int = 30
 var hp
@@ -35,6 +36,11 @@ func on_damage(bullet):
 		#bullet.queue_free()
 	if hp <= 0:
 		Save.set_value(1, "MONDEF", Save.get_value(1, "MONDEF", 0)+1)
+		for i in 3:
+			var drop = col_scn.instantiate()
+			drop.type = "FOO"
+			drop.position = position
+			add_sibling(drop)
 		on_die.emit()
 		queue_free()
 

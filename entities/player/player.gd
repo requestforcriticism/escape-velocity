@@ -7,6 +7,9 @@ extends CharacterBody2D
 @export var harvester_scene : PackedScene
 @export var main_scn : Node
 @export var ship_scn : Node
+@export var reeb_scn : PackedScene
+@export var fungal_scn : PackedScene
+@export var tree_scn : PackedScene
 
 signal on_chunk_changed
 signal stamina_changed
@@ -401,6 +404,14 @@ func _on_spray_bullet_shoot_timer_timeout() -> void:
 	SprayBulletshootRdy = true
 	$SprayBulletShootTimer.wait_time = .5*PlayerStats.get_shootSpeed()
 
+func damage_player(dmg):
+	PlayerStats.set_currentHP(-dmg + PlayerStats.get_DMGReduction())
+	health_changed.emit(PlayerStats.get_currentHP(),PlayerStats.get_MaxHP())
+	$AnimatedSprite2D.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	$AnimatedSprite2D.modulate = Color.WHITE
+	pass
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if "damage" in area:
 		PlayerStats.set_currentHP(-area.damage + PlayerStats.get_DMGReduction())
@@ -513,8 +524,26 @@ func _check_cons_timer():
 	if $ConsumableTimer.is_stopped() == true:
 		$ConsumableTimer.start()
 	
-
-
 func _on_walkingsound_timer_timeout() -> void:
 	walksoundrdy = true
 	print("here")
+
+func _on_monster_spawn_timer_timeout():
+	var spawn_radius = 100
+	var roll = randi_range(0, 10)
+	var x_offset = randi_range(-spawn_radius, spawn_radius)
+	var y_offset = randi_range(-spawn_radius, spawn_radius)
+	var spawn_pos = Vector2i(global_position.x + x_offset, global_position.y + y_offset)
+	
+	if roll <= 3:
+		var new_mon = reeb_scn.instantiate()
+		new_mon.global_position = spawn_pos
+		add_sibling(new_mon)
+	if roll <= 7:
+		var new_mon = fungal_scn.instantiate()
+		new_mon.global_position = spawn_pos
+		add_sibling(new_mon)
+	else:
+		var new_mon = tree_scn.instantiate()
+		new_mon.global_position = spawn_pos
+		add_sibling(new_mon)

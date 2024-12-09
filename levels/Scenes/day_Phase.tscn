@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvxg5xnknue6h"]
+[gd_scene load_steps=14 format=3 uid="uid://bvxg5xnknue6h"]
 
 [ext_resource type="Script" path="res://levels/Scenes/day_phase.gd" id="1_87mw8"]
 [ext_resource type="PackedScene" uid="uid://4xrk0xcxfw6e" path="res://components/playerBullet/player_bullet.tscn" id="2_frl4x"]
@@ -11,9 +11,6 @@
 [ext_resource type="TileSet" uid="uid://cxm638ny72a02" path="res://levels/tilesets/grass_tileset.tres" id="8_0hffb"]
 [ext_resource type="PackedScene" uid="uid://bl531akvp285q" path="res://levels/Scenes/tutorials/tutorial.tscn" id="8_3rhij"]
 [ext_resource type="PackedScene" uid="uid://detkeh16h32fb" path="res://entities/ship/ship.tscn" id="9_uv6ki"]
-[ext_resource type="PackedScene" uid="uid://dijpoceqauarg" path="res://entities/base_monster/base_monster.tscn" id="10_8844s"]
-[ext_resource type="PackedScene" uid="uid://s5q3ymqj5dkb" path="res://entities/base_monster/reeb.tscn" id="11_gg31y"]
-[ext_resource type="PackedScene" uid="uid://bql2ao0kvjwyb" path="res://resources/terminal/terminal.tscn" id="12_ohxex"]
 [ext_resource type="AudioStream" uid="uid://c2sj1djis4hen" path="res://assets/Sounds/Battle Tech (RT 2.1)/Ambient Vol6 Battle Tech Main.wav" id="15_vgiit"]
 [ext_resource type="Script" path="res://levels/Scenes/day_b_gmusic.gd" id="16_cinen"]
 
@@ -51,17 +48,6 @@ tile_set = ExtResource("8_0hffb")
 [node name="Ship" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_uv6ki")]
 position = Vector2(118, -112)
 player = NodePath("../player")
-
-[node name="BaseMonster" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_8844s")]
-position = Vector2(-128, 378)
-player = NodePath("../player")
-
-[node name="Reeb" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_gg31y")]
-position = Vector2(-24, -223)
-player = NodePath("../player")
-
-[node name="Terminal" parent="." instance=ExtResource("12_ohxex")]
-position = Vector2(-243, -139)
 
 [node name="DayTimer" type="Timer" parent="."]
 

@@ -17,6 +17,8 @@ var interectinfo
 
 var daystarcolables: Array =[0,0,0,0,0,0]
 
+var dev_mode = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_custom_mouse_cursor(default_cursor,Input.CURSOR_ARROW,Vector2(32,32))
@@ -31,55 +33,56 @@ func _ready():
 	$grass_level/OutdoorLayer.render_distance = render_distance
 	start_day()
 	
-	var new_collectable = collectable.instantiate()
-	new_collectable.type = "OIL"
-	new_collectable.position = Vector2(100,100)
-	add_child(new_collectable)
-	new_collectable = collectable.instantiate()
-	new_collectable.type = "WAT"
-	new_collectable.position = Vector2(-100,100)
-	add_child(new_collectable)
-	new_collectable = collectable.instantiate()
-	new_collectable.type = "URA"
-	new_collectable.position = Vector2(50,100)
-	add_child(new_collectable)
-	new_collectable = collectable.instantiate()
-	new_collectable.type = "IRO"
-	new_collectable.position = Vector2(0,100)
-	add_child(new_collectable)
-	new_collectable = collectable.instantiate()
-	new_collectable.type = "FOO"
-	new_collectable.position = Vector2(-50,100)
-	add_child(new_collectable)
-	new_collectable = collectable.instantiate()
-	new_collectable.type = "COM"
-	new_collectable.position = Vector2(-150,100)
-	add_child(new_collectable)
-	
-	new_collectable = collectable.instantiate()
-	new_collectable.type = "OIL"
-	new_collectable.position = Vector2(100,50)
-	add_child(new_collectable)
-	new_collectable = collectable.instantiate()
-	new_collectable.type = "WAT"
-	new_collectable.position = Vector2(-100,50)
-	add_child(new_collectable)
-	new_collectable = collectable.instantiate()
-	new_collectable.type = "URA"
-	new_collectable.position = Vector2(50,50)
-	add_child(new_collectable)
-	new_collectable = collectable.instantiate()
-	new_collectable.type = "IRO"
-	new_collectable.position = Vector2(0,50)
-	add_child(new_collectable)
-	new_collectable = collectable.instantiate()
-	new_collectable.type = "FOO"
-	new_collectable.position = Vector2(-50,50)
-	add_child(new_collectable)
-	new_collectable = collectable.instantiate()
-	new_collectable.type = "COM"
-	new_collectable.position = Vector2(-150,50)
-	add_child(new_collectable)
+	if dev_mode:
+		var new_collectable = collectable.instantiate()
+		new_collectable.type = "OIL"
+		new_collectable.position = Vector2(100,100)
+		add_child(new_collectable)
+		new_collectable = collectable.instantiate()
+		new_collectable.type = "WAT"
+		new_collectable.position = Vector2(-100,100)
+		add_child(new_collectable)
+		new_collectable = collectable.instantiate()
+		new_collectable.type = "URA"
+		new_collectable.position = Vector2(50,100)
+		add_child(new_collectable)
+		new_collectable = collectable.instantiate()
+		new_collectable.type = "IRO"
+		new_collectable.position = Vector2(0,100)
+		add_child(new_collectable)
+		new_collectable = collectable.instantiate()
+		new_collectable.type = "FOO"
+		new_collectable.position = Vector2(-50,100)
+		add_child(new_collectable)
+		new_collectable = collectable.instantiate()
+		new_collectable.type = "COM"
+		new_collectable.position = Vector2(-150,100)
+		add_child(new_collectable)
+		
+		new_collectable = collectable.instantiate()
+		new_collectable.type = "OIL"
+		new_collectable.position = Vector2(100,50)
+		add_child(new_collectable)
+		new_collectable = collectable.instantiate()
+		new_collectable.type = "WAT"
+		new_collectable.position = Vector2(-100,50)
+		add_child(new_collectable)
+		new_collectable = collectable.instantiate()
+		new_collectable.type = "URA"
+		new_collectable.position = Vector2(50,50)
+		add_child(new_collectable)
+		new_collectable = collectable.instantiate()
+		new_collectable.type = "IRO"
+		new_collectable.position = Vector2(0,50)
+		add_child(new_collectable)
+		new_collectable = collectable.instantiate()
+		new_collectable.type = "FOO"
+		new_collectable.position = Vector2(-50,50)
+		add_child(new_collectable)
+		new_collectable = collectable.instantiate()
+		new_collectable.type = "COM"
+		new_collectable.position = Vector2(-150,50)
+		add_child(new_collectable)
 	
 	daystarcolables[0] = Save.get_value(1, "FOO", 0)
 	daystarcolables[1] = Save.get_value(1, "WAT", 0)
