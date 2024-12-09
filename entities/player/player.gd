@@ -539,7 +539,7 @@ func _on_monster_spawn_timer_timeout():
 		var new_mon = reeb_scn.instantiate()
 		new_mon.global_position = spawn_pos
 		add_sibling(new_mon)
-	if roll <= 7:
+	elif roll <= 7:
 		var new_mon = fungal_scn.instantiate()
 		new_mon.global_position = spawn_pos
 		add_sibling(new_mon)

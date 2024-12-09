@@ -15,6 +15,7 @@ extends Node
 @export var water_source : PackedScene
 @export var oil_well : PackedScene
 @export var uranium_deposit : PackedScene
+@export var terminal : PackedScene
 
 @export var grass_tiles : TileSet
 @export var rock_tiles : TileSet
@@ -96,7 +97,10 @@ func generate_ruin(x , y):
 	roof_layer.set_cell(Vector2(bound_right, bound_top), 4, Vector2i(3,1))
 	roof_layer.set_cell(Vector2(bound_right, bound_bottom), 4, Vector2i(3,4))
 	
-	#pick side to open
+	print("spawning terminal at", floori((bound_right-bound_left)/2), ",", floori((bound_bottom-bound_top)/2))
+	spawn_feature(terminal, floori((bound_right+bound_left)/2), floori((bound_bottom+bound_top)/2), x, y)
+	
+	#pick side to opend
 	var side = rng.randi_range(0, 4)
 #	print("side is ", side)
 	if side == 0: #open top
@@ -138,10 +142,28 @@ func decorate_chunk(x, y):
 	if meta.is_ruin:
 		generate_ruin(x, y)
 	else:
-		spawn_feature(uranium_deposit, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x ,y)
-		spawn_feature(ore_vein, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
-		spawn_feature(water_source, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
-		spawn_feature(oil_well, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
+		var feature_type
+		var roll = randi_range(0, 3)
+		if roll == 0:
+			feature_type = water_source
+		elif roll == 1:
+			feature_type = ore_vein
+		elif roll == 2:
+			feature_type = oil_well
+		elif roll == 3:
+			feature_type = uranium_deposit
+		
+		var base_x = rng.randi_range(0,32)
+		var base_y = rng.randi_range(0,32)
+		for i in 10:
+			var pos_x = (x * chunk_size) + base_x + randi_range(-2, 2)
+			var pos_y = (y * chunk_size) + base_y + randi_range(-2, 2)
+			spawn_feature(feature_type, pos_x, pos_y,x, y)
+		
+		#spawn_feature(uranium_deposit, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x ,y)
+		#spawn_feature(ore_vein, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
+		#spawn_feature(water_source, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
+		#spawn_feature(oil_well, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
 	
 	#roll num res
 	#roll normals
@@ -179,7 +201,7 @@ func spawn_feature(feature:PackedScene, tx, ty, chunk_x, chunk_y):
 	var new_feature = feature.instantiate()
 	new_feature.position.x = tx * tile_size
 	new_feature.position.y = ty * tile_size
-	tilemap.add_child(new_feature)
+	tilemap.add_sibling(new_feature)
 	
 	loaded_resources[coord_to_key(chunk_x, chunk_y)][coord_to_key(tx, ty)] = new_feature
 	#print(loaded_resources)

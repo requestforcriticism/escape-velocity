@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://c4gytpc0vkd2a"]
+[gd_scene load_steps=16 format=4 uid="uid://c4gytpc0vkd2a"]
 
 [ext_resource type="TileSet" uid="uid://cxm638ny72a02" path="res://levels/tilesets/grass_tileset.tres" id="1_6uq1d"]
 [ext_resource type="Script" path="res://levels/grass_level/grass_level.gd" id="1_uiuji"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://1w85x6lx87p7" path="res://levels/tilesets/desert_tileset.png" id="6_ya78v"]
 [ext_resource type="PackedScene" uid="uid://c4nfwj1m0xsvk" path="res://resources/base_resource/oil_well.tscn" id="7_8jpgk"]
 [ext_resource type="PackedScene" uid="uid://2f4k08rhve3p" path="res://resources/base_resource/uranium_deposit.tscn" id="8_xoh8b"]
+[ext_resource type="PackedScene" uid="uid://bql2ao0kvjwyb" path="res://resources/terminal/terminal.tscn" id="9_rw2vp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_301tf"]
 texture = ExtResource("5_urrtg")
@@ -74,6 +75,7 @@ ore_vein = ExtResource("5_vs1nq")
 water_source = ExtResource("6_oq627")
 oil_well = ExtResource("7_8jpgk")
 uranium_deposit = ExtResource("8_xoh8b")
+terminal = ExtResource("9_rw2vp")
 grass_tiles = ExtResource("1_6uq1d")
 rock_tiles = SubResource("TileSet_yj58j")
 sand_tiles = SubResource("TileSet_l35m4")
