@@ -94,6 +94,8 @@ var bulletAlternate:bool = true
 var distancetraveled
 var walking:bool
 var walksoundrdy:bool
+var dayLength:float
+var dayTimeLeft:float
 
 func pos_to_chunk(x, y):
 	var tile_x = floor(x / tile_size)
@@ -532,16 +534,29 @@ func _on_monster_spawn_timer_timeout():
 	var x_offset = randi_range(-spawn_radius, spawn_radius)
 	var y_offset = randi_range(-spawn_radius, spawn_radius)
 	var spawn_pos = Vector2i(global_position.x + x_offset, global_position.y + y_offset)
+	var new_mon
 	
 	if roll <= 3:
-		var new_mon = reeb_scn.instantiate()
-		new_mon.global_position = spawn_pos
-		add_sibling(new_mon)
+		new_mon = reeb_scn.instantiate()
 	elif roll <= 7:
-		var new_mon = fungal_scn.instantiate()
-		new_mon.global_position = spawn_pos
-		add_sibling(new_mon)
+		new_mon = fungal_scn.instantiate()
 	else:
-		var new_mon = tree_scn.instantiate()
-		new_mon.global_position = spawn_pos
-		add_sibling(new_mon)
+		new_mon = tree_scn.instantiate()
+		
+	var timeratio = float(dayLength/dayTimeLeft)
+	
+	new_mon.damage = 3 + min(floori(timeratio),7)
+	new_mon.max_hp = 25 + min(10*floori(timeratio),75)
+	new_mon.global_position = spawn_pos
+	new_mon.timeratio = timeratio
+	add_sibling(new_mon)
+	
+	$MonsterSpawnTimer.wait_time = 10.0 - min(1.5/timeratio,9.5)
+	print("timeratio: ",timeratio)
+	print($MonsterSpawnTimer.wait_time)
+
+func _on_day_phase_day_lengthsig(DayTimeLeft) -> void:
+	dayTimeLeft = DayTimeLeft
+
+func _on_day_phase_day_time_leftsig(DayLength) -> void:
+	dayLength = DayLength

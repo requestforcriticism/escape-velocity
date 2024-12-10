@@ -44,6 +44,7 @@ visible = false
 
 [node name="RoofLayer" type="TileMapLayer" parent="."]
 visible = false
+enabled = false
 tile_set = ExtResource("8_0hffb")
 
 [node name="Ship" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_uv6ki")]
@@ -59,6 +60,8 @@ volume_db = -5.0
 autoplay = true
 script = ExtResource("16_cinen")
 
+[connection signal="dayLengthsig" from="." to="player" method="_on_day_phase_day_lengthsig"]
+[connection signal="dayTimeLeftsig" from="." to="player" method="_on_day_phase_day_time_leftsig"]
 [connection signal="ending_day" from="." to="player" method="_on_day_phase_ending_day"]
 [connection signal="ending_day" from="." to="player/Camera2D/PauseCanvasLayer/PauseMenu" method="_on_day_phase_ending_day"]
 [connection signal="consDuration" from="player" to="player/Camera2D/hud" method="_on_player_cons_duration"]

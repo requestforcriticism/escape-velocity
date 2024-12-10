@@ -1,6 +1,8 @@
 extends Node2D
 
 signal ending_day
+signal dayLengthsig
+signal dayTimeLeftsig
 
 @export var playerBullet : PackedScene
 @export var collectable : PackedScene
@@ -22,6 +24,7 @@ var endingday:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	endingday = false
 	Input.set_custom_mouse_cursor(default_cursor,Input.CURSOR_ARROW,Vector2(32,32))
 	
@@ -122,6 +125,8 @@ func _physics_process(delta):
 
 func _on_day_timer_timeout() -> void:
 	dayTimeLeft += -1
+	dayTimeLeftsig.emit(dayTimeLeft)
+	dayLengthsig.emit(dayLength)
 	if dayTimeLeft == 0:
 		$DayTimer.stop()
 		end_day()

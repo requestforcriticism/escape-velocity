@@ -12,6 +12,7 @@ signal health_changed
 @export var durability = 5 #secs to mine
 @export var max_drops = 10
 @export var DMG = 10  #damage the bullet deals
+@export var AtkSpeed = 2
 @export var drop_throw_distance = 0
 @export var is_attacking:bool = true
 @export var attack_able:bool = true
@@ -57,6 +58,7 @@ func mine(miner):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Timer.wait_time = 1/AtkSpeed + randf_range(-.01,.01)
 	$Area2D/CollisionShape2D.disabled = !attack_able
 	$Timer.autostart = is_attacking
 	if is_attacking:
@@ -82,7 +84,8 @@ func _process(delta):
 	
 func attack():
 	if !tut:
-		var shoot_angle = deg_to_rad((shoot_state * 90) % 360)
+		var shoot_angle = randf_range(0,TAU)
+		#var shoot_angle = deg_to_rad((shoot_state * 90) % 360)
 		shoot_bullet(shoot_angle, 1, 10, 1)
 		shoot_state += 1
 	else:

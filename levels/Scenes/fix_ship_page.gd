@@ -45,7 +45,11 @@ func show_collectables_for_fixing(ND,cons_name):
 			get_node(str(ND,"/",col_path_images[j])).visible = false
 
 func _on_fix_ship_button_pressed() -> void:
-	try_fix(fix_req[fix_progress],$FixShipButton)
+	if fix_progress < 5:
+		try_fix(fix_req[fix_progress],$FixShipButton)
+	if fix_progress == 5:
+		$FixShipButton.disabled = true
+		
 
 func try_fix(typeCost,buttonPath):
 	restest = true

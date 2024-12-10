@@ -637,6 +637,7 @@ texture = ExtResource("2_g30nj")
 
 [node name="stats" type="TextureRect" parent="CraftingPage"]
 self_modulate = Color(1, 1, 1, 0.937255)
+layout_mode = 0
 offset_left = -920.0
 offset_top = -512.0
 offset_right = 104.0

@@ -348,6 +348,10 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
+[node name="MonsterSpawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [node name="Marker2Dright" type="Marker2D" parent="."]
 position = Vector2(13, 11)
 
@@ -377,10 +381,6 @@ stream = SubResource("AudioStreamRandomizer_458b2")
 volume_db = -5.0
 pitch_scale = 0.5
 max_polyphony = 10
-
-[node name="MonsterSpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

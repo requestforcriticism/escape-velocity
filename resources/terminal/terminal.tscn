@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://resources/terminal/terminal.gd" id="1_0w0ou"]
 [ext_resource type="Texture2D" uid="uid://bug55jvi3ptxk" path="res://assets/resources/terminal.png" id="1_p5kx7"]
 [ext_resource type="PackedScene" uid="uid://duqednbeuh318" path="res://components/Collectables/collectables.tscn" id="2_fqdiy"]
-[ext_resource type="PackedScene" uid="uid://dijpoceqauarg" path="res://entities/base_monster/base_monster.tscn" id="3_dpxex"]
+[ext_resource type="PackedScene" uid="uid://ig6jkojp8a06" path="res://entities/base_monster/fungal.tscn" id="3_oq7lc"]
 [ext_resource type="PackedScene" uid="uid://s5q3ymqj5dkb" path="res://entities/base_monster/reeb.tscn" id="4_3wb7w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8aurw"]
@@ -124,7 +124,7 @@ radius = 41.1096
 [node name="Terminal" type="StaticBody2D"]
 script = ExtResource("1_0w0ou")
 collectable_scn = ExtResource("2_fqdiy")
-monster1 = ExtResource("3_dpxex")
+monster1 = ExtResource("3_oq7lc")
 monster2 = ExtResource("4_3wb7w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

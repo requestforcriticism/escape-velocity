@@ -70,7 +70,7 @@ script = ExtResource("2_kdaou")
 
 [node name="ChunkDecorator" parent="OutdoorLayer" node_paths=PackedStringArray("tilemap", "struct_layer") instance=ExtResource("4_km7fq")]
 tilemap = NodePath("..")
-struct_layer = NodePath("../../StructLayer")
+struct_layer = NodePath("..")
 ore_vein = ExtResource("5_vs1nq")
 water_source = ExtResource("6_oq627")
 oil_well = ExtResource("7_8jpgk")
@@ -81,4 +81,5 @@ rock_tiles = SubResource("TileSet_yj58j")
 sand_tiles = SubResource("TileSet_l35m4")
 
 [node name="StructLayer" type="TileMapLayer" parent="."]
+visible = false
 tile_set = ExtResource("1_6uq1d")

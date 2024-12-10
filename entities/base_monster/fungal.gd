@@ -2,7 +2,7 @@ extends "res://entities/base_monster/base_monster.gd"
 
 var bullet : PackedScene = load("res://components/bullet/bullet.tscn")
 
-@export var damage = 10
+@export var damage = 3
 
 func attack(target):
 	$SplodeTimer.start()

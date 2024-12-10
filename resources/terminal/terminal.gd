@@ -5,6 +5,8 @@ extends StaticBody2D
 @export var monster1 : PackedScene
 @export var monster2 : PackedScene
 @export var max_drops = 2
+@export var AtkSpeed = null
+@export var DMG = null
 var dropped = 0
 
 enum TERMINAL_STATE {PASSIVE, ACTIVE, DEAD}

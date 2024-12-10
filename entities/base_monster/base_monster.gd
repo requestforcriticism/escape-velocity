@@ -17,7 +17,8 @@ var wander_target : PackedScene = load("res://entities/base_monster/wander_targe
 @export var player : Node2D = null
 var col_scn : PackedScene = load("res://components/Collectables/collectables.tscn")
 
-@export var max_hp : int = 30
+@export var timeratio = 1
+@export var max_hp : int = 25
 var hp
 
 var speed = patrol_speed
@@ -36,11 +37,13 @@ func on_damage(bullet):
 		#bullet.queue_free()
 	if hp <= 0:
 		Save.set_value(1, "MONDEF", Save.get_value(1, "MONDEF", 0)+1)
-		for i in 3:
-			var drop = col_scn.instantiate()
-			drop.type = "FOO"
-			drop.position = position
-			add_sibling(drop)
+		
+		if randf_range(0,max(100/timeratio,4)) < 5:
+			for i in 1:
+				var drop = col_scn.instantiate()
+				drop.type = "FOO"
+				drop.position = position
+				add_sibling(drop)
 		on_die.emit()
 		queue_free()
 
@@ -76,7 +79,6 @@ func move_to_target():
 func _on_attack_area_body_entered(body):
 	state = MONSTER_STATE.ATTACKING
 	$AttackTimer.start()
-	pass # Replace with function body.
 
 # player leaves aggro range
 func _on_chase_area_body_exited(body):

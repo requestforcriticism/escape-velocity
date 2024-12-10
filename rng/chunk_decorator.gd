@@ -41,9 +41,10 @@ func get_chunk_seed(x, y):
 func get_chunk_meta(x , y):
 	var rng = get_chunk_generator(x, y)
 	
+	var ruinmoreoften = min(floori(sqrt(x*x+y*y))/3,20)
 	var meta = {
 		"biome" : biome,
-		"is_ruin" : rng.randi_range(1, 2) == 1
+		"is_ruin" : rng.randi_range(1, 25-ruinmoreoften) == 1
 	}
 	return meta
 
@@ -69,59 +70,59 @@ func generate_ruin(x , y):
 	for i in range(bound_left, bound_right+1):
 		for j in range(bound_top, bound_bottom+1):
 			var floor_tile = ruin_floor[rng.randi_range(0, 11)]
-			var roof_tile = ruin_roof[rng.randi_range(0, 3)]
+			#var roof_tile = ruin_roof[rng.randi_range(0, 3)]
 			#set edges or fill floor tile
 			if i == bound_left:
 				struct_layer.set_cell(Vector2(i, j), 4, Vector2i(4,3))
-				roof_layer.set_cell(Vector2(i, j), 4, Vector2i(0,2))
+				#roof_layer.set_cell(Vector2(i, j), 4, Vector2i(0,2))
 			elif i == bound_right:
 				struct_layer.set_cell(Vector2(i, j), 4, Vector2i(7,3))
-				roof_layer.set_cell(Vector2(i, j), 4, Vector2i(3,2))
+				#roof_layer.set_cell(Vector2(i, j), 4, Vector2i(3,2))
 			elif j == bound_top:
 				struct_layer.set_cell(Vector2(i, j), 4, Vector2i(6,1))
-				roof_layer.set_cell(Vector2(i, j), 4, Vector2i(2,1))
+				#roof_layer.set_cell(Vector2(i, j), 4, Vector2i(2,1))
 			elif j == bound_bottom:
 				struct_layer.set_cell(Vector2(i, j), 4, Vector2i(5,4))
-				roof_layer.set_cell(Vector2(i, j), 4, Vector2i(1,4))
+				#roof_layer.set_cell(Vector2(i, j), 4, Vector2i(1,4))
 			else:			
 				struct_layer.set_cell(Vector2(i, j), 4, floor_tile, rng.randi_range(0, 3))
-				roof_layer.set_cell(Vector2(i, j), 4, roof_tile, rng.randi_range(0, 3))
+				#roof_layer.set_cell(Vector2(i, j), 4, roof_tile, rng.randi_range(0, 3))
 				
 	#then set corners
 	struct_layer.set_cell(Vector2(bound_left, bound_top), 4, Vector2i(4,1))
 	struct_layer.set_cell(Vector2(bound_left, bound_bottom), 4, Vector2i(4,4))
 	struct_layer.set_cell(Vector2(bound_right, bound_top), 4, Vector2i(7,1))
 	struct_layer.set_cell(Vector2(bound_right, bound_bottom), 4, Vector2i(7,4))
-	roof_layer.set_cell(Vector2(bound_left, bound_top), 4, Vector2i(0,1))
-	roof_layer.set_cell(Vector2(bound_left, bound_bottom), 4, Vector2i(0,4))
-	roof_layer.set_cell(Vector2(bound_right, bound_top), 4, Vector2i(3,1))
-	roof_layer.set_cell(Vector2(bound_right, bound_bottom), 4, Vector2i(3,4))
+	#roof_layer.set_cell(Vector2(bound_left, bound_top), 4, Vector2i(0,1))
+	#roof_layer.set_cell(Vector2(bound_left, bound_bottom), 4, Vector2i(0,4))
+	#roof_layer.set_cell(Vector2(bound_right, bound_top), 4, Vector2i(3,1))
+	#roof_layer.set_cell(Vector2(bound_right, bound_bottom), 4, Vector2i(3,4))
 	
 	#print("spawning terminal at", floori((bound_right-bound_left)/2), ",", floori((bound_bottom-bound_top)/2))
-	spawn_feature(terminal, floori((bound_right+bound_left)/2), floori((bound_bottom+bound_top)/2), x, y)
+	spawn_feature(terminal, floori((bound_right+bound_left)/2), floori((bound_bottom+bound_top)/2), x, y, sqrt(x*x+y*y) )
 	
 	#pick side to opend
 	var side = rng.randi_range(0, 4)
 #	print("side is ", side)
 	if side == 0: #open top
 	#	print("add ing top, side is ", side)
-		roof_layer.set_cell(Vector2i((bound_left+bound_right)/2,bound_top), 1, Vector2i(-1,-1))
-		roof_layer.set_cell(Vector2i(((bound_left+bound_right)/2)+1,bound_top), 1, Vector2i(-1,-1))
+		#roof_layer.set_cell(Vector2i((bound_left+bound_right)/2,bound_top), 1, Vector2i(-1,-1))
+		#roof_layer.set_cell(Vector2i(((bound_left+bound_right)/2)+1,bound_top), 1, Vector2i(-1,-1))
 		struct_layer.set_cell(Vector2i((bound_left+bound_right)/2,bound_top), 4, ruin_floor[0])
 		struct_layer.set_cell(Vector2i(((bound_left+bound_right)/2)+1,bound_top), 4, ruin_floor[0])
 	elif side == 1: #open bottom
-		roof_layer.set_cell(Vector2i((bound_left+bound_right)/2,bound_bottom), 1, Vector2i(-1,-1))
-		roof_layer.set_cell(Vector2i(((bound_left+bound_right)/2)+1,bound_bottom), 1, Vector2i(-1,-1))
+		#roof_layer.set_cell(Vector2i((bound_left+bound_right)/2,bound_bottom), 1, Vector2i(-1,-1))
+		#roof_layer.set_cell(Vector2i(((bound_left+bound_right)/2)+1,bound_bottom), 1, Vector2i(-1,-1))
 		struct_layer.set_cell(Vector2i((bound_left+bound_right)/2,bound_bottom), 4, ruin_floor[0])
 		struct_layer.set_cell(Vector2i(((bound_left+bound_right)/2)+1,bound_bottom), 4, ruin_floor[0])
 	elif side == 2: #open left
-		roof_layer.set_cell(Vector2i(bound_left, (bound_top+bound_bottom)/2), 1, Vector2i(-1,-1))
-		roof_layer.set_cell(Vector2i(bound_left, ((bound_top+bound_bottom)/2)+1), 1, Vector2i(-1,-1))
+		#roof_layer.set_cell(Vector2i(bound_left, (bound_top+bound_bottom)/2), 1, Vector2i(-1,-1))
+		#roof_layer.set_cell(Vector2i(bound_left, ((bound_top+bound_bottom)/2)+1), 1, Vector2i(-1,-1))
 		struct_layer.set_cell(Vector2i(bound_left,(bound_top+bound_bottom)/2), 4, ruin_floor[0])
 		struct_layer.set_cell(Vector2i(bound_left,((bound_top+bound_bottom)/2)+1), 4, ruin_floor[0])
 	else: #open right
-		roof_layer.set_cell(Vector2i(bound_right, (bound_top+bound_bottom)/2), 1, Vector2i(-1,-1))
-		roof_layer.set_cell(Vector2i(bound_right, ((bound_top+bound_bottom)/2)+1), 1, Vector2i(-1,-1))
+		#roof_layer.set_cell(Vector2i(bound_right, (bound_top+bound_bottom)/2), 1, Vector2i(-1,-1))
+		#roof_layer.set_cell(Vector2i(bound_right, ((bound_top+bound_bottom)/2)+1), 1, Vector2i(-1,-1))
 		struct_layer.set_cell(Vector2i(bound_right,(bound_top+bound_bottom)/2), 4, ruin_floor[0])
 		struct_layer.set_cell(Vector2i(bound_right,((bound_top+bound_bottom)/2)+1), 4, ruin_floor[0])
 	
@@ -143,22 +144,28 @@ func decorate_chunk(x, y):
 		generate_ruin(x, y)
 	else:
 		var feature_type
-		var roll = randi_range(0, 3)
+		var distfromorig = sqrt(x*x+y*y)
+		var resrollval = min(1+floori(distfromorig)/5,6)
+		print("resrollval: ",resrollval)
+		
+		var roll = randi_range(0, resrollval)
 		if roll == 0:
 			feature_type = water_source
-		elif roll == 1:
+		elif roll <= 3 :
 			feature_type = ore_vein
-		elif roll == 2:
+		elif roll <= 5 :
 			feature_type = oil_well
-		elif roll == 3:
+		elif roll == 6:
 			feature_type = uranium_deposit
 		
 		var base_x = rng.randi_range(0,32)
 		var base_y = rng.randi_range(0,32)
-		for i in 10:
+		
+		var maxspawns = randi_range(1,ceil(min(distfromorig/5,10)))  #Drone can travel abour 45 chunks in 2.5 mins.
+		for i in maxspawns:  #Drone can travel abour 45 chunks in 2.5 mins.:
 			var pos_x = (x * chunk_size) + base_x + randi_range(-2, 2)
 			var pos_y = (y * chunk_size) + base_y + randi_range(-2, 2)
-			spawn_feature(feature_type, pos_x, pos_y,x, y)
+			spawn_feature(feature_type, pos_x, pos_y,x, y,distfromorig)
 		
 		#spawn_feature(uranium_deposit, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x ,y)
 		#spawn_feature(ore_vein, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x, y)
@@ -194,13 +201,16 @@ func unload_resources(cx, cy):
 	#loaded_resources.erase(chunk_key)
 	pass
 	
-func spawn_feature(feature:PackedScene, tx, ty, chunk_x, chunk_y):
+func spawn_feature(feature:PackedScene, tx, ty, chunk_x, chunk_y,distfromorg):
 	if !can_spawn(tx, ty, chunk_x, chunk_y):
 		return
 	
 	var new_feature = feature.instantiate()
 	new_feature.position.x = tx * tile_size
 	new_feature.position.y = ty * tile_size
+	new_feature.max_drops = 1 + max(min(ceili(distfromorg)/7,8),1)
+	new_feature.AtkSpeed = 2 + min(distfromorg/5,10)
+	new_feature.DMG = 5 + floori(min(distfromorg/5,10))
 	tilemap.add_sibling(new_feature)
 	
 	loaded_resources[coord_to_key(chunk_x, chunk_y)][coord_to_key(tx, ty)] = new_feature
