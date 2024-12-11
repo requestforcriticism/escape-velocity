@@ -5,6 +5,7 @@
 
 [node name="OreVein" instance=ExtResource("1_583dq")]
 drop_type = "IRO"
+bulletcolor = Color(0.260649, 0.284477, 0.310012, 1)
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("2_vlskh")

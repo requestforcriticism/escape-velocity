@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2dniluutupbr"]
+[gd_scene load_steps=5 format=3 uid="uid://b2dniluutupbr"]
 
-[ext_resource type="Texture2D" uid="uid://dor1yp31y48fu" path="res://components/bullet/bullet_1.png" id="1_3wbop"]
 [ext_resource type="Script" path="res://components/bullet/bullet.gd" id="1_nyeq0"]
 [ext_resource type="Texture2D" uid="uid://3ht2s0bhxsde" path="res://components/bullet/bullet_2.png" id="2_srkb4"]
 
@@ -8,14 +7,11 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_3wbop")
-}, {
-"duration": 1.0,
 "texture": ExtResource("2_srkb4")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 3.0
+"speed": 1.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pdl5s"]

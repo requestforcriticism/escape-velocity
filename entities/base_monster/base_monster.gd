@@ -19,11 +19,14 @@ var col_scn : PackedScene = load("res://components/Collectables/collectables.tsc
 
 @export var timeratio = 1
 @export var max_hp : int = 25
+@export var damage:int
 var hp
 
 var speed = patrol_speed
 
 func _ready():
+	print("damage: ",damage)
+	#print("hp: ",max_hp )
 	hp = max_hp
 	$HealthBar.max_value = max_hp
 	$HealthBar.value = max_hp
@@ -38,7 +41,7 @@ func on_damage(bullet):
 	if hp <= 0:
 		Save.set_value(1, "MONDEF", Save.get_value(1, "MONDEF", 0)+1)
 		
-		if randf_range(0,max(100/timeratio,4)) < 5:
+		if randf_range(0,max(50/timeratio,4)) < 5:
 			for i in 1:
 				var drop = col_scn.instantiate()
 				drop.type = "FOO"

@@ -39,10 +39,11 @@ func _process(delta):
 		position = position.lerp(target.position, delta * search_speed)
 
 func _on_target_deplete():
-	print("taget is depleted")
+	#print("taget is depleted")
+	pass
 
 func change_state(new_state):
-	print("Changing state from ", state, " to ", new_state)
+	#print("Changing state from ", state, " to ", new_state)
 	if new_state == DRONE_STATE.SEARCHING and target == null:
 		$AnimatedSprite2D.play("default")
 		state = new_state
@@ -67,7 +68,7 @@ func change_state(new_state):
 		state = new_state
 
 func _on_search_radius_body_entered(body):
-	print(body)
+	#print(body)
 	if state == DRONE_STATE.SEARCHING and target == null and "mine" in body:
 		if body != player and body != ship:
 			#TODO check if body is resource type
@@ -112,7 +113,8 @@ func _on_body_entered(body):
 			returned.emit()
 			queue_free()
 		
-	print("Drone found ", body)
+	#print("Drone found ", body)
 	if body == player:
-		print("matched player ", state)
+		#print("matched player ", state)
+		pass
 	pass # Replace with function body.

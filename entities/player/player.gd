@@ -543,20 +543,22 @@ func _on_monster_spawn_timer_timeout():
 	else:
 		new_mon = tree_scn.instantiate()
 		
-	var timeratio = float(dayLength/dayTimeLeft)
+	var timeratio = dayLength/dayTimeLeft
+	print(timeratio)
+	
 	
 	new_mon.damage = 3 + min(floori(timeratio),7)
-	new_mon.max_hp = 25 + min(10*floori(timeratio),75)
+	new_mon.max_hp = 25 + min(floori(10*timeratio),75)
 	new_mon.global_position = spawn_pos
 	new_mon.timeratio = timeratio
 	add_sibling(new_mon)
 	
 	$MonsterSpawnTimer.wait_time = 10.0 - min(1.5/timeratio,9.5)
-	print("timeratio: ",timeratio)
-	print($MonsterSpawnTimer.wait_time)
+	#print("timeratio: ",timeratio)
+	#print($MonsterSpawnTimer.wait_time)
 
-func _on_day_phase_day_lengthsig(DayTimeLeft) -> void:
-	dayTimeLeft = DayTimeLeft
-
-func _on_day_phase_day_time_leftsig(DayLength) -> void:
+func _on_day_phase_day_lengthsig(DayLength) -> void:
 	dayLength = DayLength
+	
+func _on_day_phase_day_time_leftsig(DayTimeLeft) -> void:
+	dayTimeLeft = DayTimeLeft

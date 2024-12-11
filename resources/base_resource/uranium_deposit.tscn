@@ -4,3 +4,4 @@
 
 [node name="UraniumDeposit" instance=ExtResource("1_2qxnr")]
 drop_type = "URA"
+bulletcolor = Color(0, 1, 0, 1)

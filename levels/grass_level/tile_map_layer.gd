@@ -36,8 +36,8 @@ func unload_far_chunks(x, y):
 	var safe_chunks = []
 	for i in range(0, loaded_chunks.size()):
 		var loaded_chunk = loaded_chunks[i]
-		var is_in_range_x = (loaded_chunk.x <= x + render_distance) and (loaded_chunk.x >= x - render_distance)
-		var is_in_range_y = (loaded_chunk.y <= y + render_distance) and (loaded_chunk.y >= y - render_distance)
+		var is_in_range_x = (loaded_chunk.x <= x + render_distance + 1) and (loaded_chunk.x >= x - render_distance - 1)
+		var is_in_range_y = (loaded_chunk.y <= y + render_distance + 1) and (loaded_chunk.y >= y - render_distance - 1)
 		if !is_in_range_x or !is_in_range_y:
 			unload_chunk(loaded_chunk.x, loaded_chunk.y)
 			$ChunkDecorator.unload_resources(loaded_chunk.x, loaded_chunk.y)
@@ -46,10 +46,11 @@ func unload_far_chunks(x, y):
 	loaded_chunks = safe_chunks
 		
 func load_near_chunks(x, y):
-	for i in range(x-render_distance, x+render_distance+1):
-		for j in range(y-render_distance, y+render_distance+1):
-			if !is_chunk_loaded(x, y):
+	for i in range(x-render_distance-1, x+render_distance+1):
+		for j in range(y-render_distance-1, y+render_distance+1):
+			if !is_chunk_loaded(i, j):
 				load_chunk(i, j)
+				#print("laoding chunk: ",x,",",y)
 
 func unload_chunk(x, y):
 	#print("clearing chunk " ,x, " ", y)

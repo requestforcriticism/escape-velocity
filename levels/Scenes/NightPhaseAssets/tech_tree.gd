@@ -1,20 +1,20 @@
 extends Control
 
 	#				= 	["BLU","IRO"	,"OIL"	,"WAT"	,"URA"	,"FOO"	,"COM"	]
-var CostsLogicUnlock=		[0	,5	  	,3		,3	  	,0		,3		,0		]
+var CostsLogicUnlock=		[0	,10	  	,0		,3	  	,0		,3		,0		]
 
-var CostsHealthUp=			[[0	,10	  	,5		,1	  	,0		,0		,0		], #to Lvl 1
+var CostsHealthUp=			[[0	,15	  	,2		,1	  	,0		,0		,0		], #to Lvl 1
 							[0	,20	  	,10		,5	  	,0		,0		,0		], #to Lvl 2
 							[0	,40	  	,20		,10	  	,5		,0		,0		], #to Lvl 3
 							[0	,70	  	,20		,20	  	,10		,0		,0		]] #to Lvl 4
 
-var CostsStaUp=				[[0	,5	  	,8		,5	  	,0		,2		,0		], #to Lvl 1
-							[0	,8	  	,14		,11	  	,2		,7		,0		], #to Lvl 2
+var CostsStaUp=				[[0	,7	  	,3		,9	  	,0		,2		,0		], #to Lvl 1
+							[0	,11	  	,7		,15	  	,2		,7		,0		], #to Lvl 2
 							[0	,13	  	,28		,21	  	,6		,17		,0		], #to Lvl 3
 							[0	,21	  	,41		,43	  	,11		,31		,0		]] #to Lvl 4
 
-var CostsDmgUp=				[[0	,8	  	,8		,5	  	,0		,0		,0		], #to Lvl 1
-							[0	,13	  	,13		,9	  	,2		,0		,0		], #to Lvl 2
+var CostsDmgUp=				[[0	,11	  	,3		,7	  	,0		,0		,0		], #to Lvl 1
+							[0	,14	  	,10		,11	  	,2		,0		,0		], #to Lvl 2
 							[0	,22	  	,22		,17	  	,7		,0		,0		], #to Lvl 3
 							[0	,34	  	,34		,28	  	,12		,0		,0		]] #to Lvl 4
 

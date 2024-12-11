@@ -127,6 +127,8 @@ func _on_day_timer_timeout() -> void:
 	dayTimeLeft += -1
 	dayTimeLeftsig.emit(dayTimeLeft)
 	dayLengthsig.emit(dayLength)
+	#print("dayLength ",dayLength)
+	
 	if dayTimeLeft == 0:
 		$DayTimer.stop()
 		end_day()

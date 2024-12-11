@@ -1,10 +1,10 @@
 extends Control
 
 	#				= ["BLU","IRO"	,"OIL"	,"WAT"	,"URA"	,"FOO"	,"COM"	]
-var HLTHPCKCOST 	= [0	,0	  	,5		,5	  	,0		,0		,0		]
-var STABSTCOST 		= [0	,7	  	,10		,3	  	,0		,0		,0		]
-var DMGBSTCOST 		= [0	,3	  	,5		,2	  	,1		,0		,0		]
-var DMGREDCOST 		= [0	,5	  	,3		,1	  	,1		,0		,0		]
+var HLTHPCKCOST 	= [0	,6	  	,0		,5	  	,0		,0		,0		]
+var STABSTCOST 		= [0	,8	  	,2		,8	  	,0		,0		,0		]
+var DMGBSTCOST 		= [0	,14	  	,3		,3	  	,0		,0		,0		]
+var DMGREDCOST 		= [0	,10	  	,3		,4	  	,0		,0		,0		]
 var HarvesterCOST 	= [0	,10	  	,10		,0	  	,0		,0		,1		]
 
 var consumable_names = ["HLTHPCKCOST","STABSTCOST","DMGBSTCOST","DMGREDCOST","HarvesterCOST"]

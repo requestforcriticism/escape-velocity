@@ -5,6 +5,7 @@
 
 [node name="WaterSource" instance=ExtResource("1_vgxi3")]
 drop_type = "WAT"
+bulletcolor = Color(0, 0.388235, 0.988235, 1)
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = ExtResource("2_jr1ji")

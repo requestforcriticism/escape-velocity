@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://dhmd88cnimtpn"]
+[gd_scene load_steps=96 format=3 uid="uid://dhmd88cnimtpn"]
 
 [ext_resource type="Script" path="res://levels/Scenes/night_phase.gd" id="1_y5447"]
 [ext_resource type="Texture2D" uid="uid://b14glxl3ey7ii" path="res://levels/Scenes/NightPhaseAssets/spaceship_interior.png" id="2_g30nj"]
@@ -21,7 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://da8y88xs5if1o" path="res://assets/collectabes/uranium_ore.png" id="9_u405p"]
 [ext_resource type="Texture2D" uid="uid://duu24sy6gjbqm" path="res://assets/harvester/Single_harverter.png" id="11_t7wt8"]
 [ext_resource type="Script" path="res://levels/Scenes/craft_button.gd" id="11_twmaj"]
-[ext_resource type="Script" path="res://levels/Scenes/fix_ship_button.gd" id="12_0co8u"]
 [ext_resource type="Script" path="res://levels/Scenes/l_fix_ship_button.gd" id="12_ceieq"]
 [ext_resource type="Script" path="res://levels/Scenes/tech_tree_button.gd" id="13_51g7y"]
 [ext_resource type="Script" path="res://levels/Scenes/end_night_button.gd" id="14_y2b70"]
@@ -1808,7 +1807,6 @@ offset_right = 174.0
 offset_bottom = 187.0
 theme_override_font_sizes/font_size = 60
 text = "Fix the Ship"
-script = ExtResource("12_0co8u")
 
 [node name="GridContainer" type="GridContainer" parent="FixShipPage"]
 layout_mode = 1

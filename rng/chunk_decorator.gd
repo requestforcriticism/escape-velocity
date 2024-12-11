@@ -23,11 +23,12 @@ extends Node
 
 var loaded_resources = {}
 var biome = 1
-
+#var spawnedloc = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	biome = 1
+	seed = randi()
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -140,31 +141,35 @@ func decorate_chunk(x, y):
 		var y_offset = rng.randi_range(0,30)
 		tilemap.set_cell(Vector2((x * chunk_size) + x_offset, (y * chunk_size) + y_offset), meta.biome, Vector2i(x_atlas, y_atlas))
 		
+	#if !spawnedloc.has([x,y]):
+		#spawnedloc.append_array([x,y])
+
 	if meta.is_ruin:
 		generate_ruin(x, y)
 	else:
 		var feature_type
 		var distfromorig = sqrt(x*x+y*y)
-		var resrollval = min(1+floori(distfromorig)/5,6)
-		print("resrollval: ",resrollval)
+		var resrollval = min(floori(distfromorig)/4,14)
+		#print("resrollval: ",resrollval)
 		
-		var roll = randi_range(0, resrollval)
-		if roll == 0:
+		#var roll = randi_range(0, resrollval)
+		var roll = rng.randi_range(0, 15)
+		if roll < 8-resrollval:
 			feature_type = water_source
-		elif roll <= 3 :
+		elif roll < 16-resrollval  :
 			feature_type = ore_vein
-		elif roll <= 5 :
+		elif roll < 22-resrollval :
 			feature_type = oil_well
-		elif roll == 6:
+		else: #5 or 6
 			feature_type = uranium_deposit
 		
 		var base_x = rng.randi_range(0,32)
 		var base_y = rng.randi_range(0,32)
 		
-		var maxspawns = randi_range(1,ceil(min(distfromorig/5,10)))  #Drone can travel abour 45 chunks in 2.5 mins.
+		var maxspawns = randi_range(1,ceili(min(distfromorig/5,10)))  #Drone can travel abour 45 chunks in 2.5 mins.
 		for i in maxspawns:  #Drone can travel abour 45 chunks in 2.5 mins.:
-			var pos_x = (x * chunk_size) + base_x + randi_range(-2, 2)
-			var pos_y = (y * chunk_size) + base_y + randi_range(-2, 2)
+			var pos_x = (x * chunk_size) + base_x + rng.randi_range(-2, 2)
+			var pos_y = (y * chunk_size) + base_y + rng.randi_range(-2, 2)
 			spawn_feature(feature_type, pos_x, pos_y,x, y,distfromorig)
 		
 		#spawn_feature(uranium_deposit, (x * chunk_size) + rng.randi_range(0,32), (y * chunk_size) + rng.randi_range(0,32),x ,y)

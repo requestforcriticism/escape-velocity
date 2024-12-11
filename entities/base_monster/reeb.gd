@@ -1,6 +1,5 @@
 extends "res://entities/base_monster/base_monster.gd"
 
-@export var damage = 10
 
 func attack(target):
 	state = MONSTER_STATE.POUNCING

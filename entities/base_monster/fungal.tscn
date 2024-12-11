@@ -5,7 +5,6 @@
 
 [node name="Fungal" instance=ExtResource("1_ga5mj")]
 script = ExtResource("2_33x8s")
-damage = 3
 
 [node name="SplodeTimer" type="Timer" parent="." index="9"]
 

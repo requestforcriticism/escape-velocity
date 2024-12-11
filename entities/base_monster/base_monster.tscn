@@ -18,13 +18,13 @@ animations = [{
 size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d8yuy"]
-radius = 138.0
+radius = 242.033
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_265mb"]
 radius = 192.023
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_exsoa"]
-radius = 282.016
+radius = 488.066
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mtivo"]
 size = Vector2(32, 32)

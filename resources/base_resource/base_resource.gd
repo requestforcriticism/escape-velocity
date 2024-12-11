@@ -16,6 +16,7 @@ signal health_changed
 @export var drop_throw_distance = 0
 @export var is_attacking:bool = true
 @export var attack_able:bool = true
+@export var bulletcolor:Color
 
 @export var tut:bool =false
 
@@ -97,6 +98,7 @@ func shoot_bullet(angle, expiration, damage, size):
 	var velocity = Vector2(150.0, 0.0)
 	bullet.damage = DMG
 	bullet.direction = Vector2.RIGHT.rotated(angle)
+	bullet.modulate = bulletcolor
 	add_child(bullet)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
