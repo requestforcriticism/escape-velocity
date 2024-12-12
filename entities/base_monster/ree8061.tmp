@@ -20,13 +20,13 @@ animations = [{
 size = Vector2(63, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d26eg"]
-radius = 295.205
+radius = 168.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fuajf"]
-radius = 613.007
+radius = 438.412
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w30gs"]
-radius = 921.066
+radius = 557.291
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t74w5"]
 size = Vector2(45.9997, 82.0002)
@@ -52,13 +52,9 @@ shape = SubResource("CircleShape2D_fuajf")
 shape = SubResource("CircleShape2D_w30gs")
 
 [node name="PounceTimer" type="Timer" parent="." index="7"]
-wait_time = 0.1
-autostart = true
+wait_time = 3.0
 
-[node name="PounceCD" type="Timer" parent="." index="8"]
-one_shot = true
-
-[node name="damagedronebox" type="Area2D" parent="." index="11"]
+[node name="damagedronebox" type="Area2D" parent="." index="10"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("4_q1jpa")
@@ -69,4 +65,3 @@ shape = SubResource("RectangleShape2D_t74w5")
 debug_color = Color(0.918061, 6.90195e-05, 0.70348, 0.42)
 
 [connection signal="timeout" from="PounceTimer" to="." method="_on_pounce_timer_timeout"]
-[connection signal="timeout" from="PounceCD" to="." method="_on_pounce_cd_timeout"]

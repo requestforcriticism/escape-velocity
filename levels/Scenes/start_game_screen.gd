@@ -99,6 +99,7 @@ func _on_load_game_pressed() -> void:
 
 func _start_new_game():
 	Save.set_value(1, "WINLOSE", 0)
+	Save.set_value(1, "TOTALTIME",0)
 	Save.set_value(1, "SHIPREPAIR", 0)
 	Save.set_value(1, "Phase", 0) 	 	# 0 = day ,1 = night
 	Save.set_value(1, "DAY", 1)

@@ -132,7 +132,7 @@ func decorate_chunk(x, y):
 	var rng = get_chunk_generator(x, y)
 	var meta = get_chunk_meta(x, y)
 	#print("Decorating chunk (", x, ", ", y, ")")
-	
+	var distfromorig = sqrt(x*x+y*y)
 	#roll tile decoration
 	for i in range(1,rng.randi_range(50, 100)):
 		var x_atlas = rng.randi_range(1,3)
@@ -140,6 +140,8 @@ func decorate_chunk(x, y):
 		var x_offset = rng.randi_range(0,30)
 		var y_offset = rng.randi_range(0,30)
 		tilemap.set_cell(Vector2((x * chunk_size) + x_offset, (y * chunk_size) + y_offset), meta.biome, Vector2i(x_atlas, y_atlas))
+		tilemap.self_modulate.g = 1-.01*distfromorig
+		tilemap.self_modulate.b = 1-.01*distfromorig
 		
 	#if !spawnedloc.has([x,y]):
 		#spawnedloc.append_array([x,y])
@@ -148,7 +150,7 @@ func decorate_chunk(x, y):
 		generate_ruin(x, y)
 	else:
 		var feature_type
-		var distfromorig = sqrt(x*x+y*y)
+		
 		var resrollval = min(floori(distfromorig)/4,14)
 		#print("resrollval: ",resrollval)
 		
@@ -213,9 +215,10 @@ func spawn_feature(feature:PackedScene, tx, ty, chunk_x, chunk_y,distfromorg):
 	var new_feature = feature.instantiate()
 	new_feature.position.x = tx * tile_size
 	new_feature.position.y = ty * tile_size
-	new_feature.max_drops = 1 + max(min(ceili(distfromorg)/7,8),1)
+	new_feature.maxHealth = 35 + min(floori(distfromorg*3),165)
+	new_feature.max_drops = 1 + max(min(ceili(distfromorg)/5,12),1)
 	new_feature.AtkSpeed = 2 + min(distfromorg/5,10)
-	new_feature.DMG = 5 + floori(min(distfromorg/5,10))
+	new_feature.DMG = 5 + min(floori(distfromorg/5),10)
 	tilemap.add_sibling(new_feature)
 	
 	loaded_resources[coord_to_key(chunk_x, chunk_y)][coord_to_key(tx, ty)] = new_feature

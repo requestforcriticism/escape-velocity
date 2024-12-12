@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal on_die
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = 600.0
 
 enum MONSTER_STATE {PASSIVE, SEARCHING, ATTACKING, POUNCING, DEAD}
 var state = MONSTER_STATE.PASSIVE
@@ -41,7 +41,7 @@ func on_damage(bullet):
 	if hp <= 0:
 		Save.set_value(1, "MONDEF", Save.get_value(1, "MONDEF", 0)+1)
 		
-		if randf_range(0,max(50/timeratio,4)) < 5:
+		if randf_range(0,max(50/timeratio,8)) < 9:
 			for i in 1:
 				var drop = col_scn.instantiate()
 				drop.type = "FOO"
@@ -50,7 +50,7 @@ func on_damage(bullet):
 		on_die.emit()
 		queue_free()
 
-func _physics_process(delta):
+func _process(delta):
 	if state == MONSTER_STATE.PASSIVE:
 		speed = patrol_speed
 		if target == null:
@@ -62,6 +62,9 @@ func _physics_process(delta):
 		move_to_target()
 	elif state == MONSTER_STATE.ATTACKING:
 		speed = attack_speed
+	elif state == MONSTER_STATE.POUNCING:
+		pass
+	
 		
 func get_next_wander_location():
 	target = wander_target.instantiate()
@@ -81,6 +84,7 @@ func move_to_target():
 # start attacking the player
 func _on_attack_area_body_entered(body):
 	state = MONSTER_STATE.ATTACKING
+	target = body
 	$AttackTimer.start()
 
 # player leaves aggro range
@@ -96,13 +100,13 @@ func _on_attack_area_body_exited(body):
 # start persuing player 
 func _on_search_area_body_entered(body):
 	state = MONSTER_STATE.SEARCHING
-	if target == current_wander_target:
+	if target == current_wander_target && current_wander_target != null:
 		current_wander_target.queue_free()
 	target = body
-	if(player == null):
-		attack(target)
-	else:
-		attack(player)
+	#if(player == null):
+		#attack(target)
+	#else:
+		#attack(player)
 
 func _on_wander_radius_body_entered(body):
 	if body == self and state == MONSTER_STATE.PASSIVE:
@@ -120,3 +124,10 @@ func _on_wander_expire_timer_timeout():
 func attack(body):
 	#print("attacking")
 	pass
+
+func _on_attack_timer_timeout() -> void:
+	if(player == null):
+		attack(target)
+	else:
+		attack(player)
+	pass # Replace with function body.

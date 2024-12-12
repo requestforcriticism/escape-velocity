@@ -7,5 +7,6 @@
 script = ExtResource("2_33x8s")
 
 [node name="SplodeTimer" type="Timer" parent="." index="9"]
+one_shot = true
 
 [connection signal="timeout" from="SplodeTimer" to="." method="splode"]

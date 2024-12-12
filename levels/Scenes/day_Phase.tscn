@@ -53,6 +53,11 @@ player = NodePath("../player")
 
 [node name="DayTimer" type="Timer" parent="."]
 
+[node name="gametimer" type="Timer" parent="."]
+process_mode = 3
+wait_time = 0.05
+autostart = true
+
 [node name="dayBGmusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("15_vgiit")
@@ -86,4 +91,5 @@ script = ExtResource("16_cinen")
 [connection signal="using_DMGRED" from="player/Camera2D/PauseCanvasLayer/PauseMenu" to="player" method="_on_pause_menu_using_dmgred"]
 [connection signal="using_STABST" from="player/Camera2D/PauseCanvasLayer/PauseMenu" to="player" method="_on_pause_menu_using_stabst"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
+[connection signal="timeout" from="gametimer" to="." method="_on_gametimer_timeout"]
 [connection signal="finished" from="dayBGmusic" to="dayBGmusic" method="_on_finished"]

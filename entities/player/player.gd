@@ -536,9 +536,9 @@ func _on_monster_spawn_timer_timeout():
 	var spawn_pos = Vector2i(global_position.x + x_offset, global_position.y + y_offset)
 	var new_mon
 	
-	if roll <= 3:
+	if roll <= 5:
 		new_mon = reeb_scn.instantiate()
-	elif roll <= 7:
+	elif roll <= 10:
 		new_mon = fungal_scn.instantiate()
 	else:
 		new_mon = tree_scn.instantiate()

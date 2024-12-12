@@ -2,14 +2,17 @@ extends "res://entities/base_monster/base_monster.gd"
 
 var bullet : PackedScene = load("res://components/bullet/bullet.tscn")
 
-
+var attackrdy:bool = true
 
 func attack(target):
-	$SplodeTimer.start()
+	if attackrdy:
+		$SplodeTimer.start()
+		attackrdy = false
 
 var is_offset=false
 
 func splode():
+	attackrdy = true
 	#print("fungal attacking")
 	var num_balls = 8
 	var splosion_angle = TAU / num_balls

@@ -178,3 +178,7 @@ func _lose_game(node):
 
 func _on_end_game_timer_timeout() -> void:
 	LevelManager.load_post_game()
+
+
+func _on_gametimer_timeout() -> void:
+	Save.set_value(1, "TOTALTIME",Save.get_value(1, "TOTALTIME",0)+0.05)

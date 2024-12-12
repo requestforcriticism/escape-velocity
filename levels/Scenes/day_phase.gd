@@ -200,3 +200,6 @@ func _on_player_health_changed(health,maxhealth) -> void:
 	if !endingday && health <= 0:
 		endingday = true
 		end_day()
+
+func _on_gametimer_timeout() -> void:
+	Save.set_value(1, "TOTALTIME",Save.get_value(1, "TOTALTIME",0)+0.05)

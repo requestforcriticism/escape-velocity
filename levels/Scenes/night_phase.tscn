@@ -2314,6 +2314,11 @@ stream = ExtResource("30_nxksg")
 [node name="fixingship" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("31_7juwg")
 
+[node name="gametimer" type="Timer" parent="."]
+process_mode = 3
+wait_time = 0.05
+autostart = true
+
 [connection signal="mouse_entered" from="LandingPage/GridContainer/CraftButton" to="LandingPage/GridContainer/CraftButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="LandingPage/GridContainer/CraftButton" to="." method="_on_craft_button_pressed"]
 [connection signal="pressed" from="LandingPage/GridContainer/CraftButton" to="LandingPage/GridContainer/CraftButton" method="_on_pressed"]
@@ -2357,3 +2362,4 @@ stream = ExtResource("31_7juwg")
 [connection signal="pressed" from="CheckMainMenu/GridContainer2/MMNoButton" to="CheckMainMenu/GridContainer2/MMNoButton" method="_on_pressed"]
 [connection signal="timeout" from="eating/End game timer" to="." method="_on_end_game_timer_timeout"]
 [connection signal="finished" from="Sounds/backgroundmusic" to="Sounds/backgroundmusic" method="_on_finished"]
+[connection signal="timeout" from="gametimer" to="." method="_on_gametimer_timeout"]

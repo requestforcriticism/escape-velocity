@@ -3,7 +3,7 @@ extends StaticBody2D
 signal health_changed
 
 @export var bullet_scene : PackedScene
-@export var maxHealth = 100
+@export var maxHealth = 35
 @export var currentHealth:float
 @export var healthRegen = 1
 @export var collectable_scn: PackedScene
@@ -59,12 +59,14 @@ func mine(miner):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	$Timer.wait_time = 1/AtkSpeed + randf_range(-.01,.01)
 	$Area2D/CollisionShape2D.disabled = !attack_able
 	$Timer.autostart = is_attacking
 	if is_attacking:
 		$Timer.start()
 	currentHealth = maxHealth
+	$HealthBar.max_value = maxHealth
 	$HealthBar.value = currentHealth
 	$AnimatedSprite2D.play("default")
 	state = RESOURCE_STATE.AGGESSIVE
