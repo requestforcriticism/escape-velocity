@@ -25,7 +25,7 @@ var hp
 var speed = patrol_speed
 
 func _ready():
-	print("damage: ",damage)
+	#print("damage: ",damage)
 	#print("hp: ",max_hp )
 	hp = max_hp
 	$HealthBar.max_value = max_hp

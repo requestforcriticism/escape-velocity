@@ -673,6 +673,7 @@ scale = Vector2(1.85996, 1)
 [node name="StaUp2" parent="StaTree" node_paths=PackedStringArray("depends_on_nodes", "depended_by_lines") instance=ExtResource("1_i3rcu")]
 position = Vector2(6, 29)
 sprite_frames = SubResource("SpriteFrames_p14ye")
+animation = &"locked"
 depends_on_nodes = [NodePath("../StaUp1")]
 depended_by_lines = [NodePath("TechTreeLine")]
 upgrade_key = "Capacitor2"
@@ -699,6 +700,7 @@ rotation = 1.5708
 [node name="StaUp4" parent="StaTree" node_paths=PackedStringArray("depends_on_nodes") instance=ExtResource("1_i3rcu")]
 position = Vector2(6, -99)
 sprite_frames = SubResource("SpriteFrames_cmeto")
+animation = &"locked"
 depends_on_nodes = [NodePath("../StaUp3")]
 upgrade_key = "Capacitor4"
 shipfixreq = 4
@@ -710,7 +712,7 @@ metadata/_edit_group_ = true
 [node name="DmgUp1" parent="DmgTree" node_paths=PackedStringArray("depends_on_nodes", "depended_by_lines") instance=ExtResource("1_i3rcu")]
 position = Vector2(-20, 90)
 sprite_frames = SubResource("SpriteFrames_uqo55")
-animation = &"purchased"
+animation = &"locked"
 depends_on_nodes = [NodePath("../../LogicUnlock")]
 depended_by_lines = [NodePath("TechTreeLine")]
 upgrade_key = "Damage1"
@@ -724,6 +726,7 @@ scale = Vector2(1.85996, 1)
 [node name="DmgUp2" parent="DmgTree" node_paths=PackedStringArray("depends_on_nodes", "depended_by_lines") instance=ExtResource("1_i3rcu")]
 position = Vector2(-20, 26)
 sprite_frames = SubResource("SpriteFrames_2ly5j")
+animation = &"locked"
 depends_on_nodes = [NodePath("../DmgUp1")]
 depended_by_lines = [NodePath("TechTreeLine")]
 upgrade_key = "Damage2"
@@ -737,6 +740,7 @@ scale = Vector2(1.7734, 1)
 [node name="DmgUp3" parent="DmgTree" node_paths=PackedStringArray("depends_on_nodes", "depended_by_lines") instance=ExtResource("1_i3rcu")]
 position = Vector2(-20, -38)
 sprite_frames = SubResource("SpriteFrames_atq6u")
+animation = &"locked"
 depends_on_nodes = [NodePath("../DmgUp2")]
 depended_by_lines = [NodePath("TechTreeLine")]
 upgrade_key = "Damage3"
@@ -749,6 +753,7 @@ rotation = 1.5708
 [node name="DmgUp4" parent="DmgTree" node_paths=PackedStringArray("depends_on_nodes") instance=ExtResource("1_i3rcu")]
 position = Vector2(-20, -102)
 sprite_frames = SubResource("SpriteFrames_6xajh")
+animation = &"locked"
 depends_on_nodes = [NodePath("../DmgUp3")]
 upgrade_key = "Damage4"
 shipfixreq = 4

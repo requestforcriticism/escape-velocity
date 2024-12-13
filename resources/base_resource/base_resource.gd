@@ -12,7 +12,7 @@ signal health_changed
 @export var durability = 5 #secs to mine
 @export var max_drops = 10
 @export var DMG = 10  #damage the bullet deals
-@export var AtkSpeed = 2
+@export var AtkSpeed = 1
 @export var drop_throw_distance = 0
 @export var is_attacking:bool = true
 @export var attack_able:bool = true

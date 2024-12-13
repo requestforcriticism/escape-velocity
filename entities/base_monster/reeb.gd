@@ -15,7 +15,7 @@ func _process(delta):
 	elif state == MONSTER_STATE.ATTACKING:
 		speed = attack_speed
 	elif state == MONSTER_STATE.POUNCING:
-		print(velocity.normalized()*delta*JUMP_VELOCITY)
+		#print(velocity.normalized()*delta*JUMP_VELOCITY)
 		global_position -= velocity.normalized()*delta*JUMP_VELOCITY
 
 func attack(target):

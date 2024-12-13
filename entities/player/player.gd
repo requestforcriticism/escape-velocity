@@ -415,6 +415,7 @@ func damage_player(dmg):
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if "damage" in area:
+		print(area)
 		PlayerStats.set_currentHP(-area.damage + PlayerStats.get_DMGReduction())
 		health_changed.emit(PlayerStats.get_currentHP(),PlayerStats.get_MaxHP())
 		$AnimatedSprite2D.modulate = Color.RED
@@ -530,7 +531,7 @@ func _on_walkingsound_timer_timeout() -> void:
 
 func _on_monster_spawn_timer_timeout():
 	var spawn_radius = 500
-	var roll = randi_range(0, 10)
+	var roll = randi_range(1, 10)
 	var x_offset = randi_range(-spawn_radius, spawn_radius)
 	var y_offset = randi_range(-spawn_radius, spawn_radius)
 	var spawn_pos = Vector2i(global_position.x + x_offset, global_position.y + y_offset)
@@ -553,9 +554,9 @@ func _on_monster_spawn_timer_timeout():
 	new_mon.timeratio = timeratio
 	add_sibling(new_mon)
 	
-	$MonsterSpawnTimer.wait_time = 10.0 - min(1.5/timeratio,9.5)
+	$MonsterSpawnTimer.wait_time = 10.0 - min(timeratio*9.5/15,9.5)
 	#print("timeratio: ",timeratio)
-	#print($MonsterSpawnTimer.wait_time)
+	print($MonsterSpawnTimer.wait_time)
 
 func _on_day_phase_day_lengthsig(DayLength) -> void:
 	dayLength = DayLength

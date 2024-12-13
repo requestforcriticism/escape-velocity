@@ -49,7 +49,6 @@ tile_set = ExtResource("8_0hffb")
 
 [node name="Ship" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_uv6ki")]
 position = Vector2(118, -112)
-collectables = 0
 player = NodePath("../player")
 
 [node name="DayTimer" type="Timer" parent="."]
