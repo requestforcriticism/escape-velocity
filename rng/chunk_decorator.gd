@@ -158,9 +158,9 @@ func decorate_chunk(x, y):
 		var roll = rng.randi_range(0, 15)
 		if roll < 8-resrollval:
 			feature_type = water_source
-		elif roll < 16-resrollval  :
+		elif roll < 15-resrollval  :
 			feature_type = ore_vein
-		elif roll < 22-resrollval :
+		elif roll < 19-resrollval :
 			feature_type = oil_well
 		else: #5 or 6
 			feature_type = uranium_deposit
