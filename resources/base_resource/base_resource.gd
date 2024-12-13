@@ -48,7 +48,8 @@ func mine(miner):
 		state = RESOURCE_STATE.DEAD
 		name = "deadresource"
 		$AnimatedSprite2D.play("depleted")
-		return  [0, null]
+		if str(miner).left(9) != "Harvester":
+			return  [0, null]
 	
 	#otherwise add miner to list of subscribers
 	if !miners.has(miner):

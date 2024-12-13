@@ -8,9 +8,9 @@ enum DRONE_STATE { SEARCHING, MINING, CARRYING, RETURNING }
 @export var ship : Node
 
 @export_group("Drone Speeds")
-@export var carry_speed = 0.5
-@export var search_speed = 1
-@export var return_speed = 2
+@export var carry_speed = 600
+@export var search_speed = 400
+@export var return_speed = 800
 
 @export var search_dest = Vector2.ZERO
 
@@ -28,15 +28,27 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if state == DRONE_STATE.RETURNING:
-		position = position.lerp(player.position, delta * return_speed)
+		travelplaces(player.position,delta * return_speed)
+		#position = position.lerp(player.position, delta * return_speed)
 	elif state == DRONE_STATE.CARRYING:
-		position = position.lerp(ship.position, delta * carry_speed)
+		travelplaces(ship.position,delta * carry_speed)
+		#position = position.lerp(ship.position, delta * carry_speed)
 	elif state == DRONE_STATE.SEARCHING and target != null:
-		position = position.lerp(target.position, delta * search_speed)
+		travelplaces(target.position,delta * search_speed)
+		#position = position.lerp(target.position, delta * search_speed)
 	elif state == DRONE_STATE.SEARCHING:
-		position = position.lerp(search_dest, delta * search_speed)
+		travelplaces(search_dest,delta * search_speed)
+		#position = position.lerp(search_dest, delta * search_speed)
 	elif state == DRONE_STATE.MINING:
-		position = position.lerp(target.position, delta * search_speed)
+		travelplaces(target.position,delta * search_speed)
+		#position = position.lerp(target.position, delta * search_speed)
+
+func travelplaces(dest,speed):
+	if position.distance_to(dest) > 10*speed:
+		var vel = (dest - position).normalized()
+		position += vel*speed
+	else:
+		position = position.lerp(dest, speed/150)
 
 func _on_target_deplete():
 	#print("taget is depleted")
@@ -60,6 +72,7 @@ func change_state(new_state):
 		else:
 			$MiningTimer.wait_time = minable[0]
 			$MiningTimer.start()
+		
 	elif new_state == DRONE_STATE.CARRYING:
 		$AnimatedSprite2D.play("carrying")
 		state = new_state

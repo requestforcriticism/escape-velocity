@@ -19,8 +19,20 @@ func collect(item, amount:int = 1):
 
 #when player enters, copy stuff over
 func _on_area_2d_body_entered(body):
+	var amountcol:bool = false
 	if body == player and "colable" in body:
 		for i in range(0, player.colable.size()):
 			#print(player.colable[i], " ", player.colnames[i])
+			if player.colable[i] != 0:
+				amountcol = true
 			collect(player.colnames[i], player.colable[i])
 			player.colable[i] = 0
+	if amountcol:
+		$TextureRect.visible = true
+		for i in 100:
+			$TextureRect.modulate.a += -.01
+			await get_tree().create_timer(.02).timeout
+			
+		$TextureRect.visible = false
+		$TextureRect.modulate.a = 1
+		

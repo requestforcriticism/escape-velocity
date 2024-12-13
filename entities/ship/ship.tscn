@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://detkeh16h32fb"]
+[gd_scene load_steps=6 format=3 uid="uid://detkeh16h32fb"]
 
 [ext_resource type="Script" path="res://entities/ship/ship.gd" id="1_8rsfu"]
 [ext_resource type="Texture2D" uid="uid://c8xdmkuyalumv" path="res://assets/ship.png" id="1_jm83g"]
+[ext_resource type="Texture2D" uid="uid://b4xjqv4gmi4sb" path="res://assets/hudAssets/panel_rectangle_screws.png" id="3_bqufj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkfgg"]
 size = Vector2(160, 64)
@@ -10,6 +11,7 @@ size = Vector2(160, 64)
 size = Vector2(253, 138)
 
 [node name="Ship" type="StaticBody2D"]
+position = Vector2(-9, 0)
 collision_layer = 17
 script = ExtResource("1_8rsfu")
 metadata/_edit_group_ = true
@@ -25,5 +27,27 @@ shape = SubResource("RectangleShape2D_mkfgg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_wt8rv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_left = -86.0
+offset_top = -30.0
+offset_right = 106.0
+offset_bottom = 34.0
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("3_bqufj")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 3.0
+offset_right = 185.0
+offset_bottom = 76.0
+theme_override_font_sizes/font_size = 13
+text = "Collectable transfer from drone to ship complete"
+horizontal_alignment = 1
+autowrap_mode = 3
+uppercase = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
