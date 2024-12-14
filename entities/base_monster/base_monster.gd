@@ -41,12 +41,12 @@ func on_damage(bullet):
 	if hp <= 0:
 		Save.set_value(1, "MONDEF", Save.get_value(1, "MONDEF", 0)+1)
 		
-		if randf_range(0,max(50/timeratio,8)) < 9:
-			for i in 1:
-				var drop = col_scn.instantiate()
-				drop.type = "FOO"
-				drop.position = position
-				add_sibling(drop)
+		#if randf_range(0,max(50/timeratio,8)) < 9:
+		for i in 1:
+			var drop = col_scn.instantiate()
+			drop.type = "FOO"
+			drop.position = position
+			add_sibling(drop)
 		on_die.emit()
 		queue_free()
 

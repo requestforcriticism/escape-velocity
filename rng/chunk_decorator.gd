@@ -151,16 +151,16 @@ func decorate_chunk(x, y):
 	else:
 		var feature_type
 		
-		var resrollval = min(floori(distfromorig)/4,14)
+		var resrollval = min(floori(distfromorig)/3,14)
 		#print("resrollval: ",resrollval)
 		
 		#var roll = randi_range(0, resrollval)
 		var roll = rng.randi_range(0, 15)
 		if roll < 8-resrollval:
 			feature_type = water_source
-		elif roll < 15-resrollval  :
+		elif roll < 16-resrollval  :
 			feature_type = ore_vein
-		elif roll < 19-resrollval :
+		elif roll < 22-resrollval :
 			feature_type = oil_well
 		else: #5 or 6
 			feature_type = uranium_deposit
@@ -215,10 +215,10 @@ func spawn_feature(feature:PackedScene, tx, ty, chunk_x, chunk_y,distfromorg):
 	var new_feature = feature.instantiate()
 	new_feature.position.x = tx * tile_size
 	new_feature.position.y = ty * tile_size
-	new_feature.maxHealth = 35 + min(floori(distfromorg*3),165)
+	new_feature.maxHealth = 25 + min(floori(distfromorg*3),165)
 	new_feature.max_drops = 1 + max(min(ceili(distfromorg)/5,12),1)
-	new_feature.AtkSpeed = 2 + min(distfromorg/5,10)
-	new_feature.DMG = 5 + min(floori(distfromorg/5),10)
+	new_feature.AtkSpeed = 1.75 + min(distfromorg/5,10.25)
+	new_feature.DMG = 4 + min(floori(distfromorg/5),11)
 	tilemap.add_sibling(new_feature)
 	
 	loaded_resources[coord_to_key(chunk_x, chunk_y)][coord_to_key(tx, ty)] = new_feature
