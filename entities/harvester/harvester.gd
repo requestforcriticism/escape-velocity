@@ -8,9 +8,9 @@ enum DRONE_STATE { SEARCHING, MINING, CARRYING, RETURNING }
 @export var ship : Node
 
 @export_group("Drone Speeds")
-@export var carry_speed = 600
-@export var search_speed = 400
-@export var return_speed = 800
+@export var carry_speed = 1000
+@export var search_speed = 1000
+@export var return_speed = 1200
 
 @export var search_dest = Vector2.ZERO
 
