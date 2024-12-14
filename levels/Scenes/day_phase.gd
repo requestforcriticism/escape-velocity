@@ -24,7 +24,8 @@ var endingday:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	$TotalGameTimer.start()
+	print(Save.get_value(1, "TOTALTIME",0))
 	endingday = false
 	Input.set_custom_mouse_cursor(default_cursor,Input.CURSOR_ARROW,Vector2(32,32))
 	
@@ -188,9 +189,11 @@ func end_day():
 	Save.set_value(1, "COLLECTEDCOM", Save.get_value(1, "COLLECTEDCOM", 0)+ Save.get_value(1, "COM", 0) - daystarcolables[5]) #number of computer chips collected during the game
 	
 	#Save._save_file_win()  #save the game at the end of the day
+	$TotalGameTimer.stop()
 	Save.set_value(1, "Phase", 1)
 	Save.save_file(1)
 	print("loading night phase")
+	
 	LevelManager.load_night()
 	
 func _on_pause_menu_ending_the_day() -> void:
@@ -201,5 +204,6 @@ func _on_player_health_changed(health,maxhealth) -> void:
 		endingday = true
 		end_day()
 
-func _on_gametimer_timeout() -> void:
+
+func _on_total_game_timer_timeout() -> void:
 	Save.set_value(1, "TOTALTIME",Save.get_value(1, "TOTALTIME",0)+0.05)

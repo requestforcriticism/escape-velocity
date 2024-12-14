@@ -18,6 +18,8 @@ var menu_cursor = preload("res://assets/cursors/pointer_b.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$GametotalTimer.start()
+	print(Save.get_value(1, "TOTALTIME",0))
 	PhysicsServer2D.set_active(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
@@ -150,6 +152,7 @@ func end_day():
 		$".".modulate.g += -.01
 		await get_tree().create_timer(0.01).timeout
 	
+	$GametotalTimer.stop()
 	Save.set_value(1, "DAY", Save.get_value(1, "DAY", 0)+1)
 	Save.set_value(1, "Phase", 0)
 	Save.save_file(1)
@@ -163,6 +166,7 @@ func win_game():
 	Save.set_value(1, "WINLOSE", 1)
 	$"eating/End game timer".start()
 	$win.visible = true
+	$GametotalTimer.stop()
 
 func _lose_game(node):
 	$eating.visible = true
@@ -175,10 +179,10 @@ func _lose_game(node):
 		$".".modulate.b += -.01
 		$".".modulate.g += -.01
 		await get_tree().create_timer(0.01).timeout
+	$GametotalTimer.stop()
 
 func _on_end_game_timer_timeout() -> void:
 	LevelManager.load_post_game()
 
-
-func _on_gametimer_timeout() -> void:
+func _on_gametotal_timer_timeout() -> void:
 	Save.set_value(1, "TOTALTIME",Save.get_value(1, "TOTALTIME",0)+0.05)

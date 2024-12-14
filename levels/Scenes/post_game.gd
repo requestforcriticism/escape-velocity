@@ -34,6 +34,7 @@ func _on_returnto_start_pressed() -> void:
 	LevelManager.load_start()
 
 func time_convert(time_in_sec):
+	print(time_in_sec)
 	var seconds = time_in_sec%60
 	var minutes = (time_in_sec/60)%60
 	var hours = (time_in_sec/60/60)%60
